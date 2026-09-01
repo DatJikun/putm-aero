@@ -36,6 +36,13 @@ Prędkość odniesienia w pracach PUT i w setupie CFD: **15 m/s** (do potwierdze
 
 ---
 
+## Regulamin
+
+| Plik | Co to jest |
+|------|------------|
+| [sources/rules-aero-boxes-loopholes.md](sources/rules-aero-boxes-loopholes.md) | FS Rules **2026 v1.1** — boxy T8, DRS/fans, loophole’y (tekst) |
+| [team/rules-current.pdf](team/rules-current.pdf) | PDF regulaminu |
+
 ## Literatura (prace dyplomowe / paper)
 
 | # | Plik | Krótko |

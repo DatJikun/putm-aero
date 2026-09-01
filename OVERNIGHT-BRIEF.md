@@ -56,3 +56,7 @@ Dwie nowe notatki PL w `sources/` + wpisy w `INDEX.md`:
 ## Proponowany następny ruch (gdy wstaniesz)
 
 Nie rozstrzygamy CAD w briefie — tylko kolejka: **H1** seria kątów/gap/overlap 3-el. na 017 (guardrale TARGETS) → równolegle lekki CAD **4-el.** do jednego case’u porównawczego → potem **H2** z minimum δ=0 + 1–2 punkty yaw/δ, nie sam peak na prostej.
+
+## Noc 2 (2026-09-01 wieczór)
+
+Notatka AMZ / FaSTTUBe / Running Snail jest już na main (`sources/research-amz-berlin-snails-aero.md`). Następny research — odciążenie przedniego skrzydła (H3) oraz szczeliny skrzydła tylnego — jest w toku. Smoke OpenFOAM 312k pozostaje poza kartą Spec.

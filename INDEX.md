@@ -69,6 +69,7 @@ Indeksy cząstkowe: [index-batch-a.md](index-batch-a.md), [index-batch-b.md](ind
 |------|------|
 | [sources/research-balance-shift.md](sources/research-balance-shift.md) | Cofanie balansu przy \|Cz\|≥3,682 i Cx≈1,23: RW+UT główne, wąsy kandydat, DRS na końcu; szacunek balansu 017 z Cm/Cz ≈61,7% (do potwierdzenia Fluent) |
 | [sources/research-fs-teams-practice.md](sources/research-fs-teams-practice.md) | Praktyka FS z literatury (Jackson/Nagłowski/Staniszewski): zakresy Cx/Cz/balans, udział FW/RW/UT, Endurance vs Autocross (yaw UT), implikacje H1→H2 |
+| [sources/research-balance-levers-h1-h5.md](sources/research-balance-levers-h1-h5.md) | Dźwignie balansu H1–H5 dla Spec: mechanizm, kierunek DF/drag/balans, evidence, ryzyka T8/yaw, pierwszy CFD, kill criteria (DRS OUT; 4-el. RW = hipoteza) |
 
 ## Regulamin
 

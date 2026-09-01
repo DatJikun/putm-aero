@@ -7,7 +7,7 @@
 Fluent (zespół): half-car, długość odniesienia Lref = 1,53 m, moment przy x = 0,765 m.  
 Dziś w solverze: k-ε realizable + Enhanced Wall Treatment.  
 Cel migracji / porównania: uzgodnić z OpenFOAM (u CFD#1 przy 16 GB: funkcje ściankowe, y+ > 30).  
-**Aref (powierzchnia odniesienia, m²)** — nadal brakuje z Fluent Reference Values dla RWiter017.
+**Aref (powierzchnia odniesienia):** half-car ≈ **0,50 m²** (zakres simów 0,49–0,51); pełny bolid ≈ **1,0 m²**. Do porównania OpenFOAM ↔ Fluent bierzemy **0,50 m²** na half-car.
 
 ---
 
@@ -97,9 +97,22 @@ Szczegóły z cytatami: `sources/fs-rules-2026-t8.md`.
 
 ---
 
+
+
+## Kotwice z researchu top EU FS EV (literatura publiczna)
+
+Źródła: `sources/research-eu-fs-ev-top-teams.md`, `sources/claims-from-eu-fs-ev-top.md`.
+
+- Po zakazach powered ground effect wygrywa **pasywny high-DF** — spójne z naszym DRS/fan OUT.
+- **Podłoga** to główna dźwignia efektywności (obok RW) przy cofaniu balansu — wzmacnia H2.
+- Jedyny publiczny rząd CLA/CDA w tym researchu: **Esslingen ≈ 4,9 / 1,65** — sanity check, **nie** hard target (inne Aref/konwencje).
+- Multi-element RW jest standardem; **4 elementy bez publicznych liczb** — nasza hipoteza, nie fakt z rankingów.
+- Autocross ≠ sukces sezonu bez Endurance (ostrzeżenie Aachen) — bramka mapa w zakręcie + model toru zostaje.
+- Brak publicznych Cl/Cd/balansu od AMZ / Aachen / Delft itd. — nie wymyślamy ich liczb.
+
 ## Otwarte / potrzebne od zespołu
 
-1. **Aref** — powierzchnia odniesienia z Fluent → Reference Values → Area dla RWiter017 (jedna liczba + czy to half-car, czy już pełne auto). Bez tego OpenFOAM i Fluent nie porównają Cx/Cz uczciwie.  
+1. ~~Aref~~ — zamknięte: half ≈ 0,50 m² (pełny ≈ 1,0 m²).
 2. Ostateczna decyzja o wąsach po doborze profilu.  
 3. Zdjęcie / mapa aero do funkcji celu (Mikołaj: „zaraz podeślę”).
 

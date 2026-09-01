@@ -17,7 +17,7 @@
 Uwagi:
 - Konwencja znaku: w RW_iter017 Cz jest **ujemny** (docisk). W innych wierszach sheetu znak Cz bywa odwrócony — w claims używać **|Cz|** + jawny wiersz.
 - **Balans % Front nie jest podany** dla RW_iter017 w CSV RW.
-- V_ref / A_ref / ρ: **nie podane w tych wierszach CSV** (TBD zespołu; w pracach PUT zwykle 15 m/s).
+- V_ref: **15 m/s** (workflow). A_ref half-car: **≈ 0,50 m²** (zakres 0,49–0,51; pełny ≈ 1,0 m²) — Mikołaj 2026-09-01.
 
 ## Kontekst balansu (osobne źródło — nie mieszać jako tożsamość 1:1 bez potwierdzenia)
 
@@ -43,6 +43,7 @@ Mikołaj (FS Aero, 2026-09-01): **maksymalny downforce przy balansie ≈ 50/50**
 | UT Baseline_1 ma |Cz|≈3,683 i balans ≈**69%** przód | CSV UT: Balans Front=0,692; Cz=−3,683 | **high** (dla Baseline_1) |
 | **Baseline_1 ≠ RWiter017** | decyzja Mikołaja (FS Aero 2026-09-01): RWiter017 = aktualny bolid po zawodach; Baseline_1 to inny model z arkusza podłogi | **high** |
 | Hard target balansu ≈50/50 = decyzja lead, nie wynik RWiter017 | wypowiedź Mikołaja w FS Aero | **high** (jako intent); N/A jako CFD |
+| Aref half-car ≈ **0,50 m²** (0,49–0,51); pełny ≈ **1,0 m²** | Mikołaj FS Aero 2026-09-01 | **high** |
 | Łańcuch FW 2025/26 i FWiter039 **nie** są baseline bolidu | osobny CSV FW; decyzja Spec/Aero Pack | **high** |
 
 ## Limity

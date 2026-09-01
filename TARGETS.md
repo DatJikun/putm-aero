@@ -1,9 +1,15 @@
 # Karta targetów — pakiet aero FS
 
-**Status:** robocza  
+**Status:** zaktualizowana po decyzjach Mikołaja  
 **Data:** 2026-09-01  
-**V odniesienia:** 15 m/s  
-**Fluent (zespół):** half-car, Lref 1,53 m, moment przy x=0,765 m; solving dziś ke-realizable+EWT; cel migracji: k-ω SST
+**Prędkość odniesienia w CFD:** 15 m/s  
+
+Fluent (zespół): half-car, długość odniesienia Lref = 1,53 m, moment przy x = 0,765 m.  
+Dziś w solverze: k-ε realizable + Enhanced Wall Treatment.  
+Cel migracji / porównania: uzgodnić z OpenFOAM (u CFD#1 przy 16 GB: funkcje ściankowe, y+ > 30).  
+**Aref (powierzchnia odniesienia, m²)** — nadal brakuje z Fluent Reference Values dla RWiter017.
+
+---
 
 ## Kotwica: aktualny bolid = RWiter017
 
@@ -12,62 +18,94 @@
 | Cx | 1,229 | Done, 27.12.2025 |
 | Cz | −3,682 | ujemny = docisk |
 | Cm | −0,429 | |
-| η ≈ | 3,0 | |
-| Balans przód | **≈ 61,6%** | Z arkusza / Cm÷Cz (−0,429/−3,682); ~11–12 pp do 50/50. Postpro może doprecyzować. |
+| Efektywność \|Cz\|/Cx | ok. 3,0 | |
+| Balans na przód | ok. **61,6%** | Z arkusza (Cm/Cz); do pół na pół brakuje ok. **12 punktów procentowych** |
 
-RW_iter017.2 (Cx 1,210 / Cz −3,628) = tylko wariant skryptu, nie zamienia kotwicy.
+Wariant RW_iter017.2 (Cx 1,210 / Cz −3,628) to tylko sprawdzenie skryptu — nie zamienia kotwicy.
 
-## Baseline002 — nie jest aktualnym bolidem
-
-Historyczny miks FWiter011 + RWiter017 + UTiter002 (Cx ≈ 1,187, |Cz| ≈ 3,678). Po poprawie znaku w Excelu balans wychodzi **ok. 69% przód** — to informacja o *tym* miksie, **nie** o samym RWiter017. Nie używać jako hard baseline.
-
-## Cele (słowa Mikołaja)
-
-Maksymalny docisk przy spokojnym oporze, balans jak najbliżej **50/50**.
-
-| Cel | Wartość robocza |
-|-----|-----------------|
-| Docisk | \|Cz\| ≥ **3,682** (nie gorzej niż RWiter017) |
-| Opór | Cx ≲ **1,23** przy tym DF |
-| Balans | **48–52%** przód; dziś ≈ **61,6%** → cofnąć o **~11–12 pp** (RW/UT) |
-| V CFD | **15 m/s** |
-
-Kierunek: **cofamy docisk o ~12 pp** (RW / podłoga), bez dokręcania samego FW na ślepo.
-
-## Zakres elementów
-
-- **IN:** RW, FW, undertray (+ sekcje boczne)
-- **Kandydat:** wąsy
-- **OUT:** wentylator
-- **TBD:** DRS
-
-## Kolejność
-
-1. Push wiedzy do `putm-aero` (w toku)
-2. Balans RWiter017 zamrożony ≈61,6% przód (arkusz); postpro może doprecyzować
-3. Research: max DF + spokojny Cx + balans → 50/50
-4. CAD → CFD porównawcze
-
-## Ograniczenia regulaminu (FS Rules 2026 v1.1, T8) — skrót
-
-Źródło: `sources/fs-rules-2026-t8.md` / `sources/rules-aero-boxes-loopholes.md` (nie zgadywać poza cytatami).
-
-- Boxy urządzeń aero wg T 8.2 (m.in. FW wysokości / outboard przed osią; RW wysokość; szerokość vs opony; zasięg wzdłużny ±700 mm przód / +250 mm tył) — szczegóły w notatkach KB.
-- **DRS:** w T8 nie zakazany wprost → decyzja Spec = **TBD** (Q&A / decyzja zespołu).
-- **Wentylatory:** legalnie ≤ 500 W łącznie (T 11.11.1), ale w pakiecie **OUT** (decyzja projektowa).
-- Uwaga: skrzynka CFD 800×500 mm (endplate) u CFD#1 to domena numeryczna, **nie** box T8.
-
+Baseline002 (FWiter011 + RWiter017 + UTiter002) to **historyczny miks**, nie aktualny bolid.
 
 ---
 
-## Aktualizacja decyzji (2026-09-01, Mikołaj)
+## Cel nadrzędny
 
-- **DRS ruchomy: OUT** (ew. tylko pasywny)
-- **Fan spod podłogi: OUT**
-- **Wąsy S1223: TBD** — dobór profilu pod konkretne miejsce
-- **Priorytet:** Endurance + Autocross
-- **Cel:** max docisk przy możliwie niskim oporze
-- **Balans start:** ≈61,6% przód → cel ~50/50 (~12 pp)
-- **RW:** rozważyć **4 elementy**
-- **Walidacja:** CFD → symulacja → tor (nitki / flow-vis)
-- **Aref:** nadal wymagane z Fluent Reference Values przed porównaniem OF↔Fluent
+**Endurance i Autocross** są najważniejsze.  
+Maksymalny docisk przy **możliwie najniższym oporze**, balans jak najbliżej pół na pół.
+
+| Cel | Wartość robocza |
+|-----|-----------------|
+| Docisk | \|Cz\| co najmniej **3,682** (nie gorzej niż RWiter017) |
+| Opór | Cx możliwie niski; orientacyjnie nie gorzej niż ok. **1,23** przy tym docisku |
+| Balans | pasmo **48–52%** na przód; dziś ok. **61,6%** → trzeba **cofnąć docisk** o ok. 12 pp (tylnie skrzydło / podłoga), nie dokręcać samego przedniego na ślepo |
+| Prędkość CFD | **15 m/s** |
+
+---
+
+## Zakres elementów (decyzje)
+
+| Element | Status |
+|---------|--------|
+| Tylne skrzydło | **IN** — rozważamy **4 elementy** (hipoteza; w literaturze PUT często 3) |
+| Przednie skrzydło | **IN** |
+| Podłoga (+ sekcje boczne) | **IN** |
+| Wąsy (np. S1223) | **TBD** — profil dobierać pod konkretne miejsce na aucie, nie z góry |
+| Ruchomy DRS | **OUT** — tylko układ pasywny |
+| Wentylator spod podłogi | **OUT** |
+
+---
+
+## Shortlista pracy nad balansem (zatwierdzona)
+
+1. **H1** — tylne skrzydło (w tym wariant 4-elementowy)  
+2. **H2** — podłoga (i bramka: Cx/Cz nie tylko na wprost, też pod kątem / model toru Endurance)  
+3. **H3** — odciążenie przodu tylko gdy trzeba  
+4. **H4** — wąsy później, jeśli TBD przejdzie w „tak”  
+5. **H5** — DRS i fan poza grą przy peaku docisku  
+
+Szczegóły: `sources/research-balance-shift.md`, `sources/research-balance-levers-h1-h5.md`.
+
+---
+
+## Co znaczy „mapa CFD + model toru jako bramka”
+
+Zanim zamrozicie geometrię **podłogi**, warto policzyć opór i docisk nie tylko jadąc prosto, ale też przy kątach jak w zakręcie, i złożyć to na prosty model toru Endurance. Podłoga lubi tracić docisk w yaw — bez tej bramki można „wygrać prostą” i przegrać Endurance.
+
+---
+
+## Plan walidacji (Wasze słowa)
+
+1. CFD  
+2. Symulacja (sim)  
+3. Tor — nitki, ewentualnie flow-vis  
+
+---
+
+## RP 1:10 (opcjonalnie, proces)
+
+To nie jest CFD. Chodzi o wydrukowany model bolidu w skali 1:10 przed formami kompozytowymi — łapie kolizje ramy, zawieszenia, packagingu. Pomysł ze Strojnego; nie obowiązek aero.
+
+---
+
+## Regulamin (FS Rules 2026 v1.1, T8) — skrót
+
+Szczegóły z cytatami: `sources/fs-rules-2026-t8.md`.
+
+- Boxy urządzeń aero według T 8.2 — twarde ograniczenia.  
+- DRS: w T8 nie zakazany wprost, ale u nas **OUT** decyzją zespołu.  
+- Wentylatory: w regulaminie limit mocy, u nas i tak **OUT**.  
+- Skrzynka 800×500 mm u CFD#1 to domena numeryczna skrzydła, nie box z regulaminu.
+
+---
+
+## Otwarte / potrzebne od zespołu
+
+1. **Aref** — powierzchnia odniesienia z Fluent → Reference Values → Area dla RWiter017 (jedna liczba + czy to half-car, czy już pełne auto). Bez tego OpenFOAM i Fluent nie porównają Cx/Cz uczciwie.  
+2. Ostateczna decyzja o wąsach po doborze profilu.  
+3. Zdjęcie / mapa aero do funkcji celu (Mikołaj: „zaraz podeślę”).
+
+
+## Aref
+
+- Half-car: **≈ 0,50 m²** (zakres 0,49–0,51 m²)
+- Pełny bolid: **≈ 1,0 m²**
+- Źródło: Mikołaj, FS Aero 2026-09-01

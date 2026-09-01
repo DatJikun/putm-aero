@@ -31,9 +31,11 @@ Prędkość odniesienia w pracach PUT i w setupie CFD: **15 m/s** (do potwierdze
 
 **Balans RWiter017:** ≈ **61,6% przód** (z Cm/Cz arkusza; Mikołaj: „jak w arkuszu”). Do ~50/50 ≈ **12 pp** — cofamy docisk (RW/UT). Postpro z OneDrive = JPG bez CSV sił → kotwica z arkusza zostaje.
 
+**Aref:** half-car ≈ **0,50 m²** (zakres simów 0,49–0,51); pełny bolid ≈ **1,0 m²**.
+
 **Otwarte:**
 - masa bolidu, budżet energii
-- decyzja DRS z regulaminu
+- wąsy — dobór profilu
 
 Łańcuch iteracji przedniego skrzydła (`team/fw-iters-2025-2026.csv`) to kontekst rozwoju FW, **nie** baseline całego bolidu.
 

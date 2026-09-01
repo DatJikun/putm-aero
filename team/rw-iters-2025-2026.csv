@@ -1,0 +1,142 @@
+Nazwa,Osoba,Opis,Hipoteza,Wniosek,Data,Model Bazowy,Gotowe?,Cm,Cx,Cz,Mdot_Radiator,Zdjęcie 1,Zdjęcie 2,Zdjęcie 3,Efektywność,CoP,CoP % 
+iter078,Michał Narożny,Malta bazowy ,,,,,Done,"-0,271","1,249","-3,539","-0,105",,,,"2,834","-0,12","-0,08"
+,,Malta bazowy 80 km/h,,,11.6.2026,,Done,"-0,296","1,271","-3,572","-0,132",,,,"2,811","-0,13","-0,08"
+RW_iter001,Michał Narożny,stare RW z prostymi lotkami ,,,22.10.2025,iter078,Done,"-0,283","1,241","-3,645","-0,105",,,,"2,937","-0,12","-0,08"
+RW_iter002,Michał Narożny,ucięta ostatnia lotka i endplate o 10 cm,,,4.11.2025,iter078,Done,"-0,746","1,028","-3,488","-0,103",,,,"3,393","-0,33","-0,21"
+RW_iter003,Damian Malicki ,"ucięta ostatnia lotka i endplate o 10 cm, ostatnia lotka przeniesiona na przód skrzydła",,,5.11.2025,RW_iter002,Done,"-0,762","1,039","-3,486","-0,103",,,,"3,356","-0,33","-0,22"
+RW_iter004,Damian Malicki ,"nowe mocowanie, całe stare skrzydło obniżone o 10 cm",,,6.11.2025,iter078,Done,"-0,449","1,191","-3,449","-0,105",,,,"2,897","-0,20","-0,13"
+RW_iter005,Michał Narożny,"profil główny i pierwsza lotka takie same, ostatnia lotka zmniejszona",,,21.11.2025,RW_iter002,Done,"-0,538","1,128","-3,542","-0,104",,,,"3,141","-0,23","-0,15"
+RW_iter006,Michał Narożny,"lotka z przodu szkrzydła prosta, większa, zmienony kąt natarcia i położenie (wyżej i bardziej z przodu)",,,15.11.2025,RW_iter003,Done,"-0,702","1,073","-3,416","-0,045",,,,"3,184","-0,31","-0,21"
+RW_iter006.2,Michał Narożny,RW_iter006 z modelem k-omega zamiast k-epsilon,,,16.11.2025,RW_iter0006,Gotowe,"-0,601","1,043","-3,175","-0,038",,,,"3,044","-0,29","-0,19"
+RW_iter007,Michał Narożny,"endplate ucięty o 10 cm, lotka 1 i 2 przeskalowane do mniejszego rozmiaru i przesunięte tak żeby zmieściły się obie ",,,19.11.2025,RW_iter002,Done,"-0,538","1,159","-3,613","-0,104",,,,"3,116","-0,23","-0,15"
+RW_iter008,Damian Malicki ,boczny panel na endplate,,,09.12.2025,RW_iter007,Done,"-0,512","1,168","-3,569","-0,105",,,,"3,056","-0,22","-0,14"
+RW_iter009,Michał Narożny,3 winglety na endplacie ,,,04.12.2025,RW_iter007,Done,"-0,518","1,155","-3,581","-0,105",,,,"3,099","-0,22","-0,14"
+RW_iter010,Damian Malicki ,2 winglety na endplacie,,,04.12.2025,RW_iter007,Done,"-0,527","1,201","-3,571","-0,104",,,,"2,973","-0,23","-0,15"
+RW_iter011,Damian Malicki ,RWiter007 z endplatem z kątem prostym z przodu i lotką na górze,,,01.12.2025,RW_iter007,Done,"-0,523","1,184","-3,637","-0,104",,,,"3,073","-0,22","-0,14"
+RW_iter012,Michał Narożny,RWiter011 poszerzone do wymiarów przed drs,,,11.12.2025,RW_iter011,Done,"-0,502","1,185","-3,620","-0,104",,,,"3,055","-0,21","-0,14"
+RW_iter013,Michał Narożny,"RWiter012 z większym profilem z przodu, bardziej zaokrąglonym endplatem i poprawionym ustawieniem tylnich lotek",,,13.12.2025,RW_iter012,Done,"-0,432","1,227","-3,679","-0,105",,,,"2,999","-0,18","-0,12"
+RW_iter014,Damian Malicki ,RWiter012 z dwoma lotkami z przodu ,,,15.12.2025,RW_iter012,Done,"-0,475","1,197","-3,625","-0,104",,,,"3,030","-0,20","-0,13"
+RW_iter015,Michał Narożny,RWiter013 z jeszcze bardziej poprawionymi tylnymi lotkami,,,06.01.2026,RW_iter013,Done,"-0,430","1,226","-3,676","-0,105",,,,"2,998","-0,18","-0,12"
+RW_iter016,Michał Narożny ,tylnie lotki jak w RWiter015 z dwoma lotkami z przodu o tym samym kącie natarcia,,,27.12.2025,RW_iter015,Done,"-0,456","1,204","-3,638","-0,105",,,,"3,022","-0,19","-0,13"
+RW_iter017,Michał Narożny,tylnie lotki jak w RWiter015 z dwoma lotkami z przodu z RWiter014,,,27.12.2025,RW_iter014/15,Done,"-0,429","1,229","-3,682","-0,105",,,,"2,996","-0,18","-0,12"
+RW_iter017.2,,,Nowy skrypt do Fluenta,"lekka rozbieżność wyników, model ostateczny do porównania z modelem przyszłorocznym ",05.05.2026,,Done,"-0,458","1,210","-3,628","-0,105",,,,"2,998","-0,19","-0,13"
+RW_iter018,Michał Narożny,"RWiter017 z nowym, mniejszym endplatem",,,20.01.2026,RW_iter017,Done,"-0,455","1,214","-3,623","-0,104",,,,"2,985","-0,19","-0,13"
+RW_iter019,Michał Narożny,"RWiter017 z pasywnym drs, AoA plane 1: 8°; AoA plane 2: 7°; AoA plane 3 i 4: 0°",znaczne zredukowanie oporu,udało się,15.04.2026,RW_iter017,Done,"-1,078","0,832","3,013","-0,099",,,,"3,623","0,55","0,36"
+RW_iter020,Michał Narożny,"RWiter017 z pasywnym drs, AoA plane 1-3: 0°",znaczne zredukowanie oporu,lepiej,28.04.2026,RW_iter017,Done,"-1,083","0,830","3,017","-0,099",,,,"3,633","0,55","0,36"
+RW_iter021,Damian Malicki ,"Rwiter017 z pasywnym drs, AoA plane 1 i 2: 10°, AoA plane 3 i 4: 4° stopni więcej względem podstawy.",znaczne zredukowanie oporu,"brak poprawy, symulacja błędna",03.05.2026,RW_iter017,Done,"-0,696","1,166","3,674","-0,109",,,,"3,151","0,29","0,19"
+RW_iter022,Damian Malicki ,zwężenie endplate w dolnej jego cześci ,,,24.05.2025,RW_iter017,Done,"-0,674","1,198","3,696","-0,109",,,,"3,085","0,28","0,18"
+RW_iter023,Michał Narożny,"nowe tylne skrzydło oparte na starym mocowaniu, prosty MP i PL1 i 2. Spełnia regulamin na 2027 rok ","mało oporu, dużo docisku",jest dobry początek,25.05.2026,Baseline002,Done,"-0,726","1,142","3,707","-0,108",,,,"3,246","0,30","0,20"
+RW_iter024,Michał Narożny,dodanie żaluzji na endplacie ,zmniejszenie oporu poprzez wyeliminowanie wirów na zewnątrz endplata,bez sensu,27.05.2026,RW_iter023,Done,"-0,723","1,146","3,705","-0,108",,,,"3,232","0,30","0,20"
+RW_iter025,Michał Narożny ,dodanie żaluzji na endplacie ,zmniejszenie oporu poprzez wyeliminowanie wirów na zewnątrz endplata,bez sensu v2,07.06.2026,RW_iter024,Done,"-0,725","1,144","3,705","-0,108",,,,"3,238","0,30","0,20"
+UTiter026,Łukasz Frątczak,Łagodniejszy MP,"wiekszy CZ,poprawa CM",,,,Done,-0.711,1.313, 3.859,0.077,,,,#VALUE!,#VALUE!,#VALUE!
+UTiter027,Łukasz Frątczak,Dwie lotki przesuniete do przodu,zwiekszenie docisku lotek oraz zwiekszenie nadcisnienia mp,idiota skasowal wyniki,,,In progress,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+RW_Iter028,Franek Samulski,otwór pod żaluzje na enplate,zmiejszyć opór indukowany ,,24.08.26,,In progress,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,In progress,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,In progress,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,In progress,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,In progress,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,In progress,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,In progress,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,In progress,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,In progress,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,In progress,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,In progress,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,In progress,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,In progress,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,In progress,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,In progress,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,In progress,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,In progress,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,In progress,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,In progress,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,In progress,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,In progress,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,In progress,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,In progress,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,In progress,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,In progress,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,In progress,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,In progress,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,In progress,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,In progress,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,In progress,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,In progress,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,In progress,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,In progress,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,In progress,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,In progress,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,In progress,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,In progress,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,In progress,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,In progress,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,In progress,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!

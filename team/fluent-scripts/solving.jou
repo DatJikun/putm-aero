@@ -1,0 +1,337 @@
+/file/set-tui-version "23.1"
+/define/models/viscous/ke-realizable? y 
+/define/models/viscous/near-wall-treatment/enhanced-wall-treatment? y 
+/define/boundary-conditions/fluid mrf_fan-body 
+n 
+n 
+n 
+y 
+-1 
+n 
+510 
+n 
+0 
+n 
+0 
+n 
+0 
+n 
+1.971 
+n 
+-0.33548 
+n 
+0.29566 
+n 
+-1 
+n 
+0
+n 
+0 
+"none" 
+n 
+n 
+n 
+n 
+n 
+/define/boundary-conditions/fluid radiator_core-body 
+n 
+n 
+n 
+n 
+n 
+0 
+n 
+0 
+n 
+0 
+n 
+0 
+n 
+0 
+n 
+0 
+n 
+y 
+n 
+y 
+n 
+n 
+1 
+n 
+0 
+n 
+0 
+n 
+0 
+n 
+0 
+n 
+-1 
+y 
+n 
+67085492.228 
+n 
+-1000 
+n 
+-1000 
+n 
+n 
+148.714 
+n 
+0 
+n 
+0 
+0 
+0 
+n 
+1 
+constant 
+1 
+n
+/define/boundary-conditions/velocity-inlet domain_inlet 
+n 
+n 
+y 
+y 
+n 
+15 
+n 
+0 
+n 
+n 
+y 
+5 
+10
+/define/boundary-conditions/wall domain_ground 
+y 
+motion-bc-moving 
+n 
+y 
+n 
+n 
+15 
+1 
+0 
+0 
+n
+/define/boundary-conditions/wall domain_sky 
+y 
+motion-bc-moving 
+n 
+y 
+n 
+n 
+15 
+1 
+0 
+0 
+n
+/define/boundary-conditions/wall surface_fan:1 
+y 
+motion-bc-moving 
+n 
+y 
+y 
+n 
+n 
+510 
+1.971 
+-0.33548 
+0.29566 
+-1 
+0
+0
+/define/boundary-conditions/wall surface_front_wheel-rotary 
+y 
+motion-bc-moving 
+n 
+y 
+y 
+n 
+n 
+-72.90000000000001 
+0 
+-0.7 
+0.20574 
+0 
+1 
+0
+/define/boundary-conditions/wall surface_rear_wheel-rotary 
+y 
+motion-bc-moving 
+n 
+y 
+y 
+n 
+n 
+-72.90000000000001 
+1.53 
+-0.7 
+0.20574 
+0 
+1 
+0
+
+
+;;USTAWIENIA REFERENCE VALUES
+
+(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Setup|Reference Values"))
+(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Setup|Reference Values"))
+(cx-gui-do cx-activate-item "NavigationPane*Frame2*Table1*List_Tree2")
+(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Setup|Reference Values"))
+(cx-gui-do cx-set-real-entry-list "Reference Values*Table2(Reference Values)*RealEntry5(Length)" '( 1.53))
+(cx-gui-do cx-activate-item "Reference Values*Table2(Reference Values)*RealEntry5(Length)")
+(cx-gui-do cx-set-real-entry-list "Reference Values*Table2(Reference Values)*RealEntry8(Velocity)" '( 15))
+(cx-gui-do cx-activate-item "Reference Values*Table2(Reference Values)*RealEntry8(Velocity)")
+(cx-gui-do cx-activate-item "Ribbon*Frame1*Frame6(Results)*Table1*Table3(Reports)*PushButton8(Projected Areas)")
+(cx-gui-do cx-set-real-entry-list "Projected Surface Areas*Frame1*RealEntry2(Min Feature Size)" '( 0.0001))
+(cx-gui-do cx-set-list-selections "Projected Surface Areas*List2(Surfaces)" '( 9 10 11 12 13 14 15 16 17 18 19 20 21 22))
+(cx-gui-do cx-activate-item "Projected Surface Areas*List2(Surfaces)")
+(cx-gui-do cx-set-list-selections "Projected Surface Areas*List2(Surfaces)" '( 9 10 11 12 13 14 15 16 17 18 19 20 21 22))
+(cx-gui-do cx-activate-item "Projected Surface Areas*List2(Surfaces)")
+(cx-gui-do cx-set-list-selections "Projected Surface Areas*List2(Surfaces)" '( 9 10 11 12 13 14 15 16 17 18 19 20 21 22))
+(cx-gui-do cx-activate-item "Projected Surface Areas*List2(Surfaces)")
+(cx-gui-do cx-activate-item "Projected Surface Areas*PanelButtons*PushButton1(OK)")
+(cx-gui-do cx-activate-item "Projected Surface Areas*PanelButtons*PushButton2(Cancel)")
+
+;;USTAWIENIA SOLUTION METHODS
+
+(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Solution|Methods"))
+(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Solution|Methods"))
+(cx-gui-do cx-activate-item "NavigationPane*Frame2*Table1*List_Tree2")
+(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Solution|Methods"))
+(cx-gui-do cx-set-list-selections "Solution Methods*Table1*Table2(Pressure-Velocity Coupling)*DropDownList1(Scheme)" '( 1))
+(cx-gui-do cx-activate-item "Solution Methods*Table1*Table2(Pressure-Velocity Coupling)*DropDownList1(Scheme)")
+(cx-gui-do cx-set-list-selections "Solution Methods*Table1*Table3(Spatial Discretization)*DropDownList4(Turbulent Kinetic Energy)" '( 1))
+(cx-gui-do cx-activate-item "Solution Methods*Table1*Table3(Spatial Discretization)*DropDownList4(Turbulent Kinetic Energy)")
+(cx-gui-do cx-set-list-selections "Solution Methods*Table1*Table3(Spatial Discretization)*DropDownList5(Turbulent Dissipation Rate)" '( 1))
+(cx-gui-do cx-activate-item "Solution Methods*Table1*Table3(Spatial Discretization)*DropDownList5(Turbulent Dissipation Rate)")
+
+
+;;GENEROWANIE RAPORTU MDOT_RADIATOR
+
+(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Solution|Report Definitions"))
+(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Solution|Report Definitions"))
+(cx-gui-do cx-list-tree-right-click "NavigationPane*Frame2*Table1*List_Tree2" )
+(cx-gui-do cx-activate-item "MenuBar*Surface ReportSubMenu*Mass Flow Rate...")
+(cx-gui-do cx-set-text-entry "Surface Report Definition*Table1*Table1*TextEntry1(Name)" "mdot_radiator")
+(cx-gui-do cx-activate-item "Surface Report Definition*Table1*Table1*TextEntry1(Name)")
+(cx-gui-do cx-set-integer-entry "Surface Report Definition*Table1*Table1*Table2(Options)*IntegerEntry7(Average Over)" 100)
+(cx-gui-do cx-activate-item "Surface Report Definition*Table1*Table1*Table2(Options)*IntegerEntry7(Average Over)")
+(cx-gui-do cx-set-list-selections "Surface Report Definition*Table1*Table2*Table6*List1(Surfaces)" '( 8))
+(cx-gui-do cx-activate-item "Surface Report Definition*Table1*Table2*Table6*List1(Surfaces)")
+(cx-gui-do cx-activate-item "Surface Report Definition*PanelButtons*PushButton1(OK)")
+
+
+;;GENEROWANIE RAPORTU CX
+
+(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Solution|Report Definitions"))
+(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Solution|Report Definitions"))
+(cx-gui-do cx-activate-item "NavigationPane*Frame2*Table1*List_Tree2")
+(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Solution|Report Definitions"))
+(cx-gui-do cx-activate-item "Report Definitions*Table1*ButtonBox3*PushButton1(New)")
+(cx-gui-do cx-activate-item "Report Definitions*Table1*ButtonBox3*PushButton1(New)")
+(cx-gui-do cx-activate-item "MenuBar*Force ReportSubMenu*Drag...")
+(cx-gui-do cx-set-text-entry "Drag Report Definition*Table1*TextEntry3(Name)" "cx")
+(cx-gui-do cx-activate-item "Drag Report Definition*Table1*TextEntry3(Name)")
+(cx-gui-do cx-set-integer-entry "Drag Report Definition*Table1*Table1*Table1(Options)*IntegerEntry7(Average Over)" 100)
+(cx-gui-do cx-activate-item "Drag Report Definition*Table1*Table1*Table1(Options)*IntegerEntry7(Average Over)")
+(cx-gui-do cx-set-toggle-button2 "Drag Report Definition*Table1*Table1*Table5(Create)*CheckButton4(Print to Console)" #t)
+(cx-gui-do cx-activate-item "Drag Report Definition*Table1*Table1*Table5(Create)*CheckButton4(Print to Console)")
+(cx-gui-do cx-set-list-selections "Drag Report Definition*Table1*Table2*List2(Zones)" '( 3))
+(cx-gui-do cx-activate-item "Drag Report Definition*Table1*Table2*List2(Zones)")
+(cx-gui-do cx-set-list-selections "Drag Report Definition*Table1*Table2*List2(Zones)" '( 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18))
+(cx-gui-do cx-activate-item "Drag Report Definition*Table1*Table2*List2(Zones)")
+(cx-gui-do cx-activate-item "Drag Report Definition*PanelButtons*PushButton1(OK)")
+(cx-gui-do cx-activate-item "Report Definitions*PanelButtons*PushButton1(Close)")
+
+
+;;GENEROWANIE RAPORTU CZ
+
+(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Solution|Report Definitions"))
+(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Solution|Report Definitions"))
+(cx-gui-do cx-activate-item "NavigationPane*Frame2*Table1*List_Tree2")
+(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Solution|Report Definitions"))
+(cx-gui-do cx-activate-item "Report Definitions*Table1*ButtonBox3*PushButton1(New)")
+(cx-gui-do cx-activate-item "MenuBar*Force ReportSubMenu*Lift...")
+(cx-gui-do cx-set-text-entry "Lift Report Definition*Table1*TextEntry3(Name)" "cz")
+(cx-gui-do cx-activate-item "Lift Report Definition*Table1*TextEntry3(Name)")
+(cx-gui-do cx-set-integer-entry "Lift Report Definition*Table1*Table1*Table1(Options)*IntegerEntry7(Average Over)" 100)
+(cx-gui-do cx-activate-item "Lift Report Definition*Table1*Table1*Table1(Options)*IntegerEntry7(Average Over)")
+(cx-gui-do cx-set-real-entry-list "Lift Report Definition*Table1*Table1*Table2*Table2(Force Vector)*RealEntry2(Y)" '( 0))
+(cx-gui-do cx-set-real-entry-list "Lift Report Definition*Table1*Table1*Table2*Table2(Force Vector)*RealEntry3(Z)" '( -1))
+(cx-gui-do cx-set-toggle-button2 "Lift Report Definition*Table1*Table1*Table5(Create)*CheckButton4(Print to Console)" #t)
+(cx-gui-do cx-activate-item "Lift Report Definition*Table1*Table1*Table5(Create)*CheckButton4(Print to Console)")
+(cx-gui-do cx-set-list-selections "Lift Report Definition*Table1*Table2*List2(Zones)" '( 3))
+(cx-gui-do cx-activate-item "Lift Report Definition*Table1*Table2*List2(Zones)")
+(cx-gui-do cx-set-list-selections "Lift Report Definition*Table1*Table2*List2(Zones)" '( 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18))
+(cx-gui-do cx-activate-item "Lift Report Definition*Table1*Table2*List2(Zones)")
+(cx-gui-do cx-activate-item "Lift Report Definition*PanelButtons*PushButton1(OK)")
+(cx-gui-do cx-activate-item "Report Definitions*PanelButtons*PushButton1(Close)")
+
+
+;;GENEROWANIE RAPORTU CM
+
+(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Solution|Report Definitions"))
+(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Solution|Report Definitions"))
+(cx-gui-do cx-activate-item "NavigationPane*Frame2*Table1*List_Tree2")
+(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Solution|Report Definitions"))
+(cx-gui-do cx-activate-item "Report Definitions*Table1*ButtonBox3*PushButton1(New)")
+(cx-gui-do cx-activate-item "MenuBar*Force ReportSubMenu*Moment...")
+(cx-gui-do cx-set-text-entry "Moment Report Definition*Table1*TextEntry3(Name)" "cm")
+(cx-gui-do cx-activate-item "Moment Report Definition*Table1*TextEntry3(Name)")
+(cx-gui-do cx-set-integer-entry "Moment Report Definition*Table1*Table1*Table1(Options)*IntegerEntry7(Average Over)" 100)
+(cx-gui-do cx-activate-item "Moment Report Definition*Table1*Table1*Table1(Options)*IntegerEntry7(Average Over)")
+(cx-gui-do cx-set-real-entry-list "Moment Report Definition*Table1*Table1*Table2*Table2(Force Vector)*RealEntry1(X)" '( 0.765))
+(cx-gui-do cx-set-real-entry-list "Moment Report Definition*Table1*Table1*Table2*Table3(Moment Axis)*RealEntry3(Z)" '( 0))
+(cx-gui-do cx-set-real-entry-list "Moment Report Definition*Table1*Table1*Table2*Table3(Moment Axis)*RealEntry2(Y)" '( 1))
+(cx-gui-do cx-set-toggle-button2 "Moment Report Definition*Table1*Table1*Table5(Create)*CheckButton4(Print to Console)" #t)
+(cx-gui-do cx-activate-item "Moment Report Definition*Table1*Table1*Table5(Create)*CheckButton4(Print to Console)")
+(cx-gui-do cx-set-list-selections "Moment Report Definition*Table1*Table2*List2(Zones)" '( 3))
+(cx-gui-do cx-activate-item "Moment Report Definition*Table1*Table2*List2(Zones)")
+(cx-gui-do cx-set-list-selections "Moment Report Definition*Table1*Table2*List2(Zones)" '( 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18))
+(cx-gui-do cx-activate-item "Moment Report Definition*Table1*Table2*List2(Zones)")
+(cx-gui-do cx-activate-item "Moment Report Definition*PanelButtons*PushButton1(OK)")
+(cx-gui-do cx-activate-item "Report Definitions*PanelButtons*PushButton1(Close)")
+
+
+;;RESIDUA
+
+(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Solution|Monitors|Residual"))
+(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Solution|Monitors|Residual"))
+(cx-gui-do cx-activate-item "NavigationPane*Frame2*Table1*List_Tree2")
+(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Solution|Monitors|Residual"))
+(cx-gui-do cx-set-real-entry-list "Residual Monitors*Table1*Table2*Table1*Table1(Equations)*RealEntry11" '( 1e-07))
+(cx-gui-do cx-set-real-entry-list "Residual Monitors*Table1*Table2*Table1*Table1(Equations)*RealEntry17" '( 1e-07))
+(cx-gui-do cx-set-real-entry-list "Residual Monitors*Table1*Table2*Table1*Table1(Equations)*RealEntry23" '( 1e-07))
+(cx-gui-do cx-set-real-entry-list "Residual Monitors*Table1*Table2*Table1*Table1(Equations)*RealEntry29" '( 1e-07))
+(cx-gui-do cx-set-real-entry-list "Residual Monitors*Table1*Table2*Table1*Table1(Equations)*RealEntry35" '( 1e-07))
+(cx-gui-do cx-set-real-entry-list "Residual Monitors*Table1*Table2*Table1*Table1(Equations)*RealEntry41" '( 1e-07))
+(cx-gui-do cx-activate-item "Residual Monitors*PanelButtons*PushButton1(OK)")
+
+
+
+;;INICJALIZACJA I RUN CALCULATION
+
+(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Solution|Initialization"))
+(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Solution|Initialization"))
+(cx-gui-do cx-activate-item "NavigationPane*Frame2*Table1*List_Tree2")
+(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Solution|Initialization"))
+(cx-gui-do cx-activate-item "Solution Initialization*Table1*Frame12*PushButton1(More Settings)")
+(cx-gui-do cx-activate-tab-index "Hybrid Initialization*Frame1" 0)
+(cx-gui-do cx-activate-tab-index "Hybrid Initialization*Frame1" 1)
+(cx-gui-do cx-activate-tab-index "Hybrid Initialization*Frame1" 0)
+(cx-gui-do cx-activate-tab-index "Hybrid Initialization*Frame1" 2)
+(cx-gui-do cx-activate-tab-index "Hybrid Initialization*Frame1" 0)
+(cx-gui-do cx-set-toggle-button2 "Hybrid Initialization*Frame1*Frame1(General Settings)*Table1*Table1*ToggleBox4(Initialization Options)*CheckButton2(Use External-Aero Favorable Settings)" #t)
+(cx-gui-do cx-activate-item "Hybrid Initialization*Frame1*Frame1(General Settings)*Table1*Table1*ToggleBox4(Initialization Options)*CheckButton2(Use External-Aero Favorable Settings)")
+(cx-gui-do cx-set-toggle-button2 "Hybrid Initialization*Frame1*Frame1(General Settings)*Table1*Table1*ToggleBox4(Initialization Options)*CheckButton3(Maintain Constant Velocity Magnitude)" #t)
+(cx-gui-do cx-activate-item "Hybrid Initialization*Frame1*Frame1(General Settings)*Table1*Table1*ToggleBox4(Initialization Options)*CheckButton3(Maintain Constant Velocity Magnitude)")
+(cx-gui-do cx-activate-item "Hybrid Initialization*PanelButtons*PushButton1(OK)")
+(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Solution|Run Calculation"))
+(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Solution|Run Calculation"))
+(cx-gui-do cx-activate-item "NavigationPane*Frame2*Table1*List_Tree2")
+(cx-gui-do cx-set-list-tree-selections "NavigationPane*Frame2*Table1*List_Tree2" (list "Solution|Run Calculation"))
+(cx-gui-do cx-set-integer-entry "Run Calculation*Table1*Table3(Parameters)*Table1*Table1*IntegerEntry1(Number of Iterations)" 2000)
+(cx-gui-do cx-activate-item "Run Calculation*Table1*Table3(Parameters)*Table1*Table1*IntegerEntry1(Number of Iterations)")
+(cx-gui-do cx-activate-item "Ribbon*Frame1*Frame6(Results)*Table1*Table3(Reports)*PushButton8(Projected Areas)")

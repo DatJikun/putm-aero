@@ -1,0 +1,8534 @@
+
+
+#               Skrypt do CFD-Post-Pro 
+#                     MADE BY #PRK
+
+
+
+
+
+# Przed wklejeniem kodu podaj ścieżkę do folderu, gdzie chcesz umieścić wyniki:  np: "C:/Users/DanielP/Downloads/PM07-A-RESULTS/Latest_Export";
+
+
+
+!$directory = "C:/Users/admin/Desktop/iter026 - 1.2 - defined/postpro";
+
+#
+#	1. Uruchom CFD-Post	
+#	2. Załaduj wyniki
+#	3. Utwórz Surface Group z powierzchniami bolidu i nazwij go "Sufrace"
+#	4. Pamiętaj o podaniu ścieżki do folderu, w którym chcesz umieścić wyniki
+#	5. Wrzuć cały program do edytora wiersza poleceń
+#	6. Enjoy ;)
+#
+#
+
+# Tworzenie katalogów z wynikami:
+
+
+!mkdir ("$directory/Surface");
+!mkdir ("$directory/Surface/Cp");
+!mkdir ("$directory/Surface/CpX");
+!mkdir ("$directory/Surface/CpZ");
+!mkdir ("$directory/Surface/WSS");
+!mkdir ("$directory/Surface/y_plus");
+
+!mkdir ("$directory/X");
+!mkdir ("$directory/X/Velocity");
+!mkdir ("$directory/X/Cp");;
+!mkdir ("$directory/X/CpT");
+!mkdir ("$directory/X/CpT_siatka");
+
+!mkdir ("$directory/Y");
+!mkdir ("$directory/Y/Velocity");
+!mkdir ("$directory/Y/Cp");
+!mkdir ("$directory/Y/CpT");
+!mkdir ("$directory/Y/CpT_siatka");
+
+!mkdir ("$directory/Z");
+!mkdir ("$directory/Z/Velocity");
+!mkdir ("$directory/Z/Cp");
+!mkdir ("$directory/Z/CpT");
+!mkdir ("$directory/Z/CpT_siatka");
+
+
+# LEGENDA - KOLORY
+
+COLOUR MAP: Rainbow 1.0 to minus 1.0
+  Colour Map Colours = 0.000000,0.392157,0.000000,0.603922,1.000000,0.100000,0.666667,0.000000,1.000000,1.000000,0.200000,0.200000,0.000000,1.000000,1.000000,0.300000,0.094118,0.627451,0.870588,1.000000,0.400000,0.207843,0.666667,0.650980,1.000000,0.500000,1.000000,1.000000,1.000000,1.000000,0.600000,0.956863,0.917647,0.372549,1.000000,0.700000,1.000000,0.666667,0.000000,1.000000,0.800000,0.772549,0.411765,0.000000,1.000000,0.900000,0.996078,0.215686,0.000000,1.000000,1.000000,0.615686,0.000000,0.000000,1.000000
+  Colour Map Divisions = 2
+  Colour Map Storage Type = Preferences
+  Colour Map Type = Gradient
+END
+
+COLOUR MAP: Rainbow 1.0 to minus 1.5
+  Colour Map Colours = 0.000000,0.392157,0.000000,0.603922,1.000000,0.075000,0.666667,0.000000,1.000000,1.000000,0.150000,0.200000,0.000000,1.000000,1.000000,0.250000,0.094118,0.627451,0.870588,1.000000,0.362560,0.207843,0.666667,0.650980,1.000000,0.525000,0.894118,0.894118,0.894118,1.000000,0.600000,0.894118,0.894118,0.894118,1.000000,0.675000,0.894118,0.894118,0.894118,1.000000,0.750000,0.956863,0.917647,0.372549,1.000000,0.800000,1.000000,0.666667,0.000000,1.000000,0.866660,0.772549,0.411765,0.000000,1.000000,0.925000,0.996078,0.215686,0.000000,1.000000,1.000000,0.615686,0.000000,0.000000,1.000000
+  Colour Map Divisions = 2
+  Colour Map Storage Type = Preferences
+  Colour Map Type = Gradient
+END
+
+COLOUR MAP: Rainbow 2.5 to 0.0
+  Colour Map Colours = 0.000000,0.392157,0.000000,0.603922,1.000000,0.050000,0.666667,0.000000,1.000000,1.000000,0.125000,0.200000,0.000000,1.000000,1.000000,0.200000,0.094118,0.627451,0.870588,1.000000,0.250000,0.207843,0.666667,0.650980,1.000000,0.375000,0.894118,0.894118,0.894118,1.000000,0.400000,0.894118,0.894118,0.894118,1.000000,0.425000,0.894118,0.894118,0.894118,1.000000,0.500000,0.956863,0.917647,0.372549,1.000000,0.600000,1.000000,0.666667,0.000000,1.000000,0.700000,0.772549,0.411765,0.000000,1.000000,0.800000,0.996078,0.215686,0.000000,1.000000,1.000000,0.615686,0.000000,0.000000,1.000000
+  Colour Map Divisions = 2
+  Colour Map Storage Type = State
+  Colour Map Type = Gradient
+END
+
+COLOUR MAP: Rainbow 3.0 to 0.0
+  Colour Map Colours = 0.000000,0.392157,0.000000,0.603922,1.000000,0.050000,0.666667,0.000000,1.000000,1.000000,0.100000,0.200000,0.000000,1.000000,1.000000,0.150000,0.094118,0.627451,0.870588,1.000000,0.200000,0.207843,0.666667,0.650980,1.000000,0.300000,0.894118,0.894118,0.894118,1.000000,0.375000,0.894118,0.894118,0.894118,1.000000,0.450000,0.894118,0.894118,0.894118,1.000000,0.550000,0.956863,0.917647,0.372549,1.000000,0.700000,1.000000,0.666667,0.000000,1.000000,0.800000,0.772549,0.411765,0.000000,1.000000,0.900000,0.996078,0.215686,0.000000,1.000000,1.000000,0.615686,0.000000,0.000000,1.000000
+  Colour Map Divisions = 2
+  Colour Map Storage Type = State
+  Colour Map Type = Gradient
+END
+
+
+
+# DODAWANIE CPT 
+
+LIBRARY:
+  CEL:
+    EXPRESSIONS:
+      expr CpT = (Pressure + (0.6125[kg/m^3]*Velocity^2))/(0.5*1.225[kg/m^3]*\
+15[m/s]^2)
+    END
+  END
+END
+
+EXPRESSION EVALUATOR:
+  Evaluated Expression = expr CpT
+END
+
+> forceupdate EXPRESSION EVALUATOR
+
+USER SCALAR VARIABLE:CpT
+  Boundary Values = Conservative
+  Calculate Global Range = On
+  Expression = expr CpT
+  Recipe = Expression
+  Variable to Copy = Pressure
+  Variable to Gradient = Pressure
+END
+
+
+# DODAWANIE CpX
+
+LIBRARY:
+  CEL:
+    EXPRESSIONS:
+      expr cpx = Normal X * Pressure Coefficient
+    END
+  END
+END
+
+EXPRESSION EVALUATOR:
+  Evaluated Expression = expr cpx
+END
+
+> forceupdate EXPRESSION EVALUATOR
+
+
+USER SCALAR VARIABLE:CpX
+  Boundary Values = Conservative
+  Calculate Global Range = On
+  Expression = expr cpx
+  Recipe = Expression
+  Variable to Copy = Pressure
+  Variable to Gradient = Pressure
+END
+
+
+# DODAWANIE CpZ
+
+LIBRARY:
+  CEL:
+    EXPRESSIONS:
+      expr cpz = Normal Z * Pressure Coefficient
+    END
+  END
+END
+
+EXPRESSION EVALUATOR:
+  Evaluated Expression = expr cpz
+END
+
+> forceupdate EXPRESSION EVALUATOR
+
+USER SCALAR VARIABLE:CpZ
+  Boundary Values = Conservative
+  Calculate Global Range = On
+  Expression = expr cpz
+  Recipe = Expression
+  Variable to Copy = Pressure
+  Variable to Gradient = Pressure
+END
+
+
+# DODAWANIE KALKULATORA  NORMALISED VELOCITY
+
+LIBRARY:
+  CEL:
+    EXPRESSIONS:
+      inletspeed = maxVal(Velocity)@ domain_inlet
+    END
+  END
+END
+
+EXPRESSION EVALUATOR:
+  Evaluated Expression = inletspeed
+END
+
+> forceupdate EXPRESSION EVALUATOR
+
+LIBRARY:
+  CEL:
+    EXPRESSIONS:
+      expr NormVelXComponent = Velocity u/inletspeed
+    END
+  END
+END
+
+EXPRESSION EVALUATOR:
+  Evaluated Expression = expr NormVelXComponent
+END
+
+> forceupdate EXPRESSION EVALUATOR
+
+LIBRARY:
+  CEL:
+    EXPRESSIONS:
+      expr NormVelYComponent = Velocity v/inletspeed
+    END
+  END
+END
+
+EXPRESSION EVALUATOR:
+  Evaluated Expression = expr NormVelYComponent
+END
+
+> forceupdate EXPRESSION EVALUATOR
+
+LIBRARY:
+  CEL:
+    EXPRESSIONS:
+      expr NormVelZComponent = Velocity w/inletspeed
+    END
+  END
+END
+
+EXPRESSION EVALUATOR:
+  Evaluated Expression = expr NormVelZComponent
+END
+
+> forceupdate EXPRESSION EVALUATOR
+
+USER VECTOR VARIABLE: NormalisedVelocity
+  Boundary Values = Conservative
+  Calculate Global Range = On
+  Recipe = Expression
+  Variable to Copy = Pressure
+  Variable to Gradient = Pressure
+  X Expression = expr NormVelXComponent
+  Y Expression = expr NormVelYComponent
+  Z Expression = expr NormVelZComponent
+END
+
+
+# Ukrywanie Wireframe
+>hide /WIREFRAME:Wireframe, view=/VIEW:View 1
+
+
+#Tworzenie grupy z powierzchni
+#póki co ręcznie 
+
+#Ukrywanie grupy powierzchni  
+>hide /SURFACE GROUP:Surface, view=/VIEW:View 1
+
+
+# LEGENDA - POZYCJA
+
+DEFAULT LEGEND: Default Legend View 1
+  Colour = 0.0, 0.0, 0.0
+  Font = Sans Serif
+  Legend Aspect = 0.07
+  Legend Format = %4.1f
+  Legend Orientation = Vertical
+  Legend Plot = /CONTOUR:Contour 1
+  Legend Position = 0.01 , 0.212
+  Legend Resolution = 256
+  Legend Shading = Smooth
+  Legend Size = 0.6
+  Legend Ticks = 9
+  Legend Title = Legend
+  Legend Title Mode = Variable
+  Legend X Justification = None
+  Legend Y Justification = Center
+  Related Object = View 1
+  Show Legend Units = On
+  Text Colour Mode = User Specified
+  Text Height = 0.024
+  Text Rotation = 0
+  Visibility = true
+END
+
+# TEXT - FILENAME
+
+TEXT:Text Filename
+  Colour = 0, 0, 0
+  Font = Sans Serif
+  Position Mode = Two Coords
+  Text Colour Mode = Default
+  Text Height = 0.024
+  Text Position = 0 , 0.96
+  Text Rotation = 0 [degree]
+  X Justification = Center
+  Y Justification = None
+  TEXT ITEM:Text Item 1
+    Auto Annotation Expression = Accumulated Time Step
+    Auto Annotation File Date Format = DD/MM/YY
+    Auto Annotation File Time Format = h:m:s t
+    Auto Annotation Filename Format = Filename Only
+    Auto Annotation Float Format = %10.3e
+    Auto Annotation Type = Filename
+    Auto Annotation Use Automatic Number Formatting = On
+    Embed Auto Annotation = On
+    Text Item Active = On
+    Text String = <aa>
+  END
+END
+
+>show /TEXT:Text Filename, view=/VIEW:View 1
+
+#############################################################################################################################################################################
+###########################################################################################################################################################################
+#		SURFACE: 
+
+# Ścieżka do folderu: $directory/Surface/Cp
+
+# Cp:
+
+#Tworzenie konturu na powierzchni
+
+> update
+
+CONTOUR:ContourSurfaceLeft
+  Apply Instancing Transform = On
+  Clip Contour = Off
+  Colour Map = Rainbow 1.0 to minus 1.5
+  Colour Scale = Linear
+  Colour Variable = Pressure Coefficient
+  Colour Variable Boundary Values = Conservative
+  Constant Contour Colour = Off
+  Contour Range = User Specified
+  Culling Mode = No Culling
+  Domain List = /DOMAIN GROUP:All Domains
+  Draw Contours = Off
+  Font = Sans Serif
+  Fringe Fill = On
+  Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+  Lighting = On
+  Line Colour = 0, 0, 0
+  Line Colour Mode = Default
+  Line Width = 1
+  Location List = /SURFACE GROUP:Surface
+  Max = 1
+  Min = -2.25
+  Number of Contours = 25
+  Show Numbers = Off
+  Specular Lighting = On
+  Surface Drawing = Smooth Shading
+  Text Colour = 0, 0, 0
+  Text Colour Mode = Default
+  Text Height = 0.024
+  Transparency = 0.0
+  Use Face Values = Off
+  Value List = 0,1
+  OBJECT VIEW TRANSFORM:
+    Apply Reflection = Off
+    Apply Rotation = Off
+    Apply Scale = Off
+    Apply Translation = Off
+    Principal Axis = Z
+    Reflection Plane Option = XY Plane
+    Rotation Angle = 0.0 [degree]
+    Rotation Axis From = 0 [m], 0 [m], 0 [m]
+    Rotation Axis To = 0 [m], 0 [m], 0 [m]
+    Rotation Axis Type = Principal Axis
+    Scale Vector = 1 , 1 , 1
+    Translation Vector = 0 [m], 0 [m], 0 [m]
+    X = 0.0 [m]
+    Y = 0.0 [m]
+    Z = 0.0 [m]
+  END
+END
+
+>show /CONTOUR:ContourSurfaceLeft, view=/VIEW:View 1
+
+CONTOUR:ContourSurfaceRight
+  Apply Instancing Transform = On
+  Clip Contour = Off
+  Colour Map = Rainbow 1.0 to minus 1.5
+  Colour Scale = Linear
+  Colour Variable = Pressure Coefficient
+  Colour Variable Boundary Values = Conservative
+  Constant Contour Colour = Off
+  Contour Range = User Specified
+  Culling Mode = No Culling
+  Domain List = /DOMAIN GROUP:All Domains
+  Draw Contours = Off
+  Font = Sans Serif
+  Fringe Fill = On
+  Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+  Lighting = On
+  Line Colour = 0, 0, 0
+  Line Colour Mode = Default
+  Line Width = 1
+  Location List = /SURFACE GROUP:Surface
+  Max = 1
+  Min = -2.25
+  Number of Contours = 25
+  Show Numbers = Off
+  Specular Lighting = On
+  Surface Drawing = Smooth Shading
+  Text Colour = 0, 0, 0
+  Text Colour Mode = Default
+  Text Height = 0.024
+  Transparency = 0.0
+  Use Face Values = Off
+  Value List = 0,1
+  OBJECT VIEW TRANSFORM:
+    Apply Reflection = On
+    Apply Rotation = Off
+    Apply Scale = Off
+    Apply Translation = Off
+    Principal Axis = Z
+    Reflection Plane Option = ZX Plane
+    Rotation Angle = 0.0 [degree]
+    Rotation Axis From = 0 [m], 0 [m], 0 [m]
+    Rotation Axis To = 0 [m], 0 [m], 0 [m]
+    Rotation Axis Type = Principal Axis
+    Scale Vector = 1 , 1 , 1
+    Translation Vector = 0 [m], 0 [m], 0 [m]
+    X = 0.0 [m]
+    Y = 0.0 [m]
+    Z = 0.0 [m]
+  END
+END
+
+>show /CONTOUR:ContourSurfaceRight, view=/VIEW:View 1
+
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = -0.353554, 0.353554, 0.612373, 0.612373
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/Cp/Cp_1.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = 0.461941, -0.191342, -0.331414, -0.800105
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/Cp/Cp_2.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = -0.382684, 0, 0, 0.92388
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/Cp/Cp_3.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = -0.353554, -0.146447, -0.353554, 0.853554
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/Cp/Cp_4.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = -0.270599, -0.270598, -0.653282, 0.653282
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/Cp/Cp_5.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = -0.191343, -0.46194, -0.800104, 0.331414
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/Cp/Cp_6.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = -4.04453e-07, -0.382683, -0.923881, 1.91723e-07
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/Cp/Cp_7.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = 0.146447, -0.353553, -0.853555, -0.353554
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/Cp/Cp_8.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = -0.5, 0.5, 0.5, 0.5
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/Cp/Cp_9.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = -0.653282, 0.270598, 0.270598, 0.653282
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/Cp/Cp_10.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = -0.707107, 2.30968e-07, 2.30968e-07, 0.707107
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/Cp/Cp_11.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = -0.653282, -0.270598, -0.270598, 0.653282
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/Cp/Cp_12.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = -0.500001, -0.5, -0.5, 0.500001
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/Cp/Cp_13.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = -0.270599, -0.653282, -0.653282, 0.270599
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/Cp/Cp_14.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = -3.50177e-07, -0.707107, -0.707107, 3.50177e-07
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/Cp/Cp_15.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = 0.270598, -0.653282, -0.653282, -0.270598
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/Cp/Cp_16.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = 0.653283, -0.653283, -0.2706, -0.270598
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/Cp/Cp_17.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = 0.853556, -0.353555, -0.146448, -0.353554
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/Cp/Cp_18.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = 0.923883, -1.63784e-07, -6.09572e-07, -0.382684
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/Cp/Cp_19.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = 0.853557, 0.353554, 0.146447, -0.353554
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/Cp/Cp_20.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = 0.653285, 0.653283, 0.270599, -0.270599
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/Cp/Cp_21.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = 0.353556, 0.853556, 0.353555, -0.146447
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/Cp/Cp_22.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = 1.29051e-06, 0.923883, 0.382686, -7.83521e-08
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/Cp/Cp_23.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = -0.353554, 0.853557, 0.353556, 0.146447
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/Cp/Cp_24.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+###########################################################################################################################################################################
+
+# Ścieżka do folderu: $directory/Surface/WSS
+
+# WSS:
+
+#Tworzenie konturu na powierzchni
+
+> update
+
+CONTOUR:ContourSurfaceLeft
+  Apply Instancing Transform = On
+  Clip Contour = Off
+  Colour Map = Rainbow 3.0 to 0.0
+  Colour Scale = Linear
+  Colour Variable = Wall Shear
+  Colour Variable Boundary Values = Conservative
+  Constant Contour Colour = Off
+  Contour Range = User Specified
+  Culling Mode = No Culling
+  Domain List = /DOMAIN GROUP:All Domains
+  Draw Contours = Off
+  Font = Sans Serif
+  Fringe Fill = On
+  Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+  Lighting = On
+  Line Colour = 0, 0, 0
+  Line Colour Mode = Default
+  Line Width = 1
+  Location List = /SURFACE GROUP:Surface
+  Max = 3
+  Min = 0
+  Number of Contours = 25
+  Show Numbers = Off
+  Specular Lighting = On
+  Surface Drawing = Smooth Shading
+  Text Colour = 0, 0, 0
+  Text Colour Mode = Default
+  Text Height = 0.024
+  Transparency = 0.0
+  Use Face Values = Off
+  Value List = 0,1
+  OBJECT VIEW TRANSFORM:
+    Apply Reflection = Off
+    Apply Rotation = Off
+    Apply Scale = Off
+    Apply Translation = Off
+    Principal Axis = Z
+    Reflection Plane Option = XY Plane
+    Rotation Angle = 0.0 [degree]
+    Rotation Axis From = 0 [m], 0 [m], 0 [m]
+    Rotation Axis To = 0 [m], 0 [m], 0 [m]
+    Rotation Axis Type = Principal Axis
+    Scale Vector = 1 , 1 , 1
+    Translation Vector = 0 [m], 0 [m], 0 [m]
+    X = 0.0 [m]
+    Y = 0.0 [m]
+    Z = 0.0 [m]
+  END
+END
+
+>show /CONTOUR:ContourSurfaceLeft, view=/VIEW:View 1
+
+
+
+CONTOUR:ContourSurfaceRight
+  Apply Instancing Transform = On
+  Clip Contour = Off
+  Colour Map = Rainbow 3.0 to 0.0
+  Colour Scale = Linear
+  Colour Variable = Wall Shear
+  Colour Variable Boundary Values = Conservative
+  Constant Contour Colour = Off
+  Contour Range = User Specified
+  Culling Mode = No Culling
+  Domain List = /DOMAIN GROUP:All Domains
+  Draw Contours = Off
+  Font = Sans Serif
+  Fringe Fill = On
+  Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+  Lighting = On
+  Line Colour = 0, 0, 0
+  Line Colour Mode = Default
+  Line Width = 1
+  Location List = /SURFACE GROUP:Surface
+  Max = 3
+  Min = 0
+  Number of Contours = 25
+  Show Numbers = Off
+  Specular Lighting = On
+  Surface Drawing = Smooth Shading
+  Text Colour = 0, 0, 0
+  Text Colour Mode = Default
+  Text Height = 0.024
+  Transparency = 0.0
+  Use Face Values = Off
+  Value List = 0,1
+  OBJECT VIEW TRANSFORM:
+    Apply Reflection = On
+    Apply Rotation = Off
+    Apply Scale = Off
+    Apply Translation = Off
+    Principal Axis = Z
+    Reflection Plane Option = ZX Plane
+    Rotation Angle = 0.0 [degree]
+    Rotation Axis From = 0 [m], 0 [m], 0 [m]
+    Rotation Axis To = 0 [m], 0 [m], 0 [m]
+    Rotation Axis Type = Principal Axis
+    Scale Vector = 1 , 1 , 1
+    Translation Vector = 0 [m], 0 [m], 0 [m]
+    X = 0.0 [m]
+    Y = 0.0 [m]
+    Z = 0.0 [m]
+  END
+END
+
+>show /CONTOUR:ContourSurfaceRight, view=/VIEW:View 1
+
+
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = -0.353554, 0.353554, 0.612373, 0.612373
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/WSS/WSS_1.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = 0.461941, -0.191342, -0.331414, -0.800105
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/WSS/WSS_2.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = -0.382684, 0, 0, 0.92388
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/WSS/WSS_3.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = -0.353554, -0.146447, -0.353554, 0.853554
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/WSS/WSS_4.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = -0.270599, -0.270598, -0.653282, 0.653282
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/WSS/WSS_5.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = -0.191343, -0.46194, -0.800104, 0.331414
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/WSS/WSS_6.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = -4.04453e-07, -0.382683, -0.923881, 1.91723e-07
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/WSS/WSS_7.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = 0.146447, -0.353553, -0.853555, -0.353554
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/WSS/WSS_8.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = -0.5, 0.5, 0.5, 0.5
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/WSS/WSS_9.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = -0.653282, 0.270598, 0.270598, 0.653282
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/WSS/WSS_10.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = -0.707107, 2.30968e-07, 2.30968e-07, 0.707107
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/WSS/WSS_11.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = -0.653282, -0.270598, -0.270598, 0.653282
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/WSS/WSS_12.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = -0.500001, -0.5, -0.5, 0.500001
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/WSS/WSS_13.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = -0.270599, -0.653282, -0.653282, 0.270599
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/WSS/WSS_14.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = -3.50177e-07, -0.707107, -0.707107, 3.50177e-07
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/WSS/WSS_15.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = 0.270598, -0.653282, -0.653282, -0.270598
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/WSS/WSS_16.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = 0.653283, -0.653283, -0.2706, -0.270598
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/WSS/WSS_17.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = 0.853556, -0.353555, -0.146448, -0.353554
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/WSS/WSS_18.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = 0.923883, -1.63784e-07, -6.09572e-07, -0.382684
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/WSS/WSS_19.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = 0.853557, 0.353554, 0.146447, -0.353554
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/WSS/WSS_20.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = 0.653285, 0.653283, 0.270599, -0.270599
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/WSS/WSS_21.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = 0.353556, 0.853556, 0.353555, -0.146447
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/WSS/WSS_22.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = 1.29051e-06, 0.923883, 0.382686, -7.83521e-08
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/WSS/WSS_23.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = -0.353554, 0.853557, 0.353556, 0.146447
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/WSS/WSS_24.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+###########################################################################################################################################################################
+
+# Ścieżka do folderu: $directory/Surface/y_plus
+
+# y_plus:
+
+#Tworzenie konturu na powierzchni
+
+> update
+
+CONTOUR:ContourSurfaceLeft
+  Apply Instancing Transform = On
+  Clip Contour = Off
+  Colour Map = Rainbow 1.0 to minus 1.5
+  Colour Scale = Linear
+  Colour Variable = Yplus
+  Colour Variable Boundary Values = Conservative
+  Constant Contour Colour = Off
+  Contour Range = User Specified
+  Culling Mode = No Culling
+  Domain List = /DOMAIN GROUP:All Domains
+  Draw Contours = Off
+  Font = Sans Serif
+  Fringe Fill = On
+  Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+  Lighting = On
+  Line Colour = 0, 0, 0
+  Line Colour Mode = Default
+  Line Width = 1
+  Location List = /SURFACE GROUP:Surface
+  Max = 60
+  Min = 0
+  Number of Contours = 25
+  Show Numbers = Off
+  Specular Lighting = On
+  Surface Drawing = Smooth Shading
+  Text Colour = 0, 0, 0
+  Text Colour Mode = Default
+  Text Height = 0.024
+  Transparency = 0.0
+  Use Face Values = Off
+  Value List = 0,1
+  OBJECT VIEW TRANSFORM:
+    Apply Reflection = Off
+    Apply Rotation = Off
+    Apply Scale = Off
+    Apply Translation = Off
+    Principal Axis = Z
+    Reflection Plane Option = XY Plane
+    Rotation Angle = 0.0 [degree]
+    Rotation Axis From = 0 [m], 0 [m], 0 [m]
+    Rotation Axis To = 0 [m], 0 [m], 0 [m]
+    Rotation Axis Type = Principal Axis
+    Scale Vector = 1 , 1 , 1
+    Translation Vector = 0 [m], 0 [m], 0 [m]
+    X = 0.0 [m]
+    Y = 0.0 [m]
+    Z = 0.0 [m]
+  END
+END
+
+>show /CONTOUR:ContourSurfaceLeft, view=/VIEW:View 1
+
+
+CONTOUR:ContourSurfaceRight
+  Apply Instancing Transform = On
+  Clip Contour = Off
+  Colour Map = Rainbow 1.0 to minus 1.5
+  Colour Scale = Linear
+  Colour Variable = Yplus
+  Colour Variable Boundary Values = Conservative
+  Constant Contour Colour = Off
+  Contour Range = User Specified
+  Culling Mode = No Culling
+  Domain List = /DOMAIN GROUP:All Domains
+  Draw Contours = Off
+  Font = Sans Serif
+  Fringe Fill = On
+  Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+  Lighting = On
+  Line Colour = 0, 0, 0
+  Line Colour Mode = Default
+  Line Width = 1
+  Location List = /SURFACE GROUP:Surface
+  Max = 60
+  Min = 0
+  Number of Contours = 25
+  Show Numbers = Off
+  Specular Lighting = On
+  Surface Drawing = Smooth Shading
+  Text Colour = 0, 0, 0
+  Text Colour Mode = Default
+  Text Height = 0.024
+  Transparency = 0.0
+  Use Face Values = Off
+  Value List = 0,1
+  OBJECT VIEW TRANSFORM:
+    Apply Reflection = On
+    Apply Rotation = Off
+    Apply Scale = Off
+    Apply Translation = Off
+    Principal Axis = Z
+    Reflection Plane Option = ZX Plane
+    Rotation Angle = 0.0 [degree]
+    Rotation Axis From = 0 [m], 0 [m], 0 [m]
+    Rotation Axis To = 0 [m], 0 [m], 0 [m]
+    Rotation Axis Type = Principal Axis
+    Scale Vector = 1 , 1 , 1
+    Translation Vector = 0 [m], 0 [m], 0 [m]
+    X = 0.0 [m]
+    Y = 0.0 [m]
+    Z = 0.0 [m]
+  END
+END
+
+>show /CONTOUR:ContourSurfaceRight, view=/VIEW:View 1
+
+
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = -0.353554, 0.353554, 0.612373, 0.612373
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/y_plus/y_plus_1.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = 0.461941, -0.191342, -0.331414, -0.800105
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/y_plus/y_plus_2.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = -0.382684, 0, 0, 0.92388
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/y_plus/y_plus_3.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = -0.353554, -0.146447, -0.353554, 0.853554
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/y_plus/y_plus_4.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = -0.270599, -0.270598, -0.653282, 0.653282
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/y_plus/y_plus_5.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = -0.191343, -0.46194, -0.800104, 0.331414
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/y_plus/y_plus_6.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = -4.04453e-07, -0.382683, -0.923881, 1.91723e-07
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/y_plus/y_plus_7.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = 0.146447, -0.353553, -0.853555, -0.353554
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/y_plus/y_plus_8.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = -0.5, 0.5, 0.5, 0.5
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/y_plus/y_plus_9.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = -0.653282, 0.270598, 0.270598, 0.653282
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/y_plus/y_plus_10.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = -0.707107, 2.30968e-07, 2.30968e-07, 0.707107
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/y_plus/y_plus_11.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = -0.653282, -0.270598, -0.270598, 0.653282
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/y_plus/y_plus_12.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = -0.500001, -0.5, -0.5, 0.500001
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/y_plus/y_plus_13.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = -0.270599, -0.653282, -0.653282, 0.270599
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/y_plus/y_plus_14.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = -3.50177e-07, -0.707107, -0.707107, 3.50177e-07
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/y_plus/y_plus_15.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = 0.270598, -0.653282, -0.653282, -0.270598
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/y_plus/y_plus_16.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = 0.653283, -0.653283, -0.2706, -0.270598
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/y_plus/y_plus_17.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = 0.853556, -0.353555, -0.146448, -0.353554
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/y_plus/y_plus_18.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = 0.923883, -1.63784e-07, -6.09572e-07, -0.382684
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/y_plus/y_plus_19.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = 0.853557, 0.353554, 0.146447, -0.353554
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/y_plus/y_plus_20.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = 0.653285, 0.653283, 0.270599, -0.270599
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/y_plus/y_plus_21.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = 0.353556, 0.853556, 0.353555, -0.146447
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/y_plus/y_plus_22.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = 1.29051e-06, 0.923883, 0.382686, -7.83521e-08
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/y_plus/y_plus_23.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = -0.353554, 0.853557, 0.353556, 0.146447
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/y_plus/y_plus_24.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+###########################################################################################################################################################################
+
+# Ścieżka do folderu: $directory/Surface/CpX
+
+# CpX:
+
+#Tworzenie konturu na powierzchni
+
+> update
+
+CONTOUR:ContourSurfaceLeft
+  Apply Instancing Transform = On
+  Clip Contour = Off
+  Colour Map = Rainbow 1.0 to minus 1.5
+  Colour Scale = Linear
+  Colour Variable = CpX
+  Colour Variable Boundary Values = Conservative
+  Constant Contour Colour = Off
+  Contour Range = User Specified
+  Culling Mode = No Culling
+  Domain List = /DOMAIN GROUP:All Domains
+  Draw Contours = Off
+  Font = Sans Serif
+  Fringe Fill = On
+  Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+  Lighting = On
+  Line Colour = 0, 0, 0
+  Line Colour Mode = Default
+  Line Width = 1
+  Location List = /SURFACE GROUP:Surface
+  Max = 1
+  Min = -1.5
+  Number of Contours = 25
+  Show Numbers = Off
+  Specular Lighting = On
+  Surface Drawing = Smooth Shading
+  Text Colour = 0, 0, 0
+  Text Colour Mode = Default
+  Text Height = 0.024
+  Transparency = 0.0
+  Use Face Values = Off
+  Value List = 0,1
+  OBJECT VIEW TRANSFORM:
+    Apply Reflection = Off
+    Apply Rotation = Off
+    Apply Scale = Off
+    Apply Translation = Off
+    Principal Axis = Z
+    Reflection Plane Option = XY Plane
+    Rotation Angle = 0.0 [degree]
+    Rotation Axis From = 0 [m], 0 [m], 0 [m]
+    Rotation Axis To = 0 [m], 0 [m], 0 [m]
+    Rotation Axis Type = Principal Axis
+    Scale Vector = 1 , 1 , 1
+    Translation Vector = 0 [m], 0 [m], 0 [m]
+    X = 0.0 [m]
+    Y = 0.0 [m]
+    Z = 0.0 [m]
+  END
+END
+
+>show /CONTOUR:ContourSurfaceLeft, view=/VIEW:View 1
+
+
+
+CONTOUR:ContourSurfaceRight
+  Apply Instancing Transform = On
+  Clip Contour = Off
+  Colour Map = Rainbow 1.0 to minus 1.5
+  Colour Scale = Linear
+  Colour Variable = CpX
+  Colour Variable Boundary Values = Conservative
+  Constant Contour Colour = Off
+  Contour Range = User Specified
+  Culling Mode = No Culling
+  Domain List = /DOMAIN GROUP:All Domains
+  Draw Contours = Off
+  Font = Sans Serif
+  Fringe Fill = On
+  Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+  Lighting = On
+  Line Colour = 0, 0, 0
+  Line Colour Mode = Default
+  Line Width = 1
+  Location List = /SURFACE GROUP:Surface
+  Max = 1
+  Min = -1.5
+  Number of Contours = 25
+  Show Numbers = Off
+  Specular Lighting = On
+  Surface Drawing = Smooth Shading
+  Text Colour = 0, 0, 0
+  Text Colour Mode = Default
+  Text Height = 0.024
+  Transparency = 0.0
+  Use Face Values = Off
+  Value List = 0,1
+  OBJECT VIEW TRANSFORM:
+    Apply Reflection = On
+    Apply Rotation = Off
+    Apply Scale = Off
+    Apply Translation = Off
+    Principal Axis = Z
+    Reflection Plane Option = ZX Plane
+    Rotation Angle = 0.0 [degree]
+    Rotation Axis From = 0 [m], 0 [m], 0 [m]
+    Rotation Axis To = 0 [m], 0 [m], 0 [m]
+    Rotation Axis Type = Principal Axis
+    Scale Vector = 1 , 1 , 1
+    Translation Vector = 0 [m], 0 [m], 0 [m]
+    X = 0.0 [m]
+    Y = 0.0 [m]
+    Z = 0.0 [m]
+  END
+END
+
+>show /CONTOUR:ContourSurfaceRight, view=/VIEW:View 1
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = -0.353554, 0.353554, 0.612373, 0.612373
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/CpX/CpX_1.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = 0.461941, -0.191342, -0.331414, -0.800105
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/CpX/CpX_2.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = -0.382684, 0, 0, 0.92388
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/CpX/CpX_3.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = -0.353554, -0.146447, -0.353554, 0.853554
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/CpX/CpX_4.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = -0.270599, -0.270598, -0.653282, 0.653282
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/CpX/CpX_5.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = -0.191343, -0.46194, -0.800104, 0.331414
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/CpX/CpX_6.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = -4.04453e-07, -0.382683, -0.923881, 1.91723e-07
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/CpX/CpX_7.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = 0.146447, -0.353553, -0.853555, -0.353554
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/CpX/CpX_8.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = -0.5, 0.5, 0.5, 0.5
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/CpX/CpX_9.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = -0.653282, 0.270598, 0.270598, 0.653282
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/CpX/CpX_10.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = -0.707107, 2.30968e-07, 2.30968e-07, 0.707107
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/CpX/CpX_11.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = -0.653282, -0.270598, -0.270598, 0.653282
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/CpX/CpX_12.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = -0.500001, -0.5, -0.5, 0.500001
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/CpX/CpX_13.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = -0.270599, -0.653282, -0.653282, 0.270599
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/CpX/CpX_14.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = -3.50177e-07, -0.707107, -0.707107, 3.50177e-07
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/CpX/CpX_15.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = 0.270598, -0.653282, -0.653282, -0.270598
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/CpX/CpX_16.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = 0.653283, -0.653283, -0.2706, -0.270598
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/CpX/CpX_17.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = 0.853556, -0.353555, -0.146448, -0.353554
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/CpX/CpX_18.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = 0.923883, -1.63784e-07, -6.09572e-07, -0.382684
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/CpX/CpX_19.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = 0.853557, 0.353554, 0.146447, -0.353554
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/CpX/CpX_20.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = 0.653285, 0.653283, 0.270599, -0.270599
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/CpX/CpX_21.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = 0.353556, 0.853556, 0.353555, -0.146447
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/CpX/CpX_22.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = 1.29051e-06, 0.923883, 0.382686, -7.83521e-08
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/CpX/CpX_23.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = -0.353554, 0.853557, 0.353556, 0.146447
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/CpX/CpX_24.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+###########################################################################################################################################################################
+
+# Ścieżka do folderu: $directory/Surface/CpZ
+
+# CpZ:
+
+
+#Tworzenie konturu na powierzchni
+
+> update
+
+CONTOUR:ContourSurfaceLeft
+  Apply Instancing Transform = On
+  Clip Contour = Off
+  Colour Map = Rainbow 1.0 to minus 1.5
+  Colour Scale = Linear
+  Colour Variable = CpZ
+  Colour Variable Boundary Values = Conservative
+  Constant Contour Colour = Off
+  Contour Range = User Specified
+  Culling Mode = No Culling
+  Domain List = /DOMAIN GROUP:All Domains
+  Draw Contours = Off
+  Font = Sans Serif
+  Fringe Fill = On
+  Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+  Lighting = On
+  Line Colour = 0, 0, 0
+  Line Colour Mode = Default
+  Line Width = 1
+  Location List = /SURFACE GROUP:Surface
+  Max = 1
+  Min = -1.5
+  Number of Contours = 25
+  Show Numbers = Off
+  Specular Lighting = On
+  Surface Drawing = Smooth Shading
+  Text Colour = 0, 0, 0
+  Text Colour Mode = Default
+  Text Height = 0.024
+  Transparency = 0.0
+  Use Face Values = Off
+  Value List = 0,1
+  OBJECT VIEW TRANSFORM:
+    Apply Reflection = Off
+    Apply Rotation = Off
+    Apply Scale = Off
+    Apply Translation = Off
+    Principal Axis = Z
+    Reflection Plane Option = XY Plane
+    Rotation Angle = 0.0 [degree]
+    Rotation Axis From = 0 [m], 0 [m], 0 [m]
+    Rotation Axis To = 0 [m], 0 [m], 0 [m]
+    Rotation Axis Type = Principal Axis
+    Scale Vector = 1 , 1 , 1
+    Translation Vector = 0 [m], 0 [m], 0 [m]
+    X = 0.0 [m]
+    Y = 0.0 [m]
+    Z = 0.0 [m]
+  END
+END
+
+>show /CONTOUR:ContourSurfaceLeft, view=/VIEW:View 1
+
+
+CONTOUR:ContourSurfaceRight
+  Apply Instancing Transform = On
+  Clip Contour = Off
+  Colour Map = Rainbow 1.0 to minus 1.5
+  Colour Scale = Linear
+  Colour Variable = CpZ
+  Colour Variable Boundary Values = Conservative
+  Constant Contour Colour = Off
+  Contour Range = User Specified
+  Culling Mode = No Culling
+  Domain List = /DOMAIN GROUP:All Domains
+  Draw Contours = Off
+  Font = Sans Serif
+  Fringe Fill = On
+  Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+  Lighting = On
+  Line Colour = 0, 0, 0
+  Line Colour Mode = Default
+  Line Width = 1
+  Location List = /SURFACE GROUP:Surface
+  Max = 1
+  Min = -1.5
+  Number of Contours = 25
+  Show Numbers = Off
+  Specular Lighting = On
+  Surface Drawing = Smooth Shading
+  Text Colour = 0, 0, 0
+  Text Colour Mode = Default
+  Text Height = 0.024
+  Transparency = 0.0
+  Use Face Values = Off
+  Value List = 0,1
+  OBJECT VIEW TRANSFORM:
+    Apply Reflection = On
+    Apply Rotation = Off
+    Apply Scale = Off
+    Apply Translation = Off
+    Principal Axis = Z
+    Reflection Plane Option = ZX Plane
+    Rotation Angle = 0.0 [degree]
+    Rotation Axis From = 0 [m], 0 [m], 0 [m]
+    Rotation Axis To = 0 [m], 0 [m], 0 [m]
+    Rotation Axis Type = Principal Axis
+    Scale Vector = 1 , 1 , 1
+    Translation Vector = 0 [m], 0 [m], 0 [m]
+    X = 0.0 [m]
+    Y = 0.0 [m]
+    Z = 0.0 [m]
+  END
+END
+
+>show /CONTOUR:ContourSurfaceRight, view=/VIEW:View 1
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = -0.353554, 0.353554, 0.612373, 0.612373
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/CpZ/CpZ_1.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = 0.461941, -0.191342, -0.331414, -0.800105
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/CpZ/CpZ_2.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = -0.382684, 0, 0, 0.92388
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/CpZ/CpZ_3.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = -0.353554, -0.146447, -0.353554, 0.853554
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/CpZ/CpZ_4.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = -0.270599, -0.270598, -0.653282, 0.653282
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/CpZ/CpZ_5.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = -0.191343, -0.46194, -0.800104, 0.331414
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/CpZ/CpZ_6.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = -4.04453e-07, -0.382683, -0.923881, 1.91723e-07
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/CpZ/CpZ_7.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = 0.146447, -0.353553, -0.853555, -0.353554
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/CpZ/CpZ_8.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = -0.5, 0.5, 0.5, 0.5
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/CpZ/CpZ_9.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = -0.653282, 0.270598, 0.270598, 0.653282
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/CpZ/CpZ_10.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = -0.707107, 2.30968e-07, 2.30968e-07, 0.707107
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/CpZ/CpZ_11.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = -0.653282, -0.270598, -0.270598, 0.653282
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/CpZ/CpZ_12.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = -0.500001, -0.5, -0.5, 0.500001
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/CpZ/CpZ_13.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = -0.270599, -0.653282, -0.653282, 0.270599
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/CpZ/CpZ_14.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = -3.50177e-07, -0.707107, -0.707107, 3.50177e-07
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/CpZ/CpZ_15.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = 0.270598, -0.653282, -0.653282, -0.270598
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/CpZ/CpZ_16.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = 0.653283, -0.653283, -0.2706, -0.270598
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/CpZ/CpZ_17.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = 0.853556, -0.353555, -0.146448, -0.353554
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/CpZ/CpZ_18.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = 0.923883, -1.63784e-07, -6.09572e-07, -0.382684
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/CpZ/CpZ_19.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = 0.853557, 0.353554, 0.146447, -0.353554
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/CpZ/CpZ_20.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = 0.653285, 0.653283, 0.270599, -0.270599
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/CpZ/CpZ_21.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = 0.353556, 0.853556, 0.353555, -0.146447
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/CpZ/CpZ_22.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = 1.29051e-06, 0.923883, 0.382686, -7.83521e-08
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/CpZ/CpZ_23.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.7, 0, 0.6
+    Scale = 0.6
+    Pan = 0, 0
+    Rotation Quaternion = -0.353554, 0.853557, 0.353556, 0.146447
+  END
+
+END
+
+> update
+HARDCOPY:
+  Antialiasing = On
+  Hardcopy Filename = $directory/Surface/CpZ/CpZ_24.jpg 
+  Hardcopy Format = jpg
+  Hardcopy Tolerance = 0.0001
+  Image Height = 1080
+  Image Scale = 100
+  Image Width = 1920
+  JPEG Image Quality = 100
+  
+  Use Screen Size = Off
+  White Background = On
+END
+>print
+
+
+>hide /CONTOUR:ContourSurfaceLeft, view=/VIEW:View 1
+>hide /CONTOUR:ContourSurfaceRight, view=/VIEW:View 1
+
+
+###########################################################################################################################################################################
+###########################################################################################################################################################################
+
+# Przekroje X:
+
+PLANE:Plane1
+  Apply Instancing Transform = On
+  Apply Texture = Off
+  Bound Radius = 0.5 [m]
+  Colour = 0.75, 0.75, 0.75
+  Colour Map = Rainbow 1.0 to minus 1.5
+  Colour Mode = Constant
+  Colour Scale = Linear
+  Colour Variable = Pressure
+  Colour Variable Boundary Values = Conservative
+  Direction 1 Bound = 1.0 [m]
+  Direction 1 Orientation = 0 [degree]
+  Direction 1 Points = 10
+  Direction 2 Bound = 1.0 [m]
+  Direction 2 Points = 10
+  Domain List = /DOMAIN GROUP:All Domains
+  Draw Faces = Off
+  Draw Lines = Off
+  Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+  Invert Plane Bound = Off
+  Max = 0.0
+  Min = 0.0
+  Normal = 1 , 0 , 0
+  Option = YZ Plane
+  Plane Bound = None
+  Plane Type = Slice
+  Point = 0 [m], 0 [m], 0 [m]
+  Point 1 = 0 [m], 0 [m], 0 [m]
+  Point 2 = 1 [m], 0 [m], 0 [m]
+  Point 3 = 0 [m], 1 [m], 0 [m]
+  Range = Global
+  X = -1.1 [m]
+  Y = 0.0 [m]
+  Z = 0.0 [m]
+  OBJECT VIEW TRANSFORM:
+    Apply Reflection = Off
+    Apply Rotation = Off
+    Apply Scale = Off
+    Apply Translation = Off
+    Principal Axis = Z
+    Reflection Plane Option = XY Plane
+    Rotation Angle = 0.0 [degree]
+    Rotation Axis From = 0 [m], 0 [m], 0 [m]
+    Rotation Axis To = 0 [m], 0 [m], 0 [m]
+    Rotation Axis Type = Principal Axis
+    Scale Vector = 1 , 1 , 1
+    Translation Vector = 0 [m], 0 [m], 0 [m]
+    X = 0.0 [m]
+    Y = 0.0 [m]
+    Z = 0.0 [m]
+  END
+END
+
+# DODANIE KALKULATORA ODLEGLOSCI NA OSI
+
+LIBRARY:
+  CEL:
+    EXPRESSIONS:
+      expr axis = maxVal(X)@Plane1
+    END
+  END
+END
+
+EXPRESSION EVALUATOR:
+  Evaluated Expression = expr axis
+END
+
+> forceupdate EXPRESSION EVALUATOR
+
+
+# DODANIE TEKSTU
+
+TEXT: Text 1
+  Colour = 0, 0, 0
+  Font = Sans Serif
+  Position Mode = Two Coords
+  Text Colour Mode = Default
+  Text Height = 0.024
+  Text Position = 0.02 , 0.186
+  Text Rotation = 0 [degree]
+  Visibility = On
+  X Justification = None
+  Y Justification = None
+  TEXT ITEM: Text Item 1
+    Auto Annotation Expression = expr axis
+    Auto Annotation File Date Format = DD/MM/YY
+    Auto Annotation File Time Format = h:m:s t
+    Auto Annotation Filename Format = Filename Only
+    Auto Annotation Float Format = %6.3f
+    Auto Annotation Type = Expression
+    Auto Annotation Use Automatic Number Formatting = Off
+    Embed Auto Annotation = On
+    Text Item Active = On
+    Text String = x = <aa>
+  END
+  TEXT ITEM: Text Item 2
+    Auto Annotation Expression = Accumulated Time Step
+    Auto Annotation File Date Format = DD/MM/YY
+    Auto Annotation File Time Format = h:m:s t
+    Auto Annotation Filename Format = Filename Only
+    Auto Annotation Float Format = %10.3e
+    Auto Annotation Type = Expression
+    Auto Annotation Use Automatic Number Formatting = On
+    Embed Auto Annotation = Off
+    Text Item Active = Off
+    Text String = 
+  END
+  TEXT ITEM: Text Item 3
+    Auto Annotation Expression = Accumulated Time Step
+    Auto Annotation File Date Format = DD/MM/YY
+    Auto Annotation File Time Format = h:m:s t
+    Auto Annotation Filename Format = Filename Only
+    Auto Annotation Float Format = %10.3e
+    Auto Annotation Type = Expression
+    Auto Annotation Use Automatic Number Formatting = On
+    Embed Auto Annotation = Off
+    Text Item Active = Off
+    Text String = 
+  END
+  TEXT ITEM: Text Item 4
+    Auto Annotation Expression = Accumulated Time Step
+    Auto Annotation File Date Format = DD/MM/YY
+    Auto Annotation File Time Format = h:m:s t
+    Auto Annotation Filename Format = Filename Only
+    Auto Annotation Float Format = %10.3e
+    Auto Annotation Type = Expression
+    Auto Annotation Use Automatic Number Formatting = On
+    Embed Auto Annotation = Off
+    Text Item Active = Off
+    Text String = 
+  END
+  TEXT ITEM: Text Item 5
+    Auto Annotation Expression = Accumulated Time Step
+    Auto Annotation File Date Format = DD/MM/YY
+    Auto Annotation File Time Format = h:m:s t
+    Auto Annotation Filename Format = Filename Only
+    Auto Annotation Float Format = %10.3e
+    Auto Annotation Type = Expression
+    Auto Annotation Use Automatic Number Formatting = On
+    Embed Auto Annotation = Off
+    Text Item Active = Off
+    Text String = 
+  END
+  TEXT ITEM: Text Item 6
+    Auto Annotation Expression = Accumulated Time Step
+    Auto Annotation File Date Format = DD/MM/YY
+    Auto Annotation File Time Format = h:m:s t
+    Auto Annotation Filename Format = Filename Only
+    Auto Annotation Float Format = %10.3e
+    Auto Annotation Type = Expression
+    Auto Annotation Use Automatic Number Formatting = On
+    Embed Auto Annotation = Off
+    Text Item Active = Off
+    Text String = 
+  END
+END
+>show /TEXT:Text 1, view=/VIEW:View 1
+
+
+# Cp
+
+PLANE:Plane1
+  Apply Instancing Transform = On
+  Apply Texture = Off
+  Blend Texture = On
+  Bound Radius = 0.5 [m]
+  Colour = 0.75, 0.75, 0.75
+  Colour Map = Rainbow 1.0 to minus 1.5
+  Colour Mode = Constant
+  Colour Scale = Linear
+  Colour Variable = Pressure
+  Colour Variable Boundary Values = Conservative
+  Culling Mode = No Culling
+  Direction 1 Bound = 1.0 [m]
+  Direction 1 Orientation = 0 [degree]
+  Direction 1 Points = 10
+  Direction 2 Bound = 1.0 [m]
+  Direction 2 Points = 10
+  Domain List = /DOMAIN GROUP:All Domains
+  Draw Faces = Off
+  Draw Lines = Off
+  Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+  Invert Plane Bound = Off
+  Lighting = On
+  Line Colour = 0, 0, 0
+  Line Colour Mode = Default
+  Line Width = 1
+  Max = 0.0 [Pa]
+  Min = 0.0 [Pa]
+  Normal = 1 , 0 , 0
+  Option = YZ Plane
+  Plane Bound = None
+  Plane Type = Slice
+  Point = 0 [m], 0 [m], 0 [m]
+  Point 1 = 0 [m], 0 [m], 0 [m]
+  Point 2 = 1 [m], 0 [m], 0 [m]
+  Point 3 = 0 [m], 1 [m], 0 [m]
+  Range = Global
+  Render Edge Angle = 0 [degree]
+  Specular Lighting = On
+  Surface Drawing = Smooth Shading
+  Texture Angle = 0
+  Texture Direction = 0 , 1 , 0
+  Texture File =
+  Texture Material = Metal
+  Texture Position = 0 , 0
+  Texture Scale = 1
+  Texture Type = Predefined
+  Tile Texture = Off
+  Transform Texture = Off
+  Transparency = 0.0
+  X = -1.1 [m]
+  Y = 0.0 [m]
+  Z = 0.0 [m]
+  OBJECT VIEW TRANSFORM:
+    Apply Reflection = Off
+    Apply Rotation = Off
+    Apply Scale = Off
+    Apply Translation = Off
+    Principal Axis = Z
+    Reflection Plane Option = XY Plane
+    Rotation Angle = 0.0 [degree]
+    Rotation Axis From = 0 [m], 0 [m], 0 [m]
+    Rotation Axis To = 0 [m], 0 [m], 0 [m]
+    Rotation Axis Type = Principal Axis
+    Scale Vector = 1 , 1 , 1
+    Translation Vector = 0 [m], 0 [m], 0 [m]
+    X = 0.0 [m]
+    Y = 0.0 [m]
+    Z = 0.0 [m]
+  END
+END
+
+
+CONTOUR:ContourPlane
+  Apply Instancing Transform = On
+  Clip Contour = Off
+  Colour Map = Rainbow 1.0 to minus 1.5
+  Colour Scale = Linear
+  Colour Variable = Pressure Coefficient
+  Colour Variable Boundary Values = Conservative
+  Constant Contour Colour = Off
+  Contour Range = User Specified
+  Culling Mode = No Culling
+  Domain List = /DOMAIN GROUP:All Domains
+  Draw Contours = On
+  Font = Sans Serif
+  Fringe Fill = On
+  Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+  Lighting = On
+  Line Colour = 0, 0, 0
+  Line Colour Mode = Default
+  Line Width = 1
+  Location List = /PLANE:Plane1
+  Max = 1
+  Min = -2.25
+  Number of Contours = 25
+  Show Numbers = Off
+  Specular Lighting = On
+  Surface Drawing = Smooth Shading
+  Text Colour = 0, 0, 0
+  Text Colour Mode = Default
+  Text Height = 0.024
+  Transparency = 0.0
+  Use Face Values = Off
+  Value List = 0,1
+  OBJECT VIEW TRANSFORM:
+    Apply Reflection = Off
+    Apply Rotation = Off
+    Apply Scale = Off
+    Apply Translation = Off
+  END
+END
+
+>show /CONTOUR:ContourPlane, view=/VIEW:View 1
+
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = -1.09948, 0.0329393, 0.858677
+    Scale = 1.31209
+    Pan = -0.587348, 0.188674
+    Rotation Quaternion = -0.5, 0.5, 0.5, 0.5
+  END
+
+END
+
+> update
+ANIMATION:ANIMATION
+  QAnim MPEG Filename = $directory/X/Cp/Cp.avi
+  QAnim Save MPEG = Off
+  QAnim Looping = Bounce
+  QAnim Looping Cycles = -1
+  Video Format = avi
+
+END
+
+ANIMATION:ANIMATION
+  Animate Camera = On
+  Animation Hardcopy Filename = $directory/X/Cp/Cp.avi
+  Save Hardcopy = Off
+  Looping = Loop
+  Looping Cycles = 1
+  Video Format = avi
+
+END
+
+ANIMATION:ANIMATION
+  Animate Camera = On
+  Animation Hardcopy Filename = $directory/X/Cp/Cp.avi
+  Save Hardcopy = Off
+  Looping = Loop
+  Looping Cycles = 1
+  Video Format = avi
+
+END
+
+> animate new =
+
+> animate new = KeyframeNo1
+
+ANIMATION:
+  Animation Bit Rate = 5152000
+  Animation Frame Rate = 24
+  Animation Quality = High
+  Animation Speed Factor = 2
+  Antialiasing = On
+  Drop Last MPEG Frame = Off
+  Hardcopy Tolerance = 0.0001
+  Intermediate File Format = jpg
+  Keep Intermediate Files = On
+  MPEG Height = 480
+  MPEG Scale = 100
+  MPEG Size = 1080p
+  MPEG Width = 640
+  Output Directory = $directory/X/Cp
+  Output to User Directory = On
+  QAnim Override Symbol = On
+  QAnim Symbol Size = 1.0
+  QAnim Symbol Spacing = 0.6
+  QAnim Symbol Type = Ball
+  
+  Speed Adjustment Selection = Normal
+  Speed Scaling Method = Distribute Frames Smoothly
+  Timestep Interpolation Method = Timestep
+  Variable Bit Rate = On
+  White Background = On
+END
+
+
+KEYFRAME:KeyframeNo2
+  Number Of Frames = 148
+END
+
+> animate modify = KeyframeNo2
+
+> animate goto = 1
+
+KEYFRAME:KeyframeNo1
+  Number Of Frames = 148
+END
+
+> animate modify = KeyframeNo1
+
+> animate goto = 150
+
+
+PLANE:Plane1
+  Apply Instancing Transform = On
+  Apply Texture = Off
+  Blend Texture = On
+  Bound Radius = 0.5 [m]
+  Colour = 0.75, 0.75, 0.75
+  Colour Map = Rainbow 1.0 to minus 1.5
+  Colour Mode = Constant
+  Colour Scale = Linear
+  Colour Variable = Pressure
+  Colour Variable Boundary Values = Conservative
+  Culling Mode = No Culling
+  Direction 1 Bound = 1.0 [m]
+  Direction 1 Orientation = 0 [degree]
+  Direction 1 Points = 10
+  Direction 2 Bound = 1.0 [m]
+  Direction 2 Points = 10
+  Domain List = /DOMAIN GROUP:All Domains
+  Draw Faces = Off
+  Draw Lines = Off
+  Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+  Invert Plane Bound = Off
+  Lighting = On
+  Line Colour = 0, 0, 0
+  Line Colour Mode = Default
+  Line Width = 1
+  Max = 0.0 [Pa]
+  Min = 0.0 [Pa]
+  Normal = 1 , 0 , 0
+  Option = YZ Plane
+  Plane Bound = None
+  Plane Type = Slice
+  Point = 0 [m], 0 [m], 0 [m]
+  Point 1 = 0 [m], 0 [m], 0 [m]
+  Point 2 = 1 [m], 0 [m], 0 [m]
+  Point 3 = 0 [m], 1 [m], 0 [m]
+  Range = Global
+  Render Edge Angle = 0 [degree]
+  Specular Lighting = On
+  Surface Drawing = Smooth Shading
+  Texture Angle = 0
+  Texture Direction = 0 , 1 , 0
+  Texture File =
+  Texture Material = Metal
+  Texture Position = 0 , 0
+  Texture Scale = 1
+  Texture Type = Predefined
+  Tile Texture = Off
+  Transform Texture = Off
+  Transparency = 0.0
+  X = 2.5 [m]
+  Y = 0.0 [m]
+  Z = 0.0 [m]
+  OBJECT VIEW TRANSFORM:
+    Apply Reflection = Off
+    Apply Rotation = Off
+    Apply Scale = Off
+    Apply Translation = Off
+    Principal Axis = Z
+    Reflection Plane Option = XY Plane
+    Rotation Angle = 0.0 [degree]
+    Rotation Axis From = 0 [m], 0 [m], 0 [m]
+    Rotation Axis To = 0 [m], 0 [m], 0 [m]
+    Rotation Axis Type = Principal Axis
+    Scale Vector = 1 , 1 , 1
+    Translation Vector = 0 [m], 0 [m], 0 [m]
+    X = 0.0 [m]
+    Y = 0.0 [m]
+    Z = 0.0 [m]
+  END
+END
+
+KEYFRAME:KeyframeNo2
+  Number Of Frames = 1
+END
+
+> animate modify = KeyframeNo2
+
+> animate goto = 1
+
+ANIMATION:ANIMATION
+  Animate Camera = On
+  Animation Hardcopy Filename = $directory/X/Cp/Cp.avi
+  Save Hardcopy = On
+  Looping = Loop
+  Looping Cycles = 1
+  Video Format = avi
+
+END
+
+> animate play = forward
+
+
+> animate delete = KeyframeNo1
+
+> animate delete = KeyframeNo2
+
+###########################################################################################################################################################################
+
+# Velocity
+
+
+PLANE:Plane1
+  Apply Instancing Transform = On
+  Apply Texture = Off
+  Blend Texture = On
+  Bound Radius = 0.5 [m]
+  Colour = 0.75, 0.75, 0.75
+  Colour Map = Rainbow 2.5 to 0.0
+  Colour Mode = Constant
+  Colour Scale = Linear
+  Colour Variable = Pressure
+  Colour Variable Boundary Values = Conservative
+  Culling Mode = No Culling
+  Direction 1 Bound = 1.0 [m]
+  Direction 1 Orientation = 0 [degree]
+  Direction 1 Points = 10
+  Direction 2 Bound = 1.0 [m]
+  Direction 2 Points = 10
+  Domain List = /DOMAIN GROUP:All Domains
+  Draw Faces = Off
+  Draw Lines = Off
+  Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+  Invert Plane Bound = Off
+  Lighting = On
+  Line Colour = 0, 0, 0
+  Line Colour Mode = Default
+  Line Width = 1
+  Max = 0.0 [Pa]
+  Min = 0.0 [Pa]
+  Normal = 1 , 0 , 0
+  Option = YZ Plane
+  Plane Bound = None
+  Plane Type = Slice
+  Point = 0 [m], 0 [m], 0 [m]
+  Point 1 = 0 [m], 0 [m], 0 [m]
+  Point 2 = 1 [m], 0 [m], 0 [m]
+  Point 3 = 0 [m], 1 [m], 0 [m]
+  Range = Global
+  Render Edge Angle = 0 [degree]
+  Specular Lighting = On
+  Surface Drawing = Smooth Shading
+  Texture Angle = 0
+  Texture Direction = 0 , 1 , 0
+  Texture File =
+  Texture Material = Metal
+  Texture Position = 0 , 0
+  Texture Scale = 1
+  Texture Type = Predefined
+  Tile Texture = Off
+  Transform Texture = Off
+  Transparency = 0.0
+  X = -1.1 [m]
+  Y = 0.0 [m]
+  Z = 0.0 [m]
+  OBJECT VIEW TRANSFORM:
+    Apply Reflection = Off
+    Apply Rotation = Off
+    Apply Scale = Off
+    Apply Translation = Off
+    Principal Axis = Z
+    Reflection Plane Option = XY Plane
+    Rotation Angle = 0.0 [degree]
+    Rotation Axis From = 0 [m], 0 [m], 0 [m]
+    Rotation Axis To = 0 [m], 0 [m], 0 [m]
+    Rotation Axis Type = Principal Axis
+    Scale Vector = 1 , 1 , 1
+    Translation Vector = 0 [m], 0 [m], 0 [m]
+    X = 0.0 [m]
+    Y = 0.0 [m]
+    Z = 0.0 [m]
+  END
+END
+
+
+CONTOUR:ContourPlane
+  Apply Instancing Transform = On
+  Clip Contour = Off
+  Colour Map = Rainbow 2.5 to 0.0
+  Colour Scale = Linear
+  Colour Variable = NormalisedVelocity
+  Colour Variable Boundary Values = Conservative
+  Constant Contour Colour = Off
+  Contour Range = User Specified
+  Culling Mode = No Culling
+  Domain List = /DOMAIN GROUP:All Domains
+  Draw Contours = On
+  Font = Sans Serif
+  Fringe Fill = On
+  Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+  Lighting = On
+  Line Colour = 0, 0, 0
+  Line Colour Mode = Default
+  Line Width = 1
+  Location List = /PLANE:Plane1
+  Max = 2.5
+  Min = 0
+  Number of Contours = 25
+  Show Numbers = Off
+  Specular Lighting = On
+  Surface Drawing = Smooth Shading
+  Text Colour = 0, 0, 0
+  Text Colour Mode = Default
+  Text Height = 0.024
+  Transparency = 0.0
+  Use Face Values = Off
+  Value List = 0,1
+  OBJECT VIEW TRANSFORM:
+    Apply Reflection = Off
+    Apply Rotation = Off
+    Apply Scale = Off
+    Apply Translation = Off
+  END
+END
+
+>show /CONTOUR:ContourPlane, view=/VIEW:View 1
+
+
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = -1.09948, 0.0329393, 0.858677
+    Scale = 1.31209
+    Pan = -0.587348, 0.188674
+    Rotation Quaternion = -0.5, 0.5, 0.5, 0.5
+  END
+
+END
+
+
+> update
+ANIMATION:ANIMATION
+  QAnim MPEG Filename = $directory/X/Velocity/Velocity.avi
+  QAnim Save MPEG = Off
+  QAnim Looping = Bounce
+  QAnim Looping Cycles = -1
+  Video Format = avi
+
+END
+
+ANIMATION:ANIMATION
+  Animate Camera = On
+  Animation Hardcopy Filename = $directory/X/Velocity/Velocity.avi
+  Save Hardcopy = Off
+  Looping = Loop
+  Looping Cycles = 1
+  Video Format = avi
+
+END
+
+ANIMATION:ANIMATION
+  Animate Camera = On
+  Animation Hardcopy Filename = $directory/X/Velocity/Velocity.avi
+  Save Hardcopy = Off
+  Looping = Loop
+  Looping Cycles = 1
+  Video Format = avi
+
+END
+
+> animate new =
+
+> animate new = KeyframeNo1
+
+ANIMATION:
+  Animation Bit Rate = 5152000
+  Animation Frame Rate = 24
+  Animation Quality = High
+  Animation Speed Factor = 2
+  Antialiasing = On
+  Drop Last MPEG Frame = Off
+  Hardcopy Tolerance = 0.0001
+  Intermediate File Format = jpg
+  Keep Intermediate Files = On
+  MPEG Height = 480
+  MPEG Scale = 100
+  MPEG Size = 1080p
+  MPEG Width = 640
+  Output Directory = $directory/X/Velocity
+  Output to User Directory = On
+  QAnim Override Symbol = On
+  QAnim Symbol Size = 1.0
+  QAnim Symbol Spacing = 0.6
+  QAnim Symbol Type = Ball
+  
+  Speed Adjustment Selection = Normal
+  Speed Scaling Method = Distribute Frames Smoothly
+  Timestep Interpolation Method = Timestep
+  Variable Bit Rate = On
+  White Background = On
+END
+
+
+KEYFRAME:KeyframeNo2
+  Number Of Frames = 148
+END
+
+> animate modify = KeyframeNo2
+
+> animate goto = 1
+
+KEYFRAME:KeyframeNo1
+  Number Of Frames = 148
+END
+
+> animate modify = KeyframeNo1
+
+> animate goto = 150
+
+
+PLANE:Plane1
+  Apply Instancing Transform = On
+  Apply Texture = Off
+  Blend Texture = On
+  Bound Radius = 0.5 [m]
+  Colour = 0.75, 0.75, 0.75
+  Colour Map = Rainbow 2.5 to 0.0
+  Colour Mode = Constant
+  Colour Scale = Linear
+  Colour Variable = Pressure
+  Colour Variable Boundary Values = Conservative
+  Culling Mode = No Culling
+  Direction 1 Bound = 1.0 [m]
+  Direction 1 Orientation = 0 [degree]
+  Direction 1 Points = 10
+  Direction 2 Bound = 1.0 [m]
+  Direction 2 Points = 10
+  Domain List = /DOMAIN GROUP:All Domains
+  Draw Faces = Off
+  Draw Lines = Off
+  Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+  Invert Plane Bound = Off
+  Lighting = On
+  Line Colour = 0, 0, 0
+  Line Colour Mode = Default
+  Line Width = 1
+  Max = 0.0 [Pa]
+  Min = 0.0 [Pa]
+  Normal = 1 , 0 , 0
+  Option = YZ Plane
+  Plane Bound = None
+  Plane Type = Slice
+  Point = 0 [m], 0 [m], 0 [m]
+  Point 1 = 0 [m], 0 [m], 0 [m]
+  Point 2 = 1 [m], 0 [m], 0 [m]
+  Point 3 = 0 [m], 1 [m], 0 [m]
+  Range = Global
+  Render Edge Angle = 0 [degree]
+  Specular Lighting = On
+  Surface Drawing = Smooth Shading
+  Texture Angle = 0
+  Texture Direction = 0 , 1 , 0
+  Texture File =
+  Texture Material = Metal
+  Texture Position = 0 , 0
+  Texture Scale = 1
+  Texture Type = Predefined
+  Tile Texture = Off
+  Transform Texture = Off
+  Transparency = 0.0
+  X = 2.5 [m]
+  Y = 0.0 [m]
+  Z = 0.0 [m]
+  OBJECT VIEW TRANSFORM:
+    Apply Reflection = Off
+    Apply Rotation = Off
+    Apply Scale = Off
+    Apply Translation = Off
+    Principal Axis = Z
+    Reflection Plane Option = XY Plane
+    Rotation Angle = 0.0 [degree]
+    Rotation Axis From = 0 [m], 0 [m], 0 [m]
+    Rotation Axis To = 0 [m], 0 [m], 0 [m]
+    Rotation Axis Type = Principal Axis
+    Scale Vector = 1 , 1 , 1
+    Translation Vector = 0 [m], 0 [m], 0 [m]
+    X = 0.0 [m]
+    Y = 0.0 [m]
+    Z = 0.0 [m]
+  END
+END
+
+KEYFRAME:KeyframeNo2
+  Number Of Frames = 1
+END
+
+> animate modify = KeyframeNo2
+
+> animate goto = 1
+
+ANIMATION:ANIMATION
+  Animate Camera = On
+  Animation Hardcopy Filename = $directory/X/Velocity/Velocity.avi
+  Save Hardcopy = On
+  Looping = Loop
+  Looping Cycles = 1
+  Video Format = avi
+
+END
+
+> animate play = forward
+
+
+> animate delete = KeyframeNo1
+
+> animate delete = KeyframeNo2
+
+
+###########################################################################################################################################################################
+
+# CpT
+
+PLANE:Plane1
+  Apply Instancing Transform = On
+  Apply Texture = Off
+  Blend Texture = On
+  Bound Radius = 0.5 [m]
+  Colour = 0.75, 0.75, 0.75
+  Colour Map = Rainbow 1.0 to minus 1.0
+  Colour Mode = Constant
+  Colour Scale = Linear
+  Colour Variable = Pressure
+  Colour Variable Boundary Values = Conservative
+  Culling Mode = No Culling
+  Direction 1 Bound = 1.0 [m]
+  Direction 1 Orientation = 0 [degree]
+  Direction 1 Points = 10
+  Direction 2 Bound = 1.0 [m]
+  Direction 2 Points = 10
+  Domain List = /DOMAIN GROUP:All Domains
+  Draw Faces = Off
+  Draw Lines = Off
+  Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+  Invert Plane Bound = Off
+  Lighting = On
+  Line Colour = 0, 0, 0
+  Line Colour Mode = Default
+  Line Width = 1
+  Max = 0.0 [Pa]
+  Min = 0.0 [Pa]
+  Normal = 1 , 0 , 0
+  Option = YZ Plane
+  Plane Bound = None
+  Plane Type = Slice
+  Point = 0 [m], 0 [m], 0 [m]
+  Point 1 = 0 [m], 0 [m], 0 [m]
+  Point 2 = 1 [m], 0 [m], 0 [m]
+  Point 3 = 0 [m], 1 [m], 0 [m]
+  Range = Global
+  Render Edge Angle = 0 [degree]
+  Specular Lighting = On
+  Surface Drawing = Smooth Shading
+  Texture Angle = 0
+  Texture Direction = 0 , 1 , 0
+  Texture File =
+  Texture Material = Metal
+  Texture Position = 0 , 0
+  Texture Scale = 1
+  Texture Type = Predefined
+  Tile Texture = Off
+  Transform Texture = Off
+  Transparency = 0.0
+  X = -1.1 [m]
+  Y = 0.0 [m]
+  Z = 0.0 [m]
+  OBJECT VIEW TRANSFORM:
+    Apply Reflection = Off
+    Apply Rotation = Off
+    Apply Scale = Off
+    Apply Translation = Off
+    Principal Axis = Z
+    Reflection Plane Option = XY Plane
+    Rotation Angle = 0.0 [degree]
+    Rotation Axis From = 0 [m], 0 [m], 0 [m]
+    Rotation Axis To = 0 [m], 0 [m], 0 [m]
+    Rotation Axis Type = Principal Axis
+    Scale Vector = 1 , 1 , 1
+    Translation Vector = 0 [m], 0 [m], 0 [m]
+    X = 0.0 [m]
+    Y = 0.0 [m]
+    Z = 0.0 [m]
+  END
+END
+
+
+CONTOUR:ContourPlane
+  Apply Instancing Transform = On
+  Clip Contour = Off
+  Colour Map = Rainbow 1.0 to minus 1.0
+  Colour Scale = Linear
+  Colour Variable = CpT
+  Colour Variable Boundary Values = Conservative
+  Constant Contour Colour = Off
+  Contour Range = User Specified
+  Culling Mode = No Culling
+  Domain List = /DOMAIN GROUP:All Domains
+  Draw Contours = On
+  Font = Sans Serif
+  Fringe Fill = On
+  Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+  Lighting = On
+  Line Colour = 0, 0, 0
+  Line Colour Mode = Default
+  Line Width = 1
+  Location List = /PLANE:Plane1
+  Max = 1
+  Min = -1
+  Number of Contours = 25
+  Show Numbers = Off
+  Specular Lighting = On
+  Surface Drawing = Smooth Shading
+  Text Colour = 0, 0, 0
+  Text Colour Mode = Default
+  Text Height = 0.024
+  Transparency = 0.0
+  Use Face Values = Off
+  Value List = 0,1
+  OBJECT VIEW TRANSFORM:
+    Apply Reflection = Off
+    Apply Rotation = Off
+    Apply Scale = Off
+    Apply Translation = Off
+  END
+END
+
+>show /CONTOUR:ContourPlane, view=/VIEW:View 1
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = -1.09948, 0.0329393, 0.858677
+    Scale = 1.31209
+    Pan = -0.587348, 0.188674
+    Rotation Quaternion = -0.5, 0.5, 0.5, 0.5
+  END
+
+END
+
+> update
+ANIMATION:ANIMATION
+  QAnim MPEG Filename = $directory/X/CpT/CpT.avi
+  QAnim Save MPEG = Off
+  QAnim Looping = Bounce
+  QAnim Looping Cycles = -1
+  Video Format = avi
+
+END
+
+ANIMATION:ANIMATION
+  Animate Camera = On
+  Animation Hardcopy Filename = $directory/X/CpT/CpT.avi
+  Save Hardcopy = Off
+  Looping = Loop
+  Looping Cycles = 1
+  Video Format = avi
+
+END
+
+ANIMATION:ANIMATION
+  Animate Camera = On
+  Animation Hardcopy Filename = $directory/X/CpT/CpT.avi
+  Save Hardcopy = Off
+  Looping = Loop
+  Looping Cycles = 1
+  Video Format = avi
+
+END
+
+> animate new =
+
+> animate new = KeyframeNo1
+
+ANIMATION:
+  Animation Bit Rate = 5152000
+  Animation Frame Rate = 24
+  Animation Quality = High
+  Animation Speed Factor = 2
+  Antialiasing = On
+  Drop Last MPEG Frame = Off
+  Hardcopy Tolerance = 0.0001
+  Intermediate File Format = jpg
+  Keep Intermediate Files = On
+  MPEG Height = 480
+  MPEG Scale = 100
+  MPEG Size = 1080p
+  MPEG Width = 640
+  Output Directory = $directory/X/CpT
+  Output to User Directory = On
+  QAnim Override Symbol = On
+  QAnim Symbol Size = 1.0
+  QAnim Symbol Spacing = 0.6
+  QAnim Symbol Type = Ball
+  
+  Speed Adjustment Selection = Normal
+  Speed Scaling Method = Distribute Frames Smoothly
+  Timestep Interpolation Method = Timestep
+  Variable Bit Rate = On
+  White Background = On
+END
+
+
+KEYFRAME:KeyframeNo2
+  Number Of Frames = 148
+END
+
+> animate modify = KeyframeNo2
+
+> animate goto = 1
+
+KEYFRAME:KeyframeNo1
+  Number Of Frames = 148
+END
+
+> animate modify = KeyframeNo1
+
+> animate goto = 150
+
+
+PLANE:Plane1
+  Apply Instancing Transform = On
+  Apply Texture = Off
+  Blend Texture = On
+  Bound Radius = 0.5 [m]
+  Colour = 0.75, 0.75, 0.75
+  Colour Map = Rainbow 1.0 to minus 1.0
+  Colour Mode = Constant
+  Colour Scale = Linear
+  Colour Variable = Pressure
+  Colour Variable Boundary Values = Conservative
+  Culling Mode = No Culling
+  Direction 1 Bound = 1.0 [m]
+  Direction 1 Orientation = 0 [degree]
+  Direction 1 Points = 10
+  Direction 2 Bound = 1.0 [m]
+  Direction 2 Points = 10
+  Domain List = /DOMAIN GROUP:All Domains
+  Draw Faces = Off
+  Draw Lines = On
+  Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+  Invert Plane Bound = Off
+  Lighting = On
+  Line Colour = 0, 0, 0
+  Line Colour Mode = Default
+  Line Width = 1
+  Max = 0.0 [Pa]
+  Min = 0.0 [Pa]
+  Normal = 1 , 0 , 0
+  Option = YZ Plane
+  Plane Bound = None
+  Plane Type = Slice
+  Point = 0 [m], 0 [m], 0 [m]
+  Point 1 = 0 [m], 0 [m], 0 [m]
+  Point 2 = 1 [m], 0 [m], 0 [m]
+  Point 3 = 0 [m], 1 [m], 0 [m]
+  Range = Global
+  Render Edge Angle = 0 [degree]
+  Specular Lighting = On
+  Surface Drawing = Smooth Shading
+  Texture Angle = 0
+  Texture Direction = 0 , 1 , 0
+  Texture File =
+  Texture Material = Metal
+  Texture Position = 0 , 0
+  Texture Scale = 1
+  Texture Type = Predefined
+  Tile Texture = Off
+  Transform Texture = Off
+  Transparency = 0.0
+  X = 2.5 [m]
+  Y = 0.0 [m]
+  Z = 0.0 [m]
+  OBJECT VIEW TRANSFORM:
+    Apply Reflection = Off
+    Apply Rotation = Off
+    Apply Scale = Off
+    Apply Translation = Off
+    Principal Axis = Z
+    Reflection Plane Option = XY Plane
+    Rotation Angle = 0.0 [degree]
+    Rotation Axis From = 0 [m], 0 [m], 0 [m]
+    Rotation Axis To = 0 [m], 0 [m], 0 [m]
+    Rotation Axis Type = Principal Axis
+    Scale Vector = 1 , 1 , 1
+    Translation Vector = 0 [m], 0 [m], 0 [m]
+    X = 0.0 [m]
+    Y = 0.0 [m]
+    Z = 0.0 [m]
+  END
+END
+
+KEYFRAME:KeyframeNo2
+  Number Of Frames = 1
+END
+
+> animate modify = KeyframeNo2
+
+> animate goto = 1
+
+ANIMATION:ANIMATION
+  Animate Camera = On
+  Animation Hardcopy Filename = $directory/X/CpT/CpT.avi
+  Save Hardcopy = On
+  Looping = Loop
+  Looping Cycles = 1
+  Video Format = avi
+
+END
+
+> animate play = forward
+
+
+> animate delete = KeyframeNo1
+
+> animate delete = KeyframeNo2
+
+
+###########################################################################################################################################################################
+
+# CpT_siatka
+
+PLANE:Plane1
+  Apply Instancing Transform = On
+  Apply Texture = Off
+  Blend Texture = On
+  Bound Radius = 0.5 [m]
+  Colour = 0.75, 0.75, 0.75
+  Colour Map = Rainbow 1.0 to minus 1.0
+  Colour Mode = Constant
+  Colour Scale = Linear
+  Colour Variable = Pressure
+  Colour Variable Boundary Values = Conservative
+  Culling Mode = No Culling
+  Direction 1 Bound = 1.0 [m]
+  Direction 1 Orientation = 0 [degree]
+  Direction 1 Points = 10
+  Direction 2 Bound = 1.0 [m]
+  Direction 2 Points = 10
+  Domain List = /DOMAIN GROUP:All Domains
+  Draw Faces = Off
+  Draw Lines = On
+  Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+  Invert Plane Bound = Off
+  Lighting = On
+  Line Colour = 0, 0, 0
+  Line Colour Mode = Default
+  Line Width = 1
+  Max = 0.0 [Pa]
+  Min = 0.0 [Pa]
+  Normal = 1 , 0 , 0
+  Option = YZ Plane
+  Plane Bound = None
+  Plane Type = Slice
+  Point = 0 [m], 0 [m], 0 [m]
+  Point 1 = 0 [m], 0 [m], 0 [m]
+  Point 2 = 1 [m], 0 [m], 0 [m]
+  Point 3 = 0 [m], 1 [m], 0 [m]
+  Range = Global
+  Render Edge Angle = 0 [degree]
+  Specular Lighting = On
+  Surface Drawing = Smooth Shading
+  Texture Angle = 0
+  Texture Direction = 0 , 1 , 0
+  Texture File =
+  Texture Material = Metal
+  Texture Position = 0 , 0
+  Texture Scale = 1
+  Texture Type = Predefined
+  Tile Texture = Off
+  Transform Texture = Off
+  Transparency = 0.0
+  X = -1.1 [m]
+  Y = 0.0 [m]
+  Z = 0.0 [m]
+  OBJECT VIEW TRANSFORM:
+    Apply Reflection = Off
+    Apply Rotation = Off
+    Apply Scale = Off
+    Apply Translation = Off
+    Principal Axis = Z
+    Reflection Plane Option = XY Plane
+    Rotation Angle = 0.0 [degree]
+    Rotation Axis From = 0 [m], 0 [m], 0 [m]
+    Rotation Axis To = 0 [m], 0 [m], 0 [m]
+    Rotation Axis Type = Principal Axis
+    Scale Vector = 1 , 1 , 1
+    Translation Vector = 0 [m], 0 [m], 0 [m]
+    X = 0.0 [m]
+    Y = 0.0 [m]
+    Z = 0.0 [m]
+  END
+END
+
+>show /PLANE:Plane1, view=/VIEW:View 1
+
+
+CONTOUR:ContourPlane
+  Apply Instancing Transform = On
+  Clip Contour = Off
+  Colour Map = Rainbow 1.0 to minus 1.0
+  Colour Scale = Linear
+  Colour Variable = CpT
+  Colour Variable Boundary Values = Conservative
+  Constant Contour Colour = Off
+  Contour Range = User Specified
+  Culling Mode = No Culling
+  Domain List = /DOMAIN GROUP:All Domains
+  Draw Contours = On
+  Font = Sans Serif
+  Fringe Fill = On
+  Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+  Lighting = On
+  Line Colour = 0, 0, 0
+  Line Colour Mode = Default
+  Line Width = 1
+  Location List = /PLANE:Plane1
+  Max = 1
+  Min = -1
+  Number of Contours = 25
+  Show Numbers = Off
+  Specular Lighting = On
+  Surface Drawing = Smooth Shading
+  Text Colour = 0, 0, 0
+  Text Colour Mode = Default
+  Text Height = 0.024
+  Transparency = 0.0
+  Use Face Values = Off
+  Value List = 0,1
+  OBJECT VIEW TRANSFORM:
+    Apply Reflection = Off
+    Apply Rotation = Off
+    Apply Scale = Off
+    Apply Translation = Off
+  END
+END
+
+>show /CONTOUR:ContourPlane, view=/VIEW:View 1
+
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = -1.09948, 0.0329393, 0.858677
+    Scale = 1.31209
+    Pan = -0.587348, 0.188674
+    Rotation Quaternion = -0.5, 0.5, 0.5, 0.5
+  END
+
+END
+
+
+> update
+ANIMATION:ANIMATION
+  QAnim MPEG Filename = $directory/X/CpT_siatka/CpT_siatka.avi
+  QAnim Save MPEG = Off
+  QAnim Looping = Bounce
+  QAnim Looping Cycles = -1
+  Video Format = avi
+
+END
+
+ANIMATION:ANIMATION
+  Animate Camera = On
+  Animation Hardcopy Filename = $directory/X/CpT_siatka/CpT_siatka.avi
+  Save Hardcopy = Off
+  Looping = Loop
+  Looping Cycles = 1
+  Video Format = avi
+
+END
+
+ANIMATION:ANIMATION
+  Animate Camera = On
+  Animation Hardcopy Filename = $directory/X/CpT_siatka/CpT_siatka.avi
+  Save Hardcopy = Off
+  Looping = Loop
+  Looping Cycles = 1
+  Video Format = avi
+
+END
+
+> animate new =
+
+> animate new = KeyframeNo1
+
+ANIMATION:
+  Animation Bit Rate = 5152000
+  Animation Frame Rate = 24
+  Animation Quality = High
+  Animation Speed Factor = 2
+  Antialiasing = On
+  Drop Last MPEG Frame = Off
+  Hardcopy Tolerance = 0.0001
+  Intermediate File Format = jpg
+  Keep Intermediate Files = On
+  MPEG Height = 480
+  MPEG Scale = 100
+  MPEG Size = 1080p
+  MPEG Width = 640
+  Output Directory = $directory/X/CpT_siatka
+  Output to User Directory = On
+  QAnim Override Symbol = On
+  QAnim Symbol Size = 1.0
+  QAnim Symbol Spacing = 0.6
+  QAnim Symbol Type = Ball
+  
+  Speed Adjustment Selection = Normal
+  Speed Scaling Method = Distribute Frames Smoothly
+  Timestep Interpolation Method = Timestep
+  Variable Bit Rate = On
+  White Background = On
+END
+
+
+
+KEYFRAME:KeyframeNo2
+  Number Of Frames = 148
+END
+
+> animate modify = KeyframeNo2
+
+> animate goto = 1
+
+KEYFRAME:KeyframeNo1
+  Number Of Frames = 148
+END
+
+> animate modify = KeyframeNo1
+
+> animate goto = 150
+
+
+PLANE:Plane1
+  Apply Instancing Transform = On
+  Apply Texture = Off
+  Blend Texture = On
+  Bound Radius = 0.5 [m]
+  Colour = 0.75, 0.75, 0.75
+  Colour Map = Rainbow 1.0 to minus 1.0
+  Colour Mode = Constant
+  Colour Scale = Linear
+  Colour Variable = Pressure
+  Colour Variable Boundary Values = Conservative
+  Culling Mode = No Culling
+  Direction 1 Bound = 1.0 [m]
+  Direction 1 Orientation = 0 [degree]
+  Direction 1 Points = 10
+  Direction 2 Bound = 1.0 [m]
+  Direction 2 Points = 10
+  Domain List = /DOMAIN GROUP:All Domains
+  Draw Faces = Off
+  Draw Lines = Off
+  Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+  Invert Plane Bound = Off
+  Lighting = On
+  Line Colour = 0, 0, 0
+  Line Colour Mode = Default
+  Line Width = 1
+  Max = 0.0 [Pa]
+  Min = 0.0 [Pa]
+  Normal = 1 , 0 , 0
+  Option = YZ Plane
+  Plane Bound = None
+  Plane Type = Slice
+  Point = 0 [m], 0 [m], 0 [m]
+  Point 1 = 0 [m], 0 [m], 0 [m]
+  Point 2 = 1 [m], 0 [m], 0 [m]
+  Point 3 = 0 [m], 1 [m], 0 [m]
+  Range = Global
+  Render Edge Angle = 0 [degree]
+  Specular Lighting = On
+  Surface Drawing = Smooth Shading
+  Texture Angle = 0
+  Texture Direction = 0 , 1 , 0
+  Texture File =
+  Texture Material = Metal
+  Texture Position = 0 , 0
+  Texture Scale = 1
+  Texture Type = Predefined
+  Tile Texture = Off
+  Transform Texture = Off
+  Transparency = 0.0
+  X = 2.5 [m]
+  Y = 0.0 [m]
+  Z = 0.0 [m]
+  OBJECT VIEW TRANSFORM:
+    Apply Reflection = Off
+    Apply Rotation = Off
+    Apply Scale = Off
+    Apply Translation = Off
+    Principal Axis = Z
+    Reflection Plane Option = XY Plane
+    Rotation Angle = 0.0 [degree]
+    Rotation Axis From = 0 [m], 0 [m], 0 [m]
+    Rotation Axis To = 0 [m], 0 [m], 0 [m]
+    Rotation Axis Type = Principal Axis
+    Scale Vector = 1 , 1 , 1
+    Translation Vector = 0 [m], 0 [m], 0 [m]
+    X = 0.0 [m]
+    Y = 0.0 [m]
+    Z = 0.0 [m]
+  END
+END
+
+KEYFRAME:KeyframeNo2
+  Number Of Frames = 1
+END
+
+> animate modify = KeyframeNo2
+
+> animate goto = 1
+
+ANIMATION:ANIMATION
+  Animate Camera = On
+  Animation Hardcopy Filename = $directory/X/CpT_siatka/CpT_siatka.avi
+  Save Hardcopy = On
+  Looping = Loop
+  Looping Cycles = 1
+  Video Format = avi
+
+END
+
+> animate play = forward
+
+
+> animate delete = KeyframeNo1
+
+> animate delete = KeyframeNo2
+
+>hide /PLANE:Plane1, view=/VIEW:View 1
+
+
+###########################################################################################################################################################################
+###########################################################################################################################################################################
+
+# Przekroje Y:
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 2.08272, -0.00857358, 1.15626
+    Scale = 0.642229
+    Pan = 1.1285, -0.141124
+    Rotation Quaternion = -0.707107, 0, 0, 0.707107
+  END
+
+END
+
+PLANE:Plane1
+  Apply Instancing Transform = On
+  Apply Texture = Off
+  Bound Radius = 0.5 [m]
+  Colour = 0.75, 0.75, 0.75
+  Colour Map = Rainbow 1.0 to minus 1.5
+  Colour Mode = Constant
+  Colour Scale = Linear
+  Colour Variable = Pressure
+  Colour Variable Boundary Values = Conservative
+  Direction 1 Bound = 1.0 [m]
+  Direction 1 Orientation = 0 [degree]
+  Direction 1 Points = 10
+  Direction 2 Bound = 1.0 [m]
+  Direction 2 Points = 10
+  Domain List = /DOMAIN GROUP:All Domains
+  Draw Faces = Off
+  Draw Lines = Off
+  Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+  Invert Plane Bound = Off
+  Max = 0.0
+  Min = 0.0
+  Normal = 1 , 0 , 0
+  Option = ZX Plane
+  Plane Bound = None
+  Plane Type = Slice
+  Point = 0 [m], 0 [m], 0 [m]
+  Point 1 = 0 [m], 0 [m], 0 [m]
+  Point 2 = 1 [m], 0 [m], 0 [m]
+  Point 3 = 0 [m], 1 [m], 0 [m]
+  Range = Global
+  X = 0.0 [m]
+  Y = -0.01 [m]
+  Z = 0.0 [m]
+  OBJECT VIEW TRANSFORM:
+    Apply Reflection = Off
+    Apply Rotation = Off
+    Apply Scale = Off
+    Apply Translation = Off
+    Principal Axis = Z
+    Reflection Plane Option = XY Plane
+    Rotation Angle = 0.0 [degree]
+    Rotation Axis From = 0 [m], 0 [m], 0 [m]
+    Rotation Axis To = 0 [m], 0 [m], 0 [m]
+    Rotation Axis Type = Principal Axis
+    Scale Vector = 1 , 1 , 1
+    Translation Vector = 0 [m], 0 [m], 0 [m]
+    X = 0.0 [m]
+    Y = 0.0 [m]
+    Z = 0.0 [m]
+  END
+END
+
+
+# DODANIE KALKULATORA ODLEGLOSCI NA OSI
+
+LIBRARY:
+  CEL:
+    EXPRESSIONS:
+      expr axisy = maxVal(Y)@Plane1
+    END
+  END
+END
+
+EXPRESSION EVALUATOR:
+  Evaluated Expression = expr axisy
+END
+
+> forceupdate EXPRESSION EVALUATOR
+
+
+# DODANIE TEKSTU
+
+TEXT: Text 1
+  Colour = 0, 0, 0
+  Font = Sans Serif
+  Position Mode = Two Coords
+  Text Colour Mode = Default
+  Text Height = 0.024
+  Text Position = 0.02 , 0.85
+  Text Rotation = 0 [degree]
+  Visibility = On
+  X Justification = None
+  Y Justification = None
+  TEXT ITEM: Text Item 1
+    Auto Annotation Expression = expr axisy
+    Auto Annotation File Date Format = DD/MM/YY
+    Auto Annotation File Time Format = h:m:s t
+    Auto Annotation Filename Format = Filename Only
+    Auto Annotation Float Format = %6.3f
+    Auto Annotation Type = Expression
+    Auto Annotation Use Automatic Number Formatting = Off
+    Embed Auto Annotation = On
+    Text Item Active = On
+    Text String = y = <aa>
+  END
+  TEXT ITEM: Text Item 2
+    Auto Annotation Expression = Accumulated Time Step
+    Auto Annotation File Date Format = DD/MM/YY
+    Auto Annotation File Time Format = h:m:s t
+    Auto Annotation Filename Format = Filename Only
+    Auto Annotation Float Format = %10.3e
+    Auto Annotation Type = Expression
+    Auto Annotation Use Automatic Number Formatting = On
+    Embed Auto Annotation = Off
+    Text Item Active = Off
+    Text String = 
+  END
+  TEXT ITEM: Text Item 3
+    Auto Annotation Expression = Accumulated Time Step
+    Auto Annotation File Date Format = DD/MM/YY
+    Auto Annotation File Time Format = h:m:s t
+    Auto Annotation Filename Format = Filename Only
+    Auto Annotation Float Format = %10.3e
+    Auto Annotation Type = Expression
+    Auto Annotation Use Automatic Number Formatting = On
+    Embed Auto Annotation = Off
+    Text Item Active = Off
+    Text String = 
+  END
+  TEXT ITEM: Text Item 4
+    Auto Annotation Expression = Accumulated Time Step
+    Auto Annotation File Date Format = DD/MM/YY
+    Auto Annotation File Time Format = h:m:s t
+    Auto Annotation Filename Format = Filename Only
+    Auto Annotation Float Format = %10.3e
+    Auto Annotation Type = Expression
+    Auto Annotation Use Automatic Number Formatting = On
+    Embed Auto Annotation = Off
+    Text Item Active = Off
+    Text String = 
+  END
+  TEXT ITEM: Text Item 5
+    Auto Annotation Expression = Accumulated Time Step
+    Auto Annotation File Date Format = DD/MM/YY
+    Auto Annotation File Time Format = h:m:s t
+    Auto Annotation Filename Format = Filename Only
+    Auto Annotation Float Format = %10.3e
+    Auto Annotation Type = Expression
+    Auto Annotation Use Automatic Number Formatting = On
+    Embed Auto Annotation = Off
+    Text Item Active = Off
+    Text String = 
+  END
+  TEXT ITEM: Text Item 6
+    Auto Annotation Expression = Accumulated Time Step
+    Auto Annotation File Date Format = DD/MM/YY
+    Auto Annotation File Time Format = h:m:s t
+    Auto Annotation Filename Format = Filename Only
+    Auto Annotation Float Format = %10.3e
+    Auto Annotation Type = Expression
+    Auto Annotation Use Automatic Number Formatting = On
+    Embed Auto Annotation = Off
+    Text Item Active = Off
+    Text String = 
+  END
+END
+>show /TEXT:Text 1, view=/VIEW:View 1
+
+
+# Cp
+
+PLANE:Plane1
+  Apply Instancing Transform = On
+  Apply Texture = Off
+  Blend Texture = On
+  Bound Radius = 0.5 [m]
+  Colour = 0.75, 0.75, 0.75
+  Colour Map = Rainbow 1.0 to minus 1.5
+  Colour Mode = Constant
+  Colour Scale = Linear
+  Colour Variable = Pressure
+  Colour Variable Boundary Values = Conservative
+  Culling Mode = No Culling
+  Direction 1 Bound = 1.0 [m]
+  Direction 1 Orientation = 0 [degree]
+  Direction 1 Points = 10
+  Direction 2 Bound = 1.0 [m]
+  Direction 2 Points = 10
+  Domain List = /DOMAIN GROUP:All Domains
+  Draw Faces = Off
+  Draw Lines = Off
+  Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+  Invert Plane Bound = Off
+  Lighting = On
+  Line Colour = 0, 0, 0
+  Line Colour Mode = Default
+  Line Width = 1
+  Max = 0.0 [Pa]
+  Min = 0.0 [Pa]
+  Normal = 1 , 0 , 0
+  Option = ZX Plane
+  Plane Bound = None
+  Plane Type = Slice
+  Point = 0 [m], 0 [m], 0 [m]
+  Point 1 = 0 [m], 0 [m], 0 [m]
+  Point 2 = 1 [m], 0 [m], 0 [m]
+  Point 3 = 0 [m], 1 [m], 0 [m]
+  Range = Global
+  Render Edge Angle = 0 [degree]
+  Specular Lighting = On
+  Surface Drawing = Smooth Shading
+  Texture Angle = 0
+  Texture Direction = 0 , 1 , 0
+  Texture File =
+  Texture Material = Metal
+  Texture Position = 0 , 0
+  Texture Scale = 1
+  Texture Type = Predefined
+  Tile Texture = Off
+  Transform Texture = Off
+  Transparency = 0.0
+  X = 0.0 [m]
+  Y = -0.01 [m]
+  Z = 0.0 [m]
+  OBJECT VIEW TRANSFORM:
+    Apply Reflection = Off
+    Apply Rotation = Off
+    Apply Scale = Off
+    Apply Translation = Off
+    Principal Axis = Z
+    Reflection Plane Option = XY Plane
+    Rotation Angle = 0.0 [degree]
+    Rotation Axis From = 0 [m], 0 [m], 0 [m]
+    Rotation Axis To = 0 [m], 0 [m], 0 [m]
+    Rotation Axis Type = Principal Axis
+    Scale Vector = 1 , 1 , 1
+    Translation Vector = 0 [m], 0 [m], 0 [m]
+    X = 0.0 [m]
+    Y = 0.0 [m]
+    Z = 0.0 [m]
+  END
+END
+
+
+CONTOUR:ContourPlane
+  Apply Instancing Transform = On
+  Clip Contour = Off
+  Colour Map = Rainbow 1.0 to minus 1.5
+  Colour Scale = Linear
+  Colour Variable = Pressure Coefficient
+  Colour Variable Boundary Values = Conservative
+  Constant Contour Colour = Off
+  Contour Range = User Specified
+  Culling Mode = No Culling
+  Domain List = /DOMAIN GROUP:All Domains
+  Draw Contours = On
+  Font = Sans Serif
+  Fringe Fill = On
+  Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+  Lighting = On
+  Line Colour = 0, 0, 0
+  Line Colour Mode = Default
+  Line Width = 1
+  Location List = /PLANE:Plane1
+  Max = 1
+  Min = -1.5
+  Number of Contours = 25
+  Show Numbers = Off
+  Specular Lighting = On
+  Surface Drawing = Smooth Shading
+  Text Colour = 0, 0, 0
+  Text Colour Mode = Default
+  Text Height = 0.024
+  Transparency = 0.0
+  Use Face Values = Off
+  Value List = 0,1
+  OBJECT VIEW TRANSFORM:
+    Apply Reflection = Off
+    Apply Rotation = Off
+    Apply Scale = Off
+    Apply Translation = Off
+  END
+END
+
+>show /CONTOUR:ContourPlane, view=/VIEW:View 1
+
+> update
+ANIMATION:ANIMATION
+  QAnim MPEG Filename = $directory/Y/Cp/Cp.avi
+  QAnim Save MPEG = Off
+  QAnim Looping = Bounce
+  QAnim Looping Cycles = -1
+  Video Format = avi
+
+END
+
+ANIMATION:ANIMATION
+  Animate Camera = On
+  Animation Hardcopy Filename = $directory/Y/Cp/Cp.avi
+  Save Hardcopy = Off
+  Looping = Loop
+  Looping Cycles = 1
+  Video Format = avi
+
+END
+
+ANIMATION:ANIMATION
+  Animate Camera = On
+  Animation Hardcopy Filename = $directory/Y/Cp/Cp.avi
+  Save Hardcopy = Off
+  Looping = Loop
+  Looping Cycles = 1
+  Video Format = avi
+
+END
+
+> animate new =
+
+> animate new = KeyframeNo1
+
+ANIMATION:
+  Animation Bit Rate = 5152000
+  Animation Frame Rate = 24
+  Animation Quality = High
+  Animation Speed Factor = 2
+  Antialiasing = On
+  Drop Last MPEG Frame = Off
+  Hardcopy Tolerance = 0.0001
+  Intermediate File Format = jpg
+  Keep Intermediate Files = On
+  MPEG Height = 480
+  MPEG Scale = 100
+  MPEG Size = 1080p
+  MPEG Width = 640
+  Output Directory = $directory/Y/Cp
+  Output to User Directory = On
+  QAnim Override Symbol = On
+  QAnim Symbol Size = 1.0
+  QAnim Symbol Spacing = 0.6
+  QAnim Symbol Type = Ball
+  
+  Speed Adjustment Selection = Normal
+  Speed Scaling Method = Distribute Frames Smoothly
+  Timestep Interpolation Method = Timestep
+  Variable Bit Rate = On
+  White Background = On
+END
+
+
+KEYFRAME:KeyframeNo2
+  Number Of Frames = 148
+END
+
+> animate modify = KeyframeNo2
+
+> animate goto = 1
+
+KEYFRAME:KeyframeNo1
+  Number Of Frames = 148
+END
+
+> animate modify = KeyframeNo1
+
+> animate goto = 150
+
+
+PLANE:Plane1
+  Apply Instancing Transform = On
+  Apply Texture = Off
+  Blend Texture = On
+  Bound Radius = 0.5 [m]
+  Colour = 0.75, 0.75, 0.75
+  Colour Map = Rainbow 1.0 to minus 1.5
+  Colour Mode = Constant
+  Colour Scale = Linear
+  Colour Variable = Pressure
+  Colour Variable Boundary Values = Conservative
+  Culling Mode = No Culling
+  Direction 1 Bound = 1.0 [m]
+  Direction 1 Orientation = 0 [degree]
+  Direction 1 Points = 10
+  Direction 2 Bound = 1.0 [m]
+  Direction 2 Points = 10
+  Domain List = /DOMAIN GROUP:All Domains
+  Draw Faces = Off
+  Draw Lines = Off
+  Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+  Invert Plane Bound = Off
+  Lighting = On
+  Line Colour = 0, 0, 0
+  Line Colour Mode = Default
+  Line Width = 1
+  Max = 0.0 [Pa]
+  Min = 0.0 [Pa]
+  Normal = 1 , 0 , 0
+  Option = ZX Plane
+  Plane Bound = None
+  Plane Type = Slice
+  Point = 0 [m], 0 [m], 0 [m]
+  Point 1 = 0 [m], 0 [m], 0 [m]
+  Point 2 = 1 [m], 0 [m], 0 [m]
+  Point 3 = 0 [m], 1 [m], 0 [m]
+  Range = Global
+  Render Edge Angle = 0 [degree]
+  Specular Lighting = On
+  Surface Drawing = Smooth Shading
+  Texture Angle = 0
+  Texture Direction = 0 , 1 , 0
+  Texture File =
+  Texture Material = Metal
+  Texture Position = 0 , 0
+  Texture Scale = 1
+  Texture Type = Predefined
+  Tile Texture = Off
+  Transform Texture = Off
+  Transparency = 0.0
+  X = 0.0 [m]
+  Y = -0.9 [m]
+  Z = 0.0 [m]
+  OBJECT VIEW TRANSFORM:
+    Apply Reflection = Off
+    Apply Rotation = Off
+    Apply Scale = Off
+    Apply Translation = Off
+    Principal Axis = Z
+    Reflection Plane Option = XY Plane
+    Rotation Angle = 0.0 [degree]
+    Rotation Axis From = 0 [m], 0 [m], 0 [m]
+    Rotation Axis To = 0 [m], 0 [m], 0 [m]
+    Rotation Axis Type = Principal Axis
+    Scale Vector = 1 , 1 , 1
+    Translation Vector = 0 [m], 0 [m], 0 [m]
+    X = 0.0 [m]
+    Y = 0.0 [m]
+    Z = 0.0 [m]
+  END
+END
+
+KEYFRAME:KeyframeNo2
+  Number Of Frames = 1
+END
+
+> animate modify = KeyframeNo2
+
+> animate goto = 1
+
+ANIMATION:ANIMATION
+  Animate Camera = On
+  Animation Hardcopy Filename = $directory/Y/Cp/Cp.avi
+  Save Hardcopy = On
+  Looping = Loop
+  Looping Cycles = 1
+  Video Format = avi
+
+END
+
+> animate play = forward
+
+
+> animate delete = KeyframeNo1
+
+> animate delete = KeyframeNo2
+
+###########################################################################################################################################################################
+
+# Velocity
+
+
+PLANE:Plane1
+  Apply Instancing Transform = On
+  Apply Texture = Off
+  Blend Texture = On
+  Bound Radius = 0.5 [m]
+  Colour = 0.75, 0.75, 0.75
+  Colour Map = Rainbow 2.5 to 0.0
+  Colour Mode = Constant
+  Colour Scale = Linear
+  Colour Variable = Pressure
+  Colour Variable Boundary Values = Conservative
+  Culling Mode = No Culling
+  Direction 1 Bound = 1.0 [m]
+  Direction 1 Orientation = 0 [degree]
+  Direction 1 Points = 10
+  Direction 2 Bound = 1.0 [m]
+  Direction 2 Points = 10
+  Domain List = /DOMAIN GROUP:All Domains
+  Draw Faces = Off
+  Draw Lines = Off
+  Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+  Invert Plane Bound = Off
+  Lighting = On
+  Line Colour = 0, 0, 0
+  Line Colour Mode = Default
+  Line Width = 1
+  Max = 0.0 [Pa]
+  Min = 0.0 [Pa]
+  Normal = 1 , 0 , 0
+  Option = ZX Plane
+  Plane Bound = None
+  Plane Type = Slice
+  Point = 0 [m], 0 [m], 0 [m]
+  Point 1 = 0 [m], 0 [m], 0 [m]
+  Point 2 = 1 [m], 0 [m], 0 [m]
+  Point 3 = 0 [m], 1 [m], 0 [m]
+  Range = Global
+  Render Edge Angle = 0 [degree]
+  Specular Lighting = On
+  Surface Drawing = Smooth Shading
+  Texture Angle = 0
+  Texture Direction = 0 , 1 , 0
+  Texture File =
+  Texture Material = Metal
+  Texture Position = 0 , 0
+  Texture Scale = 1
+  Texture Type = Predefined
+  Tile Texture = Off
+  Transform Texture = Off
+  Transparency = 0.0
+  X = 0.0 [m]
+  Y = -0.01 [m]
+  Z = 0.0 [m]
+  OBJECT VIEW TRANSFORM:
+    Apply Reflection = Off
+    Apply Rotation = Off
+    Apply Scale = Off
+    Apply Translation = Off
+    Principal Axis = Z
+    Reflection Plane Option = XY Plane
+    Rotation Angle = 0.0 [degree]
+    Rotation Axis From = 0 [m], 0 [m], 0 [m]
+    Rotation Axis To = 0 [m], 0 [m], 0 [m]
+    Rotation Axis Type = Principal Axis
+    Scale Vector = 1 , 1 , 1
+    Translation Vector = 0 [m], 0 [m], 0 [m]
+    X = 0.0 [m]
+    Y = 0.0 [m]
+    Z = 0.0 [m]
+  END
+END
+
+
+CONTOUR:ContourPlane
+  Apply Instancing Transform = On
+  Clip Contour = Off
+  Colour Map = Rainbow 2.5 to 0.0
+  Colour Scale = Linear
+  Colour Variable = NormalisedVelocity
+  Colour Variable Boundary Values = Conservative
+  Constant Contour Colour = Off
+  Contour Range = User Specified
+  Culling Mode = No Culling
+  Domain List = /DOMAIN GROUP:All Domains
+  Draw Contours = On
+  Font = Sans Serif
+  Fringe Fill = On
+  Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+  Lighting = On
+  Line Colour = 0, 0, 0
+  Line Colour Mode = Default
+  Line Width = 1
+  Location List = /PLANE:Plane1
+  Max = 2.5
+  Min = 0
+  Number of Contours = 25
+  Show Numbers = Off
+  Specular Lighting = On
+  Surface Drawing = Smooth Shading
+  Text Colour = 0, 0, 0
+  Text Colour Mode = Default
+  Text Height = 0.024
+  Transparency = 0.0
+  Use Face Values = Off
+  Value List = 0,1
+  OBJECT VIEW TRANSFORM:
+    Apply Reflection = Off
+    Apply Rotation = Off
+    Apply Scale = Off
+    Apply Translation = Off
+  END
+END
+
+>show /CONTOUR:ContourPlane, view=/VIEW:View 1
+
+
+> update
+ANIMATION:ANIMATION
+  QAnim MPEG Filename = $directory/Y/Velocity/Velocity.avi
+  QAnim Save MPEG = Off
+  QAnim Looping = Bounce
+  QAnim Looping Cycles = -1
+  Video Format = avi
+
+END
+
+ANIMATION:ANIMATION
+  Animate Camera = On
+  Animation Hardcopy Filename = $directory/Y/Velocity/Velocity.avi
+  Save Hardcopy = Off
+  Looping = Loop
+  Looping Cycles = 1
+  Video Format = avi
+
+END
+
+ANIMATION:ANIMATION
+  Animate Camera = On
+  Animation Hardcopy Filename = $directory/Y/Velocity/Velocity.avi
+  Save Hardcopy = Off
+  Looping = Loop
+  Looping Cycles = 1
+  Video Format = avi
+
+END
+
+> animate new =
+
+> animate new = KeyframeNo1
+
+ANIMATION:
+  Animation Bit Rate = 5152000
+  Animation Frame Rate = 24
+  Animation Quality = High
+  Animation Speed Factor = 2
+  Antialiasing = On
+  Drop Last MPEG Frame = Off
+  Hardcopy Tolerance = 0.0001
+  Intermediate File Format = jpg
+  Keep Intermediate Files = On
+  MPEG Height = 480
+  MPEG Scale = 100
+  MPEG Size = 1080p
+  MPEG Width = 640
+  Output Directory = $directory/Y/Velocity
+  Output to User Directory = On
+  QAnim Override Symbol = On
+  QAnim Symbol Size = 1.0
+  QAnim Symbol Spacing = 0.6
+  QAnim Symbol Type = Ball
+  
+  Speed Adjustment Selection = Normal
+  Speed Scaling Method = Distribute Frames Smoothly
+  Timestep Interpolation Method = Timestep
+  Variable Bit Rate = On
+  White Background = On
+END
+
+
+KEYFRAME:KeyframeNo2
+  Number Of Frames = 148
+END
+
+> animate modify = KeyframeNo2
+
+> animate goto = 1
+
+KEYFRAME:KeyframeNo1
+  Number Of Frames = 148
+END
+
+> animate modify = KeyframeNo1
+
+> animate goto = 150
+
+
+PLANE:Plane1
+  Apply Instancing Transform = On
+  Apply Texture = Off
+  Blend Texture = On
+  Bound Radius = 0.5 [m]
+  Colour = 0.75, 0.75, 0.75
+  Colour Map = Rainbow 2.5 to 0.0
+  Colour Mode = Constant
+  Colour Scale = Linear
+  Colour Variable = Pressure
+  Colour Variable Boundary Values = Conservative
+  Culling Mode = No Culling
+  Direction 1 Bound = 1.0 [m]
+  Direction 1 Orientation = 0 [degree]
+  Direction 1 Points = 10
+  Direction 2 Bound = 1.0 [m]
+  Direction 2 Points = 10
+  Domain List = /DOMAIN GROUP:All Domains
+  Draw Faces = Off
+  Draw Lines = Off
+  Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+  Invert Plane Bound = Off
+  Lighting = On
+  Line Colour = 0, 0, 0
+  Line Colour Mode = Default
+  Line Width = 1
+  Max = 0.0 [Pa]
+  Min = 0.0 [Pa]
+  Normal = 1 , 0 , 0
+  Option = ZX Plane
+  Plane Bound = None
+  Plane Type = Slice
+  Point = 0 [m], 0 [m], 0 [m]
+  Point 1 = 0 [m], 0 [m], 0 [m]
+  Point 2 = 1 [m], 0 [m], 0 [m]
+  Point 3 = 0 [m], 1 [m], 0 [m]
+  Range = Global
+  Render Edge Angle = 0 [degree]
+  Specular Lighting = On
+  Surface Drawing = Smooth Shading
+  Texture Angle = 0
+  Texture Direction = 0 , 1 , 0
+  Texture File =
+  Texture Material = Metal
+  Texture Position = 0 , 0
+  Texture Scale = 1
+  Texture Type = Predefined
+  Tile Texture = Off
+  Transform Texture = Off
+  Transparency = 0.0
+  X = 0.0 [m]
+  Y = -0.8 [m]
+  Z = 0.0 [m]
+  OBJECT VIEW TRANSFORM:
+    Apply Reflection = Off
+    Apply Rotation = Off
+    Apply Scale = Off
+    Apply Translation = Off
+    Principal Axis = Z
+    Reflection Plane Option = XY Plane
+    Rotation Angle = 0.0 [degree]
+    Rotation Axis From = 0 [m], 0 [m], 0 [m]
+    Rotation Axis To = 0 [m], 0 [m], 0 [m]
+    Rotation Axis Type = Principal Axis
+    Scale Vector = 1 , 1 , 1
+    Translation Vector = 0 [m], 0 [m], 0 [m]
+    X = 0.0 [m]
+    Y = 0.0 [m]
+    Z = 0.0 [m]
+  END
+END
+
+KEYFRAME:KeyframeNo2
+  Number Of Frames = 1
+END
+
+> animate modify = KeyframeNo2
+
+> animate goto = 1
+
+ANIMATION:ANIMATION
+  Animate Camera = On
+  Animation Hardcopy Filename = $directory/Y/Velocity/Velocity.avi
+  Save Hardcopy = On
+  Looping = Loop
+  Looping Cycles = 1
+  Video Format = avi
+
+END
+
+> animate play = forward
+
+
+> animate delete = KeyframeNo1
+
+> animate delete = KeyframeNo2
+
+
+###########################################################################################################################################################################
+
+# CpT
+
+PLANE:Plane1
+  Apply Instancing Transform = On
+  Apply Texture = Off
+  Blend Texture = On
+  Bound Radius = 0.5 [m]
+  Colour = 0.75, 0.75, 0.75
+  Colour Map = Rainbow 1.0 to minus 1.0
+  Colour Mode = Constant
+  Colour Scale = Linear
+  Colour Variable = Pressure
+  Colour Variable Boundary Values = Conservative
+  Culling Mode = No Culling
+  Direction 1 Bound = 1.0 [m]
+  Direction 1 Orientation = 0 [degree]
+  Direction 1 Points = 10
+  Direction 2 Bound = 1.0 [m]
+  Direction 2 Points = 10
+  Domain List = /DOMAIN GROUP:All Domains
+  Draw Faces = Off
+  Draw Lines = Off
+  Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+  Invert Plane Bound = Off
+  Lighting = On
+  Line Colour = 0, 0, 0
+  Line Colour Mode = Default
+  Line Width = 1
+  Max = 0.0 [Pa]
+  Min = 0.0 [Pa]
+  Normal = 1 , 0 , 0
+  Option = ZX Plane
+  Plane Bound = None
+  Plane Type = Slice
+  Point = 0 [m], 0 [m], 0 [m]
+  Point 1 = 0 [m], 0 [m], 0 [m]
+  Point 2 = 1 [m], 0 [m], 0 [m]
+  Point 3 = 0 [m], 1 [m], 0 [m]
+  Range = Global
+  Render Edge Angle = 0 [degree]
+  Specular Lighting = On
+  Surface Drawing = Smooth Shading
+  Texture Angle = 0
+  Texture Direction = 0 , 1 , 0
+  Texture File =
+  Texture Material = Metal
+  Texture Position = 0 , 0
+  Texture Scale = 1
+  Texture Type = Predefined
+  Tile Texture = Off
+  Transform Texture = Off
+  Transparency = 0.0
+  X = 0.0 [m]
+  Y = -0.01 [m]
+  Z = 0.0 [m]
+  OBJECT VIEW TRANSFORM:
+    Apply Reflection = Off
+    Apply Rotation = Off
+    Apply Scale = Off
+    Apply Translation = Off
+    Principal Axis = Z
+    Reflection Plane Option = XY Plane
+    Rotation Angle = 0.0 [degree]
+    Rotation Axis From = 0 [m], 0 [m], 0 [m]
+    Rotation Axis To = 0 [m], 0 [m], 0 [m]
+    Rotation Axis Type = Principal Axis
+    Scale Vector = 1 , 1 , 1
+    Translation Vector = 0 [m], 0 [m], 0 [m]
+    X = 0.0 [m]
+    Y = 0.0 [m]
+    Z = 0.0 [m]
+  END
+END
+
+
+CONTOUR:ContourPlane
+  Apply Instancing Transform = On
+  Clip Contour = Off
+  Colour Map = Rainbow 1.0 to minus 1.0
+  Colour Scale = Linear
+  Colour Variable = CpT
+  Colour Variable Boundary Values = Conservative
+  Constant Contour Colour = Off
+  Contour Range = User Specified
+  Culling Mode = No Culling
+  Domain List = /DOMAIN GROUP:All Domains
+  Draw Contours = On
+  Font = Sans Serif
+  Fringe Fill = On
+  Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+  Lighting = On
+  Line Colour = 0, 0, 0
+  Line Colour Mode = Default
+  Line Width = 1
+  Location List = /PLANE:Plane1
+  Max = 1
+  Min = -1
+  Number of Contours = 25
+  Show Numbers = Off
+  Specular Lighting = On
+  Surface Drawing = Smooth Shading
+  Text Colour = 0, 0, 0
+  Text Colour Mode = Default
+  Text Height = 0.024
+  Transparency = 0.0
+  Use Face Values = Off
+  Value List = 0,1
+  OBJECT VIEW TRANSFORM:
+    Apply Reflection = Off
+    Apply Rotation = Off
+    Apply Scale = Off
+    Apply Translation = Off
+  END
+END
+
+>show /CONTOUR:ContourPlane, view=/VIEW:View 1
+
+
+> update
+ANIMATION:ANIMATION
+  QAnim MPEG Filename = $directory/Y/CpT/CpT.avi
+  QAnim Save MPEG = Off
+  QAnim Looping = Bounce
+  QAnim Looping Cycles = -1
+  Video Format = avi
+
+END
+
+ANIMATION:ANIMATION
+  Animate Camera = On
+  Animation Hardcopy Filename = $directory/Y/CpT/CpT.avi
+  Save Hardcopy = Off
+  Looping = Loop
+  Looping Cycles = 1
+  Video Format = avi
+
+END
+
+ANIMATION:ANIMATION
+  Animate Camera = On
+  Animation Hardcopy Filename = $directory/Y/CpT/CpT.avi
+  Save Hardcopy = Off
+  Looping = Loop
+  Looping Cycles = 1
+  Video Format = avi
+
+END
+
+> animate new =
+
+> animate new = KeyframeNo1
+
+ANIMATION:
+  Animation Bit Rate = 5152000
+  Animation Frame Rate = 24
+  Animation Quality = High
+  Animation Speed Factor = 2
+  Antialiasing = On
+  Drop Last MPEG Frame = Off
+  Hardcopy Tolerance = 0.0001
+  Intermediate File Format = jpg
+  Keep Intermediate Files = On
+  MPEG Height = 480
+  MPEG Scale = 100
+  MPEG Size = 1080p
+  MPEG Width = 640
+  Output Directory = $directory/Y/CpT
+  Output to User Directory = On
+  QAnim Override Symbol = On
+  QAnim Symbol Size = 1.0
+  QAnim Symbol Spacing = 0.6
+  QAnim Symbol Type = Ball
+  
+  Speed Adjustment Selection = Normal
+  Speed Scaling Method = Distribute Frames Smoothly
+  Timestep Interpolation Method = Timestep
+  Variable Bit Rate = On
+  White Background = On
+END
+
+
+
+KEYFRAME:KeyframeNo2
+  Number Of Frames = 148
+END
+
+> animate modify = KeyframeNo2
+
+> animate goto = 1
+
+KEYFRAME:KeyframeNo1
+  Number Of Frames = 148
+END
+
+> animate modify = KeyframeNo1
+
+> animate goto = 150
+
+
+PLANE:Plane1
+  Apply Instancing Transform = On
+  Apply Texture = Off
+  Blend Texture = On
+  Bound Radius = 0.5 [m]
+  Colour = 0.75, 0.75, 0.75
+  Colour Map = Rainbow 1.0 to minus 1.0
+  Colour Mode = Constant
+  Colour Scale = Linear
+  Colour Variable = Pressure
+  Colour Variable Boundary Values = Conservative
+  Culling Mode = No Culling
+  Direction 1 Bound = 1.0 [m]
+  Direction 1 Orientation = 0 [degree]
+  Direction 1 Points = 10
+  Direction 2 Bound = 1.0 [m]
+  Direction 2 Points = 10
+  Domain List = /DOMAIN GROUP:All Domains
+  Draw Faces = Off
+  Draw Lines = Off
+  Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+  Invert Plane Bound = Off
+  Lighting = On
+  Line Colour = 0, 0, 0
+  Line Colour Mode = Default
+  Line Width = 1
+  Max = 0.0 [Pa]
+  Min = 0.0 [Pa]
+  Normal = 1 , 0 , 0
+  Option = ZX Plane
+  Plane Bound = None
+  Plane Type = Slice
+  Point = 0 [m], 0 [m], 0 [m]
+  Point 1 = 0 [m], 0 [m], 0 [m]
+  Point 2 = 1 [m], 0 [m], 0 [m]
+  Point 3 = 0 [m], 1 [m], 0 [m]
+  Range = Global
+  Render Edge Angle = 0 [degree]
+  Specular Lighting = On
+  Surface Drawing = Smooth Shading
+  Texture Angle = 0
+  Texture Direction = 0 , 1 , 0
+  Texture File =
+  Texture Material = Metal
+  Texture Position = 0 , 0
+  Texture Scale = 1
+  Texture Type = Predefined
+  Tile Texture = Off
+  Transform Texture = Off
+  Transparency = 0.0
+  X = 0.0 [m]
+  Y = -0.8 [m]
+  Z = 0.0 [m]
+  OBJECT VIEW TRANSFORM:
+    Apply Reflection = Off
+    Apply Rotation = Off
+    Apply Scale = Off
+    Apply Translation = Off
+    Principal Axis = Z
+    Reflection Plane Option = XY Plane
+    Rotation Angle = 0.0 [degree]
+    Rotation Axis From = 0 [m], 0 [m], 0 [m]
+    Rotation Axis To = 0 [m], 0 [m], 0 [m]
+    Rotation Axis Type = Principal Axis
+    Scale Vector = 1 , 1 , 1
+    Translation Vector = 0 [m], 0 [m], 0 [m]
+    X = 0.0 [m]
+    Y = 0.0 [m]
+    Z = 0.0 [m]
+  END
+END
+
+KEYFRAME:KeyframeNo2
+  Number Of Frames = 1
+END
+
+> animate modify = KeyframeNo2
+
+> animate goto = 1
+
+ANIMATION:ANIMATION
+  Animate Camera = On
+  Animation Hardcopy Filename = $directory/Y/CpT/CpT.avi
+  Save Hardcopy = On
+  Looping = Loop
+  Looping Cycles = 1
+  Video Format = avi
+
+END
+
+> animate play = forward
+
+
+> animate delete = KeyframeNo1
+
+> animate delete = KeyframeNo2
+
+
+###########################################################################################################################################################################
+
+# CpT_siatka
+
+PLANE:Plane1
+  Apply Instancing Transform = On
+  Apply Texture = Off
+  Blend Texture = On
+  Bound Radius = 0.5 [m]
+  Colour = 0.75, 0.75, 0.75
+  Colour Map = Rainbow 1.0 to minus 1.0
+  Colour Mode = Constant
+  Colour Scale = Linear
+  Colour Variable = Pressure
+  Colour Variable Boundary Values = Conservative
+  Culling Mode = No Culling
+  Direction 1 Bound = 1.0 [m]
+  Direction 1 Orientation = 0 [degree]
+  Direction 1 Points = 10
+  Direction 2 Bound = 1.0 [m]
+  Direction 2 Points = 10
+  Domain List = /DOMAIN GROUP:All Domains
+  Draw Faces = Off
+  Draw Lines = On
+  Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+  Invert Plane Bound = Off
+  Lighting = On
+  Line Colour = 0, 0, 0
+  Line Colour Mode = Default
+  Line Width = 1
+  Max = 0.0 [Pa]
+  Min = 0.0 [Pa]
+  Normal = 1 , 0 , 0
+  Option = ZX Plane
+  Plane Bound = None
+  Plane Type = Slice
+  Point = 0 [m], 0 [m], 0 [m]
+  Point 1 = 0 [m], 0 [m], 0 [m]
+  Point 2 = 1 [m], 0 [m], 0 [m]
+  Point 3 = 0 [m], 1 [m], 0 [m]
+  Range = Global
+  Render Edge Angle = 0 [degree]
+  Specular Lighting = On
+  Surface Drawing = Smooth Shading
+  Texture Angle = 0
+  Texture Direction = 0 , 1 , 0
+  Texture File =
+  Texture Material = Metal
+  Texture Position = 0 , 0
+  Texture Scale = 1
+  Texture Type = Predefined
+  Tile Texture = Off
+  Transform Texture = Off
+  Transparency = 0.0
+  X = 0.0 [m]
+  Y = -0.01 [m]
+  Z = 0.0 [m]
+  OBJECT VIEW TRANSFORM:
+    Apply Reflection = Off
+    Apply Rotation = Off
+    Apply Scale = Off
+    Apply Translation = Off
+    Principal Axis = Z
+    Reflection Plane Option = XY Plane
+    Rotation Angle = 0.0 [degree]
+    Rotation Axis From = 0 [m], 0 [m], 0 [m]
+    Rotation Axis To = 0 [m], 0 [m], 0 [m]
+    Rotation Axis Type = Principal Axis
+    Scale Vector = 1 , 1 , 1
+    Translation Vector = 0 [m], 0 [m], 0 [m]
+    X = 0.0 [m]
+    Y = 0.0 [m]
+    Z = 0.0 [m]
+  END
+END
+
+>show /PLANE:Plane1, view=/VIEW:View 1
+
+
+CONTOUR:ContourPlane
+  Apply Instancing Transform = On
+  Clip Contour = Off
+  Colour Map = Rainbow 1.0 to minus 1.0
+  Colour Scale = Linear
+  Colour Variable = CpT
+  Colour Variable Boundary Values = Conservative
+  Constant Contour Colour = Off
+  Contour Range = User Specified
+  Culling Mode = No Culling
+  Domain List = /DOMAIN GROUP:All Domains
+  Draw Contours = On
+  Font = Sans Serif
+  Fringe Fill = On
+  Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+  Lighting = On
+  Line Colour = 0, 0, 0
+  Line Colour Mode = Default
+  Line Width = 1
+  Location List = /PLANE:Plane1
+  Max = 1
+  Min = -1
+  Number of Contours = 25
+  Show Numbers = Off
+  Specular Lighting = On
+  Surface Drawing = Smooth Shading
+  Text Colour = 0, 0, 0
+  Text Colour Mode = Default
+  Text Height = 0.024
+  Transparency = 0.0
+  Use Face Values = Off
+  Value List = 0,1
+  OBJECT VIEW TRANSFORM:
+    Apply Reflection = Off
+    Apply Rotation = Off
+    Apply Scale = Off
+    Apply Translation = Off
+  END
+END
+
+>show /CONTOUR:ContourPlane, view=/VIEW:View 1
+
+
+> update
+ANIMATION:ANIMATION
+  QAnim MPEG Filename = $directory/Y/CpT_siatka/CpT_siatka.avi
+  QAnim Save MPEG = Off
+  QAnim Looping = Bounce
+  QAnim Looping Cycles = -1
+  Video Format = avi
+
+END
+
+ANIMATION:ANIMATION
+  Animate Camera = On
+  Animation Hardcopy Filename = $directory/Y/CpT_siatka/CpT_siatka.avi
+  Save Hardcopy = Off
+  Looping = Loop
+  Looping Cycles = 1
+  Video Format = avi
+
+END
+
+ANIMATION:ANIMATION
+  Animate Camera = On
+  Animation Hardcopy Filename = $directory/Y/CpT_siatka/CpT_siatka.avi
+  Save Hardcopy = Off
+  Looping = Loop
+  Looping Cycles = 1
+  Video Format = avi
+
+END
+
+> animate new =
+
+> animate new = KeyframeNo1
+
+ANIMATION:
+  Animation Bit Rate = 5152000
+  Animation Frame Rate = 24
+  Animation Quality = High
+  Animation Speed Factor = 2
+  Antialiasing = On
+  Drop Last MPEG Frame = Off
+  Hardcopy Tolerance = 0.0001
+  Intermediate File Format = jpg
+  Keep Intermediate Files = On
+  MPEG Height = 480
+  MPEG Scale = 100
+  MPEG Size = 1080p
+  MPEG Width = 640
+  Output Directory = $directory/Y/CpT_siatka
+  Output to User Directory = On
+  QAnim Override Symbol = On
+  QAnim Symbol Size = 1.0
+  QAnim Symbol Spacing = 0.6
+  QAnim Symbol Type = Ball
+  
+  Speed Adjustment Selection = Normal
+  Speed Scaling Method = Distribute Frames Smoothly
+  Timestep Interpolation Method = Timestep
+  Variable Bit Rate = On
+  White Background = On
+END
+
+
+KEYFRAME:KeyframeNo2
+  Number Of Frames = 148
+END
+
+> animate modify = KeyframeNo2
+
+> animate goto = 1
+
+KEYFRAME:KeyframeNo1
+  Number Of Frames = 148
+END
+
+> animate modify = KeyframeNo1
+
+> animate goto = 150
+
+
+PLANE:Plane1
+  Apply Instancing Transform = On
+  Apply Texture = Off
+  Blend Texture = On
+  Bound Radius = 0.5 [m]
+  Colour = 0.75, 0.75, 0.75
+  Colour Map = Rainbow 1.0 to minus 1.0
+  Colour Mode = Constant
+  Colour Scale = Linear
+  Colour Variable = Pressure
+  Colour Variable Boundary Values = Conservative
+  Culling Mode = No Culling
+  Direction 1 Bound = 1.0 [m]
+  Direction 1 Orientation = 0 [degree]
+  Direction 1 Points = 10
+  Direction 2 Bound = 1.0 [m]
+  Direction 2 Points = 10
+  Domain List = /DOMAIN GROUP:All Domains
+  Draw Faces = Off
+  Draw Lines = On
+  Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+  Invert Plane Bound = Off
+  Lighting = On
+  Line Colour = 0, 0, 0
+  Line Colour Mode = Default
+  Line Width = 1
+  Max = 0.0 [Pa]
+  Min = 0.0 [Pa]
+  Normal = 1 , 0 , 0
+  Option = ZX Plane
+  Plane Bound = None
+  Plane Type = Slice
+  Point = 0 [m], 0 [m], 0 [m]
+  Point 1 = 0 [m], 0 [m], 0 [m]
+  Point 2 = 1 [m], 0 [m], 0 [m]
+  Point 3 = 0 [m], 1 [m], 0 [m]
+  Range = Global
+  Render Edge Angle = 0 [degree]
+  Specular Lighting = On
+  Surface Drawing = Smooth Shading
+  Texture Angle = 0
+  Texture Direction = 0 , 1 , 0
+  Texture File =
+  Texture Material = Metal
+  Texture Position = 0 , 0
+  Texture Scale = 1
+  Texture Type = Predefined
+  Tile Texture = Off
+  Transform Texture = Off
+  Transparency = 0.0
+  X = 0.0 [m]
+  Y = -0.8 [m]
+  Z = 0.0 [m]
+  OBJECT VIEW TRANSFORM:
+    Apply Reflection = Off
+    Apply Rotation = Off
+    Apply Scale = Off
+    Apply Translation = Off
+    Principal Axis = Z
+    Reflection Plane Option = XY Plane
+    Rotation Angle = 0.0 [degree]
+    Rotation Axis From = 0 [m], 0 [m], 0 [m]
+    Rotation Axis To = 0 [m], 0 [m], 0 [m]
+    Rotation Axis Type = Principal Axis
+    Scale Vector = 1 , 1 , 1
+    Translation Vector = 0 [m], 0 [m], 0 [m]
+    X = 0.0 [m]
+    Y = 0.0 [m]
+    Z = 0.0 [m]
+  END
+END
+
+KEYFRAME:KeyframeNo2
+  Number Of Frames = 1
+END
+
+> animate modify = KeyframeNo2
+
+> animate goto = 1
+
+ANIMATION:ANIMATION
+  Animate Camera = On
+  Animation Hardcopy Filename = $directory/T/CpT_siatka/CpT_siatka.avi
+  Save Hardcopy = On
+  Looping = Loop
+  Looping Cycles = 1
+  Video Format = avi
+
+END
+
+> animate play = forward
+
+
+> animate delete = KeyframeNo1
+
+> animate delete = KeyframeNo2
+
+>hide /PLANE:Plane1, view=/VIEW:View 1
+
+###########################################################################################################################################################################
+###########################################################################################################################################################################
+
+# Przekroje Z:
+
+VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 11.4912, -2.10322, -1.15606e-14
+    Scale = 0.638267
+    Pan = 10.6668, -1.20436
+    Rotation Quaternion = 0, 0, 0, 1
+  END
+
+END
+
+PLANE:Plane1
+  Apply Instancing Transform = On
+  Apply Texture = Off
+  Bound Radius = 0.5 [m]
+  Colour = 0.75, 0.75, 0.75
+  Colour Map = Rainbow 1.0 to minus 1.5
+  Colour Mode = Constant
+  Colour Scale = Linear
+  Colour Variable = Pressure
+  Colour Variable Boundary Values = Conservative
+  Direction 1 Bound = 1.0 [m]
+  Direction 1 Orientation = 0 [degree]
+  Direction 1 Points = 10
+  Direction 2 Bound = 1.0 [m]
+  Direction 2 Points = 10
+  Domain List = /DOMAIN GROUP:All Domains
+  Draw Faces = Off
+  Draw Lines = Off
+  Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+  Invert Plane Bound = Off
+  Max = 0.0
+  Min = 0.0
+  Normal = 1 , 0 , 0
+  Option = XY Plane
+  Plane Bound = None
+  Plane Type = Slice
+  Point = 0 [m], 0 [m], 0 [m]
+  Point 1 = 0 [m], 0 [m], 0 [m]
+  Point 2 = 1 [m], 0 [m], 0 [m]
+  Point 3 = 0 [m], 1 [m], 0 [m]
+  Range = Global
+  X = 0.0 [m]
+  Y = 0.0 [m]
+  Z = 0.0 [m]
+  OBJECT VIEW TRANSFORM:
+    Apply Reflection = Off
+    Apply Rotation = Off
+    Apply Scale = Off
+    Apply Translation = Off
+    Principal Axis = Z
+    Reflection Plane Option = XY Plane
+    Rotation Angle = 0.0 [degree]
+    Rotation Axis From = 0 [m], 0 [m], 0 [m]
+    Rotation Axis To = 0 [m], 0 [m], 0 [m]
+    Rotation Axis Type = Principal Axis
+    Scale Vector = 1 , 1 , 1
+    Translation Vector = 0 [m], 0 [m], 0 [m]
+    X = 0.0 [m]
+    Y = 0.0 [m]
+    Z = 0.0 [m]
+  END
+END
+
+
+# DODANIE KALKULATORA ODLEGLOSCI NA OSI
+
+LIBRARY:
+  CEL:
+    EXPRESSIONS:
+      expr axisz = maxVal(Z)@Plane1
+    END
+  END
+END
+
+EXPRESSION EVALUATOR:
+  Evaluated Expression = expr axisz
+END
+
+> forceupdate EXPRESSION EVALUATOR
+
+# EDYCJA LEGENDY
+
+DEFAULT LEGEND: Default Legend View 1
+  Colour = 0.0, 0.0, 0.0
+  Font = Sans Serif
+  Legend Aspect = 0.07
+  Legend Format = %4.1f
+  Legend Orientation = Horizontal
+  Legend Plot = /CONTOUR:ContourPlane
+  Legend Position = 0.01 , 0.05
+  Legend Resolution = 256
+  Legend Shading = Smooth
+  Legend Size = 0.7
+  Legend Ticks = 9
+  Legend Title = Legend
+  Legend Title Mode = Variable
+  Legend X Justification = Center
+  Legend Y Justification = None
+  Related Object = View 1
+  Show Legend Units = On
+  Text Colour Mode = User Specified
+  Text Height = 0.024
+  Text Rotation = 0
+  Visibility = true
+END
+
+
+# DODANIE TEKSTU
+
+TEXT: Text 1
+  Colour = 0, 0, 0
+  Font = Sans Serif
+  Position Mode = Two Coords
+  Text Colour Mode = Default
+  Text Height = 0.024
+  Text Position = 0.02 , 0.186
+  Text Rotation = 0 [degree]
+  Visibility = On
+  X Justification = None
+  Y Justification = None
+  TEXT ITEM: Text Item 1
+    Auto Annotation Expression = expr axisz
+    Auto Annotation File Date Format = DD/MM/YY
+    Auto Annotation File Time Format = h:m:s t
+    Auto Annotation Filename Format = Filename Only
+    Auto Annotation Float Format = %6.3f
+    Auto Annotation Type = Expression
+    Auto Annotation Use Automatic Number Formatting = Off
+    Embed Auto Annotation = On
+    Text Item Active = On
+    Text String = z = <aa>
+  END
+  TEXT ITEM: Text Item 2
+    Auto Annotation Expression = Accumulated Time Step
+    Auto Annotation File Date Format = DD/MM/YY
+    Auto Annotation File Time Format = h:m:s t
+    Auto Annotation Filename Format = Filename Only
+    Auto Annotation Float Format = %10.3e
+    Auto Annotation Type = Expression
+    Auto Annotation Use Automatic Number Formatting = On
+    Embed Auto Annotation = Off
+    Text Item Active = Off
+    Text String = 
+  END
+  TEXT ITEM: Text Item 3
+    Auto Annotation Expression = Accumulated Time Step
+    Auto Annotation File Date Format = DD/MM/YY
+    Auto Annotation File Time Format = h:m:s t
+    Auto Annotation Filename Format = Filename Only
+    Auto Annotation Float Format = %10.3e
+    Auto Annotation Type = Expression
+    Auto Annotation Use Automatic Number Formatting = On
+    Embed Auto Annotation = Off
+    Text Item Active = Off
+    Text String = 
+  END
+  TEXT ITEM: Text Item 4
+    Auto Annotation Expression = Accumulated Time Step
+    Auto Annotation File Date Format = DD/MM/YY
+    Auto Annotation File Time Format = h:m:s t
+    Auto Annotation Filename Format = Filename Only
+    Auto Annotation Float Format = %10.3e
+    Auto Annotation Type = Expression
+    Auto Annotation Use Automatic Number Formatting = On
+    Embed Auto Annotation = Off
+    Text Item Active = Off
+    Text String = 
+  END
+  TEXT ITEM: Text Item 5
+    Auto Annotation Expression = Accumulated Time Step
+    Auto Annotation File Date Format = DD/MM/YY
+    Auto Annotation File Time Format = h:m:s t
+    Auto Annotation Filename Format = Filename Only
+    Auto Annotation Float Format = %10.3e
+    Auto Annotation Type = Expression
+    Auto Annotation Use Automatic Number Formatting = On
+    Embed Auto Annotation = Off
+    Text Item Active = Off
+    Text String = 
+  END
+  TEXT ITEM: Text Item 6
+    Auto Annotation Expression = Accumulated Time Step
+    Auto Annotation File Date Format = DD/MM/YY
+    Auto Annotation File Time Format = h:m:s t
+    Auto Annotation Filename Format = Filename Only
+    Auto Annotation Float Format = %10.3e
+    Auto Annotation Type = Expression
+    Auto Annotation Use Automatic Number Formatting = On
+    Embed Auto Annotation = Off
+    Text Item Active = Off
+    Text String = 
+  END
+END
+>show /TEXT:Text 1, view=/VIEW:View 1
+
+
+# Cp
+
+PLANE:Plane1
+  Apply Instancing Transform = On
+  Apply Texture = Off
+  Blend Texture = On
+  Bound Radius = 0.5 [m]
+  Colour = 0.75, 0.75, 0.75
+  Colour Map = Rainbow 1.0 to minus 1.5
+  Colour Mode = Constant
+  Colour Scale = Linear
+  Colour Variable = Pressure
+  Colour Variable Boundary Values = Conservative
+  Culling Mode = No Culling
+  Direction 1 Bound = 1.0 [m]
+  Direction 1 Orientation = 0 [degree]
+  Direction 1 Points = 10
+  Direction 2 Bound = 1.0 [m]
+  Direction 2 Points = 10
+  Domain List = /DOMAIN GROUP:All Domains
+  Draw Faces = Off
+  Draw Lines = Off
+  Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+  Invert Plane Bound = Off
+  Lighting = On
+  Line Colour = 0, 0, 0
+  Line Colour Mode = Default
+  Line Width = 1
+  Max = 0.0 [Pa]
+  Min = 0.0 [Pa]
+  Normal = 1 , 0 , 0
+  Option = XY Plane
+  Plane Bound = None
+  Plane Type = Slice
+  Point = 0 [m], 0 [m], 0 [m]
+  Point 1 = 0 [m], 0 [m], 0 [m]
+  Point 2 = 1 [m], 0 [m], 0 [m]
+  Point 3 = 0 [m], 1 [m], 0 [m]
+  Range = Global
+  Render Edge Angle = 0 [degree]
+  Specular Lighting = On
+  Surface Drawing = Smooth Shading
+  Texture Angle = 0
+  Texture Direction = 0 , 1 , 0
+  Texture File =
+  Texture Material = Metal
+  Texture Position = 0 , 0
+  Texture Scale = 1
+  Texture Type = Predefined
+  Tile Texture = Off
+  Transform Texture = Off
+  Transparency = 0.0
+  X = 0.0 [m]
+  Y = 0.0 [m]
+  Z = 0.0 [m]
+  OBJECT VIEW TRANSFORM:
+    Apply Reflection = Off
+    Apply Rotation = Off
+    Apply Scale = Off
+    Apply Translation = Off
+    Principal Axis = Z
+    Reflection Plane Option = XY Plane
+    Rotation Angle = 0.0 [degree]
+    Rotation Axis From = 0 [m], 0 [m], 0 [m]
+    Rotation Axis To = 0 [m], 0 [m], 0 [m]
+    Rotation Axis Type = Principal Axis
+    Scale Vector = 1 , 1 , 1
+    Translation Vector = 0 [m], 0 [m], 0 [m]
+    X = 0.0 [m]
+    Y = 0.0 [m]
+    Z = 0.0 [m]
+  END
+END
+
+
+CONTOUR:ContourPlane
+  Apply Instancing Transform = On
+  Clip Contour = Off
+  Colour Map = Rainbow 1.0 to minus 1.5
+  Colour Scale = Linear
+  Colour Variable = Pressure Coefficient
+  Colour Variable Boundary Values = Conservative
+  Constant Contour Colour = Off
+  Contour Range = User Specified
+  Culling Mode = No Culling
+  Domain List = /DOMAIN GROUP:All Domains
+  Draw Contours = On
+  Font = Sans Serif
+  Fringe Fill = On
+  Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+  Lighting = On
+  Line Colour = 0, 0, 0
+  Line Colour Mode = Default
+  Line Width = 1
+  Location List = /PLANE:Plane1
+  Max = 1
+  Min = -1.5
+  Number of Contours = 25
+  Show Numbers = Off
+  Specular Lighting = On
+  Surface Drawing = Smooth Shading
+  Text Colour = 0, 0, 0
+  Text Colour Mode = Default
+  Text Height = 0.024
+  Transparency = 0.0
+  Use Face Values = Off
+  Value List = 0,1
+  OBJECT VIEW TRANSFORM:
+    Apply Reflection = Off
+    Apply Rotation = Off
+    Apply Scale = Off
+    Apply Translation = Off
+  END
+END
+
+>show /CONTOUR:ContourPlane, view=/VIEW:View 1
+
+
+> update
+ANIMATION:ANIMATION
+  QAnim MPEG Filename = $directory/Z/Cp/Cp.avi
+  QAnim Save MPEG = Off
+  QAnim Looping = Bounce
+  QAnim Looping Cycles = -1
+  Video Format = avi
+
+END
+
+ANIMATION:ANIMATION
+  Animate Camera = On
+  Animation Hardcopy Filename = $directory/Z/Cp/Cp.avi
+  Save Hardcopy = Off
+  Looping = Loop
+  Looping Cycles = 1
+  Video Format = avi
+
+END
+
+ANIMATION:ANIMATION
+  Animate Camera = On
+  Animation Hardcopy Filename = $directory/Z/Cp/Cp.avi
+  Save Hardcopy = Off
+  Looping = Loop
+  Looping Cycles = 1
+  Video Format = avi
+
+END
+
+> animate new =
+
+> animate new = KeyframeNo1
+
+ANIMATION:
+  Animation Bit Rate = 5152000
+  Animation Frame Rate = 24
+  Animation Quality = High
+  Animation Speed Factor = 2
+  Antialiasing = On
+  Drop Last MPEG Frame = Off
+  Hardcopy Tolerance = 0.0001
+  Intermediate File Format = jpg
+  Keep Intermediate Files = On
+  MPEG Height = 480
+  MPEG Scale = 100
+  MPEG Size = 1080p
+  MPEG Width = 640
+  Output Directory = $directory/Z/Cp
+  Output to User Directory = On
+  QAnim Override Symbol = On
+  QAnim Symbol Size = 1.0
+  QAnim Symbol Spacing = 0.6
+  QAnim Symbol Type = Ball
+  
+  Speed Adjustment Selection = Normal
+  Speed Scaling Method = Distribute Frames Smoothly
+  Timestep Interpolation Method = Timestep
+  Variable Bit Rate = On
+  White Background = On
+END
+
+
+KEYFRAME:KeyframeNo2
+  Number Of Frames = 148
+END
+
+> animate modify = KeyframeNo2
+
+> animate goto = 1
+
+KEYFRAME:KeyframeNo1
+  Number Of Frames = 148
+END
+
+> animate modify = KeyframeNo1
+
+> animate goto = 150
+
+
+PLANE:Plane1
+  Apply Instancing Transform = On
+  Apply Texture = Off
+  Blend Texture = On
+  Bound Radius = 0.5 [m]
+  Colour = 0.75, 0.75, 0.75
+  Colour Map = Rainbow 1.0 to minus 1.5
+  Colour Mode = Constant
+  Colour Scale = Linear
+  Colour Variable = Pressure
+  Colour Variable Boundary Values = Conservative
+  Culling Mode = No Culling
+  Direction 1 Bound = 1.0 [m]
+  Direction 1 Orientation = 0 [degree]
+  Direction 1 Points = 10
+  Direction 2 Bound = 1.0 [m]
+  Direction 2 Points = 10
+  Domain List = /DOMAIN GROUP:All Domains
+  Draw Faces = Off
+  Draw Lines = Off
+  Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+  Invert Plane Bound = Off
+  Lighting = On
+  Line Colour = 0, 0, 0
+  Line Colour Mode = Default
+  Line Width = 1
+  Max = 0.0 [Pa]
+  Min = 0.0 [Pa]
+  Normal = 1 , 0 , 0
+  Option = XY Plane
+  Plane Bound = None
+  Plane Type = Slice
+  Point = 0 [m], 0 [m], 0 [m]
+  Point 1 = 0 [m], 0 [m], 0 [m]
+  Point 2 = 1 [m], 0 [m], 0 [m]
+  Point 3 = 0 [m], 1 [m], 0 [m]
+  Range = Global
+  Render Edge Angle = 0 [degree]
+  Specular Lighting = On
+  Surface Drawing = Smooth Shading
+  Texture Angle = 0
+  Texture Direction = 0 , 1 , 0
+  Texture File =
+  Texture Material = Metal
+  Texture Position = 0 , 0
+  Texture Scale = 1
+  Texture Type = Predefined
+  Tile Texture = Off
+  Transform Texture = Off
+  Transparency = 0.0
+  X = 0.0 [m]
+  Y = 0.0 [m]
+  Z = 1.5 [m]
+  OBJECT VIEW TRANSFORM:
+    Apply Reflection = Off
+    Apply Rotation = Off
+    Apply Scale = Off
+    Apply Translation = Off
+    Principal Axis = Z
+    Reflection Plane Option = XY Plane
+    Rotation Angle = 0.0 [degree]
+    Rotation Axis From = 0 [m], 0 [m], 0 [m]
+    Rotation Axis To = 0 [m], 0 [m], 0 [m]
+    Rotation Axis Type = Principal Axis
+    Scale Vector = 1 , 1 , 1
+    Translation Vector = 0 [m], 0 [m], 0 [m]
+    X = 0.0 [m]
+    Y = 0.0 [m]
+    Z = 0.0 [m]
+  END
+END
+
+KEYFRAME:KeyframeNo2
+  Number Of Frames = 1
+END
+
+> animate modify = KeyframeNo2
+
+> animate goto = 1
+
+ANIMATION:ANIMATION
+  Animate Camera = On
+  Animation Hardcopy Filename = $directory/Z/Cp/Cp.avi
+  Save Hardcopy = On
+  Looping = Loop
+  Looping Cycles = 1
+  Video Format = avi
+
+END
+
+> animate play = forward
+
+
+> animate delete = KeyframeNo1
+
+> animate delete = KeyframeNo2
+
+
+###########################################################################################################################################################################
+
+
+# Velocity
+
+
+PLANE:Plane1
+  Apply Instancing Transform = On
+  Apply Texture = Off
+  Blend Texture = On
+  Bound Radius = 0.5 [m]
+  Colour = 0.75, 0.75, 0.75
+  Colour Map = Rainbow 2.5 to 0.0
+  Colour Mode = Constant
+  Colour Scale = Linear
+  Colour Variable = Pressure
+  Colour Variable Boundary Values = Conservative
+  Culling Mode = No Culling
+  Direction 1 Bound = 1.0 [m]
+  Direction 1 Orientation = 0 [degree]
+  Direction 1 Points = 10
+  Direction 2 Bound = 1.0 [m]
+  Direction 2 Points = 10
+  Domain List = /DOMAIN GROUP:All Domains
+  Draw Faces = Off
+  Draw Lines = Off
+  Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+  Invert Plane Bound = Off
+  Lighting = On
+  Line Colour = 0, 0, 0
+  Line Colour Mode = Default
+  Line Width = 1
+  Max = 0.0 [Pa]
+  Min = 0.0 [Pa]
+  Normal = 1 , 0 , 0
+  Option = XY Plane
+  Plane Bound = None
+  Plane Type = Slice
+  Point = 0 [m], 0 [m], 0 [m]
+  Point 1 = 0 [m], 0 [m], 0 [m]
+  Point 2 = 1 [m], 0 [m], 0 [m]
+  Point 3 = 0 [m], 1 [m], 0 [m]
+  Range = Global
+  Render Edge Angle = 0 [degree]
+  Specular Lighting = On
+  Surface Drawing = Smooth Shading
+  Texture Angle = 0
+  Texture Direction = 0 , 1 , 0
+  Texture File =
+  Texture Material = Metal
+  Texture Position = 0 , 0
+  Texture Scale = 1
+  Texture Type = Predefined
+  Tile Texture = Off
+  Transform Texture = Off
+  Transparency = 0.0
+  X = 0.0 [m]
+  Y = 0.0 [m]
+  Z = 0.0 [m]
+  OBJECT VIEW TRANSFORM:
+    Apply Reflection = Off
+    Apply Rotation = Off
+    Apply Scale = Off
+    Apply Translation = Off
+    Principal Axis = Z
+    Reflection Plane Option = XY Plane
+    Rotation Angle = 0.0 [degree]
+    Rotation Axis From = 0 [m], 0 [m], 0 [m]
+    Rotation Axis To = 0 [m], 0 [m], 0 [m]
+    Rotation Axis Type = Principal Axis
+    Scale Vector = 1 , 1 , 1
+    Translation Vector = 0 [m], 0 [m], 0 [m]
+    X = 0.0 [m]
+    Y = 0.0 [m]
+    Z = 0.0 [m]
+  END
+END
+
+
+CONTOUR:ContourPlane
+  Apply Instancing Transform = On
+  Clip Contour = Off
+  Colour Map = Rainbow 2.5 to 0.0
+  Colour Scale = Linear
+  Colour Variable = NormalisedVelocity
+  Colour Variable Boundary Values = Conservative
+  Constant Contour Colour = Off
+  Contour Range = User Specified
+  Culling Mode = No Culling
+  Domain List = /DOMAIN GROUP:All Domains
+  Draw Contours = On
+  Font = Sans Serif
+  Fringe Fill = On
+  Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+  Lighting = On
+  Line Colour = 0, 0, 0
+  Line Colour Mode = Default
+  Line Width = 1
+  Location List = /PLANE:Plane1
+  Max = 2.5
+  Min = 0
+  Number of Contours = 25
+  Show Numbers = Off
+  Specular Lighting = On
+  Surface Drawing = Smooth Shading
+  Text Colour = 0, 0, 0
+  Text Colour Mode = Default
+  Text Height = 0.024
+  Transparency = 0.0
+  Use Face Values = Off
+  Value List = 0,1
+  OBJECT VIEW TRANSFORM:
+    Apply Reflection = Off
+    Apply Rotation = Off
+    Apply Scale = Off
+    Apply Translation = Off
+  END
+END
+
+>show /CONTOUR:ContourPlane, view=/VIEW:View 1
+
+
+> update
+ANIMATION:ANIMATION
+  QAnim MPEG Filename = $directory/Z/Velocity/Velocity.avi
+  QAnim Save MPEG = Off
+  QAnim Looping = Bounce
+  QAnim Looping Cycles = -1
+  Video Format = avi
+
+END
+
+ANIMATION:ANIMATION
+  Animate Camera = On
+  Animation Hardcopy Filename = $directory/Z/Velocity/Velocity.avi
+  Save Hardcopy = Off
+  Looping = Loop
+  Looping Cycles = 1
+  Video Format = avi
+
+END
+
+ANIMATION:ANIMATION
+  Animate Camera = On
+  Animation Hardcopy Filename = $directory/Z/Velocity/Velocity.avi
+  Save Hardcopy = Off
+  Looping = Loop
+  Looping Cycles = 1
+  Video Format = avi
+
+END
+
+> animate new =
+
+> animate new = KeyframeNo1
+
+ANIMATION:
+  Animation Bit Rate = 5152000
+  Animation Frame Rate = 24
+  Animation Quality = High
+  Animation Speed Factor = 2
+  Antialiasing = On
+  Drop Last MPEG Frame = Off
+  Hardcopy Tolerance = 0.0001
+  Intermediate File Format = jpg
+  Keep Intermediate Files = On
+  MPEG Height = 480
+  MPEG Scale = 100
+  MPEG Size = 1080p
+  MPEG Width = 640
+  Output Directory = $directory/Z/Velocity
+  Output to User Directory = On
+  QAnim Override Symbol = On
+  QAnim Symbol Size = 1.0
+  QAnim Symbol Spacing = 0.6
+  QAnim Symbol Type = Ball
+  
+  Speed Adjustment Selection = Normal
+  Speed Scaling Method = Distribute Frames Smoothly
+  Timestep Interpolation Method = Timestep
+  Variable Bit Rate = On
+  White Background = On
+END
+
+
+
+KEYFRAME:KeyframeNo2
+  Number Of Frames = 148
+END
+
+> animate modify = KeyframeNo2
+
+> animate goto = 1
+
+KEYFRAME:KeyframeNo1
+  Number Of Frames = 148
+END
+
+> animate modify = KeyframeNo1
+
+> animate goto = 150
+
+
+PLANE:Plane1
+  Apply Instancing Transform = On
+  Apply Texture = Off
+  Blend Texture = On
+  Bound Radius = 0.5 [m]
+  Colour = 0.75, 0.75, 0.75
+  Colour Map = Rainbow 2.5 to 0.0
+  Colour Mode = Constant
+  Colour Scale = Linear
+  Colour Variable = Pressure
+  Colour Variable Boundary Values = Conservative
+  Culling Mode = No Culling
+  Direction 1 Bound = 1.0 [m]
+  Direction 1 Orientation = 0 [degree]
+  Direction 1 Points = 10
+  Direction 2 Bound = 1.0 [m]
+  Direction 2 Points = 10
+  Domain List = /DOMAIN GROUP:All Domains
+  Draw Faces = Off
+  Draw Lines = Off
+  Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+  Invert Plane Bound = Off
+  Lighting = On
+  Line Colour = 0, 0, 0
+  Line Colour Mode = Default
+  Line Width = 1
+  Max = 0.0 [Pa]
+  Min = 0.0 [Pa]
+  Normal = 1 , 0 , 0
+  Option = XY Plane
+  Plane Bound = None
+  Plane Type = Slice
+  Point = 0 [m], 0 [m], 0 [m]
+  Point 1 = 0 [m], 0 [m], 0 [m]
+  Point 2 = 1 [m], 0 [m], 0 [m]
+  Point 3 = 0 [m], 1 [m], 0 [m]
+  Range = Global
+  Render Edge Angle = 0 [degree]
+  Specular Lighting = On
+  Surface Drawing = Smooth Shading
+  Texture Angle = 0
+  Texture Direction = 0 , 1 , 0
+  Texture File =
+  Texture Material = Metal
+  Texture Position = 0 , 0
+  Texture Scale = 1
+  Texture Type = Predefined
+  Tile Texture = Off
+  Transform Texture = Off
+  Transparency = 0.0
+  X = 0.0 [m]
+  Y = 0.0 [m]
+  Z = 1.5 [m]
+  OBJECT VIEW TRANSFORM:
+    Apply Reflection = Off
+    Apply Rotation = Off
+    Apply Scale = Off
+    Apply Translation = Off
+    Principal Axis = Z
+    Reflection Plane Option = XY Plane
+    Rotation Angle = 0.0 [degree]
+    Rotation Axis From = 0 [m], 0 [m], 0 [m]
+    Rotation Axis To = 0 [m], 0 [m], 0 [m]
+    Rotation Axis Type = Principal Axis
+    Scale Vector = 1 , 1 , 1
+    Translation Vector = 0 [m], 0 [m], 0 [m]
+    X = 0.0 [m]
+    Y = 0.0 [m]
+    Z = 0.0 [m]
+  END
+END
+
+KEYFRAME:KeyframeNo2
+  Number Of Frames = 1
+END
+
+> animate modify = KeyframeNo2
+
+> animate goto = 1
+
+ANIMATION:ANIMATION
+  Animate Camera = On
+  Animation Hardcopy Filename = $directory/Z/Velocity/Velocity.avi
+  Save Hardcopy = On
+  Looping = Loop
+  Looping Cycles = 1
+  Video Format = avi
+
+END
+
+> animate play = forward
+
+
+> animate delete = KeyframeNo1
+
+> animate delete = KeyframeNo2
+
+
+###########################################################################################################################################################################
+
+
+# CpT
+
+PLANE:Plane1
+  Apply Instancing Transform = On
+  Apply Texture = Off
+  Blend Texture = On
+  Bound Radius = 0.5 [m]
+  Colour = 0.75, 0.75, 0.75
+  Colour Map = Rainbow 1.0 to minus 1.0
+  Colour Mode = Constant
+  Colour Scale = Linear
+  Colour Variable = Pressure
+  Colour Variable Boundary Values = Conservative
+  Culling Mode = No Culling
+  Direction 1 Bound = 1.0 [m]
+  Direction 1 Orientation = 0 [degree]
+  Direction 1 Points = 10
+  Direction 2 Bound = 1.0 [m]
+  Direction 2 Points = 10
+  Domain List = /DOMAIN GROUP:All Domains
+  Draw Faces = Off
+  Draw Lines = Off
+  Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+  Invert Plane Bound = Off
+  Lighting = On
+  Line Colour = 0, 0, 0
+  Line Colour Mode = Default
+  Line Width = 1
+  Max = 0.0 [Pa]
+  Min = 0.0 [Pa]
+  Normal = 1 , 0 , 0
+  Option = XY Plane
+  Plane Bound = None
+  Plane Type = Slice
+  Point = 0 [m], 0 [m], 0 [m]
+  Point 1 = 0 [m], 0 [m], 0 [m]
+  Point 2 = 1 [m], 0 [m], 0 [m]
+  Point 3 = 0 [m], 1 [m], 0 [m]
+  Range = Global
+  Render Edge Angle = 0 [degree]
+  Specular Lighting = On
+  Surface Drawing = Smooth Shading
+  Texture Angle = 0
+  Texture Direction = 0 , 1 , 0
+  Texture File =
+  Texture Material = Metal
+  Texture Position = 0 , 0
+  Texture Scale = 1
+  Texture Type = Predefined
+  Tile Texture = Off
+  Transform Texture = Off
+  Transparency = 0.0
+  X = 0.0 [m]
+  Y = 0.0 [m]
+  Z = 0.0 [m]
+  OBJECT VIEW TRANSFORM:
+    Apply Reflection = Off
+    Apply Rotation = Off
+    Apply Scale = Off
+    Apply Translation = Off
+    Principal Axis = Z
+    Reflection Plane Option = XY Plane
+    Rotation Angle = 0.0 [degree]
+    Rotation Axis From = 0 [m], 0 [m], 0 [m]
+    Rotation Axis To = 0 [m], 0 [m], 0 [m]
+    Rotation Axis Type = Principal Axis
+    Scale Vector = 1 , 1 , 1
+    Translation Vector = 0 [m], 0 [m], 0 [m]
+    X = 0.0 [m]
+    Y = 0.0 [m]
+    Z = 0.0 [m]
+  END
+END
+
+
+CONTOUR:ContourPlane
+  Apply Instancing Transform = On
+  Clip Contour = Off
+  Colour Map = Rainbow 1.0 to minus 1.0
+  Colour Scale = Linear
+  Colour Variable = CpT
+  Colour Variable Boundary Values = Conservative
+  Constant Contour Colour = Off
+  Contour Range = User Specified
+  Culling Mode = No Culling
+  Domain List = /DOMAIN GROUP:All Domains
+  Draw Contours = On
+  Font = Sans Serif
+  Fringe Fill = On
+  Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+  Lighting = On
+  Line Colour = 0, 0, 0
+  Line Colour Mode = Default
+  Line Width = 1
+  Location List = /PLANE:Plane1
+  Max = 1
+  Min = -1
+  Number of Contours = 25
+  Show Numbers = Off
+  Specular Lighting = On
+  Surface Drawing = Smooth Shading
+  Text Colour = 0, 0, 0
+  Text Colour Mode = Default
+  Text Height = 0.024
+  Transparency = 0.0
+  Use Face Values = Off
+  Value List = 0,1
+  OBJECT VIEW TRANSFORM:
+    Apply Reflection = Off
+    Apply Rotation = Off
+    Apply Scale = Off
+    Apply Translation = Off
+  END
+END
+
+>show /CONTOUR:ContourPlane, view=/VIEW:View 1
+
+
+
+
+> update
+ANIMATION:ANIMATION
+  QAnim MPEG Filename = $directory/Z/CpT/CpT.avi
+  QAnim Save MPEG = Off
+  QAnim Looping = Bounce
+  QAnim Looping Cycles = -1
+  Video Format = avi
+
+END
+
+ANIMATION:ANIMATION
+  Animate Camera = On
+  Animation Hardcopy Filename = $directory/Z/CpT/CpT.avi
+  Save Hardcopy = Off
+  Looping = Loop
+  Looping Cycles = 1
+  Video Format = avi
+
+END
+
+ANIMATION:ANIMATION
+  Animate Camera = On
+  Animation Hardcopy Filename = $directory/Z/CpT/CpT.avi
+  Save Hardcopy = Off
+  Looping = Loop
+  Looping Cycles = 1
+  Video Format = avi
+
+END
+
+> animate new =
+
+> animate new = KeyframeNo1
+
+ANIMATION:
+  Animation Bit Rate = 5152000
+  Animation Frame Rate = 24
+  Animation Quality = High
+  Animation Speed Factor = 2
+  Antialiasing = On
+  Drop Last MPEG Frame = Off
+  Hardcopy Tolerance = 0.0001
+  Intermediate File Format = jpg
+  Keep Intermediate Files = On
+  MPEG Height = 480
+  MPEG Scale = 100
+  MPEG Size = 1080p
+  MPEG Width = 640
+  Output Directory = $directory/Z/CpT
+  Output to User Directory = On
+  QAnim Override Symbol = On
+  QAnim Symbol Size = 1.0
+  QAnim Symbol Spacing = 0.6
+  QAnim Symbol Type = Ball
+  
+  Speed Adjustment Selection = Normal
+  Speed Scaling Method = Distribute Frames Smoothly
+  Timestep Interpolation Method = Timestep
+  Variable Bit Rate = On
+  White Background = On
+END
+
+
+KEYFRAME:KeyframeNo2
+  Number Of Frames = 148
+END
+
+> animate modify = KeyframeNo2
+
+> animate goto = 1
+
+KEYFRAME:KeyframeNo1
+  Number Of Frames = 148
+END
+
+> animate modify = KeyframeNo1
+
+> animate goto = 150
+
+
+PLANE:Plane1
+  Apply Instancing Transform = On
+  Apply Texture = Off
+  Blend Texture = On
+  Bound Radius = 0.5 [m]
+  Colour = 0.75, 0.75, 0.75
+  Colour Map = Rainbow 1.0 to minus 1.0
+  Colour Mode = Constant
+  Colour Scale = Linear
+  Colour Variable = Pressure
+  Colour Variable Boundary Values = Conservative
+  Culling Mode = No Culling
+  Direction 1 Bound = 1.0 [m]
+  Direction 1 Orientation = 0 [degree]
+  Direction 1 Points = 10
+  Direction 2 Bound = 1.0 [m]
+  Direction 2 Points = 10
+  Domain List = /DOMAIN GROUP:All Domains
+  Draw Faces = Off
+  Draw Lines = Off
+  Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+  Invert Plane Bound = Off
+  Lighting = On
+  Line Colour = 0, 0, 0
+  Line Colour Mode = Default
+  Line Width = 1
+  Max = 0.0 [Pa]
+  Min = 0.0 [Pa]
+  Normal = 1 , 0 , 0
+  Option = XY Plane
+  Plane Bound = None
+  Plane Type = Slice
+  Point = 0 [m], 0 [m], 0 [m]
+  Point 1 = 0 [m], 0 [m], 0 [m]
+  Point 2 = 1 [m], 0 [m], 0 [m]
+  Point 3 = 0 [m], 1 [m], 0 [m]
+  Range = Global
+  Render Edge Angle = 0 [degree]
+  Specular Lighting = On
+  Surface Drawing = Smooth Shading
+  Texture Angle = 0
+  Texture Direction = 0 , 1 , 0
+  Texture File =
+  Texture Material = Metal
+  Texture Position = 0 , 0
+  Texture Scale = 1
+  Texture Type = Predefined
+  Tile Texture = Off
+  Transform Texture = Off
+  Transparency = 0.0
+  X = 0.0 [m]
+  Y = 0.0 [m]
+  Z = 1.5 [m]
+  OBJECT VIEW TRANSFORM:
+    Apply Reflection = Off
+    Apply Rotation = Off
+    Apply Scale = Off
+    Apply Translation = Off
+    Principal Axis = Z
+    Reflection Plane Option = XY Plane
+    Rotation Angle = 0.0 [degree]
+    Rotation Axis From = 0 [m], 0 [m], 0 [m]
+    Rotation Axis To = 0 [m], 0 [m], 0 [m]
+    Rotation Axis Type = Principal Axis
+    Scale Vector = 1 , 1 , 1
+    Translation Vector = 0 [m], 0 [m], 0 [m]
+    X = 0.0 [m]
+    Y = 0.0 [m]
+    Z = 0.0 [m]
+  END
+END
+
+KEYFRAME:KeyframeNo2
+  Number Of Frames = 1
+END
+
+> animate modify = KeyframeNo2
+
+> animate goto = 1
+
+ANIMATION:ANIMATION
+  Animate Camera = On
+  Animation Hardcopy Filename = $directory/Z/CpT/CpT.avi
+  Save Hardcopy = On
+  Looping = Loop
+  Looping Cycles = 1
+  Video Format = avi
+
+END
+
+> animate play = forward
+
+
+> animate delete = KeyframeNo1
+
+> animate delete = KeyframeNo2
+
+
+
+###########################################################################################################################################################################
+
+
+
+# CpT_siatka
+
+PLANE:Plane1
+  Apply Instancing Transform = On
+  Apply Texture = Off
+  Blend Texture = On
+  Bound Radius = 0.5 [m]
+  Colour = 0.75, 0.75, 0.75
+  Colour Map = Rainbow 1.0 to minus 1.0
+  Colour Mode = Constant
+  Colour Scale = Linear
+  Colour Variable = Pressure
+  Colour Variable Boundary Values = Conservative
+  Culling Mode = No Culling
+  Direction 1 Bound = 1.0 [m]
+  Direction 1 Orientation = 0 [degree]
+  Direction 1 Points = 10
+  Direction 2 Bound = 1.0 [m]
+  Direction 2 Points = 10
+  Domain List = /DOMAIN GROUP:All Domains
+  Draw Faces = Off
+  Draw Lines = On
+  Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+  Invert Plane Bound = Off
+  Lighting = On
+  Line Colour = 0, 0, 0
+  Line Colour Mode = Default
+  Line Width = 1
+  Max = 0.0 [Pa]
+  Min = 0.0 [Pa]
+  Normal = 1 , 0 , 0
+  Option = XY Plane
+  Plane Bound = None
+  Plane Type = Slice
+  Point = 0 [m], 0 [m], 0 [m]
+  Point 1 = 0 [m], 0 [m], 0 [m]
+  Point 2 = 1 [m], 0 [m], 0 [m]
+  Point 3 = 0 [m], 1 [m], 0 [m]
+  Range = Global
+  Render Edge Angle = 0 [degree]
+  Specular Lighting = On
+  Surface Drawing = Smooth Shading
+  Texture Angle = 0
+  Texture Direction = 0 , 1 , 0
+  Texture File =
+  Texture Material = Metal
+  Texture Position = 0 , 0
+  Texture Scale = 1
+  Texture Type = Predefined
+  Tile Texture = Off
+  Transform Texture = Off
+  Transparency = 0.0
+  X = 0.0 [m]
+  Y = 0.0 [m]
+  Z = 0.0 [m]
+  OBJECT VIEW TRANSFORM:
+    Apply Reflection = Off
+    Apply Rotation = Off
+    Apply Scale = Off
+    Apply Translation = Off
+    Principal Axis = Z
+    Reflection Plane Option = XY Plane
+    Rotation Angle = 0.0 [degree]
+    Rotation Axis From = 0 [m], 0 [m], 0 [m]
+    Rotation Axis To = 0 [m], 0 [m], 0 [m]
+    Rotation Axis Type = Principal Axis
+    Scale Vector = 1 , 1 , 1
+    Translation Vector = 0 [m], 0 [m], 0 [m]
+    X = 0.0 [m]
+    Y = 0.0 [m]
+    Z = 0.0 [m]
+  END
+END
+
+>show /PLANE:Plane1, view=/VIEW:View 1
+
+
+
+CONTOUR:ContourPlane
+  Apply Instancing Transform = On
+  Clip Contour = Off
+  Colour Map = Rainbow 1.0 to minus 1.0
+  Colour Scale = Linear
+  Colour Variable = CpT
+  Colour Variable Boundary Values = Conservative
+  Constant Contour Colour = Off
+  Contour Range = User Specified
+  Culling Mode = No Culling
+  Domain List = /DOMAIN GROUP:All Domains
+  Draw Contours = On
+  Font = Sans Serif
+  Fringe Fill = On
+  Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+  Lighting = On
+  Line Colour = 0, 0, 0
+  Line Colour Mode = Default
+  Line Width = 1
+  Location List = /PLANE:Plane1
+  Max = 1
+  Min = -1
+  Number of Contours = 25
+  Show Numbers = Off
+  Specular Lighting = On
+  Surface Drawing = Smooth Shading
+  Text Colour = 0, 0, 0
+  Text Colour Mode = Default
+  Text Height = 0.024
+  Transparency = 0.0
+  Use Face Values = Off
+  Value List = 0,1
+  OBJECT VIEW TRANSFORM:
+    Apply Reflection = Off
+    Apply Rotation = Off
+    Apply Scale = Off
+    Apply Translation = Off
+  END
+END
+
+>show /CONTOUR:ContourPlane, view=/VIEW:View 1
+
+
+> update
+ANIMATION:ANIMATION
+  QAnim MPEG Filename = $directory/Z/CpT_siatka/CpT_siatka.avi
+  QAnim Save MPEG = Off
+  QAnim Looping = Bounce
+  QAnim Looping Cycles = -1
+  Video Format = avi
+
+END
+
+ANIMATION:ANIMATION
+  Animate Camera = On
+  Animation Hardcopy Filename = $directory/Z/CpT_siatka/CpT_siatka.avi
+  Save Hardcopy = Off
+  Looping = Loop
+  Looping Cycles = 1
+  Video Format = avi
+
+END
+
+ANIMATION:ANIMATION
+  Animate Camera = On
+  Animation Hardcopy Filename = $directory/Z/CpT_siatka/CpT_siatka.avi
+  Save Hardcopy = Off
+  Looping = Loop
+  Looping Cycles = 1
+  Video Format = avi
+
+END
+
+> animate new =
+
+> animate new = KeyframeNo1
+
+ANIMATION:
+  Animation Bit Rate = 5152000
+  Animation Frame Rate = 24
+  Animation Quality = High
+  Animation Speed Factor = 2
+  Antialiasing = On
+  Drop Last MPEG Frame = Off
+  Hardcopy Tolerance = 0.0001
+  Intermediate File Format = jpg
+  Keep Intermediate Files = On
+  MPEG Height = 480
+  MPEG Scale = 100
+  MPEG Size = 1080p
+  MPEG Width = 640
+  Output Directory = $directory/Z/CpT_siatka
+  Output to User Directory = On
+  QAnim Override Symbol = On
+  QAnim Symbol Size = 1.0
+  QAnim Symbol Spacing = 0.6
+  QAnim Symbol Type = Ball
+  
+  Speed Adjustment Selection = Normal
+  Speed Scaling Method = Distribute Frames Smoothly
+  Timestep Interpolation Method = Timestep
+  Variable Bit Rate = On
+  White Background = On
+END
+
+
+
+KEYFRAME:KeyframeNo2
+  Number Of Frames = 148
+END
+
+> animate modify = KeyframeNo2
+
+> animate goto = 1
+
+KEYFRAME:KeyframeNo1
+  Number Of Frames = 148
+END
+
+> animate modify = KeyframeNo1
+
+> animate goto = 150
+
+
+PLANE:Plane1
+  Apply Instancing Transform = On
+  Apply Texture = Off
+  Blend Texture = On
+  Bound Radius = 0.5 [m]
+  Colour = 0.75, 0.75, 0.75
+  Colour Map = Rainbow 1.0 to minus 1.0
+  Colour Mode = Constant
+  Colour Scale = Linear
+  Colour Variable = Pressure
+  Colour Variable Boundary Values = Conservative
+  Culling Mode = No Culling
+  Direction 1 Bound = 1.0 [m]
+  Direction 1 Orientation = 0 [degree]
+  Direction 1 Points = 10
+  Direction 2 Bound = 1.0 [m]
+  Direction 2 Points = 10
+  Domain List = /DOMAIN GROUP:All Domains
+  Draw Faces = Off
+  Draw Lines = On
+  Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+  Invert Plane Bound = Off
+  Lighting = On
+  Line Colour = 0, 0, 0
+  Line Colour Mode = Default
+  Line Width = 1
+  Max = 0.0 [Pa]
+  Min = 0.0 [Pa]
+  Normal = 1 , 0 , 0
+  Option = XY Plane
+  Plane Bound = None
+  Plane Type = Slice
+  Point = 0 [m], 0 [m], 0 [m]
+  Point 1 = 0 [m], 0 [m], 0 [m]
+  Point 2 = 1 [m], 0 [m], 0 [m]
+  Point 3 = 0 [m], 1 [m], 0 [m]
+  Range = Global
+  Render Edge Angle = 0 [degree]
+  Specular Lighting = On
+  Surface Drawing = Smooth Shading
+  Texture Angle = 0
+  Texture Direction = 0 , 1 , 0
+  Texture File =
+  Texture Material = Metal
+  Texture Position = 0 , 0
+  Texture Scale = 1
+  Texture Type = Predefined
+  Tile Texture = Off
+  Transform Texture = Off
+  Transparency = 0.0
+  X = 0.0 [m]
+  Y = 0.0 [m]
+  Z = 1.5 [m]
+  OBJECT VIEW TRANSFORM:
+    Apply Reflection = Off
+    Apply Rotation = Off
+    Apply Scale = Off
+    Apply Translation = Off
+    Principal Axis = Z
+    Reflection Plane Option = XY Plane
+    Rotation Angle = 0.0 [degree]
+    Rotation Axis From = 0 [m], 0 [m], 0 [m]
+    Rotation Axis To = 0 [m], 0 [m], 0 [m]
+    Rotation Axis Type = Principal Axis
+    Scale Vector = 1 , 1 , 1
+    Translation Vector = 0 [m], 0 [m], 0 [m]
+    X = 0.0 [m]
+    Y = 0.0 [m]
+    Z = 0.0 [m]
+  END
+END
+
+KEYFRAME:KeyframeNo2
+  Number Of Frames = 1
+END
+
+> animate modify = KeyframeNo2
+
+> animate goto = 1
+
+ANIMATION:ANIMATION
+  Animate Camera = On
+  Animation Hardcopy Filename = $directory/T/CpT_siatka/CpT_siatka.avi
+  Save Hardcopy = On
+  Looping = Loop
+  Looping Cycles = 1
+  Video Format = avi
+
+END
+
+> animate play = forward
+
+
+> animate delete = KeyframeNo1
+
+> animate delete = KeyframeNo2
+
+>hide /PLANE:Plane1, view=/VIEW:View 1
+
+

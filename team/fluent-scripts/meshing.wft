@@ -1,0 +1,1019 @@
+{
+    "workflow": {
+        "version": "23.1",
+        "ROOT": {
+            "TaskObject:TaskObject1": {
+                "Arguments": {
+                    "FileName": "C:\/Users\/mwojn\/Desktop\/Baseline\/iter001\/1. Spaceclaim\/Baseline001.scdoc",
+                    "ImportCadPreferences": {
+                        "CITolerence": "0.01",
+                        "ShowImportCadPreferences": "true"
+                    },
+                    "LengthUnit": "m",
+                    "NumParts": "67"
+                },
+                "CommandName": "ImportGeometry",
+                "Errors": "__________None",
+                "InactiveTaskList": "__________None",
+                "ObjectPath": "__________None",
+                "State": "Out-of-date",
+                "TaskList": "__________None",
+                "TaskType": "Simple",
+                "Warnings": "__________None",
+                "_name_": "Import Geometry"
+            },
+            "TaskObject:TaskObject2": {
+                "Arguments": {
+                    "AddChild": "yes",
+                    "BOIExecution": "Body Of Influence"
+                },
+                "CommandName": "AddLocalSizingWTM",
+                "Errors": "__________None",
+                "InactiveTaskList": "__________None",
+                "ObjectPath": "__________None",
+                "State": "Out-of-date",
+                "TaskList": [
+                    "TaskObject12",
+                    "TaskObject13",
+                    "TaskObject14",
+                    "TaskObject15",
+                    "TaskObject16",
+                    "TaskObject17",
+                    "TaskObject19",
+                    "TaskObject20",
+                    "TaskObject23",
+                    "TaskObject26",
+                    "TaskObject27"
+                ],
+                "TaskType": "Compound",
+                "Warnings": "__________None",
+                "_name_": "Add Local Sizing"
+            },
+            "TaskObject:TaskObject3": {
+                "Arguments": {
+                    "CFDSurfaceMeshControls": {
+                        "CellsPerGap": "3",
+                        "MaxSize": "0.51200000000000001",
+                        "MinSize": "0.01",
+                        "ScopeProximityTo": "faces-and-edges"
+                    },
+                    "ExecuteShareTopology": "No",
+                    "OriginalZones": [
+                        "radiator_core-body",
+                        "mrf_fan-body",
+                        "domain_inlet",
+                        "domain_sky",
+                        "domain_ground",
+                        "domain_symmetry",
+                        "domain_outlet",
+                        "surface_fw",
+                        "surface_front_wheel-rotary",
+                        "surface_front_wheel-steady",
+                        "surface_rear_wheel-rotary",
+                        "surface_rear_wheel-steady",
+                        "surface_ut",
+                        "surface_fan",
+                        "surface_rd",
+                        "surface_rd.1",
+                        "surface_rd.2",
+                        "surface_rw",
+                        "surface_mono"
+                    ],
+                    "SurfaceMeshPreferences": {
+                        "ShowSurfaceMeshPreferences": "false"
+                    }
+                },
+                "CommandName": "GenerateTheSurfaceMeshWTM",
+                "Errors": "__________None",
+                "InactiveTaskList": "__________None",
+                "ObjectPath": "__________None",
+                "State": "Out-of-date",
+                "TaskList": "__________None",
+                "TaskType": "Simple",
+                "Warnings": "__________None",
+                "_name_": "Generate the Surface Mesh"
+            },
+            "TaskObject:TaskObject4": {
+                "Arguments": {
+                    "CappingRequired": "No",
+                    "InvokeShareTopology": "No",
+                    "OldZoneList": [
+                        "domain_inlet",
+                        "domain_symmetry",
+                        "domain_outlet"
+                    ],
+                    "SetupType": "The geometry consists of both fluid and solid regions and\/or voids",
+                    "WallToInternal": "Yes"
+                },
+                "CommandName": "GeometrySetup",
+                "Errors": "__________None",
+                "InactiveTaskList": [
+                    "TaskObject5",
+                    "TaskObject6"
+                ],
+                "ObjectPath": "__________None",
+                "State": "Out-of-date",
+                "TaskList": [
+                    "TaskObject7",
+                    "TaskObject8"
+                ],
+                "TaskType": "Conditional",
+                "Warnings": "__________None",
+                "_name_": "Describe Geometry"
+            },
+            "TaskObject:TaskObject5": {
+                "Arguments": {
+                    "GapDistance": "0.00050000000000000001",
+                    "ShareTopologyPreferences": {
+                        "STToleranceIncrement": "0.0050000000000000001",
+                        "ShowShareTopologyPreferences": "true"
+                    }
+                },
+                "CommandName": "ShareTopology",
+                "Errors": "__________None",
+                "InactiveTaskList": "__________None",
+                "ObjectPath": "__________None",
+                "State": "Out-of-date",
+                "TaskList": "__________None",
+                "TaskType": "Simple",
+                "Warnings": "__________None",
+                "_name_": "Apply Share Topology"
+            },
+            "TaskObject:TaskObject6": {
+                "Arguments": "",
+                "CommandName": "Capping",
+                "Errors": "__________None",
+                "InactiveTaskList": "__________None",
+                "ObjectPath": "__________None",
+                "State": "Out-of-date",
+                "TaskList": "__________None",
+                "TaskType": "Compound",
+                "Warnings": "__________None",
+                "_name_": "Enclose Fluid Regions (Capping)"
+            },
+            "TaskObject:TaskObject7": {
+                "Arguments": {
+                    "ListAllBoundariesToggle": "true",
+                    "SelectionType": "label"
+                },
+                "CommandName": "UpdateBoundaries",
+                "Errors": "__________None",
+                "InactiveTaskList": "__________None",
+                "ObjectPath": "__________None",
+                "State": "Out-of-date",
+                "TaskList": "__________None",
+                "TaskType": "Simple",
+                "Warnings": "__________None",
+                "_name_": "Update Boundaries"
+            },
+            "TaskObject:TaskObject8": {
+                "Arguments": {
+                    "NumberOfFlowVolumes": "5"
+                },
+                "CommandName": "CreateRegions",
+                "Errors": "__________None",
+                "InactiveTaskList": "__________None",
+                "ObjectPath": "__________None",
+                "State": "Out-of-date",
+                "TaskList": "__________None",
+                "TaskType": "Simple",
+                "Warnings": "__________None",
+                "_name_": "Create Regions"
+            },
+            "TaskObject:TaskObject9": {
+                "Arguments": {
+                    "OldRegionNameList": [
+                        "fluid:5",
+                        "mrf_fan-body",
+                        "fluid:0",
+                        "radiator_core-body",
+                        "obudowa"
+                    ],
+                    "OldRegionTypeList": [
+                        "fluid",
+                        "solid",
+                        "fluid",
+                        "solid",
+                        "solid"
+                    ],
+                    "RegionInternalTypes": [
+                        "wall",
+                        "wall",
+                        "wall",
+                        "wall"
+                    ],
+                    "RegionInternals": [
+                        "mrf_fan-body:530",
+                        "radiator_core-body:529",
+                        "mrf_fan-body",
+                        "radiator_core-body"
+                    ],
+                    "RegionNameList": [
+                        "surface_fan",
+                        "mrf_fan-body",
+                        "obudowa:outer",
+                        "radiator_core-body",
+                        "obudowa:inner"
+                    ],
+                    "RegionTypeList": [
+                        "dead",
+                        "fluid",
+                        "fluid",
+                        "fluid",
+                        "fluid"
+                    ]
+                },
+                "CommandName": "UpdateRegions",
+                "Errors": "__________None",
+                "InactiveTaskList": "__________None",
+                "ObjectPath": "__________None",
+                "State": "Out-of-date",
+                "TaskList": "__________None",
+                "TaskType": "Simple",
+                "Warnings": "__________None",
+                "_name_": "Update Regions"
+            },
+            "TaskObject:TaskObject10": {
+                "Arguments": {
+                    "FaceScope": {
+                        "GrowOn": "selected-labels",
+                        "RegionsType": "named-regions"
+                    }
+                },
+                "CommandName": "AddBoundaryLayers",
+                "Errors": "__________None",
+                "InactiveTaskList": "__________None",
+                "ObjectPath": "__________None",
+                "State": "Out-of-date",
+                "TaskList": [
+                    "TaskObject22"
+                ],
+                "TaskType": "Compound",
+                "Warnings": "__________None",
+                "_name_": "Add Boundary Layers"
+            },
+            "TaskObject:TaskObject11": {
+                "Arguments": {
+                    "PrismPreferences": {
+                        "ShowPrismPreferences": "true"
+                    },
+                    "VolumeFill": "poly-hexcore",
+                    "VolumeFillControls": {
+                        "HexMaxCellLength": "0.51200000000000001",
+                        "HexMinCellLength": "0.001"
+                    },
+                    "VolumeMeshPreferences": {
+                        "Avoid1_8Transition": "yes",
+                        "ShowVolumeMeshPreferences": "false"
+                    }
+                },
+                "CommandName": "GenerateTheVolumeMeshWTM",
+                "Errors": "__________None",
+                "InactiveTaskList": "__________None",
+                "ObjectPath": "__________None",
+                "State": "Out-of-date",
+                "TaskList": "__________None",
+                "TaskType": "Simple",
+                "Warnings": "__________None",
+                "_name_": "Generate the Volume Mesh"
+            },
+            "TaskObject:TaskObject12": {
+                "Arguments": {
+                    "AddChild": "yes",
+                    "BOIControlName": "boi_lvl-1",
+                    "BOIExecution": "Body Of Influence",
+                    "BOIFaceLabelList": [
+                        "ref:ref-box-1st"
+                    ],
+                    "BOISize": "0.25600000000000001",
+                    "CompleteFaceLabelList": [
+                        "ref:ref-box-1st"
+                    ]
+                },
+                "CommandName": "AddLocalSizingWTM",
+                "Errors": "__________None",
+                "InactiveTaskList": "__________None",
+                "ObjectPath": "__________None",
+                "State": "Out-of-date",
+                "TaskList": "__________None",
+                "TaskType": "Compound Child",
+                "Warnings": "__________None",
+                "_name_": "boi_lvl-1"
+            },
+            "TaskObject:TaskObject13": {
+                "Arguments": {
+                    "AddChild": "yes",
+                    "BOIControlName": "boi_lvl-2",
+                    "BOIExecution": "Body Of Influence",
+                    "BOIFaceLabelList": [
+                        "ref:ref-box-2nd"
+                    ],
+                    "BOISize": "0.128",
+                    "CompleteFaceLabelList": [
+                        "ref:ref-box-2nd"
+                    ]
+                },
+                "CommandName": "AddLocalSizingWTM",
+                "Errors": "__________None",
+                "InactiveTaskList": "__________None",
+                "ObjectPath": "__________None",
+                "State": "Out-of-date",
+                "TaskList": "__________None",
+                "TaskType": "Compound Child",
+                "Warnings": "__________None",
+                "_name_": "boi_lvl-2"
+            },
+            "TaskObject:TaskObject14": {
+                "Arguments": {
+                    "AddChild": "yes",
+                    "BOIControlName": "boi_lvl-3",
+                    "BOIExecution": "Body Of Influence",
+                    "BOIFaceLabelList": [
+                        "ref:ref-box-3rd"
+                    ],
+                    "BOISize": "0.064000000000000001",
+                    "CompleteFaceLabelList": [
+                        "ref:ref-box-3rd"
+                    ]
+                },
+                "CommandName": "AddLocalSizingWTM",
+                "Errors": "__________None",
+                "InactiveTaskList": "__________None",
+                "ObjectPath": "__________None",
+                "State": "Out-of-date",
+                "TaskList": "__________None",
+                "TaskType": "Compound Child",
+                "Warnings": "__________None",
+                "_name_": "boi_lvl-3"
+            },
+            "TaskObject:TaskObject15": {
+                "Arguments": {
+                    "AddChild": "yes",
+                    "BOIControlName": "boi_lvl-4",
+                    "BOIExecution": "Body Of Influence",
+                    "BOIFaceLabelList": [
+                        "ref:ref-box-helmet",
+                        "ref:ref-box-monocoque"
+                    ],
+                    "BOISize": "0.032000000000000001",
+                    "CompleteFaceLabelList": [
+                        "ref:ref-box-helmet",
+                        "ref:ref-box-monocoque"
+                    ]
+                },
+                "CommandName": "AddLocalSizingWTM",
+                "Errors": "__________None",
+                "InactiveTaskList": "__________None",
+                "ObjectPath": "__________None",
+                "State": "Out-of-date",
+                "TaskList": "__________None",
+                "TaskType": "Compound Child",
+                "Warnings": "__________None",
+                "_name_": "boi_lvl-4"
+            },
+            "TaskObject:TaskObject16": {
+                "Arguments": {
+                    "AddChild": "yes",
+                    "BOIControlName": "boi_lvl-5",
+                    "BOIExecution": "Body Of Influence",
+                    "BOIFaceLabelList": [
+                        "ref:ref-box-front_suspension",
+                        "ref:ref-box-main_hoop",
+                        "ref:ref-box-rear-suspension",
+                        "ref:ref-box-rear_wheel",
+                        "ref:ref-box-rear_wing"
+                    ],
+                    "BOISize": "0.016",
+                    "CompleteFaceLabelList": [
+                        "ref:ref-box-front_suspension",
+                        "ref:ref-box-main_hoop",
+                        "ref:ref-box-rear-suspension",
+                        "ref:ref-box-rear_wheel",
+                        "ref:ref-box-rear_wing"
+                    ]
+                },
+                "CommandName": "AddLocalSizingWTM",
+                "Errors": "__________None",
+                "InactiveTaskList": "__________None",
+                "ObjectPath": "__________None",
+                "State": "Out-of-date",
+                "TaskList": "__________None",
+                "TaskType": "Compound Child",
+                "Warnings": "__________None",
+                "_name_": "boi_lvl-5"
+            },
+            "TaskObject:TaskObject17": {
+                "Arguments": {
+                    "AddChild": "yes",
+                    "BOIControlName": "boi_lvl-6",
+                    "BOIExecution": "Body Of Influence",
+                    "BOIFaceLabelList": [
+                        "ref:ref-box-front_wheel",
+                        "ref:ref-box-front_wing",
+                        "ref:ref-box-undertray"
+                    ],
+                    "BOISize": "0.0080000000000000002",
+                    "CompleteFaceLabelList": [
+                        "ref:ref-box-front_wheel",
+                        "ref:ref-box-front_wing",
+                        "ref:ref-box-undertray"
+                    ]
+                },
+                "CommandName": "AddLocalSizingWTM",
+                "Errors": "__________None",
+                "InactiveTaskList": "__________None",
+                "ObjectPath": "__________None",
+                "State": "Out-of-date",
+                "TaskList": "__________None",
+                "TaskType": "Compound Child",
+                "Warnings": "__________None",
+                "_name_": "boi_lvl-6"
+            },
+            "TaskObject:TaskObject19": {
+                "Arguments": {
+                    "AddChild": "yes",
+                    "BOIControlName": "curvature_lvl-7",
+                    "BOIExecution": "Curvature",
+                    "BOIFaceLabelList": [
+                        "surface_front_wheel-rotary",
+                        "surface_front_wheel-steady",
+                        "surface_fw",
+                        "surface_mono",
+                        "surface_rear_wheel-rotary",
+                        "surface_rear_wheel-steady",
+                        "surface_rw",
+                        "surface_ut"
+                    ],
+                    "BOIMaxSize": "0.0040000000000000001",
+                    "BOIMinSize": "0.002",
+                    "CompleteFaceLabelList": [
+                        "surface_front_wheel-rotary",
+                        "surface_front_wheel-steady",
+                        "surface_fw",
+                        "surface_mono",
+                        "surface_rear_wheel-rotary",
+                        "surface_rear_wheel-steady",
+                        "surface_rw",
+                        "surface_ut"
+                    ]
+                },
+                "CommandName": "AddLocalSizingWTM",
+                "Errors": "__________None",
+                "InactiveTaskList": "__________None",
+                "ObjectPath": "__________None",
+                "State": "Out-of-date",
+                "TaskList": "__________None",
+                "TaskType": "Compound Child",
+                "Warnings": "__________None",
+                "_name_": "curvature_lvl-7"
+            },
+            "TaskObject:TaskObject20": {
+                "Arguments": {
+                    "AddChild": "yes",
+                    "BOIControlName": "boi_lvl-7",
+                    "BOIExecution": "Body Of Influence",
+                    "BOIFaceLabelList": [
+                        "ref:ref-box-front_wheel_interior",
+                        "ref:ref-box-radiator_ducts",
+                        "ref:ref-box-rear_wheel_interior",
+                        "ref:ref-edge-fw-1",
+                        "ref:ref-edge-fw-10",
+                        "ref:ref-edge-fw-11",
+                        "ref:ref-edge-fw-12",
+                        "ref:ref-edge-fw-13",
+                        "ref:ref-edge-fw-14",
+                        "ref:ref-edge-fw-15",
+                        "ref:ref-edge-fw-16",
+                        "ref:ref-edge-fw-17",
+                        "ref:ref-edge-fw-18",
+                        "ref:ref-edge-fw-2",
+                        "ref:ref-edge-fw-3",
+                        "ref:ref-edge-fw-4",
+                        "ref:ref-edge-fw-5",
+                        "ref:ref-edge-fw-6",
+                        "ref:ref-edge-fw-7",
+                        "ref:ref-edge-fw-8",
+                        "ref:ref-edge-fw-9",
+                        "ref:ref-edge-rw-1",
+                        "ref:ref-edge-rw-10",
+                        "ref:ref-edge-rw-2",
+                        "ref:ref-edge-rw-3",
+                        "ref:ref-edge-rw-4",
+                        "ref:ref-edge-rw-5",
+                        "ref:ref-edge-rw-6",
+                        "ref:ref-edge-rw-7",
+                        "ref:ref-edge-rw-8",
+                        "ref:ref-edge-rw-9",
+                        "ref:ref-edge-ut-1",
+                        "ref:ref-edge-ut-10",
+                        "ref:ref-edge-ut-11",
+                        "ref:ref-edge-ut-12",
+                        "ref:ref-edge-ut-13",
+                        "ref:ref-edge-ut-14",
+                        "ref:ref-edge-ut-2",
+                        "ref:ref-edge-ut-3",
+                        "ref:ref-edge-ut-4",
+                        "ref:ref-edge-ut-5",
+                        "ref:ref-edge-ut-6",
+                        "ref:ref-edge-ut-7",
+                        "ref:ref-edge-ut-8",
+                        "ref:ref-edge-ut-9"
+                    ],
+                    "BOISize": "0.0040000000000000001",
+                    "CompleteFaceLabelList": [
+                        "ref:ref-box-front_wheel_interior",
+                        "ref:ref-box-radiator_ducts",
+                        "ref:ref-box-rear_wheel_interior",
+                        "ref:ref-edge-fw-1",
+                        "ref:ref-edge-fw-10",
+                        "ref:ref-edge-fw-11",
+                        "ref:ref-edge-fw-12",
+                        "ref:ref-edge-fw-13",
+                        "ref:ref-edge-fw-14",
+                        "ref:ref-edge-fw-15",
+                        "ref:ref-edge-fw-16",
+                        "ref:ref-edge-fw-17",
+                        "ref:ref-edge-fw-18",
+                        "ref:ref-edge-fw-2",
+                        "ref:ref-edge-fw-3",
+                        "ref:ref-edge-fw-4",
+                        "ref:ref-edge-fw-5",
+                        "ref:ref-edge-fw-6",
+                        "ref:ref-edge-fw-7",
+                        "ref:ref-edge-fw-8",
+                        "ref:ref-edge-fw-9",
+                        "ref:ref-edge-rw-1",
+                        "ref:ref-edge-rw-10",
+                        "ref:ref-edge-rw-2",
+                        "ref:ref-edge-rw-3",
+                        "ref:ref-edge-rw-4",
+                        "ref:ref-edge-rw-5",
+                        "ref:ref-edge-rw-6",
+                        "ref:ref-edge-rw-7",
+                        "ref:ref-edge-rw-8",
+                        "ref:ref-edge-rw-9",
+                        "ref:ref-edge-ut-1",
+                        "ref:ref-edge-ut-10",
+                        "ref:ref-edge-ut-11",
+                        "ref:ref-edge-ut-12",
+                        "ref:ref-edge-ut-13",
+                        "ref:ref-edge-ut-14",
+                        "ref:ref-edge-ut-2",
+                        "ref:ref-edge-ut-3",
+                        "ref:ref-edge-ut-4",
+                        "ref:ref-edge-ut-5",
+                        "ref:ref-edge-ut-6",
+                        "ref:ref-edge-ut-7",
+                        "ref:ref-edge-ut-8",
+                        "ref:ref-edge-ut-9"
+                    ]
+                },
+                "CommandName": "AddLocalSizingWTM",
+                "Errors": "__________None",
+                "InactiveTaskList": "__________None",
+                "ObjectPath": "__________None",
+                "State": "Out-of-date",
+                "TaskList": "__________None",
+                "TaskType": "Compound Child",
+                "Warnings": "__________None",
+                "_name_": "boi_lvl-7"
+            },
+            "TaskObject:TaskObject22": {
+                "Arguments": {
+                    "AddChild": "yes",
+                    "BLControlName": "boundary_layer",
+                    "BLRegionList": [
+                        "mrf_fan-body",
+                        "obudowa:inner",
+                        "obudowa:outer",
+                        "radiator_core-body"
+                    ],
+                    "BLZoneList": [
+                        "surface_fan",
+                        "surface_rd.2",
+                        "domain_ground",
+                        "surface_fw",
+                        "surface_front_wheel-rotary",
+                        "surface_front_wheel-steady",
+                        "surface_rear_wheel-rotary",
+                        "surface_rear_wheel-steady",
+                        "surface_ut",
+                        "surface_rw",
+                        "surface_mono",
+                        "surface_rd:532",
+                        "surface_rd.1",
+                        "surface_rd"
+                    ],
+                    "BlLabelList": [
+                        "domain_ground",
+                        "surface_front_wheel-rotary",
+                        "surface_front_wheel-steady",
+                        "surface_fw",
+                        "surface_mono",
+                        "surface_rd",
+                        "surface_rear_wheel-rotary",
+                        "surface_rear_wheel-steady",
+                        "surface_rw",
+                        "surface_sw",
+                        "surface_ut",
+                        "surface_whiskers"
+                    ],
+                    "CompleteBLRegionList": [
+                        "mrf_fan-body",
+                        "obudowa:inner",
+                        "obudowa:outer",
+                        "radiator_core-body"
+                    ],
+                    "CompleteBLZoneList": [
+                        "surface_rd.2",
+                        "surface_fan",
+                        "surface_rd.1",
+                        "domain_ground",
+                        "surface_fw",
+                        "surface_front_wheel-rotary",
+                        "surface_front_wheel-steady",
+                        "surface_whiskers.2",
+                        "surface_whiskers",
+                        "surface_rw",
+                        "surface_rear_wheel-rotary",
+                        "surface_rear_wheel-steady",
+                        "surface_sw",
+                        "surface_ut",
+                        "surface_rd",
+                        "surface_mono"
+                    ],
+                    "CompleteBlLabelList": [
+                        "domain_ground",
+                        "surface_front_wheel-rotary",
+                        "surface_front_wheel-steady",
+                        "surface_fw",
+                        "surface_mono",
+                        "surface_rd",
+                        "surface_rear_wheel-rotary",
+                        "surface_rear_wheel-steady",
+                        "surface_rw",
+                        "surface_sw",
+                        "surface_ut",
+                        "surface_whiskers"
+                    ],
+                    "CompleteRegionScope": [
+                        "mrf_fan-body",
+                        "obudowa:inner",
+                        "obudowa:outer",
+                        "radiator_core-body"
+                    ],
+                    "CompleteZoneSelectionList": [
+                        "domain_ground",
+                        "surface_fan",
+                        "surface_front_wheel-rotary",
+                        "surface_front_wheel-steady",
+                        "surface_fw",
+                        "surface_mono",
+                        "surface_rd",
+                        "surface_rd.1",
+                        "surface_rd.2",
+                        "surface_rd:532",
+                        "surface_rear_wheel-rotary",
+                        "surface_rear_wheel-steady",
+                        "surface_rw",
+                        "surface_ut"
+                    ],
+                    "FaceScope": {
+                        "GrowOn": "selected-zones",
+                        "RegionsType": "named-regions"
+                    },
+                    "FirstAspectRatio": "4",
+                    "FirstHeight": "0.001",
+                    "LocalPrismPreferences": {
+                        "Continuous": "Stair Step",
+                        "ShowLocalPrismPreferences": "false"
+                    },
+                    "OffsetMethodType": "aspect-ratio",
+                    "RegionScope": [
+                        "mrf_fan-body",
+                        "obudowa:inner",
+                        "obudowa:outer",
+                        "radiator_core-body"
+                    ],
+                    "ZoneLocation": [
+                        "16",
+                        "-10",
+                        "-4.1999998",
+                        "0",
+                        "32",
+                        "0",
+                        "1.9714299e-15",
+                        "domain_ground",
+                        "1.9184614",
+                        "-0.19941665",
+                        "0.16100919",
+                        "1.9672837",
+                        "-0.089077748",
+                        "0.26472083",
+                        "surface_fan",
+                        "-0.20574933",
+                        "-0.69719601",
+                        "0",
+                        "0.20574988",
+                        "-0.48380157",
+                        "0.41149959",
+                        "surface_front_wheel-rotary",
+                        "-0.1343725",
+                        "-0.62858319",
+                        "0.095250003",
+                        "0.130201",
+                        "-0.20877874",
+                        "0.50840348",
+                        "surface_front_wheel-steady",
+                        "-0.89099724",
+                        "-0.69714904",
+                        "0.048379999",
+                        "-0.24562962",
+                        "0",
+                        "0.32092904",
+                        "surface_fw",
+                        "-0.88640201",
+                        "-0.34317793",
+                        "0.035",
+                        "1.692",
+                        "1.2461695e-09",
+                        "1.107035",
+                        "surface_mono",
+                        "1.594975",
+                        "-0.39615786",
+                        "0.15100197",
+                        "1.974409",
+                        "-0.078624195",
+                        "0.40685171",
+                        "surface_rd",
+                        "1.9098239",
+                        "-0.20430955",
+                        "0.15748443",
+                        "1.9728106",
+                        "-0.084909145",
+                        "0.2715334",
+                        "surface_rd.1",
+                        "1.7205031",
+                        "-0.36258069",
+                        "0.18802905",
+                        "1.8711269",
+                        "-0.20042165",
+                        "0.40068576",
+                        "surface_rd.2",
+                        "1.3242512",
+                        "-0.67669871",
+                        "0",
+                        "1.7357491",
+                        "-0.46330429",
+                        "0.41149958",
+                        "surface_rear_wheel-rotary",
+                        "1.3593068",
+                        "-0.60517317",
+                        "0.095250003",
+                        "1.6169835",
+                        "-0.24732569",
+                        "0.51081067",
+                        "surface_rear_wheel-steady",
+                        "1.0245382",
+                        "-0.4623",
+                        "0.59004036",
+                        "1.972",
+                        "9.5020843e-15",
+                        "1.1853684",
+                        "surface_rw",
+                        "0.88800001",
+                        "-0.68661303",
+                        "0.043914091",
+                        "1.2294844",
+                        "-0.28464073",
+                        "0.37953684",
+                        "surface_sw",
+                        "-0.0073611899",
+                        "-0.69700003",
+                        "0.029999999",
+                        "1.25",
+                        "0",
+                        "0.40000001",
+                        "surface_ut",
+                        "-0.26656419",
+                        "-0.42165592",
+                        "0.056784526",
+                        "-0.1081007",
+                        "-0.22773272",
+                        "0.16504611",
+                        "surface_whiskers",
+                        "-0.17583181",
+                        "-0.34998432",
+                        "0.056784526",
+                        "-0.11847783",
+                        "-0.22773272",
+                        "0.14927528",
+                        "surface_whiskers.2"
+                    ],
+                    "ZoneSelectionList": [
+                        "domain_ground",
+                        "surface_fan",
+                        "surface_front_wheel-rotary",
+                        "surface_front_wheel-steady",
+                        "surface_fw",
+                        "surface_mono",
+                        "surface_rd",
+                        "surface_rd.1",
+                        "surface_rd.2",
+                        "surface_rd:532",
+                        "surface_rear_wheel-rotary",
+                        "surface_rear_wheel-steady",
+                        "surface_rw",
+                        "surface_ut"
+                    ]
+                },
+                "CommandName": "AddBoundaryLayers",
+                "Errors": "__________None",
+                "InactiveTaskList": "__________None",
+                "ObjectPath": "__________None",
+                "State": "Out-of-date",
+                "TaskList": "__________None",
+                "TaskType": "Compound Child",
+                "Warnings": "__________None",
+                "_name_": "boundary_layer"
+            },
+            "TaskObject:TaskObject23": {
+                "Arguments": {
+                    "AddChild": "yes",
+                    "BOIControlName": "curvature_lvl-8",
+                    "BOIExecution": "Curvature",
+                    "BOIFaceLabelList": [
+                        "obudowa:mrf_fan-body",
+                        "obudowa:radiator_core-body",
+                        "surface_rd"
+                    ],
+                    "BOIMaxSize": "0.002",
+                    "BOIMinSize": "0.001",
+                    "CompleteFaceLabelList": [
+                        "obudowa:mrf_fan-body",
+                        "obudowa:radiator_core-body",
+                        "surface_rd"
+                    ]
+                },
+                "CommandName": "AddLocalSizingWTM",
+                "Errors": "__________None",
+                "InactiveTaskList": "__________None",
+                "ObjectPath": "__________None",
+                "State": "Out-of-date",
+                "TaskList": "__________None",
+                "TaskType": "Compound Child",
+                "Warnings": "__________None",
+                "_name_": "curvature_lvl-8"
+            },
+            "TaskObject:TaskObject24": {
+                "Arguments": {
+                    "SMImprovePreferences": {
+                        "ShowSMImprovePreferences": "true"
+                    }
+                },
+                "CommandName": "ImproveSurfaceMesh",
+                "Errors": "__________None",
+                "InactiveTaskList": "__________None",
+                "ObjectPath": "__________None",
+                "State": "Out-of-date",
+                "TaskList": "__________None",
+                "TaskType": "Simple",
+                "Warnings": "__________None",
+                "_name_": "Improve Surface Mesh"
+            },
+            "TaskObject:TaskObject25": {
+                "Arguments": {
+                    "VMImprovePreferences": {
+                        "ShowVMImprovePreferences": "true",
+                        "VIQualityIterations": "10"
+                    }
+                },
+                "CommandName": "ImproveVolumeMesh",
+                "Errors": "__________None",
+                "InactiveTaskList": "__________None",
+                "ObjectPath": "__________None",
+                "State": "Out-of-date",
+                "TaskList": "__________None",
+                "TaskType": "Simple",
+                "Warnings": "__________None",
+                "_name_": "Improve Volume Mesh"
+            },
+            "TaskObject:TaskObject26": {
+                "Arguments": {
+                    "AddChild": "yes",
+                    "BOIControlName": "boi_lvl-8",
+                    "BOIExecution": "Body Of Influence",
+                    "BOIFaceLabelList": [
+                        "ref:ref-box-fan",
+                        "ref:ref-box-front_brakes",
+                        "ref:ref-box-rear_brakes",
+                        "ref:ref-edge-cs-1",
+                        "ref:ref-edge-cs-2",
+                        "ref:ref-edge-cs-3",
+                        "ref:ref-edge-cs-4",
+                        "ref:ref-edge-cs-5"
+                    ],
+                    "BOISize": "0.002",
+                    "CompleteFaceLabelList": [
+                        "ref:ref-box-fan",
+                        "ref:ref-box-front_brakes",
+                        "ref:ref-box-rear_brakes",
+                        "ref:ref-edge-cs-1",
+                        "ref:ref-edge-cs-2",
+                        "ref:ref-edge-cs-3",
+                        "ref:ref-edge-cs-4",
+                        "ref:ref-edge-cs-5"
+                    ]
+                },
+                "CommandName": "AddLocalSizingWTM",
+                "Errors": "__________None",
+                "InactiveTaskList": "__________None",
+                "ObjectPath": "__________None",
+                "State": "Out-of-date",
+                "TaskList": "__________None",
+                "TaskType": "Compound Child",
+                "Warnings": "__________None",
+                "_name_": "boi_lvl-8"
+            },
+            "TaskObject:TaskObject27": {
+                "Arguments": {
+                    "AddChild": "yes",
+                    "BOIControlName": "curvature_lvl-9",
+                    "BOIExecution": "Curvature",
+                    "BOIFaceLabelList": [
+                        "surface_fan"
+                    ],
+                    "BOIMaxSize": "0.001",
+                    "BOIMinSize": "0.00050000000000000001",
+                    "CompleteFaceLabelList": [
+                        "surface_fan"
+                    ]
+                },
+                "CommandName": "AddLocalSizingWTM",
+                "Errors": "__________None",
+                "InactiveTaskList": "__________None",
+                "ObjectPath": "__________None",
+                "State": "Out-of-date",
+                "TaskList": "__________None",
+                "TaskType": "Compound Child",
+                "Warnings": "__________None",
+                "_name_": "curvature_lvl-9"
+            },
+            "Workflow": {
+                "CurrentTask": "TaskObject25",
+                "TaskList": [
+                    "TaskObject1",
+                    "TaskObject2",
+                    "TaskObject3",
+                    "TaskObject4",
+                    "TaskObject9",
+                    "TaskObject10",
+                    "TaskObject24",
+                    "TaskObject11",
+                    "TaskObject25"
+                ]
+            }
+        }
+    },
+    "meshing": {
+        "version": "23.1",
+        "ROOT": {
+            "GlobalSettings": {
+                "AreaUnit": "m^2",
+                "EnableCleanCAD": "true",
+                "EnableComplexMeshing": "false",
+                "EnableOversetMeshing": "false",
+                "EnablePrimeMeshing": "false",
+                "InitialVersion": "20.2",
+                "LengthUnit": "m",
+                "NormalMode": "false",
+                "VolumeUnit": "m^3",
+                "FTMRegionData": {
+                    "AllOversetNameList": "__________None",
+                    "AllOversetSizeList": "__________None",
+                    "AllOversetTypeList": "__________None",
+                    "AllOversetVolumeFillList": "__________None",
+                    "AllRegionFilterCategories": "__________None",
+                    "AllRegionLeakageSizeList": "__________None",
+                    "AllRegionLinkedConstructionSurfaceList": "__________None",
+                    "AllRegionMeshMethodList": "__________None",
+                    "AllRegionNameList": "__________None",
+                    "AllRegionOversetComponenList": "__________None",
+                    "AllRegionSizeList": "__________None",
+                    "AllRegionSourceList": "__________None",
+                    "AllRegionTypeList": "__________None",
+                    "AllRegionVolumeFillList": "__________None"
+                }
+            }
+        }
+    },
+    "PartManagement": {
+        "version": "23.1",
+        "ROOT": {
+            "Node:Node1": {
+                "Name": "Meshing Model",
+                "_name_": "Meshing Model"
+            }
+        }
+    }
+}

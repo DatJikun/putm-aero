@@ -1,0 +1,136 @@
+ Nazwa,Osoba,Opis,Hipoteza,Wniosek,Data,Model Bazowy,Gotowe?,Cm,Cx,Cz,Mdot_Radiator,Zdjęcie 1,Zdjęcie 2,Zdjęcie 3,Efektywność,CzA_F,CzA_R,Balans Front,CoP,CoP %
+Baseline_1,,bazowy,,,4.3.2026,,Done,"-0,708","1,197","-3,683","-0,107",,,,"3,077","-2,550","-1,134","0,692","-0,29","-0,19"
+UTiter001,Michał Narożny,dwie lotki SW zamiast jednej ,,,,Baseline_1,Done,,,,,,,,#DIV/0!,"0,000","0,000",#DIV/0!,#DIV/0!,#DIV/0!
+UTiter002,Olek Wasiluk,"Wygląda szybko, za to generuje mało docisku",,,28.3.2026,baseline (proste FW; RW na 2026; podłoga UTiter001),Done,"-0,431","1,256","3,340",N/A,,,,"2,659","1,239","2,101","0,371","0,20","0,13"
+UTiter003,Olek Wasiluk,"Wygląda jescze szybciej, za to nie generuje nic docisku. Zagęszczona siatka REF_BOX-UT",,,29.3.2026,baseline (proste FW; RW na 2026; podłoga UTiter001),Done,"-0,577","1,170","3,019","0,093",,,,"2,580","0,933","2,087","0,309","0,29","0,19"
+UTiter004,"Czarek, Oskar",Zwężony wlot do podłogi,Odizolowanie wirów z kół przednich od wlotu pod podłogę,"Zdecydowana poprawa generowanego docisku, większa powierzchnia czynna podłogi generująca docisk",16.03.2026,Baseline_1,Done,"-0,695","1,189","-3,784","0,109",,"Zdjęcie po lewej model bazowy, zdjęcie po prawej model ze zwężonym wlotem powietrza",,"3,183","-2,587","-1,197","0,684","-0,28","-0,18"
+UTiter005,"Czarek, Oskar",Dodanie dodatkowych wlotów na zewnętrznym panelu przy chłodnicy,Zredukowania zerwania strugi przy chłodnicy,"Powietrze w obszarze, w którym potencjalnie ma być chłodnica ulega mniejszemu rozproszeniu i zawirowaniu, co będzie mogło się przełożyć na skuteczniejsze chłodzenie",24.03.2026,Baseline_1,Done,"-0,664","1,215","-3,734","-1,554",,,,"3,073","-2,531","-1,203","0,678","-0,27","-0,18"
+UTiter006,"Przemek, Mikołaj, Oskar","Całkowicie nowy model z przebudowaną podłogą, przednim skrzydłem i dodanym dyfuzorem",Usprawnienie przepływu ,"wnioski z tej iteracji - podłoga musi być o wiele niżej, przednie skrzydło było prawdopodobnie zbyt nisko. Zanim zacznę się bawić w formowanie przepływu pod podłogą to musi chociaż poprawnie działać xd, przednie skrzydło z lotkami dodatkowymi z przodu jest ciekawym pomysłem wartym dalszej analizy gdy bedziemy miec streamliney, plus zmienna geometria głównego elementu przedniego skrzydła też jest drogą do rozpatrzenia",27.03.2026,N.D.,Done,"-0,125","1,215","-2,562","0,000",,,,"2,109","-1,407","-1,156","0,549","-0,07","-0,05"
+UTiter007,Damian Malicki,zokrąglenie boczne krawędzi podłogi,,,31.03.2026,,Done,"-0,654","1,186","2,679","-0,107",,,,"2,259","0,686","1,994","0,256","0,37","0,24"
+UTiter008,Oskar,Dodanie dodatkowej ścianki ,Lepsza izolacja przepływu na dole podłogi,"Dodatkowa ścianka blokuje swobodny przepływ powietrza, zdecydowany spadek docisku",01.04.2026,baseline 1,Done,"-0,641","1,182","3,566","0,110",,,,"3,017","1,142","2,424","0,320","0,27","0,18"
+UTiter009,Olek,"Zwężenie kanału, lekkie zmiany SW, przedłużone kierownice",W iter003 za szeroki kanał,"Zwężenie kanału dało przyrost Cz. Kanał można zwężać jeszcze agresywniej, widać to przy wykresie prędkości. Kierownice coś tam dają, w następnej iteracji sprawdzić, czy dodatkowe kierownice kierujące wake za kołem do wewnątrz coś dadzą. SW generuje dużo docisku w czystym powietrzu, ale za mało outwashu przed tylnym kołem. Można zwiększyć kąt natarcia na ostatnich lotkach SW oraz samej podłogi.",03.04.2026,UTiter003,Done,"-0,554","1,223","3,310","0,101",,,,"2,706","1,101","2,209","0,333","0,26","0,17"
+UTiter010,Oskar,"Dodanie dodatkowego kanału na dolnej, tylnej części podłogi ",Izolacja wiru powstającego przy zewnętrznej części podłogi,"Spadek Cz, jednak bardziej laminarny przepływ, spróbować zwiększyć ilość",04.04.2026,UTiter004,Done,"-0,661","1,181","3,654","0,113",,,,"3,094","1,166","2,488","0,319","0,28","0,18"
+UTiter011,Michał Narożny,Dodanie uszczelnienia wirowego na krawędzi podłogi,Izolacja powietrza na zewnątrz a pod podłogą ,STARY SKRYPT ,04.04.2026,Baseline_1,Done,"-0,697","1,190","3,777","0,106",,,,"3,175","1,192","2,585","0,316","0,28","0,18"
+,,,,NOWY SKRYPT,,,Done,"-0,673","1,198","3,625","-0,105",,,,"3,026",,,,"0,28","0,19"
+UTiter012,Olek,WIP,,,,,In progress,,,,,,,,#DIV/0!,"0,000","0,000",#DIV/0!,#DIV/0!,#DIV/0!
+UTiter013,"Łukasz, Olek",WIP; UTiter012 z FW z modelu FWiter039,,,08.04.2026,,Done,"-0,593","1,258","3,241","-0,091",,,,"2,576","1,028","2,214","0,317","0,28","0,18"
+UTiter014,"Czarek, Oskar",Uszczelnienie wirowe plus dodatkowy element z przodu mono,Zmniejszenie powstawania wirów,Element z przodu źle wpływa na powietrze pod bolidem,09.04.2026,UTiter004,Done,"-0,668","1,189","3,563","1,439",,,,"2,996","1,113","2,450","0,312","0,29","0,19"
+UTiter015,Oskar,Zwiększona ilość kanałów izolujących przepływ na dolnej płaszczyźnie podłogi,Lepszy przepływ podłogi i izolacja dobrego powietrza przed powietrzem turbulentnym,Poprawa względem poprzedniej wersji,16.04.2026,UTiter010,Done,"-0,656","1,193","3,696","0,110",,,,"3,098","1,193","2,504","0,323","0,27","0,18"
+UTiter016,"Maciej, Oskar",Boczna ściana pod innym kątem oraz element odsuwający powietrze od tylnych kół (podobnie jak w FW),Lepszy przepływ w okolicy tylnych kół i zmniejszenie oporu,Opór wzrasta ale poprawia się docisk,20.04.2026,,Done,"-0,642","1,232","3,714","-0,112",,,,"3,016","1,215","2,499","0,327","0,26","0,17"
+UTiter017,Oskar,Dalszy rozwój koncepcji że wstawkami pod podłogą,Jak dla UTiter015,Ustawienie do poprawy,22.04.2026,UTiter015,Done,"-0,652","1,194","3,678","0,110",,,,"3,080","1,187","2,492","0,323","0,27","0,18"
+UTiter018,Oskar,Dalszy rozwój koncepcji że wstawkami pod podłogą,Jak dla UTiter015,Ustawienie do poprawy,27.04.2026,UTiter017,Done,"-0,653","1,194","3,634","0,108",,,https://drive.google.com/file/d/1Nb0mYxnjg6wm7wgfBI7nTzp1gwlWZWAJ/view?usp=drive_link,"3,043","1,164","2,470","0,320","0,27","0,18"
+UTiter019,Łukasz,"Test koncepcji:lotka łapiąca wake z opon, podloga od przedniej osi do tylnego zawieszenia oraz prostokat przed kolem ",.,"Wake z kola powstaje o wiele wczesniej i wiekszosc i tak przelatuje nad lotka. Podloga prawie nic nie robi i moze to byc zwiazane z samym profilem, katem natarcia lub energetycznoscia powietrza natomiast prostokat wydaje sie byc obiecujacy.",23.04.2026,,Done,"-0,552","1,290","3,125","-0,111",,,,"2,422","1,011","2,115","0,323","0,27","0,18"
+UTiter020,Maciej,"Dodanie ""płetwy"" za przednim kołem",Maksymalizacja użycia przepływu z boku podłogi i zmiana kształtu przedniej części bocznej sekcji podłogi,Podłoga generuje minimalnie większy docisk ale opór jest znacznie zwiększony,27.04.2026,,Done,"-0,645","1,240","3,748","-0,110",,,,"3,023","1,229","2,519","0,328","0,26","0,17"
+UTiter021,Oskar,Dalsza ewolucja UTiter010,,"Symualcja nieudana, rezydua i wyniki bardzo niestabilne.",,,Failed,,,,,,,,#DIV/0!,"0,000","0,000",#DIV/0!,#DIV/0!,#DIV/0!
+UTiter022,Maciej,Rozdzielenie przepływu na dwie oddzielne części u dołu podłogi(inspiracja Mercedes 21'),Ściśnięcie bardziej powietrza w obydwu sekcjach spowoduje większe przysysanie,"Powietrze bliżej mono wytwarza więcej downforce ale w drugiej sekcji ciśnienie jest wyższe, redukcja Cx",02.05.2026,Baseline002,Done,"-0,659","1,188","3,694","0,102",,,,"3,110","1,188","2,506","0,322","0,27","0,18"
+UTiter023,Maciej,Próba poprawy UTiter022. Część bliżej mono zostaje,Rozdzielenie przepływu na 3 części,Niepowodzenie. Opór zostaje taki sam przy redukcji downforce,03.05.2026,Baseline002,Done,"-0,656","1,188","3,663","-0,103",,,,"3,083","1,175","2,488","0,321","0,27","0,18"
+UTiter024,Maciej,Ewolucja 023 i 022,próba poprawy poprzednich dwóch,,04.05.2026,Baseline002,Done,"-0,653","1,187","3,670","0,102",,,,"3,092","1,182","2,488","0,322","0,27","0,18"
+UTiter025,Oskar,"Próba dodania elementów podobnych do sidepodów z formuły 1, ograniczające brudne powietrze zza kół i próba przekształcenia go na docisk",Większy docisk w środkowej części bolidu,"Spada Cz dość mocno, prawdobodobnie sidepody generują zbyt duży opór a kanał kierujący powietrze na lotki generuje zbyt dużo liftu",10.05.2026,Baseline002,Done,"-0,582","1,154","3,454","0,112",,,https://drive.google.com/file/d/103r0iGGbuz6i94ZbMFi77lVFpag2HdyU/view?usp=drive_link,"2,992","1,145","2,309","0,331","0,26","0,17"
+UTiter026,Maciej,Dodanie kanału który będzie zbierał powietrze z góry i posyłał je pod podłogę,Większy docisk w tylnej części podłogi,Zmiana rozkładu ciśnień pod podłogą ale wartość Cz utrzymuje się mniej więcej na podobnym poziomie. Cop idzie niestety do przodu,10.05.2026,Baseline002,Done,"-0,671","1,180","3,608","0,111",,,,"3,058","1,134","2,475","0,314","0,28","0,19"
+UTiter027,Oskar,Wypłaszczenie dolnej powierzchni podłogi by utrzymać przyspieszone powietrze przez dłuższy czas,Większa powierzchnia docsiku na podłodze,"Prawdopodbnie błędnie zaprojektowana geometria, wyciągnięcie weszło pod dół monokoku, powodując jednolitą powierzchnię dolną",11.05.2026,Baseline002,Done,"-0,500","1,195","2,923","-0,062",,,https://drive.google.com/file/d/1sjD9lRJOSG4LyBbykH8xd4OOeBzwnQal/view?usp=drive_link,"2,445","0,961","1,962","0,329","0,26","0,17"
+UTiter028,Łukasz,Głowny profil S1223 z katem natarcia 4 stopni,lepszy cz,"zbyt agresywny kat natarcia, za mala zmiana powierzchni czolowej przez co nie generowalo sie przys[pieszone powietrze",,,Done,"-0,645","1,277","2,991","0,115",,,,"2,342","0,851","2,141","0,284","0,33","0,22"
+UTiter029,Oskar,Poprawiony projekt sidepodów,wykorzystanie powietrza za oponami przednimi,"Za małe lotki, trzeba je zwiększyć",18.05.2026,UTiter025,Done,"-0,623","1,188","3,627","0,092",,,,"3,054","1,190","2,437","0,328","0,26","0,17"
+UTiter030,Lukasz,UTiter028 z katem natarcia -1,lepszy cz,,,,Done,"-0,555","1,277","2,801",0.105,,,,"2,193","0,846","1,956","0,302","0,30","0,20"
+UTiter031,Maciej,"ewolucja UTiter024, dwa kanały opóźniające oderawnie i kierujące powietrze pod mono",Lepsze Cz i mniejsze Cx,"Późniejsze oderwanie od dolnego profilu, więcej docisku w zewnętrznej częśći podłogi, trzeba pozmieniać kąty kanałów pod podłogą ",14.05.2026,UTiter024,Done,"-0,607","1,263","3,685","0,098",,https://drive.google.com/file/d/14dMFJe6TEl-PckgmKpGWbhTVXyVOLSQj/view?usp=sharing,https://drive.google.com/file/d/1RMzENI34Zoc4gG_S76Tog6EgZ1mZxBrj/view?usp=sharing,"2,918","1,236","2,449","0,335","0,25","0,16"
+UTiter032,Łukasz,lotki z baseline 2 wyciagniete do tylnej zawiechy,,,,,In progress,"-0,607","1,313","3,113",0.107,,,,"2,371","0,950","2,164","0,305","0,30","0,19"
+UTiter033,Łukasz,inna lotka oraz kat natarcia drugiej,,,,,In progress,"-0,623","1,287","3,181",0.112,,,,"2,472","0,968","2,214","0,304","0,30","0,20"
+UTiter034,Oskar,"Poprawiona wersja UTiter029, 2 większe lotki o większym kącie natarcia",Powietrze z opon lepiej wykorzystane,"Ustawienie jest lepsze, wzrósł cz w porównaniu do poprzedniej wersji",19.05.2026,UTiter029,Done,"-0,627","1,189","3,701","0,094",,,,"3,112","1,224","2,477","0,331","0,26","0,17"
+UTiter035,Łukasz,,,,,,In progress,"-0,636","1,294","3,178","0,091",,,,"2,456","0,953","2,225","0,300","0,31","0,20"
+UTiter036,Oskar,"Zmiana geometrii głównego profilu, odchudzenie powierzchni natarcia, łagodniejsze łapanie powietrza","Mniejsze wiry na górnej powierzchni podłogi, lepszy Cz","Wlot powietrza niedodstatecznie zbiera i kompresuje powietrze, mała powierzchnia czynna podłogi generująca docisk, spadł jednak trochę Cx",25.05.2026,n/d,Done,"-0,556","1,165","3,122","0,104",,,,"2,680","1,005","2,117","0,322","0,27","0,18"
+UTiter037,Oskar,Dodanie lotek mające doprowadzić więcej powietrza na podłogę,Więcej użyteczengo powietrza,"Za duży lift, zwiększenie również Cx bez zauważalnych popraw przepływu",28.05.2026,Baseline 002,Done,"-0,439","1,208","3,551","0,117",,,,"2,939","1,337","2,214","0,376","0,19","0,12"
+UTiter038,Maciej,Zmiana kątów kanałów pod podłogą i dodanie zwężenia koło mono,Poprawa przepływu pod podłogą,Nie działa a generuje wiecej dragu,20.05.2026,UTiter031,Done,"-0,589","1,273","3,616","0,091",https://drive.google.com/file/d/19un_V6g88xrD7tZv9apZFhgIMynxGj7e/view?usp=sharing,https://drive.google.com/file/d/1Vw_sEzK2nXShojwGbGF6JHwdgKAy-OI0/view?usp=sharing,,"2,841","1,220","2,397","0,337","0,25","0,16"
+UTiter039,Maciej,"Sprawdzenie koncepcji, jak działa płaska podłoga z dyfuzorem i bez górnych lotek, potencjalny dalszy rozwój",,"Może i nie wygląda ładnie ale też nie działa, dół praktycznie nie generuje docisku a lotka na górze jest pod złym kątem",21.05.2026,Baseline 002,Done,"-0,612","1,166","3,000","0,106",,,,"2,574","0,888","2,112","0,296","0,31","0,20"
+UTiter040,Łukasz,profile z przedniego skrzydla,podobne przyspieszanie powietrza jak w FW,poprawa glownie przez wyciagniecie podlogi a nie samych profili,,,Done,"-0,700","1,313","3,627","-0,110",,,,"2,762","1,114","2,514","0,307","0,30","0,19"
+UTiter041,Maciej,Ewolucja UTiter039,Zwiększenie Cz i przesunięcie balansu na tył,"Zaczyna dawać więcej Cz, trzeba poprawić kąt profili bo są zbyt agresywnie ustawione",24.05.2026,UTiter039,Done,"-0,606","1,219","3,520","0,096",,https://drive.google.com/file/d/1Uqslmib_ykKOXE_OR__lcnS_8xKLKUYW/view?usp=sharing,https://drive.google.com/file/d/1Ba7ahmIixwnUh7VJTJ9uUkjmQ0SjcpIx/view?usp=sharing,"2,887","1,154","2,366","0,328","0,26","0,17"
+UTiter042,Przemek,Wąsy z boku mono,dodatkowe airfoile do generacji docisku w miejscu gdzie i tak nic nie ma = wiecej dosku = lepiej ,"dużo cz wiecej nie dała wstępna wersa, problem z tym że dostaje mało powietrza lotka przez to że przednie skrzydło wypierdala je w kosmos - zmieniam kąt airfoila głównego aby sie lepiej dopasować do przepływu powietrza",,,Done,"-0,672","1,187","3,720",,,,,"3,134","1,188","2,532","0,319","0,28","0,18"
+UTiter043,Łuaksz,UTiter040 z defuzorem,lepszy balans oraz cz,"dyfuzor ma potencjal oraz racje bytu, wymaga jednak wielu iteracji ",,,Done,"-0,685","1,310","3,669","0,110",,,,"2,801","1,150","2,520","0,313","0,29","0,19"
+UTiter044,Łuaksz,UTiter043 z szersza podloga oraz poprawka defuzora,,Podloga zbyt szeroka powoduje straty a poprawa defuzora wyszla na plus ,,,Done,"-0,657","1,314","3,656",0.093,,,,"2,782","1,171","2,485","0,320","0,27","0,18"
+UTiter045,Maciej,Zmiana kątów względem UTiter041,Większy docisk z tyłu podłogi,Brak znaczącej poprawy względem poprzedniej wersji,,UTiter041,Done,"-0,606","1,159","3,246","-0,107",,,,"2,801","1,017","2,228","0,313","0,29","0,19"
+UTiter046,Przemek,poprawniona lekko geometria wasow + dodanie przednich wąsów ponad fw,przednie wasy ukierunkuje lepiej przeplyw na wasy z mono na srodku,przednie wasy tworza lift + są chyba zbyt agresywne + docisk spadł xd + zaburzenie powietrza od przednich wasow plus zawieszenia kompletnie osłabia tylne wasy,,,Done,"-0,539","1,202","3,597","-0,114",,,,"2,992","1,259","2,337","0,350","0,23","0,15"
+UTiter047,Maciej,Inny profil lotniczy jako główny ,Inny profil może generować większy docisk,Docisk mniejszy niż przy poprzednim profilu,10.06.2026,Baseline002,Done,"-0,640","1,256","3,166","0,108",,,,"2,521","0,944","2,223","0,298","0,31","0,20"
+UTiter048,Łukasz,"Lotka z baseline 2, podloga wyciagnieta szeroko (UYiter044)",,"mimo wiekszego Cz rozklad cisnienia pod podloga nie jest rownomierny tylko punktowy, nalezy eksperymentowac z roznymi profilami oraz mozliwe ze podloga za bardzo sie rozchodzi. ",29.05.2026,,Done,"-0,686","1,317","3,803","0,086",,,,"2,888","1,216","2,588","0,320","0,28","0,18"
+UTiter049,,,,,,,In progress,,,,,,,,#DIV/0!,"0,000","0,000",#DIV/0!,#DIV/0!,#DIV/0!
+UTiter050,Mikołaj Wojnowski,Sidepody test nr 1,Ogólny test sidepodów,"No słaby design, w UTiter051 lepiej to zrobione",01.06.2026,Baseline002,Done,"-0,667","1,176","3,648","-0,110",,,,"3,102","1,157","2,491","0,317","0,28","0,18"
+UTiter051,Mikołaj Wojnowski,Sidepody test nr 1 ze ścięciem,Ogólny test sidepodów,"Mocno burzy powietrze za sobą, jednak RW działa tak samo dobrze, UT minimalnie lepiej, wyniki na tyle podobne do Baseline002 sugerują potencjał w lepszym design",01.06.2026,Baseline002,Done,"-0,645","1,177","3,673","-0,110",,,,"3,121","1,191","2,482","0,324","0,27","0,18"
+UTiter052,Mikołaj Wojnowski,Sidepody test nr 2 ,,,01.06.2026,Baseline002,In progress,,,,,,,,#DIV/0!,"0,000","0,000",#DIV/0!,#DIV/0!,#DIV/0!
+UTiter053,Łukasz Frątczak,UTiter048 na wzor podlogi PM07,,git,05.06.2026,,Done,"-0,688","1,321","3,861","0,072",,,,"2,923","1,243","2,619","0,322","0,27","0,18"
+UTiter054,Piotr Polus,"Pierwsza wersja tylnej osłony mono, dodatkowo generatory wirów poprawiające przyleganie strumienia od spodu - zapasowa alternatywa dla dyfuzora","Ma zmniejszyć turbulencje przepływów zbiegających się za bolidem, a tym samym - ciąg.",,,,In progress,-0.390,1.239,3.681,0.114,,,,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!
+UTiter055,Oskar Grajnert,Zmieniona geometria podłogi,Większe sprężanie i rozprężanie powietrza,"Zwężenie mające doprowadzać powietrze ma źle zaprojektowany łuk, rozprężenie wypada w złym miejscu. Jednak zasilenie jest możliwe, przy zastosowaniu dodatkowego uszczelnienia od wewnątrz podłogi zapobiegające wirowi przy ściance jest potencjał w projekcie",07.06.2026,Baseline002,Done,"-0,629","1,191","3,479","0,105",,,,"2,921","1,110","2,368","0,319","0,28","0,18"
+UTiter056,Łukasz Frątczak,MP z MSHD,,"zbyt agresywny kat natarcia, nastepuje separacja ",09.06.2026,,Done,"-0,631","1,327","3,785","0,064",,,,"2,852","1,262","2,524","0,333","0,26","0,17"
+UTiter057,Oskar Grajnert,Ewoulcja iter055,,"Zła geometria, model do poprawy - meshing nie został wykonany",,,Failed,,,,,,,,#DIV/0!,"0,000","0,000",#DIV/0!,#DIV/0!,#DIV/0!
+UTiter058,Łukasz Frątczak,UTiter056 z katem natarcia 4 stopnie mp,,minimalna poprawa ale przeplyw pozostaje lamianrny przy podlodze,,,Done,"-0,623","1,350","3,793","0,074",,,,"2,810","1,274","2,520","0,336","0,25","0,16"
+UTiter059,Łukasz Frątczak,UTiter058 z MP blizej podloza,nie udalo sie przesymulowac(wyeliminowanie malych powierzchni powinno zadzialac),,,,Failed,,,,,,,,#DIV/0!,"0,000","0,000",#DIV/0!,#DIV/0!,#DIV/0!
+UTiter060,Maciej Nowicki,Test podłogi z profilem lotnniczym na początku a dalej płaskiej,Profil lotniczy będzie bardziej zasilał płaską podłogę ,Niskie ciśnienie nie generuje się tylko z przodu podłogi ale też z tyłu,04.07.2026,Baseline 002,Done,"-0,526","1,230","3,284","0,086",,,,"2,670","1,116","2,169","0,340","0,25","0,16"
+UTiter061,Maciej Nowicki,"Ewolucja UTiter060, zmiana kątów podłogi",Próba poprawienia 060,Jest lekka poprawa względem poprzednigo modelu,04.07.2026,Baseline002,Done,"-0,562","1,204","3,420","0,090",,,,"2,841","1,148","2,272","0,336","0,25","0,16"
+UTiter062,Maciej Nowicki,Ewolucja UTiter061,"Płaska podłoga u dołu a u góry profil lotniczy, połączenie 060 i 023","Poprawa Cz, można dodać elementy z 061",30.07.2026,Baseline002,Done,"-0,634","1,188","3,684","0,105",,,,"3,100","1,208","2,476","0,328","0,26","0,17"
+UTiter063,Łukasz Frątczak,Utiter053 ale MP to S1223,,"minimalna poprawa ( moze to byc kwestia ,mniejszej ilosci wykonanych iteracji)",06.07.2026,,Done,"-0,731","1,318","3,892","-0,078",,,,"2,953","1,215","2,677","0,312","0,29","0,19"
+UTiter064,Łukasz Frątczak,proba poprawy defuzora,plaskie boki dyfuzora stworza lepszy groudn effect,jednak nie robi,,utiter063,Done,"-0,742","1,308","3,672","-0,075",,,,"2,807","1,094","2,578","0,298","0,31","0,20"
+UTiter065,Olek Wasiluk,Jakaś gimela pod sidedy,"Może dać, ale może dawnie profili nad główny profil nie ma sensu",,14.07.2026,UTiter051,In progress,,,,,,,,#DIV/0!,"0,000","0,000",#DIV/0!,#DIV/0!,#DIV/0!
+UTiter066,Maciej Nowicki,"Połączenie 062 z 061, dodanie lotki u góry",Poprawia rozkładu ciśnień z tyłu podłogi,Nie działa tak dobrze jak myślałem,31.07.2026,UTiter061,Done,"-0,605","1,183","3,463","-0,104",,,,"2,927","1,127","2,336","0,325","0,27","0,17"
+UTiter067,Maciej Nowicki,"062 z sidepodem, dodanie trzeciej lotki z tyłu podłogi, druga lotka zmniejszona",próba dostarczenia powietrza do dodatkowych lotek,"Trzecia lotka ładnie wyciąga powietrze spod podłogi, element ściągający powietrzze można umieścić trochę wyżej",01.08.2026,UTiter062,Done,"-0,609","1,255","3,810","0,110",,,,"3,036","1,296","2,514","0,340","0,24","0,16"
+UTiter068,Maciej Nowicki,"Próba poprawy 067, przeniesienie sidepoda wyżej, płaska podłoga, większy kąt trzeciej lotki",Sidepod może ściągać więcej powietrza zza kół i skrzydła,Sidepod łapie za mało powietrza a pozostałe odpycha od lotek z tyłu podłogi,03.08.2026,UTiter067,Done,"-0,594","1,256","3,784","0,110",,,,"3,012","1,298","2,486","0,343","0,24","0,16"
+UTiter069,Maciej Nowicki,068 z innaczej wyglądającym sidepodem,"Lekko ulepszony sidepod, zbiera powietrze zza kół i kieruje je w stronę lotek",Lepszy byłby chyba sidepod w pełni zamknięty od dołu i lekko dłuższy,05.08.2026,UTiter068,Done,"-0,598","1,254","3,795","0,108",,,,"3,028","1,300","2,496","0,342","0,24","0,16"
+UTiter070,Maciej Nowicki,"Ostatnia próba z sidepodami, płaska druga część podłogi, wydłużony sidepod i przeniesiony wyżej",Sidepod zbiera powietrze zza FW i posyła je do podłogi,Sidepod ładnie zbiera powietrze z Fw ale robi straszne turbulencje u góry i to psuje jego działanie,07.08.2026,UTiter069,Done,"-0,585","1,238","3,744","0,107",,,,"3,024","1,287","2,457","0,344","0,24","0,16"
+UTiter071,Oskar Grajnert,Zmiana głównego profilu na FX74_CL5_140,Przetestowanie różnych profili głównych na podłogę w celu znalezienia najlepszej opcji,"Pierwsza próba przy kącie zerowym, będzie służyć jako porównawcza",11.08.2026,n/d,Done,"-0,603","1,162","2,952","1,519",,,,"2,541","0,873","2,079","0,296","0,31","0,20"
+UTiter072,Maciej Nowicki,"Dwustopniowa podłoga, inspiracja tallin",Dodanie jak najwięcej downforce przez zwiększenie liczby elementow generujących,,,,In progress,,,,,,,,#DIV/0!,"0,000","0,000",#DIV/0!,#DIV/0!,#DIV/0!
+UTiter073,Oskar Grajnert,Przetestowanie dotychczasowego głównego profilu w takich samych warunkach jako punkt odniesienia dla przyszłych symulek,"Ta symulacja ma pozwolić na porównanie, który główny profil sam w sobie generuje najwięcej docisku, by móc wybrać najlepszy i wokół niego skupić dalsze działania projektowe",n/d,14.08.2026,n/d,Done,"-0,660","1,1744","3,063","0,114",,,,"2,608","0,872","2,191","0,285","0,33","0,22"
+UTiter074,Oskar Grajnert,Zmiana profilu głównego na Eppler 423,Kolejny test innego profilu głównego by znaleźć najlepszy,"Lepsza od UTiter071, ale nie ma poprawy względem Baseline",15.08.2026,n/d,Done,"-0,589","1,160","2,971","1,481",,,,"2,562","0,896","2,075","0,302","0,30","0,20"
+UTiter075,,,,,,,In progress,,,,,,,,#DIV/0!,"0,000","0,000",#DIV/0!,#DIV/0!,#DIV/0!
+UTiter076,,,,,,,In progress,,,,,,,,#DIV/0!,"0,000","0,000",#DIV/0!,#DIV/0!,#DIV/0!
+UTiter077,,,,,,,In progress,,,,,,,,#DIV/0!,"0,000","0,000",#DIV/0!,#DIV/0!,#DIV/0!
+UTiter078,,,,,,,In progress,,,,,,,,#DIV/0!,"0,000","0,000",#DIV/0!,#DIV/0!,#DIV/0!
+UTiter079,,,,,,,In progress,,,,,,,,#DIV/0!,"0,000","0,000",#DIV/0!,#DIV/0!,#DIV/0!
+UTiter080,,,,,,,In progress,,,,,,,,#DIV/0!,"0,000","0,000",#DIV/0!,#DIV/0!,#DIV/0!
+UTiter081,,,,,,,In progress,,,,,,,,#DIV/0!,"0,000","0,000",#DIV/0!,#DIV/0!,#DIV/0!
+UTiter082,,,,,,,In progress,,,,,,,,#DIV/0!,"0,000","0,000",#DIV/0!,#DIV/0!,#DIV/0!
+UTiter083,,,,,,,In progress,,,,,,,,#DIV/0!,"0,000","0,000",#DIV/0!,#DIV/0!,#DIV/0!
+UTiter084,,,,,,,In progress,,,,,,,,#DIV/0!,"0,000","0,000",#DIV/0!,#DIV/0!,#DIV/0!
+UTiter085,,,,,,,In progress,,,,,,,,#DIV/0!,"0,000","0,000",#DIV/0!,#DIV/0!,#DIV/0!
+UTiter086,,,,,,,In progress,,,,,,,,#DIV/0!,"0,000","0,000",#DIV/0!,#DIV/0!,#DIV/0!
+UTiter087,,,,,,,In progress,,,,,,,,#DIV/0!,"0,000","0,000",#DIV/0!,#DIV/0!,#DIV/0!
+UTiter088,,,,,,,In progress,,,,,,,,#DIV/0!,"0,000","0,000",#DIV/0!,#DIV/0!,#DIV/0!
+UTiter089,,,,,,,In progress,,,,,,,,#DIV/0!,"0,000","0,000",#DIV/0!,#DIV/0!,#DIV/0!
+UTiter090,,,,,,,In progress,,,,,,,,#DIV/0!,"0,000","0,000",#DIV/0!,#DIV/0!,#DIV/0!
+UTiter091,,,,,,,In progress,,,,,,,,#DIV/0!,"0,000","0,000",#DIV/0!,#DIV/0!,#DIV/0!
+UTiter092,,,,,,,In progress,,,,,,,,#DIV/0!,"0,000","0,000",#DIV/0!,#DIV/0!,#DIV/0!
+UTiter093,,,,,,,In progress,,,,,,,,#DIV/0!,"0,000","0,000",#DIV/0!,#DIV/0!,#DIV/0!
+UTiter094,,,,,,,In progress,,,,,,,,#DIV/0!,"0,000","0,000",#DIV/0!,#DIV/0!,#DIV/0!
+UTiter095,,,,,,,In progress,,,,,,,,#DIV/0!,"0,000","0,000",#DIV/0!,#DIV/0!,#DIV/0!
+UTiter096,,,,,,,In progress,,,,,,,,#DIV/0!,"0,000","0,000",#DIV/0!,#DIV/0!,#DIV/0!
+UTiter097,,,,,,,In progress,,,,,,,,#DIV/0!,"0,000","0,000",#DIV/0!,#DIV/0!,#DIV/0!
+UTiter098,,,,,,,In progress,,,,,,,,#DIV/0!,"0,000","0,000",#DIV/0!,#DIV/0!,#DIV/0!
+UTiter099,,,,,,,In progress,,,,,,,,#DIV/0!,"0,000","0,000",#DIV/0!,#DIV/0!,#DIV/0!
+UTiter100,,,,,,,In progress,,,,,,,,#DIV/0!,"0,000","0,000",#DIV/0!,#DIV/0!,#DIV/0!
+UTiter101,,,,,,,In progress,,,,,,,,#DIV/0!,"0,000","0,000",#DIV/0!,#DIV/0!,#DIV/0!
+UTiter102,,,,,,,In progress,,,,,,,,#DIV/0!,"0,000","0,000",#DIV/0!,#DIV/0!,#DIV/0!
+UTiter103,,,,,,,In progress,,,,,,,,,,,,#DIV/0!,#DIV/0!
+UTiter104,,,,,,,In progress,,,,,,,,,,,,#DIV/0!,#DIV/0!
+UTiter105,,,,,,,In progress,,,,,,,,,,,,#DIV/0!,#DIV/0!
+UTiter106,,,,,,,In progress,,,,,,,,,,,,#DIV/0!,#DIV/0!
+UTiter107,,,,,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!
+UTiter108,,,,,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!
+UTiter109,,,,,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!
+,,,,,,,,,,,,,,,,,,,#DIV/0!,#DIV/0!

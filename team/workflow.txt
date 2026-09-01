@@ -1,0 +1,132 @@
+cześć chciałbym omówić z tobą workflow który stosujemy w aerodynamice naszego zesopłu formuły student
+
+1. w modelu z solidworks zapisujemy go jako .step, zawiera on model, refy które zagęszczają siatkę w konkretnych miejscach (później są używane do BOI i curvature w fluent meshing) oraz domain jako tunel aerodynamiczny
+
+2. spaceclaim, wgrywamy .step, tworzymy nowy komponent ref i wsadzamy tam wszystkie refy jednoczesnie je wyłączając, wyciągamy mrf fan body i radiator core body poza drzewko modelu bolidu i wyłączamy, tworzymy obudowę przez zaznaczenie całego modelu bolidu i wybranie geometrii niestandardowej domain aby stworzyć tunel aerodynamiczny, który przecina model w połowie (aby symulować połowę bolidu)
+
+grupujemy surface_fw, domain_inlet itp, wsadzamy mrf fan body i radiator core body do komponentu obudowa i współdzielimy topologię, zatwierdzamy i zapisujemy plik, przechodzimy do
+
+3. fluent meshing
+
+Import Geometry
+
+
+Plik: Baseline001.scdoc
+
+Liczba części: 67
+
+Jednostka długości: m
+
+Tolerance importu CAD: 0.01
+
+Add Local Sizing (wiele poziomów zagęszczenia)
+
+Body of Influence (BOI):
+
+
+boi_lvl-1 → rozmiar komórki 0.256 m
+
+boi_lvl-2 → 0.128 m
+
+boi_lvl-3 → 0.064 m
+
+boi_lvl-4 (hełm + monokok) → 0.032 m
+
+boi_lvl-5 (zawieszenie, główne koło tylne, tylne skrzydło itp.) → 0.016 m
+
+boi_lvl-6 (przednie koło, przednie skrzydło, undertray) → 0.008 m
+
+boi_lvl-7 (szczegóły wnętrza kół, kanałów radiatora, krawędzie skrzydeł) → 0.004 m
+
+boi_lvl-8 (wentylator, hamulce, niektóre krawędzie) → 0.002 m
+
+Curvature sizing (na podstawie krzywizny):
+
+
+curvature_lvl-7 (koła, podwozie, skrzydła, monokok) → Max size 0.004 m, Min size 0.002 m
+
+curvature_lvl-8 (obudowa wentylatora i radiatora + surface_rd) → Max 0.002 m, Min 0.001 m
+
+curvature_lvl-9 (powierzchnia wentylatora) → Max 0.001 m, Min 0.0005 m
+
+Generate the Surface Mesh
+
+
+Min Size: 0.01 m
+
+Max Size: 0.512 m
+
+Cells Per Gap: 3
+
+Proximity: faces-and-edges
+
+Describe Geometry + Update Regions
+
+
+Tworzonych jest 5 obszarów przepływu (fluid regions)
+
+mrf_fan-body i radiator_core-body zmieniane na typ fluid (zamiast solid)
+
+Niektóre powierzchnie oznaczone jako „dead” lub „wall”
+
+Add Boundary Layers (warstwy przyścienne)
+
+
+Pierwsza warstwa (First Height): 0.001 m
+
+First Aspect Ratio: 4
+
+Metoda: aspect-ratio
+
+Stosowane na: podwozie, koła, przednie i tylne skrzydło, undertray, monokok, radiator, wentylator itd.
+
+Liczba warstw nie jest jawnie podana w workflow (prawdopodobnie domyślna lub ustawiona wcześniej w prism controls).
+
+Generate the Volume Mesh
+
+
+Typ siatki: poly-hexcore
+
+Hex Max Cell Length: 0.512 m
+
+Hex Min Cell Length: 0.001 m
+
+Opcja: Avoid 1:8 Transition = yes
+
+Improve Surface Mesh i Improve Volume Mesh
+
+
+Poprawa jakości siatki powierzchniowej i objętościowej (dla volume mesh: 10 iteracji poprawy)
+
+
+4. fluent solution
+
+Model turbulencji: Realizable k-ε + Enhanced Wall Treatment
+
+MRF – wentylator: 510 rad/s (~4870 rpm)
+
+Radiator (porous zone): kierunek przepływu X, opór lepki i bezwładnościowy włączony, źródło ciepła włączone
+
+Inlet: prędkość 15 m/s, turbulencja 5% / długość skali 10
+
+Ground i Sky: ruchome ściany z prędkością 15 m/s
+
+Koła wirujące (rotary walls): -72.9 rad/s (odpowiednie do prędkości 15 m/s)
+
+Reference Values: Length = 1.53 m, Velocity = 15 m/s
+
+Metoda rozwiązania: Coupled (Pressure-Velocity), Second Order dla k i ε
+
+Raporty (drukowane co 100 iteracji):mdot_radiator (przepływ masy przez chłodnicę)
+
+cx (opór aerodynamiczny)
+
+cz (siła nośna, oś Z w dół)
+
+cm (moment pochylający, oś obrotu w punkcie x = 0.765 m)
+
+Residua: 1e-7 dla wszystkich równań
+
+Inicjalizacja: Hybrid + External-Aero Favorable Settings
+
+Liczba iteracji: 2000

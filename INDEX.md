@@ -78,6 +78,7 @@ Indeksy cząstkowe: [index-batch-a.md](index-batch-a.md), [index-batch-b.md](ind
 | [OVERNIGHT-BRIEF.md](OVERNIGHT-BRIEF.md) | Brief 1 strona (rano): co znaleziono, luki, PDF do dropu |
 | [sources/research-balance-levers-h1-h5.md](sources/research-balance-levers-h1-h5.md) | Szczegóły dźwigni H1–H5 (mechanizm, ryzyka, kill criteria) |
 | [sources/research-fs-teams-practice.md](sources/research-fs-teams-practice.md) | Praktyka innych teamów FS (FW/RW/UT, Cl/Cd/balans, Endurance vs Autocross) |
+| [sources/research-amz-berlin-snails-aero.md](sources/research-amz-berlin-snails-aero.md) | AMZ / FaSTTUBe (Berlin) / Running Snail — narzędzia, walidacja, publiczne ΔDF; Cl/Cd absolutne not found |
 
 ## Regulamin
 

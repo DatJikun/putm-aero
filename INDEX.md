@@ -59,3 +59,9 @@ Indeksy cząstkowe: [index-batch-a.md](index-batch-a.md), [index-batch-b.md](ind
 | [team/rw-iters-2025-2026.csv](team/rw-iters-2025-2026.csv) | Arkusz iteracji skrzydła tylnego |
 | [team/ut-iters-with-balance-2026.csv](team/ut-iters-with-balance-2026.csv) | Arkusz podłogi z kolumną balansu (`Baseline_1` ≈ 69% przód) |
 | [team/fw-iters-2025-2026.csv](team/fw-iters-2025-2026.csv) | Arkusz iteracji skrzydła przedniego (kontekst) |
+
+## Research (robocze)
+
+| Plik | Opis |
+|------|------|
+| [sources/research-balance-shift.md](sources/research-balance-shift.md) | Cofanie balansu przy \|Cz\|≥3,682 i Cx≈1,23: RW+UT główne, wąsy kandydat, DRS na końcu; szacunek balansu 017 z Cm/Cz ≈61,7% (do potwierdzenia Fluent) |

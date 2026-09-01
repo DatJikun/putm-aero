@@ -72,6 +72,11 @@ Indeksy cząstkowe: [index-batch-a.md](index-batch-a.md), [index-batch-b.md](ind
 |------|------|
 | [sources/research-balance-shift.md](sources/research-balance-shift.md) | Cofanie balansu ~61,6%→50/50; shortlista H1–H5 |
 | [sources/research-aero-for-targets.md](sources/research-aero-for-targets.md) | Rady aero pod max DF + niski opór + Endurance/Autocross (H1–H4) |
+| [sources/research-overnight-rw-multi-element.md](sources/research-overnight-rw-multi-element.md) | Overnight: multi-element RW 3 vs 4, AOA/gap/overlap, DRS passive vs active (EU FS) |
+| [sources/research-overnight-ut-yaw-balance.md](sources/research-overnight-ut-yaw-balance.md) | Overnight: UT/dyfuzor → balans + yaw; Staniszewski 2024 + Chalmers/OSU/Jowsey |
+| [sources/research-papers-rw-ut-yaw-clcd.md](sources/research-papers-rw-ut-yaw-clcd.md) | Paperów (równoległa notatka): 3 vs 4 el. RW, UT+yaw, opublikowane Cl/Cd/balans |
+| [OVERNIGHT-BRIEF.md](OVERNIGHT-BRIEF.md) | Brief 1 strona (rano): co znaleziono, luki, PDF do dropu |
+| [sources/research-balance-levers-h1-h5.md](sources/research-balance-levers-h1-h5.md) | Szczegóły dźwigni H1–H5 (mechanizm, ryzyka, kill criteria) |
 | [sources/research-fs-teams-practice.md](sources/research-fs-teams-practice.md) | Praktyka innych teamów FS (FW/RW/UT, Cl/Cd/balans, Endurance vs Autocross) |
 
 ## Regulamin
@@ -84,5 +89,4 @@ Indeksy cząstkowe: [index-batch-a.md](index-batch-a.md), [index-batch-b.md](ind
 | [sources/research-eu-fs-ev-top-teams.md](sources/research-eu-fs-ev-top-teams.md) | Top EU FS EV — Koordynator |
 | [sources/claims-from-eu-fs-ev-top.md](sources/claims-from-eu-fs-ev-top.md) | Claims do założeń z notatki EU EV |
 | [sources/research-aero-dev-tooling.md](sources/research-aero-dev-tooling.md) | Jak teamy organizują rozwój aero (Excel vs Monday itd.) |
-| [sources/research-papers-rw-ut-yaw-clcd.md](sources/research-papers-rw-ut-yaw-clcd.md) | Paperów: 3 vs 4 el. RW, UT+yaw, opublikowane Cl/Cd/balans |
 

@@ -2,12 +2,14 @@
 
 **Status:** zaktualizowana po decyzjach Mikołaja  
 **Data:** 2026-09-01  
-**Prędkość odniesienia w CFD:** 15 m/s  
+**Prędkość odniesienia w CFD:** 15 m/s
 
-Fluent (zespół): half-car, długość odniesienia Lref = 1,53 m, moment przy x = 0,765 m.  
+Fluent (zespół): **half-car** (model połowy bolidu), długość odniesienia Lref = **1,53 m**, moment przy x = **0,765 m**.
+
 Dziś w solverze: k-ε realizable + Enhanced Wall Treatment.  
-Cel migracji / porównania: uzgodnić z OpenFOAM (u CFD#1 przy 16 GB: funkcje ściankowe, y+ > 30).  
-**Aref (powierzchnia odniesienia):** half-car ≈ **0,50 m²** (zakres simów 0,49–0,51); pełny bolid ≈ **1,0 m²**. Do porównania OpenFOAM ↔ Fluent bierzemy **0,50 m²** na half-car.
+Cel migracji / porównania: uzgodnić z OpenFOAM (u CFD#1 przy 16 GB: funkcje ściankowe, y+ > 30).
+
+**Aref** (powierzchnia odniesienia do współczynników): half-car ≈ **0,50 m²** (zakres simów 0,49–0,51); pełny bolid ≈ **1,0 m²**. Do porównania OpenFOAM ↔ Fluent bierzemy **0,50 m²** na half-car.
 
 ---
 
@@ -21,15 +23,16 @@ Cel migracji / porównania: uzgodnić z OpenFOAM (u CFD#1 przy 16 GB: funkcje ś
 | Efektywność \|Cz\|/Cx | ok. 3,0 | |
 | Balans na przód | ok. **61,6%** | Z arkusza (Cm/Cz); do pół na pół brakuje ok. **12 punktów procentowych** |
 
-Wariant RW_iter017.2 (Cx 1,210 / Cz −3,628) to tylko sprawdzenie skryptu — nie zamienia kotwicy.
+Wariant `RW_iter017.2` (Cx **1,210** / Cz **−3,628**) to tylko sprawdzenie skryptu — nie zamienia kotwicy.
 
-Baseline002 (FWiter011 + RWiter017 + UTiter002) to **historyczny miks**, nie aktualny bolid.
+`Baseline002` (FWiter011 + RWiter017 + UTiter002) to **historyczny miks**, nie aktualny bolid.
 
 ---
 
 ## Cel nadrzędny
 
-**Endurance i Autocross** są najważniejsze.  
+**Endurance i Autocross** są najważniejsze.
+
 Maksymalny docisk przy **możliwie najniższym oporze**, balans jak najbliżej pół na pół.
 
 | Cel | Wartość robocza |
@@ -56,11 +59,11 @@ Maksymalny docisk przy **możliwie najniższym oporze**, balans jak najbliżej p
 
 ## Shortlista pracy nad balansem (zatwierdzona)
 
-1. **H1** — tylne skrzydło (w tym wariant 4-elementowy)  
-2. **H2** — podłoga (i bramka: Cx/Cz nie tylko na wprost, też pod kątem / model toru Endurance)  
-3. **H3** — odciążenie przodu tylko gdy trzeba  
-4. **H4** — wąsy później, jeśli TBD przejdzie w „tak”  
-5. **H5** — DRS i fan poza grą przy peaku docisku  
+1. **H1** — tylne skrzydło (w tym wariant 4-elementowy)
+2. **H2** — podłoga (i bramka: Cx/Cz nie tylko na wprost, też pod kątem / model toru Endurance)
+3. **H3** — odciążenie przodu tylko gdy trzeba
+4. **H4** — wąsy później, jeśli TBD przejdzie w „tak”
+5. **H5** — DRS i fan poza grą przy peaku docisku
 
 Szczegóły: `sources/research-balance-shift.md`, `sources/research-balance-levers-h1-h5.md`.
 
@@ -68,15 +71,17 @@ Szczegóły: `sources/research-balance-shift.md`, `sources/research-balance-leve
 
 ## Co znaczy „mapa CFD + model toru jako bramka”
 
-Zanim zamrozicie geometrię **podłogi**, warto policzyć opór i docisk nie tylko jadąc prosto, ale też przy kątach jak w zakręcie, i złożyć to na prosty model toru Endurance. Podłoga lubi tracić docisk w yaw — bez tej bramki można „wygrać prostą” i przegrać Endurance.
+Zanim zamrozicie geometrię **podłogi**, warto policzyć opór i docisk nie tylko jadąc prosto, ale też przy kątach jak w zakręcie (**yaw**), i złożyć to na prosty model toru Endurance.
+
+Podłoga lubi tracić docisk w yaw — bez tej bramki można „wygrać prostą” i przegrać Endurance.
 
 ---
 
 ## Plan walidacji (Wasze słowa)
 
-1. CFD  
-2. Symulacja (sim)  
-3. Tor — nitki, ewentualnie flow-vis  
+1. CFD
+2. Symulacja (sim)
+3. Tor — nitki, ewentualnie flow-vis
 
 ---
 
@@ -90,14 +95,12 @@ To nie jest CFD. Chodzi o wydrukowany model bolidu w skali 1:10 przed formami ko
 
 Szczegóły z cytatami: `sources/fs-rules-2026-t8.md`.
 
-- Boxy urządzeń aero według T 8.2 — twarde ograniczenia.  
-- DRS: w T8 nie zakazany wprost, ale u nas **OUT** decyzją zespołu.  
-- Wentylatory: w regulaminie limit mocy, u nas i tak **OUT**.  
+- Boxy urządzeń aero według T 8.2 — twarde ograniczenia.
+- DRS: w T8 nie zakazany wprost, ale u nas **OUT** decyzją zespołu.
+- Wentylatory: w regulaminie limit mocy, u nas i tak **OUT**.
 - Skrzynka 800×500 mm u CFD#1 to domena numeryczna skrzydła, nie box z regulaminu.
 
 ---
-
-
 
 ## Kotwice z researchu top EU FS EV (literatura publiczna)
 
@@ -113,9 +116,8 @@ Szczegóły z cytatami: `sources/fs-rules-2026-t8.md`.
 ## Otwarte / potrzebne od zespołu
 
 1. ~~Aref~~ — zamknięte: half ≈ 0,50 m² (pełny ≈ 1,0 m²).
-2. Ostateczna decyzja o wąsach po doborze profilu.  
+2. Ostateczna decyzja o wąsach po doborze profilu.
 3. Zdjęcie / mapa aero do funkcji celu (Mikołaj: „zaraz podeślę”).
-
 
 ## Aref
 

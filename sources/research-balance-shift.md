@@ -1,8 +1,11 @@
 # Research: cofanie balansu przy |Cz| ≥ 3,682 i Cx ≈ 1,23
 
-**Status:** notatka robocza do repo (Spec 2026-09-01)  
-**Kotwica:** `RW_iter017` — Cx **1,229** / Cz **−3,682** / Cm **−0,429** @ **15 m/s**  
-**Cel:** max docisk, spokojny opór, balans jak najbliżej **50/50** (pasmo 48–52% przód)  
+**Status:** notatka robocza do repo (Spec 2026-09-01)
+
+**Kotwica:** `RW_iter017` — Cx **1,229** / Cz **−3,682** / Cm **−0,429** @ **15 m/s**
+
+**Cel:** max docisk, spokojny opór, balans jak najbliżej **50/50** (pasmo 48–52% przód)
+
 **Zasada:** nie dokręcać samego przedniego skrzydła na ślepo. Główne dźwignie: **tylnie skrzydło + podłoga**. Wąsy = TBD. Ruchomy DRS = OUT; pasywny osobno.
 
 Metryka porównawcza (CFD#1): moment przy **x = 0,765 m**, Lref **1,53 m**, half-car — tak samo w Fluent i później w OpenFOAM.
@@ -39,12 +42,14 @@ Dla RWiter017 przy **ujemnym** Cz (jak w sheetcie RW):
 **Źródło:** Staniszewski 2023 (izolowane RW 2D + weryfikacja 3D na pojeździe).
 
 Co wiadomo z tekstu:
-- Przy 15 m/s, 3 elementy: obniżanie kąta main i overlap do ok. **−30 mm** podnosi \|Fz\| 2D z ~398 N do ~**560–565 N**; overlap −40 mm już pogarsza.
+
+- Przy 15 m/s, 3 elementy: obniżanie kąta main i overlap do ok. **−30 mm** podnosi |Fz| 2D z ~398 N do ~**560–565 N**; overlap −40 mm już pogarsza.
 - Na **całym pojeździe** Cx/Cz prawie stoją w miejscu (~0,72 / −2,03 na *ich* pakiecie) — autor ostrzega przed niepewnością CFD i **sprzężeniem** RW z body / elementem boczno-przypodłogowym.
 - Wniosek do nas: RW to właściwe miejsce na **więcej docisku z tyłu**, ale iteracje muszą iść **na pakiecie**, nie tylko na kaskadzie 2D.
 
 **Hipotezy do sprawdzenia na RWiter017 (kolejność):**
-1. Delikatnie zwiększyć udział tylnych elementów / overlap w stronę optimum Staniszewskiego — pilnować Cx ≲ 1,23 i \|Cz\| ≥ 3,682.
+
+1. Delikatnie zwiększyć udział tylnych elementów / overlap w stronę optimum Staniszewskiego — pilnować Cx ≲ 1,23 i |Cz| ≥ 3,682.
 2. Nie przenosić ślepo optimum 2D na auto (lekcja coupling z 2023).
 3. Każda iteracja: Cx, Cz, Cm, **balans %** przy x=0,765 m.
 
@@ -57,10 +62,12 @@ Pewność literaturowa co do kierunku „więcej RW → więcej tyłu”: **śre
 **Źródła:** Staniszewski 2024 (mapy Cx/Cz vs kąt skrętu + proxy energii); Nagłowski 2024 (udział Fz_ut w pakiecie).
 
 Co wiadomo:
+
 - Staniszewski 2024: pełny pakiet z UT vs samo FW&RW → ok. **−2,7%** średniej siły hamującej (proxy energii) mimo **+~10 kg**; podłoga mocno reaguje na kąt skrętu.
 - Nagłowski: w baseline Fz_ut rzędu **−200 N** przy Fz_all ≈ −561 N — UT to duży kawałek docisku, często „tylny”.
 
 **Hipotezy:**
+
 1. Szukać przyrostu docisku **podłogi / dyfuzora z tyłu** (nie dokładać nosa).
 2. Gate przed zamrożeniem geometrii UT: mapa Cx/Cz vs δ + model toru (jak w założeniach Spec) — bo sam Cx@δ=0 kłamie przy UT.
 3. Pilnować masy (+kg za energię tylko jeśli proxy to zwraca).
@@ -86,7 +93,7 @@ Pewność kierunku „UT → dźwignia balansu / energii”: **wysoka** w litera
 **Źródła:** Jackson 2018; własne `RW_iter019` / `020` (pasywne DRS na bazie 017).
 
 - Jackson: zamknięte → dużo DF i drag; otwarte → CD spada mocno, DF też.
-- Wasze 019/020: Cx spada do **~0,83**, |Cz| do **~3,01** — czyli **mniej** docisku niż kotwica 3,68. Przy celu \|Cz\| ≥ 3,682 DRS open **nie** jest narzędziem do trzymania peak DF; to narzędzie prostych / oporu, jeśli regulamin pozwoli.
+- Wasze 019/020: Cx spada do **~0,83**, |Cz| do **~3,01** — czyli **mniej** docisku niż kotwica 3,68. Przy celu |Cz| ≥ 3,682 DRS open **nie** jest narzędziem do trzymania peak DF; to narzędzie prostych / oporu, jeśli regulamin pozwoli.
 
 DRS nie rozwiązuje problemu „za dużo z przodu przy high-DF”. Najpierw regulamin, potem osobna gałąź.
 
@@ -130,7 +137,7 @@ OpenFOAM (CFD#1) wchodzi, gdy będzie CAD 017 — te same BC i moment, model doc
 
 ## 7. Shortlista hipotez pod ~12 pp (do zatwierdzenia Spec)
 
-Cel iteracji: **zmniejszyć udział przodu o rząd ~12 pp** przy \|Cz\| ≥ 3,682 i Cx ≲ 1,23. Bez dokręcania samego FW.
+Cel iteracji: **zmniejszyć udział przodu o rząd ~12 pp** przy |Cz| ≥ 3,682 i Cx ≲ 1,23. Bez dokręcania samego FW.
 
 | # | Hipoteza | Dźwignia | Co mierzyć | Ryzyko / limit | Źródło kierunku |
 |---|----------|----------|------------|----------------|-----------------|

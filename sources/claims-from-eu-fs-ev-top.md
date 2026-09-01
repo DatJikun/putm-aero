@@ -1,6 +1,7 @@
 # Claims do założeń — z researchu top EU FS EV
 
-**Źródło notatki:** [research-eu-fs-ev-top-teams.md](research-eu-fs-ev-top-teams.md) (Aero Koordynator, 2026-09-01).  
+**Źródło notatki:** [research-eu-fs-ev-top-teams.md](research-eu-fs-ev-top-teams.md) (Aero Koordynator, 2026-09-01).
+
 Tu tylko to, co da się przełożyć na założenia Spec — bez marketingu. Liczby wyłącznie cytowane.
 
 ## Claims (claim | evidence | confidence)
@@ -26,5 +27,6 @@ Tu tylko to, co da się przełożyć na założenia Spec — bez marketingu. Lic
 
 ## Tooling (z tej notatki — fragmentarycznie)
 
-Publicznie widać głównie CFD: STAR-CCM+, OpenFOAM/SimScale, dużo iteracji HPC.  
+Publicznie widać głównie CFD: STAR-CCM+, OpenFOAM/SimScale, dużo iteracji HPC.
+
 Przegląd logów CFD / CAD→CFD / gates / Excel vs luki PUT: **[research-aero-dev-tooling.md](research-aero-dev-tooling.md)** (2026-09-01). Publiczne Monday/Jira/Notion top EU: nadal **not found**.

@@ -1,12 +1,17 @@
 # Research: ogólne rady aero pod cele Spec (PUT Motorsport / putm-aero)
 
 **Status:** notatka robocza do Spec (2026-09-01)  
-**Język:** PL  
-**Cel tej notatki:** zebrać **ogólne** rady aero (nie plan CAD/CFD) pod **nasze** targety i mapować je na hipotezy **H1–H4**.  
-**Kotwica liczbowa:** `RW_iter017` — Cx **1,229** / Cz **−3,682** / Cm **−0,429** @ kontekst **15 m/s** → balans ≈ **61,6%** przód (`1/2 + Cm/Cz`).  
-**Hard targety:** \|Cz\| ≥ **3,682**, Cx ≲ **1,23**, balans **48–52%** przód (≈ **−12 pp** od 61,6%).  
-**Zakres zamrożony Spec:** DRS ruchomy **OUT** (pasywne klapy — osobna gałąź oporu); fan spod podłogi **OUT**; wąsy **TBD**; priorytet **Endurance + Autocross**; rozważyć RW **4-elementowe**.  
-**Aref:** nie inventować — porównywać Fluent↔OpenFOAM dopiero po Reference Values z Fluenta.
+**Język:** PL
+
+**Cel tej notatki:** zebrać **ogólne** rady aero (nie plan CAD/CFD) pod **nasze** targety i mapować je na hipotezy **H1–H4**.
+
+**Kotwica liczbowa:** `RW_iter017` — Cx **1,229** / Cz **−3,682** / Cm **−0,429** @ kontekst **15 m/s** → balans ≈ **61,6%** przód (`1/2 + Cm/Cz`).
+
+**Hard targety:** |Cz| ≥ **3,682**, Cx ≲ **1,23**, balans **48–52%** przód (≈ **−12 pp** od 61,6%).
+
+**Zakres zamrożony Spec:** DRS ruchomy **OUT** (pasywne klapy — osobna gałąź oporu); fan spod podłogi **OUT**; wąsy **TBD**; priorytet **Endurance + Autocross**; rozważyć RW **4-elementowe**.
+
+**Aref** (powierzchnia odniesienia): nie inventować — porównywać Fluent↔OpenFOAM dopiero po Reference Values z Fluenta.
 
 Powiązane: [research-balance-shift.md](research-balance-shift.md), [research-fs-teams-practice.md](research-fs-teams-practice.md) (jeśli w repo), [TARGETS.md](../TARGETS.md), [fs-rules-2026-t8.md](fs-rules-2026-t8.md).
 
@@ -32,10 +37,10 @@ Powiązane: [research-balance-shift.md](research-balance-shift.md), [research-fs
 
 W źródłach lokalnych RW jest **3-elementowe**:
 
-- **Staniszewski 2023:** izolowane 2D — obniżanie kąta main względem baseline **7,5°** podnosi \|Fz\| (baseline Fz ≈ **−398 N** → przy −6,5° ≈ **−502 N**); overlap ≈ **−30 mm** daje szczyt ≈ **−565 N**; **−40 mm** już pogarsza. Gap **+5/+10 mm** utrzymuje wysoki DF przy niskim Fx. Na **całym pojeździe** Cx/Cz prawie stoją (**~0,72 / −2,03**) — autor ostrzega przed **couplingiem** RW↔body / element boczno-przypodłogowy i niepewnością CFD.
-- **Jackson 2018:** 3 el., E423, gap/overlap wg McBeath (**1–4%c** / **1–6%c**); AOA overall **22,81°** (flaps **28°/60°**) przed stall ~**25°**. Na pojeździe DRS closed: CL_DF **1,15**, CD **1,21**; DRS open: CL **0,26**, CD **0,79** (−**35%** siły oporu). U nas DRS ruchomy **OUT** — liczby open służą tylko jako ostrzeżenie: low-drag setup **zjada** peak \|Cz\|.
+- **Staniszewski 2023:** izolowane 2D — obniżanie kąta main względem baseline **7,5°** podnosi |Fz| (baseline Fz ≈ **−398 N** → przy −6,5° ≈ **−502 N**); overlap ≈ **−30 mm** daje szczyt ≈ **−565 N**; **−40 mm** już pogarsza. Gap **+5/+10 mm** utrzymuje wysoki DF przy niskim Fx. Na **całym pojeździe** Cx/Cz prawie stoją (**~0,72 / −2,03**) — autor ostrzega przed **couplingiem** RW↔body / element boczno-przypodłogowy i niepewnością CFD.
+- **Jackson 2018:** 3 el., E423, gap/overlap wg McBeath (**1–4%c** / **1–6%c**); AOA overall **22,81°** (flaps **28°/60°**) przed stall ~**25°**. Na pojeździe DRS closed: CL_DF **1,15**, CD **1,21**; DRS open: CL **0,26**, CD **0,79** (−**35%** siły oporu). U nas DRS ruchomy **OUT** — liczby open służą tylko jako ostrzeżenie: low-drag setup **zjada** peak |Cz|.
 
-**Wniosek H1:** więcej docisku z tyłu przez kąty / overlap / gap / (ew. 4. element) — **zawsze na pakiecie**, nie tylko 2D. Pilnować Cx ≲ 1,23 i \|Cz\| ≥ 3,682.
+**Wniosek H1:** więcej docisku z tyłu przez kąty / overlap / gap / (ew. 4. element) — **zawsze na pakiecie**, nie tylko 2D. Pilnować Cx ≲ 1,23 i |Cz| ≥ 3,682.
 
 ### 1.2 3 vs 4 elementy — co da się powiedzieć bez inventowania
 
@@ -76,9 +81,11 @@ Z **Nagłowski 2024** (inny model niż 017 — **kierunki**, nie targety):
 
 Balans baseline **60,3%** przód → z wąsami best **57,3%** (kilka pp). UT to duży, często „tylny” kawałek Fz.
 
-**Staniszewski 2024:** pełny pakiet (FW+RW+**UT&SW**) ma **wyższe \|Cz\| dla każdego** δśrd vs FW&RW; Cx(δ) przecina się (~niższy Cx pełnego pakietu **0–10°**, wyższy **10–20°**). Po modelu toru: średnia siła hamująca **F2/F1 = 0,973** → **−2,7%** mimo **+~10 kg** masy UT — proxy energii Endurance (**high** jako F_ham; **med** jako Wh).
+**Staniszewski 2024:** pełny pakiet (FW+RW+**UT&SW**) ma **wyższe |Cz| dla każdego** δśrd vs FW&RW; Cx(δ) przecina się (~niższy Cx pełnego pakietu **0–10°**, wyższy **10–20°**). Po modelu toru: średnia siła hamująca **F2/F1 = 0,973** → **−2,7%** mimo **+~10 kg** masy UT — proxy energii Endurance (**high** jako F_ham; **med** jako Wh).
 
 ### 2.2 Yaw / steer / ride height — ostrzeżenia praktyczne
+
+Yaw = kąt „bokiem do napływu”, jak w zakręcie. Podłoga na to mocno reaguje.
 
 | Claim | Evidence | Confidence |
 |-------|----------|------------|
@@ -99,10 +106,10 @@ Balans baseline **60,3%** przód → z wąsami best **57,3%** (kilka pp). UT to 
 |-------|----------|------------|
 | Dokręcanie samego FW pcha balans na przód i utrudnia 50/50 | research-balance-shift; fizyka pakietu; Nagłowski: FW ~39% Fz | **high** |
 | FW unload (kąt / elementy w dół) — tylko jeśli H1+H2 nie domykają ~12 pp | shortlista H3 w research-balance-shift | **high** jako kolejność Spec |
-| Box FW: wysokość &lt; **500 mm** przed HR; outboard przed osią &lt; **250 mm**; envelope przy każdym setupie zawieszenia (T 8.2.1–4) | fs-rules-2026-t8 | **high** |
+| Box FW: wysokość < **500 mm** przed HR; outboard przed osią < **250 mm**; envelope przy każdym setupie zawieszenia (T 8.2.1–4) | fs-rules-2026-t8 | **high** |
 | Łatwo stracić \|Cz\| poniżej 3,682 przy odciążeniu przodu — mierzyć ΔCz równolegle z Δbalans | guardrail TARGETS | **high** (ryzyko) |
 
-**Rada Spec (H3):** trzymać FW jako **stabilizator** Autocross (mniej yaw-sensitive niż UT — Staniszewski 2024), nie jako generator „brakujących Newtonów”. Odciążać dopiero z tabelą: ile pp balansu za ile \|Cz\|.
+**Rada Spec (H3):** trzymać FW jako **stabilizator** Autocross (mniej yaw-sensitive niż UT — Staniszewski 2024), nie jako generator „brakujących Newtonów”. Odciążać dopiero z tabelą: ile pp balansu za ile |Cz|.
 
 ---
 
@@ -133,12 +140,12 @@ Mechanizmy: blisko FW — wąs **kradnie** powietrze spod FW → cofa balans; na
 ### 5.1 DRS ruchomy — OUT
 
 - Jackson: open = −**35%** drag, ale DF spada mocno (CL 1,15→0,26).
-- Własne `RW_iter019/020` (z research-balance-shift): Cx ↓ do **~0,83**, \|Cz\| ↓ do **~3,01** — **poniżej** kotwicy 3,682.
+- Własne `RW_iter019/020` (z research-balance-shift): Cx ↓ do **~0,83**, |Cz| ↓ do **~3,01** — **poniżej** kotwicy 3,682.
 - **Wniosek:** DRS (nawet pasywne otwarcie) to narzędzie **prostych / oporu**, nie trzymania peak-DF ani domykania 12 pp balansu high-DF. Ruchomy = OUT; pasywny = osobna gałąź, nie ścieżka Spec peak.
 
 ### 5.2 Fan spod podłogi — OUT
 
-- Michalecki: na profilowanej podłodze PM08 wentylator **psuje** \|Cz\| (~**30%+** gorzej vs baza Cz **−2,036**); żadna iteracja nie pobiła bazy.
+- Michalecki: na profilowanej podłodze PM08 wentylator **psuje** |Cz| (~**30%+** gorzej vs baza Cz **−2,036**); żadna iteracja nie pobiła bazy.
 - Legalnie T 11.11.1 ≤ **500 W** — ale decyzja osiągów = OUT (nie redesign pod ssanie).
 
 ---
@@ -147,8 +154,8 @@ Mechanizmy: blisko FW — wąs **kradnie** powietrze spod FW → cofa balans; na
 
 | Limit | Treść | Impact na targety |
 |-------|-------|-------------------|
-| T 8.2.1 | RW za HR: wysokość &lt; **1,1 m**; FW &lt; **500 mm**; outboard przed osią &lt; **250 mm** | Max chord/span RW ograniczone boxem — 4-el. musi zmieścić się w **250 mm** za oponami (T 8.2.3) |
-| T 8.2.2 | RW (&gt;500 mm): nie outboard od most inboard **tylnej** opony | Wąski box szerokości — endplate/4-el. |
+| T 8.2.1 | RW za HR: wysokość < **1,1 m**; FW < **500 mm**; outboard przed osią < **250 mm** | Max chord/span RW ograniczone boxem — 4-el. musi zmieścić się w **250 mm** za oponami (T 8.2.3) |
+| T 8.2.2 | RW (>500 mm): nie outboard od most inboard **tylnej** opony | Wąski box szerokości — endplate/4-el. |
 | T 8.2.4 | Envelope przy **any** suspension setup, z kierowcą i bez | Nie projektować „idealnego” RH tylko w CAD static |
 | T 8.3.1–2 | **200 N** / ≥**225 cm²** → ugięcie ≤**10 mm**; **50 N** dowolny punkt → ≤**25 mm** | 4-el. + duże endplate = więcej powierzchni do ugięcia (Quintanas: tip endplate flex) |
 | T 2.2.1 | GC ≥ **30 mm** static | Dyfuzor agresywny vs kontakt / T 2.2.2 skirts |
@@ -164,7 +171,7 @@ Mechanizmy: blisko FW — wąs **kradnie** powietrze spod FW → cofa balans; na
 | **Endurance** | UT może **obniżyć** proxy energii (−**2,7%** F_ham mimo +~**10 kg**); trzeba modelu toru (udziały r). Bez DRS open — Cx ≲ 1,23 jest twardym limitem energii/prostych | Przenoszenie −2,7% na inny tor; dokładać masę aero bez proxy energii; fan |
 | **Accel / długie proste** (niższy priorytet) | Jackson DRS −35% drag **niedostępne** jako aktywna ścieżka; pasywny low-AOA RW = świadomy trade \|Cz\| | Pogarszanie Cx 017 bez zwrotu w lap/energii |
 
-**Praktyczna reguła Spec:** najpierw **tył (H1)** żeby zbliżyć CoP do 50/50 przy trzymanym \|Cz\|; potem **UT (H2)** pod DF+energię z gate yaw; FW (H3) tylko do domknięcia pp; wąsy (H4) jako polish.
+**Praktyczna reguła Spec:** najpierw **tył (H1)** żeby zbliżyć CoP do 50/50 przy trzymanym |Cz|; potem **UT (H2)** pod DF+energię z gate yaw; FW (H3) tylko do domknięcia pp; wąsy (H4) jako polish.
 
 ---
 
@@ -176,8 +183,8 @@ Mechanizmy: blisko FW — wąs **kradnie** powietrze spod FW → cofa balans; na
 4. **Sztywność T8.3:** zwłaszcza duże endplate i 4. element — ugięcie tipów zmienia skuteczny AOA w zakręcie.
 5. **Nie mieszać modeli:** Nagłowski Cz≈−4,07 / Staniszewski pojazd Cz≈−2,03 / Jackson CL≈1,15 / **017 Cz=−3,682** — różne Aref/V/pakiety. Kierunki OK; liczby nie uśredniać.
 6. **Nie inventować Aref** — Fluent Reference Values przed porównaniem OF.
-7. **Wąsy:** Fz_whiskers &gt; 0 — success metric = Δbalans / ΔRW / ΔUT, nie „siła na wąsie”.
-8. **DRS/fan:** nie wracają jako „łatwy Cx” przy celu \|Cz\| ≥ 3,682.
+7. **Wąsy:** Fz_whiskers > 0 — success metric = Δbalans / ΔRW / ΔUT, nie „siła na wąsie”.
+8. **DRS/fan:** nie wracają jako „łatwy Cx” przy celu |Cz| ≥ 3,682.
 
 ---
 
@@ -208,8 +215,8 @@ Mechanizmy: blisko FW — wąs **kradnie** powietrze spod FW → cofa balans; na
 2. **Każda iteracja raportuje:** Cx, Cz, Cm, **balans %** przy x=0,765 m — nie tylko „ładniejsze Cp”.
 3. **4-el. RW:** tak jako kandydat setupu/peak tyłu; zamrozić dopiero po porównaniu z 3-el. na **tym samym** pakiecie 017 (coupling!).
 4. **UT:** nie freeze bez Cx/Cz(δ); celuj w kąt ekspansji raczej **robust** (~13–15°) niż max theoretical; GC ≥ 30 mm z marginesem ugięć.
-5. **FW:** nie dokręcać; odciążać świadomie z tabelą Δpp vs Δ\|Cz\|.
-6. **DRS/fan:** zostają OUT względem peak-DF; pasywne klapy tylko jeśli kiedyś osobno liczycie energię prostych bez łamania \|Cz\|≥3,682.
+5. **FW:** nie dokręcać; odciążać świadomie z tabelą Δpp vs Δ|Cz|.
+6. **DRS/fan:** zostają OUT względem peak-DF; pasywne klapy tylko jeśli kiedyś osobno liczycie energię prostych bez łamania |Cz|≥3,682.
 7. **Walidacja:** CFD → symulacja toru → tor (nitki / flow-vis) — zgodnie z decyzją Spec; bez inventowanego Aref.
 
 ---

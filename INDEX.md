@@ -1,39 +1,52 @@
 # FS Aero — baza wiedzy (indeks)
 
-Stan na 2026-09-01. Tu trzymamy źródła i zamrożone ustalenia zespołu. Liczby tylko ze źródeł — bez zgadywania.
+Stan na **2026-09-01**. Tu trzymamy źródła i ustalenia, które zespół już zamroził. Liczby tylko ze źródeł — nic nie zgadujemy.
 
 ---
 
 ## Ustalenia zamrożone (zespół)
 
-**Punkt odniesienia (baseline):** `RW_iter017` = **aktualny bolid** po zawodach  
-- osoba: Michał Narożny, status Done, data 27.12.2025  
-- Cx = **1,229**, Cz = **−3,682**, Cm = **−0,429**, efektywność ≈ **2,996**  
-- źródło: [sources/team-rwiter017-baseline.md](sources/team-rwiter017-baseline.md), CSV `team/rw-iters-2025-2026.csv`  
-- wariant `RW_iter017.2` — tylko kontrola rozbieżności skryptu, nie zamienia kotwicy  
-- `Baseline002` = historyczny miks (FWiter011+RWiter017+UTiter002), **nie** kotwica
+### Punkt odniesienia (baseline)
 
-**Cel projektowy (lead):** jak największy docisk przy balansie około **50/50** (roboczo **48–52%** na przód).  
-Przy tym samym docisku nie pogarszać oporu względem baseline (orientacyjnie Cx ≲ **1,23**).  
-Prędkość odniesienia w pracach PUT i w setupie CFD: **15 m/s** (do potwierdzenia na karcie Spec).
+**`RW_iter017` = aktualny bolid po zawodach.**
 
-**Zakres elementów (na start):**
-- skrzydło tylne, przednie, podłoga i sekcje boczne — **wchodzą**
-- tylne skrzydło: rozważamy **4 elementy** (kandydat vs obecne 3)
-- wąsy S1223 — **jeszcze nie wiadomo** (dobór profilu pod miejsce na aucie)
-- wentylator spod podłogi — **nie**
+- Osoba: Michał Narożny · status Done · data **27.12.2025**
+- Cx = **1,229**, Cz = **−3,682**, Cm = **−0,429**, efektywność ≈ **2,996**
+- Źródło: [sources/team-rwiter017-baseline.md](sources/team-rwiter017-baseline.md), CSV `team/rw-iters-2025-2026.csv`
+- Wariant `RW_iter017.2` służy tylko do kontroli rozbieżności skryptu — **nie** zamienia kotwicy
+- `Baseline002` to historyczny miks (FWiter011 + RWiter017 + UTiter002) — **nie** jest kotwicą
+
+### Cel projektowy (lead)
+
+Chcemy **jak największy docisk** przy balansie około **50/50** (roboczo **48–52%** na przód).
+
+Przy tym samym docisku nie pogarszać oporu względem baseline (orientacyjnie Cx ≲ **1,23**).
+
+Prędkość odniesienia w pracach PUT i w setupie CFD: **15 m/s** (potwierdzone na karcie Spec).
+
+### Zakres elementów (na start)
+
+- Skrzydło tylne, przednie, podłoga i sekcje boczne — **wchodzą**
+- Tylne skrzydło: rozważamy **4 elementy** (kandydat vs obecne 3)
+- Wąsy S1223 — **jeszcze nie wiadomo** (dobór profilu pod konkretne miejsce na aucie)
+- Wentylator spod podłogi — **nie**
 - DRS ruchomy — **nie**; ewentualnie tylko **pasywny** (jak testy 019/020)
-- model turbulencji Fluent: **Realizable k-ε + EWT**; OF: to samo / wall functions y+>30 (16 GB)
+- Model turbulencji Fluent: **Realizable k-ε + EWT**; OpenFOAM: to samo / wall functions y+ > 30 (16 GB)
 
-**Priorytet eventów:** Endurance + Autocross. Cel: maksymalny docisk przy możliwie niskim **oporze**. Balans z ~61,6% przód w stronę ~50/50 (~12 pp).
+### Priorytet eventów
 
-**Potwierdzone:** wiersz `Baseline_1` z arkusza podłogi **nie jest** tym samym bolidem co `RW_iter017`. RWiter017 = aktualny bolid po zawodach. Liczb balansu ~69% z Baseline_1 nie używamy jako startu.
+**Endurance + Autocross.** Cel: maksymalny docisk przy możliwie niskim oporze. Balans z ~**61,6%** przód w stronę ~**50/50** (ok. **12 pp** cofnięcia).
 
-**Balans RWiter017:** ≈ **61,6% przód** (z Cm/Cz arkusza; Mikołaj: „jak w arkuszu”). Do ~50/50 ≈ **12 pp** — cofamy docisk (RW/UT). Postpro z OneDrive = JPG bez CSV sił → kotwica z arkusza zostaje.
+### Co już potwierdziliśmy
 
-**Aref:** half-car ≈ **0,50 m²** (zakres simów 0,49–0,51); pełny bolid ≈ **1,0 m²**.
+Wiersz `Baseline_1` z arkusza podłogi **nie jest** tym samym bolidem co `RW_iter017`. RWiter017 = aktualny bolid po zawodach. Liczb balansu ~69% z Baseline_1 **nie używamy** jako startu.
 
-**Otwarte:**
+**Balans RWiter017:** ≈ **61,6%** przód (z Cm/Cz arkusza; Mikołaj: „jak w arkuszu”). Do ~50/50 brakuje ok. **12 pp** — cofamy docisk (RW / UT). Postpro z OneDrive = JPG bez CSV sił → kotwica z arkusza zostaje.
+
+**Aref** (powierzchnia odniesienia): half-car ≈ **0,50 m²** (zakres simów 0,49–0,51); pełny bolid ≈ **1,0 m²**.
+
+### Otwarte
+
 - masa bolidu, budżet energii
 - wąsy — dobór profilu
 
@@ -67,14 +80,14 @@ Indeksy cząstkowe: [index-batch-a.md](index-batch-a.md), [index-batch-b.md](ind
 
 ## Research (robocze)
 
-
 | Plik | Opis |
 |------|------|
-| [sources/research-balance-shift.md](sources/research-balance-shift.md) | Cofanie balansu ~61,6%→50/50; shortlista H1–H5 |
+| [sources/research-balance-shift.md](sources/research-balance-shift.md) | Cofanie balansu ~61,6% → 50/50; shortlista H1–H5 |
+| [sources/research-balance-levers-h1-h5.md](sources/research-balance-levers-h1-h5.md) | Szczegóły dźwigni H1–H5 (mechanizm, ryzyka, kill criteria) |
 | [sources/research-aero-for-targets.md](sources/research-aero-for-targets.md) | Rady aero pod max DF + niski opór + Endurance/Autocross (H1–H4) |
 | [sources/research-fs-teams-practice.md](sources/research-fs-teams-practice.md) | Praktyka innych teamów FS (FW/RW/UT, Cl/Cd/balans, Endurance vs Autocross) |
 
-## Regulamin
+## Regulamin i research zewnętrzny
 
 | Plik | Opis |
 |------|------|

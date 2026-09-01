@@ -5,6 +5,8 @@
 **Zasada:** nie inventujemy liczb zespołu — brakujące dane = **TBD**  
 **Pewność:** **H** = bezpośrednio z tabel/tekstu źródła · **M** = interpretacja autora / proxy · **L** = przeniesienie między bolidami / torami
 
+> Uwaga: ten DRAFT powstał wcześniej niż zamrożenia w INDEX/TARGETS (baseline `RW_iter017`, balans 48–52%, DRS OUT). Przy konflikcie wygrywa Spec w `TARGETS.md`.
+
 ---
 
 ## 1. Cel pakietu (co optymalizujemy: eventy / energia / lap)
@@ -39,6 +41,8 @@ Propozycja celu nadrzędnego (do decyzji):
 
 **Uwaga coupling:** Staniszewski 2023 — przeniesienie optimum 2D RW na 3D bez kompensacji względem body **psuje** zysk; pakiet „poświęca” wydajność RW na uszczelnienie przepływu pod elementem boczno-przypodłogowym (**H**/M). Elementy projektować **jako pakiet**, nie izolowanie.
 
+> Aktualizacja Spec (2026-09-01): ruchomy DRS = **OUT**, wąsy = **TBD**, rozważamy RW **4-el.** — patrz `TARGETS.md`. Wiersze powyżej zostawiamy jako historyczny szkic ze źródeł.
+
 ---
 
 ## 3. Targety mierzalne (propozycje z widełkami + źródło)
@@ -59,17 +63,19 @@ Warunek odniesienia w pracach PUT: **V = 15 m/s**, steady RANS k-ε / Realizable
 
 **Nie używać** tabel 2D izolowanego RW (Staniszewski: Fz≈−398…−565 N) jako targetów całego auta (**H** ostrzeżenie autora).
 
+> Aktualizacja Spec: kotwica to `RW_iter017` (Cx **1,229** / Cz **−3,682**), balans **48–52%** przód, Aref half ≈ **0,50 m²**. Widełki literaturowa powyżej = kontekst, nie hard target.
+
 ---
 
 ## 4. Trade-offy (DF vs drag vs masa vs energia vs balans)
 
-1. **DF ↑ ↔ drag ↑** — Jackson: CL_DF 0,21→1,15 przy CD 0,71→1,21; DRS open odzyskuje CD≈0,79 kosztem DF (**H**).  
-2. **Wąsy: DF auta ↑ ↔ efektywność L/D ↓ ↔ balans do tyłu** — Nagłowski: +~4 N Fz_all, Cx↑, Cz/Cx gorsze (−2,802→−2,770), balans 60,3%→57,3%; wąsy same nośne (+5…+13 N) (**H**).  
-3. **UT: masa ↑ (~+10 kg) ↔ energia ↓ (proxy)** — Staniszewski 2024: mimo +~10 kg pełny pakiet ma −2,7% F_ham na *tym* torze (**H**/M); na innym torze przeliczyć udziały r (**H** ograniczenie).  
-4. **UT peak @δ=0 ↔ utrata w zakręcie** — UT&SW silnie wrażliwe na napływ; FW/RW „płaskie” vs δ (**H**). Projekt pod peak prostej może przegrywać Endurance.  
-5. **RW 2D optimum ↔ 3D na body** — wydłużenie cięciwy wchodzi w disturbed flow; trzeba skrócić 1. element / hybrydę środka (**H**/M).  
-6. **Wysoki montaż RW ↔ disturbed flow za kierowcą/roll hoop** — Jackson: montować RW jak najwyżej (**M** rekomendacja).  
-7. **Fan na profilowanym UT ↔ zysk DF** — konflikt architektury; proste wstawienie psuje pakiet (~−30% \|Cz\|) (**H**).  
+1. **DF ↑ ↔ drag ↑** — Jackson: CL_DF 0,21→1,15 przy CD 0,71→1,21; DRS open odzyskuje CD≈0,79 kosztem DF (**H**).
+2. **Wąsy: DF auta ↑ ↔ efektywność L/D ↓ ↔ balans do tyłu** — Nagłowski: +~4 N Fz_all, Cx↑, Cz/Cx gorsze (−2,802→−2,770), balans 60,3%→57,3%; wąsy same nośne (+5…+13 N) (**H**).
+3. **UT: masa ↑ (~+10 kg) ↔ energia ↓ (proxy)** — Staniszewski 2024: mimo +~10 kg pełny pakiet ma −2,7% F_ham na *tym* torze (**H**/M); na innym torze przeliczyć udziały r (**H** ograniczenie).
+4. **UT peak @δ=0 ↔ utrata w zakręcie** — UT&SW silnie wrażliwe na napływ; FW/RW „płaskie” vs δ (**H**). Projekt pod peak prostej może przegrywać Endurance.
+5. **RW 2D optimum ↔ 3D na body** — wydłużenie cięciwy wchodzi w disturbed flow; trzeba skrócić 1. element / hybrydę środka (**H**/M).
+6. **Wysoki montaż RW ↔ disturbed flow za kierowcą/roll hoop** — Jackson: montować RW jak najwyżej (**M** rekomendacja).
+7. **Fan na profilowanym UT ↔ zysk DF** — konflikt architektury; proste wstawienie psuje pakiet (~−30% |Cz|) (**H**).
 8. **AOA blisko stall ↔ „ładne” liczby CFD** — Jackson stall ~25°, wybrane ~22,8°; nie pchać AOA do stall (**H**).
 
 ---
@@ -92,31 +98,33 @@ Warunek odniesienia w pracach PUT: **V = 15 m/s**, steady RANS k-ε / Realizable
 
 ## 6. Otwarte decyzje do Mikołaja
 
-1. **DRS: IN czy OUT?** Czy regulamin tegoroczny/zezwolenie FS pozwala na ruchome elementy RW? Jeśli tak — czy priorytet accel/Vmax uzasadnia aktuację vs stały high-DF?  
-2. **Fan: ostateczne OUT na ten sezon?** Potwierdzamy brak ścieżki „fan na obecnym profilowanym UT”, czy chcemy osobny research-track płaskiej podłogi (poza głównym pakietem)?  
-3. **Wąsy S1223: w baseline nowego pakietu czy opcjonalny add-on?** Akceptujemy lekki spadek L/D i cofnięcie balansu (~60→57% u Nagłowskiego) za +kilka N DF?  
-4. **Funkcja celu: wagi eventów** — jak ważymy Autocross / Endurance (energia) / Acceleration / Skidpad? Bez tego nie damy jednego targetu Cz/Cx.  
-5. **Baseline liczbowy zespołu (TBD krytyczne):** aktualne Cx, Cz, balans, masa, Fz@15 m/s, Crr, tor docelowy, CG — których wartości *nie ma* w tych źródłach dla *naszego* bolidu?  
-6. **Target balans aero %** vs rozkład masy / opony — czy trzymamy front-biased ~55–60% jak Nagłowski, czy inny?  
-7. **Czy mapa CFD vs δ + model toru jest gate’em przed zamrożeniem geometrii UT?** (rekomendacja Staniszewski 2024)  
-8. **RW: profil i liczba elementów** — kontynuacja 3-el. PUT, czy rozważamy E423/gap-overlap wg Jackson/McBeath? Nazwy profili RW w Staniszewski 2023 **nie podane**.  
-9. **Plan walidacji:** tylko CFD, czy CFD + FSAESim/tor / (opcjonalnie) WT?  
+1. **DRS: IN czy OUT?** Czy regulamin tegoroczny/zezwolenie FS pozwala na ruchome elementy RW? Jeśli tak — czy priorytet accel/Vmax uzasadnia aktuację vs stały high-DF?
+2. **Fan: ostateczne OUT na ten sezon?** Potwierdzamy brak ścieżki „fan na obecnym profilowanym UT”, czy chcemy osobny research-track płaskiej podłogi (poza głównym pakietem)?
+3. **Wąsy S1223: w baseline nowego pakietu czy opcjonalny add-on?** Akceptujemy lekki spadek L/D i cofnięcie balansu (~60→57% u Nagłowskiego) za +kilka N DF?
+4. **Funkcja celu: wagi eventów** — jak ważymy Autocross / Endurance (energia) / Acceleration / Skidpad? Bez tego nie damy jednego targetu Cz/Cx.
+5. **Baseline liczbowy zespołu (TBD krytyczne):** aktualne Cx, Cz, balans, masa, Fz@15 m/s, Crr, tor docelowy, CG — których wartości *nie ma* w tych źródłach dla *naszego* bolidu?
+6. **Target balans aero %** vs rozkład masy / opony — czy trzymamy front-biased ~55–60% jak Nagłowski, czy inny?
+7. **Czy mapa CFD vs δ + model toru jest gate’em przed zamrożeniem geometrii UT?** (rekomendacja Staniszewski 2024)
+8. **RW: profil i liczba elementów** — kontynuacja 3-el. PUT, czy rozważamy E423/gap-overlap wg Jackson/McBeath? Nazwy profili RW w Staniszewski 2023 **nie podane**.
+9. **Plan walidacji:** tylko CFD, czy CFD + FSAESim/tor / (opcjonalnie) WT?
 10. **RP 1:10 przed formami aero** — czy wstawiamy w harmonogram (Strojny)?
+
+> Część punktów zamknięta w Spec 2026-09-01 (DRS OUT, fan OUT, baseline RW_iter017, balans 48–52%). Lista zostaje jako ślad decyzji DRAFT.
 
 ---
 
 ## 7. Co NIE wynika z tych źródeł
 
-- **Absolutne targety Cx/Cz/Fz naszego nowego bolidu** — liczby Nagłowski vs Staniszewski dotyczą różnych modeli/pakietów; nie da się ich uśrednić w jeden „target FS”.  
-- **Zmierzona energia Wh/okrążenie** — tylko proxy F_ham (−2,7%); brak telemetrii baterii.  
-- **Lap time delta** z ΔFz rzędu kilku niutonów (wąsy) — Nagłowski ostrzega przed ekstrapolacją bez modelu dynamicznego.  
-- **Zysk 2D RW → lap** — Staniszewski: low confidence; 3D na aucie niemal bez zmian Cx/Cz.  
-- **Legalność / punktacja DRS i fan** w aktualnym regulaminie FS — Jackson/Michalecki wspominają kontekst, ale to nie binding rules check.  
-- **Moc, masa, reliability, bezpieczeństwo fan** — Michalecki: brak.  
-- **Optymalne kąty FW, liczba elementów FW, geometria dyfuzora szczegółowa** — nie rozwinięte poza obecnością komponentów.  
-- **Nazwy profili RW PUT** — Staniszewski 2023 nie podaje NACA/Selig dla RW.  
-- **Koszt / czas / wytrzymałość FDM** — Strojny bez liczb; zero danych aero.  
-- **Uniwersalność −2,7% energii** na inny tor — wymaga przeliczenia udziałów r.  
+- **Absolutne targety Cx/Cz/Fz naszego nowego bolidu** — liczby Nagłowski vs Staniszewski dotyczą różnych modeli/pakietów; nie da się ich uśrednić w jeden „target FS”.
+- **Zmierzona energia Wh/okrążenie** — tylko proxy F_ham (−2,7%); brak telemetrii baterii.
+- **Lap time delta** z ΔFz rzędu kilku niutonów (wąsy) — Nagłowski ostrzega przed ekstrapolacją bez modelu dynamicznego.
+- **Zysk 2D RW → lap** — Staniszewski: low confidence; 3D na aucie niemal bez zmian Cx/Cz.
+- **Legalność / punktacja DRS i fan** w aktualnym regulaminie FS — Jackson/Michalecki wspominają kontekst, ale to nie binding rules check.
+- **Moc, masa, reliability, bezpieczeństwo fan** — Michalecki: brak.
+- **Optymalne kąty FW, liczba elementów FW, geometria dyfuzora szczegółowa** — nie rozwinięte poza obecnością komponentów.
+- **Nazwy profili RW PUT** — Staniszewski 2023 nie podaje NACA/Selig dla RW.
+- **Koszt / czas / wytrzymałość FDM** — Strojny bez liczb; zero danych aero.
+- **Uniwersalność −2,7% energii** na inny tor — wymaga przeliczenia udziałów r.
 - **Porównanie bezpośrednie PM08 Cz≈−2 vs pakiet Nagłowski Cz≈−4** jako „postęp sezonu” — różne setupy CFD/geometrie; nie wnioskować rankingu.
 
 ---

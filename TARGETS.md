@@ -97,6 +97,12 @@ Urządzenia aero muszą mieścić się w boxach z regulaminu 2026. DRS w tekści
 
 ---
 
+## Co dopisał nocny research (bez zmiany liczb)
+
+- **3 elementy** tylnego skrzydła = domyślna ścieżka; **4 elementy** = jeden case porównawczy, nie gotowy target.
+- **Podłoga:** projekt pod prostą **i** zakręt (minimum jeden–dwa kąty), nie tylko peak na wprost.
+- Pełniejsze spięcie: `SPEC-FROM-OVERNIGHT.md`.
+
 ## Co jeszcze wiszą
 
 1. Ostateczna decyzja o wąsach (po doborze profilu).  

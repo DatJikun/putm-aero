@@ -6,11 +6,12 @@ Stan na 2026-09-01. Tu trzymamy źródła i zamrożone ustalenia zespołu. Liczb
 
 ## Ustalenia zamrożone (zespół)
 
-**Punkt odniesienia (baseline):** iteracja `RW_iter017` z arkusza RW  
+**Punkt odniesienia (baseline):** `RW_iter017` = **aktualny bolid** po zawodach  
 - osoba: Michał Narożny, status Done, data 27.12.2025  
 - Cx = **1,229**, Cz = **−3,682**, Cm = **−0,429**, efektywność ≈ **2,996**  
 - źródło: [sources/team-rwiter017-baseline.md](sources/team-rwiter017-baseline.md), CSV `team/rw-iters-2025-2026.csv`  
-- wariant `RW_iter017.2` (nowy skrypt Fluent) to tylko kontrola rozbieżności — **nie** zamienia baseline
+- wariant `RW_iter017.2` — tylko kontrola rozbieżności skryptu, nie zamienia kotwicy  
+- `Baseline002` = historyczny miks (FWiter011+RWiter017+UTiter002), **nie** kotwica
 
 **Cel projektowy (lead):** jak największy docisk przy balansie około **50/50** (roboczo **48–52%** na przód).  
 Przy tym samym docisku nie pogarszać oporu względem baseline (orientacyjnie Cx ≲ **1,23**).  
@@ -25,7 +26,7 @@ Prędkość odniesienia w pracach PUT i w setupie CFD: **15 m/s** (do potwierdze
 
 **Potwierdzone:** wiersz `Baseline_1` z arkusza podłogi **nie jest** tym samym bolidem co `RW_iter017`. RWiter017 = aktualny bolid po zawodach. Liczb balansu ~69% z Baseline_1 nie używamy jako startu.
 
-**Baseline002** (FWiter011+RWiter017+UTiter002) **≠ aktualny bolid** — tylko kontekst; balans w tym wierszu ≈ **69% przód** po korekcie znaku. Startowy balans samego RWiter017 = **TBD** (brak w arkuszu RW). Szczegóły: [sources/team-baseline002.md](sources/team-baseline002.md).
+**Balans:** dla kotwicy RWiter017 w sheetcie RW **nie ma** % przód. Odczyt ~69% z Baseline002 to tylko kontekst historycznego miksu (i lekcja o znaku Cz) — **nie** start karty targetów bez potwierdzenia. Cel nadal ~50/50.
 
 **Otwarte:**
 - masa bolidu, budżet energii

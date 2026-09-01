@@ -3,7 +3,7 @@
 **Źródło:** natywny Excel `team/putm-aero-sim-log.xlsx`, arkusz **Baseline**, wiersz **Baseline002** (formuły + wartości).  
 **Autor w sheetcie:** Mikołaj Wojnowski  
 **Opis:** „Baseline002, połączenie **FWiter011**, **RWiter017**, **UTiter002**”  
-**Status:** NIE aktualny bolid — historyczny miks FWiter011+RWiter017+UTiter002. Aktualny bolid = **RW_iter017** (decyzja 2026-09-01).
+**Status (2026-09-01, korekta Aero Pack):** **nie** jest kotwicą. To historyczny miks FWiter011+RWiter017+UTiter002. **Aktualny bolid / kotwica = RWiter017.** Baseline002 zostaje w KB tylko jako kontekst (m.in. lekcja o znaku balansu w Excelu).
 
 ## Workflow Fluent
 
@@ -48,6 +48,7 @@ Surowa komórka 0,318 zostaje w claims jako „wartość w sheetcie przy dodatni
 | claim | evidence | confidence |
 |-------|----------|------------|
 | Skład Baseline002 = FWiter011 + RWiter017 + UTiter002 | opis wiersza Baseline | **high** |
+| Baseline002 **nie** jest kotwicą aktualnego bolidu | decyzja Aero Pack / Mikołaj: kotwica = RWiter017 | **high** |
 | Cx ≈ **1,187**, \|Cz\| ≈ **3,678**, Cm ≈ **−0,670** | Excel Baseline002 | **high** |
 | Balans przód ≈ **69%** (aktualna interpretacja zespołu) | 1−0,318 przy dodatnim Cz / równoważnie wzór przy Cz\<0; decyzja Spec+Aero Pack+Mikołaj | **high** (intent + konsystencja znaku); **med** dopóki Excel nie dostanie poprawionej formuły |
 | Kierunek korekty: **cofać DF** (RW/UT) do ~50/50 | TARGETS.md + decyzja Spec | **high** |

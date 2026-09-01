@@ -1,5 +1,7 @@
 # Baseline zespołu — RW_iter017 (PUT Motorsport, CFD Fluent 2025/26)
 
+**Kotwica:** tak — **aktualny bolid po zawodach** (decyzja Mikołaj / Aero Pack 2026-09-01). `Baseline002` nie zastępuje tej kotwicy.
+
 **Źródło:** arkusz symulacji RW (CSV `team/rw-iters-2025-2026.csv`); kontekst balansu: log UT (`team/ut-iters-with-balance-2026.csv`).  
 **Status w sheetcie:** Done · **Data:** 27.12.2025 · **Autor:** Michał Narożny  
 **Model bazowy (wg CSV):** `RW_iter014/15`  

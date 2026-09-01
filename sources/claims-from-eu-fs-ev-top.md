@@ -27,4 +27,4 @@ Tu tylko to, co da się przełożyć na założenia Spec — bez marketingu. Lic
 ## Tooling (z tej notatki — fragmentarycznie)
 
 Publicznie widać głównie CFD: STAR-CCM+, OpenFOAM/SimScale, dużo iteracji HPC.  
-**Brak** wiarygodnego przeglądu Monday / Google Sheets / baz iteracji — osobny temat na później (jedna osoba).
+Przegląd logów CFD / CAD→CFD / gates / Excel vs luki PUT: **[research-aero-dev-tooling.md](research-aero-dev-tooling.md)** (2026-09-01). Publiczne Monday/Jira/Notion top EU: nadal **not found**.

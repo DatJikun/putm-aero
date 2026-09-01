@@ -79,6 +79,8 @@ Indeksy cząstkowe: [index-batch-a.md](index-batch-a.md), [index-batch-b.md](ind
 | [sources/research-balance-levers-h1-h5.md](sources/research-balance-levers-h1-h5.md) | Szczegóły dźwigni H1–H5 (mechanizm, ryzyka, kill criteria) |
 | [sources/research-fs-teams-practice.md](sources/research-fs-teams-practice.md) | Praktyka innych teamów FS (FW/RW/UT, Cl/Cd/balans, Endurance vs Autocross) |
 | [sources/research-amz-berlin-snails-aero.md](sources/research-amz-berlin-snails-aero.md) | AMZ / FaSTTUBe (Berlin) / Running Snail — narzędzia, walidacja, publiczne ΔDF; Cl/Cd absolutne not found |
+| [sources/research-eu-fs-ev-top-teams.md](sources/research-eu-fs-ev-top-teams.md) | Przegląd topowych teamów EU FS EV pod pakiet aero PUT (notatka Koordynatora). |
+| [sources/research-aero-dev-tooling.md](sources/research-aero-dev-tooling.md) | Jak teamy EU FS organizują rozwój aero: tooling, workflow i śledzenie iteracji CFD. |
 
 ## Regulamin
 
@@ -91,3 +93,5 @@ Indeksy cząstkowe: [index-batch-a.md](index-batch-a.md), [index-batch-b.md](ind
 | [sources/claims-from-eu-fs-ev-top.md](sources/claims-from-eu-fs-ev-top.md) | Claims do założeń z notatki EU EV |
 | [sources/research-aero-dev-tooling.md](sources/research-aero-dev-tooling.md) | Jak teamy organizują rozwój aero (Excel vs Monday itd.) |
 
+
+- [SPEC-MORNING.md](SPEC-MORNING.md) — one-pager Spec na rano

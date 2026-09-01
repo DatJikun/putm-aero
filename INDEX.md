@@ -36,13 +36,6 @@ Prędkość odniesienia w pracach PUT i w setupie CFD: **15 m/s** (do potwierdze
 
 ---
 
-## Regulamin
-
-| Plik | Co to jest |
-|------|------------|
-| [sources/rules-aero-boxes-loopholes.md](sources/rules-aero-boxes-loopholes.md) | FS Rules **2026 v1.1** — boxy T8, DRS/fans, loophole’y (tekst) |
-| [team/rules-current.pdf](team/rules-current.pdf) | PDF regulaminu |
-
 ## Literatura (prace dyplomowe / paper)
 
 | # | Plik | Krótko |
@@ -72,3 +65,11 @@ Indeksy cząstkowe: [index-batch-a.md](index-batch-a.md), [index-batch-b.md](ind
 | Plik | Opis |
 |------|------|
 | [sources/research-balance-shift.md](sources/research-balance-shift.md) | Cofanie balansu przy \|Cz\|≥3,682 i Cx≈1,23: RW+UT główne, wąsy kandydat, DRS na końcu; szacunek balansu 017 z Cm/Cz ≈61,7% (do potwierdzenia Fluent) |
+
+## Regulamin
+
+| Plik | Opis |
+|------|------|
+| [sources/fs-rules-2026-t8.md](sources/fs-rules-2026-t8.md) | Claims + cytaty T8 / T2.2 / T11.11 z FS Rules **2026 v1.1** |
+| [sources/rules-aero-boxes-loopholes.md](sources/rules-aero-boxes-loopholes.md) | Brief Aero Pack: boxy, DRS/fan, loophole’y i ryzyko Scrutineering |
+| [team/rules-current.pdf](team/rules-current.pdf) | PDF źródłowy |

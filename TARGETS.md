@@ -1,126 +1,108 @@
-# Karta targetów — pakiet aero FS
+# Cele pakietu aerodynamicznego
 
-**Status:** zaktualizowana po decyzjach Mikołaja  
-**Data:** 2026-09-01  
-**Prędkość odniesienia w CFD:** 15 m/s
+To jest nasza karta założeń. Pisana tak, żeby dało się ją przeczytać rano bez odszyfrowywania skrótów.
 
-Fluent (zespół): **half-car** (model połowy bolidu), długość odniesienia Lref = **1,53 m**, moment przy x = **0,765 m**.
-
-Dziś w solverze: k-ε realizable + Enhanced Wall Treatment.  
-Cel migracji / porównania: uzgodnić z OpenFOAM (u CFD#1 przy 16 GB: funkcje ściankowe, y+ > 30).
-
-**Aref** (powierzchnia odniesienia do współczynników): half-car ≈ **0,50 m²** (zakres simów 0,49–0,51); pełny bolid ≈ **1,0 m²**. Do porównania OpenFOAM ↔ Fluent bierzemy **0,50 m²** na half-car.
+**Stan:** ustalone z Mikołajem (wrzesień 2026)  
+**Aktualny bolid / punkt odniesienia:** iteracja **RWiter017**
 
 ---
 
-## Kotwica: aktualny bolid = RWiter017
+## W jednym akapicie
 
-| Wielkość | Wartość | Uwagi |
-|----------|---------|--------|
-| Cx | 1,229 | Done, 27.12.2025 |
-| Cz | −3,682 | ujemny = docisk |
-| Cm | −0,429 | |
-| Efektywność \|Cz\|/Cx | ok. 3,0 | |
-| Balans na przód | ok. **61,6%** | Z arkusza (Cm/Cz); do pół na pół brakuje ok. **12 punktów procentowych** |
-
-Wariant `RW_iter017.2` (Cx **1,210** / Cz **−3,628**) to tylko sprawdzenie skryptu — nie zamienia kotwicy.
-
-`Baseline002` (FWiter011 + RWiter017 + UTiter002) to **historyczny miks**, nie aktualny bolid.
+Chcemy **jak największy docisk** przy **możliwie małym oporze**, z balansem blisko **pół na pół**. Najważniejsze są **Endurance** i **Autocross**. Ruchomego DRS nie robimy (tylko układ nieruchomy). Wentylatora spod podłogi nie robimy. Najpierw pracujemy nad **tylnym skrzydłem**, potem nad **podłogą**.
 
 ---
 
-## Cel nadrzędny
+## Liczby z RWiter017 (nasz punkt startu)
 
-**Endurance i Autocross** są najważniejsze.
+Policzone u Was we Fluencie przy **15 m/s**, na połowie auta.
 
-Maksymalny docisk przy **możliwie najniższym oporze**, balans jak najbliżej pół na pół.
+| Co | Wartość | Po ludzku |
+|----|---------|-----------|
+| Opór (Cx) | **1,229** | Im niżej, tym lepiej — byle nie zabić docisku |
+| Docisk (Cz) | **−3,682** | Ujemne = docisk; im większa wartość bezwzględna, tym więcej docisku |
+| Moment (Cm) | **−0,429** | Do balansu / środka ciśnienia |
+| Stosunek docisk/opór | ok. **3,0** | \|Cz\| / Cx |
+| Balans na przód | ok. **61,6%** | Z arkusza (z Cm i Cz). Do pół na pół brakuje ok. **12 punktów** — trzeba **cofnąć** docisk (tył / podłoga), nie dokładać samego przodu |
 
-| Cel | Wartość robocza |
-|-----|-----------------|
-| Docisk | \|Cz\| co najmniej **3,682** (nie gorzej niż RWiter017) |
-| Opór | Cx możliwie niski; orientacyjnie nie gorzej niż ok. **1,23** przy tym docisku |
-| Balans | pasmo **48–52%** na przód; dziś ok. **61,6%** → trzeba **cofnąć docisk** o ok. 12 pp (tylnie skrzydło / podłoga), nie dokręcać samego przedniego na ślepo |
-| Prędkość CFD | **15 m/s** |
+Powierzchnia odniesienia (**Aref**): na połowie auta bierzemy **0,50 m²** (u Was bywa 0,49–0,51). Na cały bolid to ok. **1,0 m²**. Tę samą Aref musi mieć OpenFOAM, inaczej Cx/Cz się „nie zgadzają” mimo tych samych sił.
 
----
+Długość odniesienia: **1,53 m**. Moment liczymy względem **x = 0,765 m**.
 
-## Zakres elementów (decyzje)
+Wariant `RW_iter017.2` (lekko inne Cx/Cz) to tylko sprawdzenie skryptu — **nie** zamienia punktu startu.
 
-| Element | Status |
-|---------|--------|
-| Tylne skrzydło | **IN** — rozważamy **4 elementy** (hipoteza; w literaturze PUT często 3) |
-| Przednie skrzydło | **IN** |
-| Podłoga (+ sekcje boczne) | **IN** |
-| Wąsy (np. S1223) | **TBD** — profil dobierać pod konkretne miejsce na aucie, nie z góry |
-| Ruchomy DRS | **OUT** — tylko układ pasywny |
-| Wentylator spod podłogi | **OUT** |
+`Baseline002` to stary miks części, **nie** aktualny bolid.
 
 ---
 
-## Shortlista pracy nad balansem (zatwierdzona)
+## Cele liczbowe (czego pilnujemy)
 
-1. **H1** — tylne skrzydło (w tym wariant 4-elementowy)
-2. **H2** — podłoga (i bramka: Cx/Cz nie tylko na wprost, też pod kątem / model toru Endurance)
-3. **H3** — odciążenie przodu tylko gdy trzeba
-4. **H4** — wąsy później, jeśli TBD przejdzie w „tak”
-5. **H5** — DRS i fan poza grą przy peaku docisku
-
-Szczegóły: `sources/research-balance-shift.md`, `sources/research-balance-levers-h1-h5.md`.
+1. **Docisk** nie gorszy niż teraz: wartość bezwzględna Cz co najmniej **3,682**.
+2. **Opór** możliwie niski; orientacyjnie Cx około **1,23** lub lepiej przy tym docisku.
+3. **Balans** w stronę **48–52%** na przód (dziś ~62%).
+4. Wszystkie porównania CFD przy **15 m/s** i **Aref = 0,50 m²** na half-car.
 
 ---
 
-## Co znaczy „mapa CFD + model toru jako bramka”
+## Co jest w pakiecie, a czego nie
 
-Zanim zamrozicie geometrię **podłogi**, warto policzyć opór i docisk nie tylko jadąc prosto, ale też przy kątach jak w zakręcie (**yaw**), i złożyć to na prosty model toru Endurance.
-
-Podłoga lubi tracić docisk w yaw — bez tej bramki można „wygrać prostą” i przegrać Endurance.
-
----
-
-## Plan walidacji (Wasze słowa)
-
-1. CFD
-2. Symulacja (sim)
-3. Tor — nitki, ewentualnie flow-vis
+| Element | Decyzja |
+|---------|---------|
+| Tylne skrzydło | Robimy. Rozważamy wersję **na 4 elementy** (hipoteza — w publicznych rankingach nie ma na to twardych liczb). |
+| Przednie skrzydło | Robimy. |
+| Podłoga (i sekcje boczne) | Robimy. |
+| Wąsy przy skrzydłach | Jeszcze nie wiadomo — profil dopiero pod konkretne miejsce na aucie. |
+| Ruchomy DRS | **Nie.** Tylko pasywny układ. |
+| Wentylator spod podłogi | **Nie.** |
 
 ---
 
-## RP 1:10 (opcjonalnie, proces)
+## Kolejność pracy (zatwierdzona)
 
-To nie jest CFD. Chodzi o wydrukowany model bolidu w skali 1:10 przed formami kompozytowymi — łapie kolizje ramy, zawieszenia, packagingu. Pomysł ze Strojnego; nie obowiązek aero.
-
----
-
-## Regulamin (FS Rules 2026 v1.1, T8) — skrót
-
-Szczegóły z cytatami: `sources/fs-rules-2026-t8.md`.
-
-- Boxy urządzeń aero według T 8.2 — twarde ograniczenia.
-- DRS: w T8 nie zakazany wprost, ale u nas **OUT** decyzją zespołu.
-- Wentylatory: w regulaminie limit mocy, u nas i tak **OUT**.
-- Skrzynka 800×500 mm u CFD#1 to domena numeryczna skrzydła, nie box z regulaminu.
+1. **Tylne skrzydło** — więcej docisku z tyłu / lepszy pakiet (w tym wariant 4-elementowy).
+2. **Podłoga** — druga dźwignia; zanim zamrozicie kształt, policzcie też jazdę w zakręcie (nie tylko na wprost) i złóżcie to na prosty model toru Endurance. Podłoga lubi tracić docisk przy kącie.
+3. Odciążenie przodu — **tylko gdy trzeba**.
+4. Wąsy — później, jeśli w ogóle.
+5. DRS i wentylator — poza grą.
 
 ---
 
-## Kotwice z researchu top EU FS EV (literatura publiczna)
+## Jak sprawdzamy, że to działa
 
-Źródła: `sources/research-eu-fs-ev-top-teams.md`, `sources/claims-from-eu-fs-ev-top.md`.
+1. CFD (Fluent u Was; OpenFOAM u CFD#1 do porównania — jak będzie czysty model połowy ze SpaceClaim).  
+2. Symulacja toru / pojazdu.  
+3. Tor: nitki, ewentualnie wizualizacja przepływu.
 
-- Po zakazach powered ground effect wygrywa **pasywny high-DF** — spójne z naszym DRS/fan OUT.
-- **Podłoga** to główna dźwignia efektywności (obok RW) przy cofaniu balansu — wzmacnia H2.
-- Jedyny publiczny rząd CLA/CDA w tym researchu: **Esslingen ≈ 4,9 / 1,65** — sanity check, **nie** hard target (inne Aref/konwencje).
-- Multi-element RW jest standardem; **4 elementy bez publicznych liczb** — nasza hipoteza, nie fakt z rankingów.
-- Autocross ≠ sukces sezonu bez Endurance (ostrzeżenie Aachen) — bramka mapa w zakręcie + model toru zostaje.
-- Brak publicznych Cl/Cd/balansu od AMZ / Aachen / Delft itd. — nie wymyślamy ich liczb.
+Opcjonalnie przed formami: mały wydruk bolidu w skali 1:10 — łapie kolizje ramy i zawieszenia, **nie** liczby aero.
 
-## Otwarte / potrzebne od zespołu
+---
 
-1. ~~Aref~~ — zamknięte: half ≈ 0,50 m² (pełny ≈ 1,0 m²).
-2. Ostateczna decyzja o wąsach po doborze profilu.
-3. Zdjęcie / mapa aero do funkcji celu (Mikołaj: „zaraz podeślę”).
+## Co mówi literatura topowych EV w Europie (bez wymyślania)
 
-## Aref
+- Po zakazach „powered ground effect” wygrywa **pasywny** duży docisk — spójne z naszym „bez DRS i bez fana”.
+- **Podłoga** to ważna dźwignia efektywności (obok tylnego skrzydła).
+- Publiczny rząd wielkości z Esslingen: ok. **4,9 / 1,65** (CLA/CDA) — tylko orientacja, **nie** nasz target (inne definicje powierzchni).
+- Skrzydła wieloelementowe są standardem; **4 elementy** to nasza hipoteza, nie fakt z rankingów.
+- Sam Autocross bez Endurance nie wystarczy — stąd bramka „zakręt + model toru”.
 
-- Half-car: **≈ 0,50 m²** (zakres 0,49–0,51 m²)
-- Pełny bolid: **≈ 1,0 m²**
-- Źródło: Mikołaj, FS Aero 2026-09-01
+Szczegóły i cytaty: folder `sources/` w tym repo.
+
+---
+
+## Regulamin (skrót)
+
+Pełne cytaty: `sources/fs-rules-2026-t8.md`.
+
+Urządzenia aero muszą mieścić się w boxach z regulaminu 2026. DRS w tekście T8 nie jest wprost zakazany, ale **u nas i tak go nie robimy**. Wentylatory mają limit mocy w regulaminie — **u nas i tak ich nie ma w pakiecie**.
+
+---
+
+## Co jeszcze wiszą
+
+1. Ostateczna decyzja o wąsach (po doborze profilu).  
+2. Mapa / zdjęcie funkcji celu od Mikołaja (obiecał wrzucić).  
+3. Eksport ze SpaceClaim (szczelny, na pół) pod OpenFOAM — to blokuje CFD#1, nie tę kartę.
+
+---
+
+*Bez nowych liczb względem ustaleń z 1.09.2026 — tylko czytelniejszy zapis.*

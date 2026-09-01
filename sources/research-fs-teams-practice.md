@@ -1,179 +1,128 @@
-# Research: praktyka pakietów FS (literatura) — Cl/Cd, udział FW/RW/UT, Endurance vs Autocross
+# Research: jak inne zespoły FS ustawiają pakiet aero (FW / RW / UT)
 
-**Status:** notatka robocza do Spec (2026-09-01)  
+**Status:** notatka claims-based do Spec (2026-09-01)  
 **Język:** PL  
-**Zasada:** wyłącznie liczby i wnioski z ekstraktów w `sources/` (Jackson, Nagłowski, Staniszewski 2023/2024) + zamrożona kotwica zespołu. **Bez inventowanych widełek „typowe FS” spoza źródeł.**
+**Zasada:** każda liczba ma źródło (teza / artykuł / URL). Brak liczby = **TBD / not found** — bez inventowania.
 
-**Kotwica zespołu (nie literatura):** `RW_iter017` — Cx **1,229** / Cz **−3,682** / Cm **−0,429** → balans ≈ **61,6%** przód; cel ≈ **50/50** (48–52%); \|Cz\| ≥ **3,682**, Cx ≲ **1,23** @ **15 m/s**.
+**Kotwica zespołu (kontekst, nie „literatura zewnętrzna”):** `RW_iter017` — Cx **1,229** / Cz **−3,682** / Cm **−0,429** → balans ≈ **61,6%** przód; cel ≈ **50/50**; priorytet **Endurance + Autocross**; DRS ruchomy **OUT**; fan **OUT**; rozważyć RW **4-elementowe**.  
+Źródła wewnętrzne KB: [naglowski-2024-package.md](naglowski-2024-package.md), [staniszewski-2023-wing.md](staniszewski-2023-wing.md), [staniszewski-2024-energy.md](staniszewski-2024-energy.md), [jackson-2018-cfd-drs.md](jackson-2018-cfd-drs.md), [team-rwiter017-baseline.md](team-rwiter017-baseline.md), [TARGETS.md](../TARGETS.md).
 
-**Zakres zamrożony (kontekst Spec):** DRS **OUT** (tylko pasywne warianty w arkuszach — nie ścieżka peak-DF); fan **OUT**; wąsy **TBD**; priorytet eventów **Endurance + Autocross**; rozważyć RW **4-elementowe** (w źródłach: Jackson / Staniszewski = **3** elementy — brak liczb 4-el.); envelope **FS Rules 2026 v1.1 T8**.
-
-Powiązane: [research-balance-shift.md](research-balance-shift.md) (H1–H5), [fs-rules-2026-t8.md](fs-rules-2026-t8.md).
-
----
-
-## 1. Zakresy Cl/Cd (Cx/Cz) i balansu — tylko z literatury w repo
-
-> Konwencje: prace PUT używają **Cx, Cz** (Cz ujemny = docisk). Jackson używa **CL, CD** (przy RW: CL dodatni = downforce w tabeli high-DF). **Nie mieszać modeli** (różne A_ref, V, geometrie).
-
-### 1.1 Jackson 2018 (Huddersfield; CFD CFX; inlet **26,8 m/s**)
-
-| Konfiguracja | CL | CD | Uwagi |
-|---|---:|---:|---|
-| Baseline bez aero | **+0,21** (lift) | **0,71** | Abstract / Results |
-| Pojazd + RW, DRS closed | **1,15** (DF) | **1,21** | A = 1,18 m² |
-| Pojazd + RW, DRS open | **0,26** (DF) | **0,79** | A = 0,99 m²; −35% siły oporu vs closed |
-
-RW: **3** elementy, profil **E423**, overall AOA **22,81°** (flaps 28°/60°) przed stall ~25°. Balance z FW w pracy **pominięty**.
-
-**Pewność liczb:** **high** (tabele Jackson). **Przeniesienie na RWiter017:** **low** (inna V, A, pakiet; DRS u nas OUT).
-
-### 1.2 Nagłowski 2024 (PUT; Fluent; **15 m/s**)
-
-| iter | Cx | Cz | Balans przód [%] | Cz/Cx |
-|---|---:|---:|---:|---:|
-| iter000 (baseline) | **1,453** | **−4,071** | **60,3** | −2,802 |
-| iter111.4 (best wąsy) | **1,480** | **−4,100** | **57,3** | −2,770 |
-
-Siły baseline @15 m/s: Fz_all **−561 N**, Fx **≈200 N** (Tab. 5.3).
-
-**Pewność:** **high** na ich modelu. **Nie** jest hard targetem PUT 2026 (INDEX: kotwica literaturowa).
-
-### 1.3 Staniszewski 2023 (PUT; RW 3-el.; pojazd 3D @ **15 m/s**)
-
-| Kontekst | Cx | Cz | d=Cz/Cx |
-|---|---:|---:|---:|
-| 3D cały pojazd, iter000 | **0,726** | **−2,036** | **−2,804** |
-| iter002 (skrócony 1. profil) | 0,721 | −2,034 | −2,821 |
-
-2D izolowane RW (nie cały auto): Fz od ≈ **−398 N** (baseline MP 7,5°) do ≈ **−560…−565 N** (overlap −30 mm / gap fine-tune) — **nie** target całego bolidu.
-
-**Pewność:** **high** dla ich pakietu; **low** jako „typowe FS dziś” vs Nagłowski / RWiter017 (wyraźnie inny rząd \|Cz\|).
-
-### 1.4 Zestawienie orientacyjne (czytelność — nie uśredniać)
-
-| Źródło | V | \|Cz\| lub CL_DF | Cx/CD | Balans przód |
-|--------|---|-----------------|-------|--------------|
-| Jackson + RW closed | 26,8 m/s | CL≈1,15 | CD≈1,21 | n/d |
-| Staniszewski 2023 pojazd | 15 m/s | \|Cz\|≈2,03 | Cx≈0,72 | n/d w tej pracy |
-| Nagłowski baseline | 15 m/s | \|Cz\|≈4,07 | Cx≈1,45 | **~60%** |
-| **RWiter017 (zespół)** | 15 m/s (kontekst PUT) | \|Cz\|≈**3,68** | Cx≈**1,23** | ≈**61,6%** (Cm/Cz) |
-
-**Claim:** w źródłach PUT wysokiego DF (Nagłowski, RWiter017) balans jest **front-biased ~57–62%** przód; Jackson nie podaje balansu. | evidence: Tab. Nagłowski + INDEX/017 | **high** (kierunek w tych modelach); **nie** generalizacja „wszystkie FS”.
+**Uwaga konwencji:** PUT używa **Cx, Cz** (Cz ujemny = docisk). Publikacje EN często **Cl/CL, Cd/CD** albo **CLA/CDA [m²]**. Różne A_ref, V i modele — **nie uśredniać** w jeden „typowy Cl/Cd FS”.
 
 ---
 
-## 2. Udział FW / RW / UT i jak cofać balans
+## 1. Summary for Spec
 
-### 2.1 Udział Fz — tylko Nagłowski Tab. 5.3 (baseline iter000)
+Typowy pakiet aero bolidu FS/FSAE w otwartych tezach i case’ach to **przednie skrzydło (FW) + tylne skrzydło (RW) + undertray/dyfuzor (UT)**, czasem sidepody / side wings / „bullhorns”. Kolejność rozwoju bywa **RW → FW → UT** (RW dyktuje dużą część oporu; FW równoważy balans i prowadzi powietrze; UT jest najefektywniejszym generatorem docisku) — opis eMotorsports Cologne / SimScale.
 
-Przy Fz_all = **−561 N**:
+W publicznych liczbach **bezwymiarowe** |Cl| / Cx całych pakietów high-DF leżą mniej więcej w przedziale **~3–4+** docisku i **~1,2–1,5** oporu (Hogea 2026; Nagłowski 2024; kotwica 017), ale starsze / inne pakiety bywają wyraźnie niższe (Jackson z samym RW ~CL_DF 1,15; Staniszewski 2023 ~|Cz| 2,0). **Balans** publikowany jako % przód pojawia się zarówno jako **~56%** (Orion Racing / IJRASET), **~40,6%** CoP forward (WashU / Hogea), jak i **~57–62%** w modelach PUT wysokiego DF — nie ma jednego „standardu branżowego”, tylko decyzja pod CG i handling.
 
-| Komponent | Fz [N] | Udział \|Fz\| / \|Fz_all\| |
-|-----------|-------:|--------------------------:|
-| FW | **−221,05** | ≈ **39%** |
-| UT | **−201,88** | ≈ **36%** |
-| RW | **−135,21** | ≈ **24%** |
-| (suma FW+RW+UT) | −558,14 | ≈99% (reszta: body / side wing / numeryka) |
-
-Podział osi: Fz przód **−338** / tył **−223** → balans **60,3%** przód (zgodnie z Tab. 5.2).
-
-**Pewność udziałów:** **high** dla modelu Nagłowskiego. **Transfer na 017:** **low–med** (inny pakiet; te same *kierunki* dźwigni).
-
-Jackson optymalizował głównie RW; FW/sidepods/dyfuzor wspomniane, bez tabeli udziałów. Staniszewski 2023 = fokus RW; Staniszewski 2024 porównuje **pełny pakiet (FW+RW+UT&SW)** vs **FW&RW** — bez rozbicia % Fz komponentów w plain text.
-
-### 2.2 Mechanizmy cofania balansu (z literatury + shortlista H)
-
-| Mechanizm | Co robi | Dowód w źródłach | Confidence |
-|-----------|---------|------------------|------------|
-| **Więcej docisku RW** (kąty / overlap / gap; montaż wysoko) | Zwiększa udział tyłu | Staniszewski 2023: 2D \|Fz\|↑ przy obniżeniu main i overlap ~−30 mm; Jackson: RW closed = skok DF | **high** kierunek; **med** na pojeździe (coupling body) |
-| **UT / dyfuzor „tylniejszy”** | Duży kawałek Fz (u Nagłowskiego ~36%); często tylny | Nagłowski Fz_ut; Staniszewski 2024: pełny pakiet wyższe \|Cz\| vs FW&RW dla każdego δ | **high** kierunek |
-| **Wąsy S1223** (TBD u nas) | Cofają balans o kilka pp; wspierają RW/UT; same bywają nośne | Nagłowski: 60,3% → **57,3%**; Fz_whiskers > 0 | **high** na ich aucie; **low–med** transfer |
-| **Nie dokręcać samego FW** | Pcha jeszcze bardziej na przód | Fizyka pakietu; research-balance-shift | **high** (kierunek) |
-| **DRS open** | Obniża DF i drag — nie narzędzie peak-DF / balans high-DF | Jackson closed→open; u nas DRS **OUT** | **high** (Jackson); decyzja OUT = Spec |
-
-**Gap do 50/50 na 017:** ≈ **12 pp** (61,6% → 50%) — patrz [research-balance-shift.md](research-balance-shift.md).
+Dla **Autocross** zespoły często maksymalizują docisk (nawet kosztem L/D); dla **Endurance** liczy się też opór i energia (regulowane klapy / DRS tam, gdzie legalne; mapy Cx,Cz vs yaw/ride height). Przy decyzji Spec **DRS OUT** nie ma „otwartego” low-drag na prostych jak u Jacksona — trade-off Endurance trzeba brać **pasywnie** (AOA RW, mapy UT).
 
 ---
 
-## 3. Endurance vs Autocross — trade-offy aero (yaw / UT)
-
-**Priorytet Spec:** Endurance + Autocross (nie Accel jako P1; DRS OUT → brak „otwartego” low-drag na prostych jak u Jacksona).
-
-### 3.1 Staniszewski 2024 — wrażliwość UT na kąt napływu
-
-- Pełny pakiet (z **UT&SW**) ma **wyższe \|Cz\| dla każdego** badanego δśrd vs samo FW&RW | s. 54–55 | **high** (kierunek).
-- **Cx(δ):** pełny pakiet **niższy** Cx dla **0°–10°**, **wyższy** dla **10°–20°** vs FW&RW (krzywe się przecinają) | s. 54 | **high**.
-- **UT&SW silnie wrażliwe** na kierunek napływu (nominal ~0°); przy δ≠0 istotny spadek sił z podłogi; **FW/RW „płaskie”** vs δ | s. 55–56 | **high**.
-- Po zważeniu modelu toru: pełny pakiet → średnia siła hamująca **F2/F1 = 0,973** → **−2,7%** vs bez podłogi, mimo **+~10 kg** | s. 67–68 | **high** jako proxy F_ham; **med** jako Wh baterii.
-- Wniosek metodologiczny: **nie ekstrapolować** charakterystyki zakrętu z samego δ=0 | Podsumowanie | **med–high**.
-
-Punkty kinematyki Tab. 9 (przykłady): r≈17,55 m → v≈13,77 m/s; …; r≈4,39 m → v≈6,54 m/s.
-
-### 3.2 Implikacje eventowe (interpretacja pod Spec — pewność med)
-
-| Event | Co wynika ze źródeł | Czego unikać |
-|-------|---------------------|--------------|
-| **Autocross** (dużo zakrętów, zmienne δ) | Docisk w zakresie δ ważniejszy niż sam peak @0°; UT pomaga \|Cz\|, ale **traci** przy yaw — FW/RW stabilniejsze | Optymalizacja UT tylko pod δ=0 bez mapy Cx/Cz(δ) |
-| **Endurance** (energia + powtarzalność) | Staniszewski: UT może **obniżyć** proxy energii mimo masy; trzeba **modelu toru** (udziały r) | Przenoszenie −2,7% na inny tor bez przeliczenia; DRS jako „ratunek energii” przy decyzji OUT |
-| **Accel / proste** (niższy priorytet tu) | Jackson: DRS open −35% drag — **niedostępne** jako ścieżka aktywna; pasywny low-AOA RW = trade \|Cz\| | Pogarszanie Cx 017 bez zwrotu w lap/energii |
-
-**Claim:** przy priorytecie Endurance+Autocross gate projektowy UT = **mapa vs δ + model toru**, nie sam Cx/Cz@δ=0 | Staniszewski 2024 + ASSUMPTIONS | **high** (metoda); wielkość zysku na *naszym* 017 = **do zmierzenia**.
-
----
-
-## 4. Implikacje dla shortlisty H1 (RW) → H2 (UT)
-
-Z [research-balance-shift.md](research-balance-shift.md) + powyższej literatury:
-
-### H1 — RW (pierwsza dźwignia ~12 pp)
-
-1. Szukać **więcej docisku z tyłu** na **pakiecie** 017 (kąty / overlap / gap w stronę optimum 2D Staniszewskiego), guardrale: \|Cz\| ≥ 3,682, Cx ≲ 1,23, balans % przy x=0,765 m.
-2. **Nie** wklejać optimum 2D 1:1 (coupling z body / elementem bocznym — Staniszewski 2023).
-3. **4-elementowe RW:** w Jackson i Staniszewski 2023 jest **3** elementy; **brak** liczb 4-el. w ekstraktach → traktować jako **hipotezę CAD** (więcej powierzchni / slotów w envelope T8: wysokość &lt;1,1 m, max 250 mm za oponami, RW &gt;500 mm nie outboard most inboard tylnej opony) — **bez** obietnicy ΔCz z literatury.
-4. DRS / passive flaps: **poza** ścieżką peak-DF (OUT; Jackson open obniża DF).
-
-**Pewność kierunku H1:** **high**; wielkość pp na 017: **TBD CFD**.
-
-### H2 — UT (druga dźwignia, po / równolegle z gate yaw)
-
-1. Przyrost docisku **dyfuzora / uszczelnienia tyłu** (bez dokręcania nosa FW); GC ≥ **30 mm** (T 2.2.1); zakaz sliding skirts (T 2.2.2).
-2. Przed zamrożeniem geometrii: **Cx,Cz vs δ** + udziały toru (jak Staniszewski 2024) — krytyczne przy Endurance+Autocross.
-3. Pilnować masy (~+10 kg w szacunku Staniszewskiego) vs proxy energii.
-4. U Nagłowskiego UT ≈ **36%** Fz — duży dźwigniowy kawałek; u nas udział **do zmierzenia** na 017.
-
-**Pewność kierunku H2:** **high** w literaturze PUT; krok na 017: **TBD**.
-
-### Po H1→H2
-
-- **H3** (odciążenie FW) tylko jeśli nadal &gt;~52% przód i \|Cz\| trzyma się.
-- **H4** wąsy: TBD (Nagłowski: kilka pp, koszt L/D).
-- **H5** DRS: OUT ze ścieżki Spec.
-
-**Kolejność rekomendowana pod Spec:** **H1 → H2** (z gate yaw na UT) → H3 opcjonalnie → H4 jeśli TBD=IN.
-
----
-
-## 5. Claims (claim | evidence | confidence)
+## 2. Tabela przykładów zespołów / prac (claim | evidence | confidence)
 
 | claim | evidence | confidence |
 |-------|----------|------------|
-| W źródłach PUT wysokiego DF balans ~57–62% przód (Nagłowski 60,3→57,3%; 017 ≈61,6%) | Nagłowski Tab. 5.2; INDEX/Cm/Cz 017 | **high** (te modele) |
-| U Nagłowskiego udział Fz: FW≈39%, UT≈36%, RW≈24% @ baseline | Tab. 5.3 | **high** (ich auto) |
-| Jackson: RW closed CL_DF=1,15 / CD=1,21; open 0,26 / 0,79 | Results Jackson | **high** |
-| Staniszewski 2023 pojazd: Cx≈0,72 / Cz≈−2,03 — inny rząd niż Nagłowski/017 | tabela s. 32 | **high** |
-| UT&SW yaw-sensitive; FW/RW mniej; pełny pakiet −2,7% F_ham mimo +~10 kg | Staniszewski 2024 s. 54–68 | **high** (proxy); **med** (Wh) |
-| Główne dźwignie cofania balansu = RW + UT, nie samo FW | research-balance-shift + §2 | **high** (kierunek) |
-| Przy Endurance+Autocross mapa Cx/Cz(δ) jest gate’em UT | Staniszewski 2024 metoda | **high** (proces) |
-| 4-el. RW: brak liczb w ekstraktach — tylko hipoteza w T8 envelope | Jackson/Staniszewski = 3 el.; T8 | **high** (brak danych); efekt = **TBD** |
-| DRS OUT / fan OUT zgodne z zamrożeniem; DRS nie rozwiązuje front-bias high-DF | kontekst Spec; Jackson open ↓DF; Michalecki fan | **high** |
+| Standardowy zestaw urządzeń: **FW + RW + undertray/dyfuzor** (opcjonalnie sidepody / side wings) | Kirchberger 2023 (TU Wien EDGE 14): „frontwing, undertray and rearwing”; SimScale / eMotorsports Cologne (Umicore Loup): RW, FW, undertray; Hogea et al. 2026: undertray → multi-element FW/RW → sidepods | **high** (powtarzalny opis w wielu źródłach) |
+| Kolejność rozwoju: najpierw **RW** (opór / energia), potem **FW** (balans + prowadzenie przepływu), potem **UT** (efektywność) | SimScale blog, Pfeiffer / eMotorsports Cologne: „development started with the rear wing… determining factor for… energy consumption”; FW „equalizes the rear wing… guides air to undertray”; UT „most efficient” | **med** (jeden dobrze opisany case; nie dowód, że wszyscy tak robią) |
+| UT jest **najefektywniejszym** elementem (dużo DF, mało drag) | SimScale: „most efficient… without generating much drag”; Kirchberger: UT „generates **40%** of the downforce” EDGE 14; literatura w tezie Centaurus (snippet CORE): „about **40–50%** by the undertray-diffuser… front and rear wings… each about **20–30%**” | **high** kierunek; **med** na % (różne auta; Centaurus PDF nie pobrano w całości — cytat ze snippeta CORE) |
+| FW ~**235%** bardziej efektywne niż RW (w jednym pakiecie Cologne) | SimScale: „around **235%** more efficient” (ground effect) | **med** (jedna liczba zespołowa; inna geometria) |
+| Cele liczbowe pakietu WashU / Hogea: **−Cl = 3,19**, **Cd = 1,29**, **CoP = 40,6%** forward | Hogea, Hogea, Agarwal, AIAA 2026-1898 abstract: „−Cl of **3.19**, Cd of **1.29** and a CoP of **40.6%** forward”; DOI https://doi.org/10.2514/6.2026-1898 | **high** (liczby w abstrakcie); **med** transfer (A_ref / V nie w abstrakcie) |
+| Orion Racing India baseline aero balance: **56%** front DF (regulowane klapy) | Pamnani et al., IJRASET 2020: „slight front dominated downforce of **56%** was selected as baseline”; DOI https://doi.org/10.22214/ijraset.2020.32700 | **high** (decyzja projektowa w paperze) |
+| Heave zmienia balans o ok. **±5%** front (mapa Orion) | IJRASET 2020 §V.1: „A **+-5%** change is observed in aerodynamic balance” przy heave | **high** (ich model); **low–med** transfer |
+| CFD V odniesienia często **~15–16 m/s** (typowy zakres FS) | Kirchberger: inlet **15 m/s** (z telemetrii toru); IJRASET BC: inlet **−16 m/s**; PUT Nagłowski / Staniszewski: **15 m/s** | **high** (powtarzalna praktyka) |
+| TU Wien EDGE 14 (StarCCM+, half-car): CLA ≈ **4,66…5,2 m²**, CDA ≈ **1,51…1,72 m²**; A czołowa ≈ **1,19 m²** | Kirchberger 2023 Tab. 2.1 / §2.2; residuals CLA **−4,66** @1800 iter | **high** CLA/CDA jak w tezie; **med** jako „Cl/Cd” (to współczynniki × powierzchnia — nie mieszać z Cx/Cz PUT bez A_ref) |
+| Walidacja torowa: CFD bywa **nadmiarowe** w docisku UT | Kirchberger: pressure taps → CFD ma niższe ciśnienie ssące → „not as much downforce… undertray”; średni błąd wielkości ~**9,3%**; Kansas coast-down (Wordley-related KU thesis abstract): drag ~**5%**, downforce do **~18%** odchyłki CFD↔tor | **high** kierunek (CFD≠tor); wielkości zależą od setupu |
+| Jackson (Huddersfield): pojazd+RW DRS closed **CL_DF=1,15 / CD=1,21**; open **0,26 / 0,79**; −**35%** siły oporu | Jackson 2018; notatka KB jackson-2018; V=**26,8 m/s** | **high** |
+| RW 3-el. E423, overall AOA **22,81°** (flaps 28°/60°) przed stall ~25° | Jackson 2018 | **high** (ich RW) |
+| Optymalizacja AI/GA kątów skrzydeł FSAE: +**14,8%** DF FW, +**28,4%** DF RW; profile **MSHD** i **Selig 1223**; AoA FW 4,5°/28°/56° → 5,5°/33°/59,5°; RW 9,5°/40° → 12,2°/41,9° | Abstract IJFT 2025 https://doi.org/10.1016/j.ijft.2025.101440 (pełny PDF w tej sesji: timeout) | **med** (abstract); pełne warunki CFD **TBD** bez PDF |
+| eMotorsports Cologne: setup Accel RW ma drag **64,7%** niższy niż high-DF (Autocross/Skidpad) | SimScale blog (regulowane klapy) | **med** (blog zespołu; nie paper peer-review) |
+| Rake UT **1°** → ok. **+15%** DF z undertraya (Cologne) | SimScale: „rake angle of only **1°** increases… undertray by around **15%**” | **med** (jeden case) |
+| PUT Nagłowski 2024 @15 m/s: Cz≈**−4,07**, Cx≈**1,45**, balans **60,3%** → **57,3%** z wąsami; udział Fz FW≈**39%** / UT≈**36%** / RW≈**24%** | naglowski-2024-package.md Tab. 5.2–5.3 | **high** (ich model) |
+| PUT Staniszewski 2023 pojazd: Cx≈**0,726**, Cz≈**−2,036** @15 m/s (RW 3-el.) | staniszewski-2023-wing.md | **high**; **nie** „typowy high-DF 2024+” |
+| PUT Staniszewski 2024: pełny pakiet (UT&SW) wyższe \|Cz\| vs FW&RW dla każdego δ; Cx krzywe przecinają się ~10°; proxy F_ham **−2,7%** mimo **+~10 kg** | staniszewski-2024-energy.md | **high** (kierunek / proxy) |
+| PUT newsletter X.2025 (testy torowe DRS): opór siłowy −**42%**, Cx −**>30%**, docisk **>1150 N** | https://www.putmotorsport.pl/newsletter/pazdziernik2025/ | **med** (komunikat PR; V / konfiguracja DRS closed/open / A_ref nie podane w newsletterze) |
+| Wrażliwość laptime (TU Wien): **+10% DF → ~−1%** lap; wrażliwość masy ~**2×** wrażliwości DF | Kirchberger Fig. 1.1 / §1.2 | **med** (jeden zespół / tor) |
+| Monash / Hendy: aero mapy FRH×RRH×roll×steer×yaw jako narzędzie setupu (nie same Cl@δ=0) | Monash Motorsport blog Hendy 2019; LEAP guest blog | **high** (metoda); liczby Cl/Cd mapy **not found** w otwartym blogu |
+| Hogea: start optymalizacji od **undertraya**, potem skrzydła (odwrotnie niż Cologne) | AIAA abstract: „beginning with an undertray, followed by… front and rear wings” | **high** (opis procesu w abstrakcie); pokazuje, że kolejność **nie jest uniwersalna** |
+
+---
+
+## 3. Zakresy Cl/Cd / balansu — zestawienie (nie uśredniać)
+
+| Źródło | V | Docisk | Opór | Balans / CoP | Uwagi |
+|--------|---|--------|------|--------------|-------|
+| Hogea 2026 (WashU FSAE) | n/d w abstrakcie | −Cl **3,19** | Cd **1,29** | CoP **40,6%** forward | Pełny pakiet po iteracjach |
+| Nagłowski 2024 (PUT) | 15 m/s | Cz **−4,071** | Cx **1,453** | **60,3%** przód | Baseline; wąsy → 57,3% |
+| **RWiter017 (zespół)** | 15 m/s (kontekst) | Cz **−3,682** | Cx **1,229** | ≈**61,6%** przód | Kotwica Spec |
+| Staniszewski 2023 (PUT) | 15 m/s | Cz **−2,036** | Cx **0,726** | n/d | Wcześniejszy / niższy DF |
+| Jackson 2018 + RW closed | 26,8 m/s | CL_DF **1,15** | CD **1,21** | n/d (FW balance pominięty) | Głównie efekt RW |
+| Jackson DRS open | 26,8 m/s | CL_DF **0,26** | CD **0,79** | n/d | −35% siły oporu |
+| Kirchberger / EDGE 14 | 15 m/s | CLA ≈ **4,7–5,2 m²** | CDA ≈ **1,5–1,7 m²** | n/d %; UT ~**40%** DF | A≈1,19 m²; CLA≠Cl |
+| Orion / IJRASET | 16 m/s (BC) | Cl mapy (wykresy) | Cd mapy | baseline **56%** front | Wartości Cl/Cd punktowe w tekście **not found** (tylko mapy) |
+
+**Claim roboczy pod Spec:** pakiety „dojrzałe” high-DF w otwartej literaturze 2024–2026 lądują blisko **|Cl|~3–4 / Cd~1,2–1,5**, co jest **spójne rzędem** z RWiter017 i Nagłowskim; Jackson (~1,15) i Staniszewski 2023 (~2,0) to inne etapy / inne cele — **nie** traktować jako target 2026. | evidence: tabela powyżej | **med** (mała próbka; różne A_ref).
+
+**Balans:** publikowane cele wahają się od **~41%** (Hogea CoP forward) do **~56%** (Orion) i **~57–62%** (PUT high-DF). Cel zespołu **~50/50** leży **wewnątrz** tej chmury, ale **bliżej środka** niż obecne ~61,6%. | **med**
+
+---
+
+## 4. Endurance vs Autocross — implikacje
+
+Punkty FSG (Kirchberger Tab. 1.1, rules 2023): Endurance **250**, Autocross **100**, Efficiency **75**, Accel **50**, Skidpad **50** — Endurance + Efficiency mocno ważą w EV.
+
+| Event | Co robią / deklarują inne zespoły | Implikacja przy Spec (DRS OUT, Endurance+AX priorytet) | conf. |
+|-------|-----------------------------------|------------------------------------------------------|-------|
+| **Autocross** | Max DF; L/D drugorzędne (SimScale: „lap times… shorter with more downforce, even if… efficiency decreases”); regulowane klapy w high-DF | Trzymać \|Cz\| ≥ 3,682; nie ciąć DF pod Cx bez modelu AX | **high** kierunek |
+| **Endurance** | Opór i energia; Cologne: RW Accel setup −64,7% drag vs high-DF; Jackson DRS −35% drag; Staniszewski: mapa Cx/Cz(δ) + model toru, UT yaw-sensitive | Bez DRS: szukać **pasywnego** kompromisu Cx przy zachowaniu DF; **gate yaw na UT** przed zamrożeniem | **high** metoda; wielkość na 017 = **TBD** |
+| **Efficiency** | Część punktów EV; UT może obniżyć proxy energii mimo masy (Staniszewski −2,7% F_ham / +~10 kg) | Pilnować masy UT vs zwrot energetyczny | **med** |
+| **Accel / proste** | Low AOA / DRS open (Jackson, Cologne) | Przy DRS OUT: nie priorytet P1; nie pogarszać Cx 017 „za darmo” | **high** (decyzja Spec) |
+| **Dynamic attitude** | Orion/Monash: aeromapy heave/pitch/roll/yaw; heave ±5% balans | Nie projektować tylko @δ=0 / nominal RH | **high** (proces) |
+
+**Claim:** przy priorytecie Endurance+Autocross i DRS OUT bramka projektowa = **mapa Cx,Cz vs δ (i ewent. RH)** + jasny target balansu ~50/50 przez **RW+UT**, nie dokręcanie samego FW. | Staniszewski 2024 + SimScale + IJRASET + research-balance-shift | **high** (proces); Δ pp na 017 = **TBD CFD**.
+
+---
+
+## 5. Gaps / TBD
+
+| Gap | Status |
+|-----|--------|
+| Bezwymiarowe Cl/Cd EDGE 14 (tylko CLA/CDA m² + A≈1,19) — pełna tabela % balansu | **TBD** (nie w plain text Kirchberger jako % front) |
+| Pełny PDF Centaurus (udziały 40–50 / 20–30) — weryfikacja stron | **TBD** (download CORE nieudany w sesji; zostaje snippet) |
+| Pełny tekst IJFT 2025 (warunki V, A_ref, cały pojazd vs izolowane skrzydła) | **TBD** (timeout ScienceDirect) |
+| FSG Design Reports z publicznymi tabelami Cl/Cd 2024–2026 | **not found** w tej sesji (często nieotwarte) |
+| Typowy udział FW/RW/UT „branżowy” poza Nagłowski / Kirchberger / Centaurus snippet | **TBD** — za mało jawnych tabel |
+| Liczby 4-elementowego RW w otwartej literaturze FS | **not found** (Jackson / Staniszewski = 3 el.; Cologne „three-element + leading-edge flap”) |
+| V i stan DRS przy newsletterze PUT (>1150 N, −42% opór) | **TBD** (PR) |
+| Wspólny A_ref Fluent PUT vs Hogea / Jackson do porównania 1:1 | **TBD** (TARGETS: Aref nadal wymagane) |
+| Wpływ yaw na balans u innych zespołów (poza „changes marginally” Orion) | **TBD** ilościowo |
 
 ---
 
 ## 6. Limity (czego nie wnioskować)
 
-- Nie uśredniać Jackson (26,8 m/s, CL~1) z Nagłowskim (Cz~−4) w jeden „typowy FS Cl/Cd”.
-- Nie brać Fz 2D izolowanego RW jako Fz auta.
-- Nie przenosić −2,7% energii na inny tor bez modelu udziałów r.
-- Nie obiecywać Δ pp z 4-el. RW bez CFD na pakiecie 017.
-- Envelope T8 ogranicza geometrię — nie jest źródłem liczb Cl/Cd.
+1. Nie uśredniać Jackson (CL~1 @26,8 m/s) z Nagłowskim (Cz~−4 @15 m/s) w „średni Cl FS”.  
+2. Nie mylić **CLA [m²]** (Kirchberger) z **Cz** (PUT) bez A_ref.  
+3. „CoP 40,6% forward” (Hogea) i „56% front” (Orion) to **różne cele** — nie wybierać „prawdziwszego” bez relacji do CG i tire model.  
+4. Blog SimScale / newsletter PUT = dobre **kierunki**, słabsza **metryka** niż teza/paper.  
+5. DRS w literaturze **nie** jest ścieżką peak-DF (Jackson open ↓DF) — zgodne z decyzją Spec OUT.  
+6. 4-el. RW = hipoteza CAD w envelope T8, **bez** liczb z literatury w tej notatce.
+
+---
+
+## Źródła (URL / DOI)
+
+1. Hogea E.N., Hogea R.J., Agarwal R.K. — *3D Iterative Parametric Optimization… FSAE…*, AIAA 2026-1898, https://doi.org/10.2514/6.2026-1898  
+2. Pamnani et al. — *Tuning… Aerodynamic Maps*, IJRASET 8(XII) 2020, https://doi.org/10.22214/ijraset.2020.32700 / https://www.ijraset.com/fileserve.php?FID=32700  
+3. Kirchberger M. — *CFD Simulation and Validation of a Formula Student Car*, TU Wien 2023, https://repositum.tuwien.at/bitstream/20.500.12708/188917/1/Kirchberger%20Michael%20-%202023%20-%20CFD%20Simulation%20and%20Validation%20of%20a%20Formula%20Student...pdf  
+4. Pfeiffer N. — *Formula Student Aerodynamics With CFD*, SimScale blog (eMotorsports Cologne), https://www.simscale.com/blog/formula-student-aerodynamics/  
+5. Jackson F.F. — *Aerodynamic optimisation…*, 2018 (KB: jackson-2018-cfd-drs.md)  
+6. Nagłowski K. — praca inż. PUT 2024 (KB: naglowski-2024-package.md)  
+7. Staniszewski A. — prace PUT 2023/2024 (KB: staniszewski-*.md)  
+8. IJFT 2025 AI-assisted CFD… — https://doi.org/10.1016/j.ijft.2025.101440 (abstract)  
+9. PUT Motorsport newsletter X.2025 — https://www.putmotorsport.pl/newsletter/pazdziernik2025/  
+10. Centaurus / Thireus thesis snippet — CORE / http://hdl.handle.net/11615/49094 (udziały % — do pełnej weryfikacji PDF)  
+11. Monash Hendy aero map — https://www.monashmotorsport.com/blog/aeromapthesis  
+12. KU coast-down validation abstract — https://kuscholarworks.ku.edu/… (drag ~5%, DF do ~18%)

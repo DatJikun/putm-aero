@@ -69,6 +69,7 @@ Indeksy cząstkowe: [index-batch-a.md](index-batch-a.md), [index-batch-b.md](ind
 |------|------|
 | [sources/research-balance-shift.md](sources/research-balance-shift.md) | Cofanie balansu ~61,6%→50/50; shortlista H1–H5 |
 | [sources/research-aero-for-targets.md](sources/research-aero-for-targets.md) | Rady aero pod max DF + niski opór + Endurance/Autocross (H1–H4) |
+| [sources/research-fs-teams-practice.md](sources/research-fs-teams-practice.md) | Praktyka innych teamów FS (FW/RW/UT, Cl/Cd/balans, Endurance vs Autocross) |
 
 ## Regulamin
 

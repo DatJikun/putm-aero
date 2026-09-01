@@ -3,7 +3,7 @@
 **Status:** notatka robocza do repo (Spec 2026-09-01)  
 **Kotwica:** `RW_iter017` — Cx **1,229** / Cz **−3,682** / Cm **−0,429** @ **15 m/s**  
 **Cel:** max docisk, spokojny opór, balans jak najbliżej **50/50** (pasmo 48–52% przód)  
-**Zasada:** nie dokręcać samego przedniego skrzydła na ślepo. Główne dźwignie: **tylnie skrzydło + podłoga**. Wąsy = kandydat. DRS = na końcu, po regulaminie.
+**Zasada:** nie dokręcać samego przedniego skrzydła na ślepo. Główne dźwignie: **tylnie skrzydło + podłoga**. Wąsy = TBD. Ruchomy DRS = OUT; pasywny osobno.
 
 Metryka porównawcza (CFD#1): moment przy **x = 0,765 m**, Lref **1,53 m**, half-car — tak samo w Fluent i później w OpenFOAM.
 
@@ -137,7 +137,7 @@ Cel iteracji: **zmniejszyć udział przodu o rząd ~12 pp** przy \|Cz\| ≥ 3,68
 | H1 | Więcej docisku z **tylnego skrzydła** (kąty / overlap / szczelina w stronę optimum 2D, ale na pakiecie) | RW | Δbalans, ΔCz, ΔCx, Cm | Coupling ze body — optimum 2D ≠ 3D | Staniszewski 2023 |
 | H2 | Mocniejszy / bardziej „tylny” **dyfuzor–UT** (bez obniżania nosa FW) | UT | j.w. + GC ≥30 mm (T 2.2.1) | Masa, Cx(δ), kontakt z torem | Staniszewski 2024; T8 |
 | H3 | Lekkie **odciążenie przodu** (kąt/elementy FW w dół), tylko jeśli H1–H2 nie domykają 12 pp | FW | j.w. | Łatwo stracić \|Cz\| — ostatnia dźwignia, nie pierwsza | cel balansu + T 8.2.1 box FW |
-| H4 | **Wąsy** S1223 (Nagłowski-style) jako add-on cofający balans o kilka pp | wąsy | Δbalans vs L/D; keep-out kół T 2.1.3 | Mały krok pp; ryzyko Tech przy wheel aero | Nagłowski 2024 |
-| H5 | DRS / passive flaps | RW ruchome | tylko po Q&A | Wasze 019/020: \|Cz\| spada poniżej 3,68 | Jackson; CSV RW; T8 cisza |
+| H4 | **Wąsy** — tylko jeśli H1–H3 nie domykają; profil **dobrać pod lokalizację** (nie automatycznie S1223) | wąsy | Δbalans vs L/D; keep-out kół | TBD decyzji | Nagłowski (kierunek); dobór profilu otwarty |
+| H5 | Ruchomy DRS | — | — | **OUT** (decyzja Mikołaja). Pasywne klapy tylko jako osobna gałąź oporu, nie peak-DF | decyzja 2026-09-01 |
 
-**Kolejność rekomendowana:** H1 → H2 → (H3 jeśli trzeba) → H4; H5 poza ścieżką peak-DF.
+**Kolejność:** H1 → H2 → (H3 gdy trzeba) → H4 jeśli nadal za dużo z przodu. H5 ruchomy = OUT.

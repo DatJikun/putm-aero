@@ -1,57 +1,73 @@
 # Karta targetów — pakiet aero FS
 
-**Status:** robocza (RWiter017 = aktualny bolid; Baseline002 ≠ aktualny)  
+**Status:** robocza  
 **Data:** 2026-09-01  
 **V odniesienia:** 15 m/s  
-**Fluent (zespół):** half-car, Lref 1,53 m, moment przy x=0,765 m, Realizable k-ε + EWT, koła −72,9 rad/s · **cel migracji:** k-ω SST
+**Fluent (zespół):** half-car, Lref 1,53 m, moment przy x=0,765 m; solving dziś ke-realizable+EWT; cel migracji: k-ω SST
 
-## Punkt odniesienia (aktualny bolid)
+## Kotwica: aktualny bolid = RWiter017
 
-### RW_iter017 — jedyna kotwica bolidu
-| Wielkość | Wartość |
-|----------|---------|
-| Cx | 1,229 |
-| Cz | −3,682 |
-| Cm | −0,429 |
-| η ≈ | 3,0 |
+| Wielkość | Wartość | Uwagi |
+|----------|---------|--------|
+| Cx | 1,229 | Done, 27.12.2025 |
+| Cz | −3,682 | ujemny = docisk |
+| Cm | −0,429 | |
+| η ≈ | 3,0 | |
+| Balans przód | **≈ 61,6%** | Z arkusza / Cm÷Cz (−0,429/−3,682); ~11–12 pp do 50/50. Postpro może doprecyzować. |
 
-Źródło: arkusz RW / `sources/team-rwiter017-baseline.md`.  
-`RW_iter017.2` = wariant skryptu Fluent — nie zamienia kotwicy.
+RW_iter017.2 (Cx 1,210 / Cz −3,628) = tylko wariant skryptu, nie zamienia kotwicy.
 
-### Baseline002 — NIE aktualny bolid
-Połączenie FWiter011 + RWiter017 + UTiter002 (historyczny miks).  
-Cx ≈ 1,187, |Cz| ≈ 3,678, balans przód ≈ **69%** (po korekcie znaku w Excelu).  
-Używać tylko jako **kontekst** (jak mierzono balans / formuły), **nie** jako baseline osiągów ani startowy balans aktualnego auta.
+## Baseline002 — nie jest aktualnym bolidem
 
-Baseline_1 z arkusza UT też **nie** jest RWiter017.
+Historyczny miks FWiter011 + RWiter017 + UTiter002 (Cx ≈ 1,187, |Cz| ≈ 3,678). Po poprawie znaku w Excelu balans wychodzi **ok. 69% przód** — to informacja o *tym* miksie, **nie** o samym RWiter017. Nie używać jako hard baseline.
 
-## Cele twarde
+## Cele (słowa Mikołaja)
 
-1. **Maksymalny docisk** przy spokojnym oporze: |Cz| ≥ **3,682** (nie gorzej niż RWiter017).
-2. **Opór:** Cx ≲ **1,23** przy tym DF.
-3. **Balans:** jak najbliżej **50/50** (48–52% przód). Startowy % dla samego RWiter017 w arkuszu RW **brak** — do zmierzenia w postpro. Jeśli pełny pakiet zachowuje się jak Baseline002 (~69% przód), kierunek to **cofać DF** (RW/UT).
-4. **Prędkość CFD:** 15 m/s.
+Maksymalny docisk przy spokojnym oporze, balans jak najbliżej **50/50**.
 
-## Cel nadrzędny (słowa Mikołaja)
+| Cel | Wartość robocza |
+|-----|-----------------|
+| Docisk | \|Cz\| ≥ **3,682** (nie gorzej niż RWiter017) |
+| Opór | Cx ≲ **1,23** przy tym DF |
+| Balans | **48–52%** przód; dziś ≈ **61,6%** → cofnąć o **~11–12 pp** (RW/UT) |
+| V CFD | **15 m/s** |
 
-Maksymalny docisk przy spokojnym oporze, balans jak najbliżej pół na pół.
+Kierunek: **cofamy docisk o ~12 pp** (RW / podłoga), bez dokręcania samego FW na ślepo.
 
 ## Zakres elementów
 
-- **IN:** RW, FW, UT (+ sekcje boczne)
+- **IN:** RW, FW, undertray (+ sekcje boczne)
 - **Kandydat:** wąsy
-- **OUT:** wentylator spod podłogi
+- **OUT:** wentylator
 - **TBD:** DRS
 
-## Co dalej
+## Kolejność
 
-1. Repo wiedzy (`putm-aero`) — ta paczka.
-2. Research: cofanie balansu → ~50/50 przy |Cz| ≥ 3,682 i Cx ≲ 1,23.
-3. CAD RWiter017 → CFD (Fluent/OF), gdy będzie plik; zmierzyć balans aktualnego bolidu.
+1. Push wiedzy do `putm-aero` (w toku)
+2. Balans RWiter017 zamrożony ≈61,6% przód (arkusz); postpro może doprecyzować
+3. Research: max DF + spokojny Cx + balans → 50/50
+4. CAD → CFD porównawcze
 
-## Otwarte
+## Ograniczenia regulaminu (FS Rules 2026 v1.1, T8) — skrót
 
-- % balansu aktualnego bolidu (RWiter017 / pełny model po zawodach)
-- DRS (regulamin)
-- Masa, energia / model toru
-- Konwencja znaku balansu w Excelu
+Źródło: `sources/fs-rules-2026-t8.md` / `sources/rules-aero-boxes-loopholes.md` (nie zgadywać poza cytatami).
+
+- Boxy urządzeń aero wg T 8.2 (m.in. FW wysokości / outboard przed osią; RW wysokość; szerokość vs opony; zasięg wzdłużny ±700 mm przód / +250 mm tył) — szczegóły w notatkach KB.
+- **DRS:** w T8 nie zakazany wprost → decyzja Spec = **TBD** (Q&A / decyzja zespołu).
+- **Wentylatory:** legalnie ≤ 500 W łącznie (T 11.11.1), ale w pakiecie **OUT** (decyzja projektowa).
+- Uwaga: skrzynka CFD 800×500 mm (endplate) u CFD#1 to domena numeryczna, **nie** box T8.
+
+
+---
+
+## Aktualizacja decyzji (2026-09-01, Mikołaj)
+
+- **DRS ruchomy: OUT** (ew. tylko pasywny)
+- **Fan spod podłogi: OUT**
+- **Wąsy S1223: TBD** — dobór profilu pod konkretne miejsce
+- **Priorytet:** Endurance + Autocross
+- **Cel:** max docisk przy możliwie niskim oporze
+- **Balans start:** ≈61,6% przód → cel ~50/50 (~12 pp)
+- **RW:** rozważyć **4 elementy**
+- **Walidacja:** CFD → symulacja → tor (nitki / flow-vis)
+- **Aref:** nadal wymagane z Fluent Reference Values przed porównaniem OF↔Fluent

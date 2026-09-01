@@ -19,10 +19,13 @@ Prędkość odniesienia w pracach PUT i w setupie CFD: **15 m/s** (do potwierdze
 
 **Zakres elementów (na start):**
 - skrzydło tylne, przednie, podłoga i sekcje boczne — **wchodzą**
-- wąsy — **kandydat**, nie baseline
-- wentylator odsysający spod podłogi — **nie wchodzi** (Michalecki)
-- DRS — **do decyzji** z regulaminu (Jackson jako literatura; w arkuszach RW są już testy „pasywnego DRS”, ale to nie decyzja projektu)
-- model turbulencji dziś: **Realizable k-ε + EWT**; cel przejścia: **k-ω SST**
+- tylne skrzydło: rozważamy **4 elementy** (kandydat vs obecne 3)
+- wąsy S1223 — **jeszcze nie wiadomo** (dobór profilu pod miejsce na aucie)
+- wentylator spod podłogi — **nie**
+- DRS ruchomy — **nie**; ewentualnie tylko **pasywny** (jak testy 019/020)
+- model turbulencji Fluent: **Realizable k-ε + EWT**; OF: to samo / wall functions y+>30 (16 GB)
+
+**Priorytet eventów:** Endurance + Autocross. Cel: maksymalny docisk przy możliwie niskim **oporze**. Balans z ~61,6% przód w stronę ~50/50 (~12 pp).
 
 **Potwierdzone:** wiersz `Baseline_1` z arkusza podłogi **nie jest** tym samym bolidem co `RW_iter017`. RWiter017 = aktualny bolid po zawodach. Liczb balansu ~69% z Baseline_1 nie używamy jako startu.
 

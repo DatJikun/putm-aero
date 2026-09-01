@@ -85,6 +85,8 @@ Opcjonalnie przed formami: mały wydruk bolidu w skali 1:10 — łapie kolizje r
 - Skrzydła wieloelementowe są standardem; **4 elementy** to nasza hipoteza, nie fakt z rankingów.
 - Sam Autocross bez Endurance nie wystarczy — stąd bramka „zakręt + model toru”.
 
+- AMZ / FaSTTUBe / Running Snail: proces i Δ% bez absolutnych Cl/Cd — szczegóły w `SPEC-FROM-OVERNIGHT.md` i `sources/research-amz-berlin-snails-aero.md`.
+
 Szczegóły i cytaty: folder `sources/` w tym repo.
 
 ---

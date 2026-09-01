@@ -19,6 +19,17 @@ Nadal: z ~62% na przód w stronę pół na pół przez **tył i podłogę**, nie
 - Żadnych liczb Cl/Cd z innych teamów jako naszych targetów (inne powierzchnie, prędkości, geometrie).
 - Aktywnego DRS — zostaje OUT; „pasywny low-drag” to osobna decyzja później, nie teraz.
 
+
+## Top teamy (AMZ / FaSTTUBe / Running Snail) — co biorę do założeń
+
+Źródło: `sources/research-amz-berlin-snails-aero.md` (same publiczne fakty).
+
+- **FaSTTUBe** = Berlin (nie „Equipe/FU Berlin”).
+- **AMZ:** dużo CFD (NX + STAR-CCM+) i tunel (RUAG); publicznie Δ docisku ok. **+25%** vs poprzedni pakiet — bez absolutnego Cl/Cd. Wniosek procesowy: iteracje + walidacja, nie jeden shot.
+- **Running Snail:** nowe aero RS25 + druk 3D; **brak** publicznych Cl/Cd.
+- **Esslingen** nadal jedyny publiczny rząd: CL·A ≈ **4,9** / CD·A ≈ **1,65** @ 50 km/h — tylko orientacja, **nie** nasz target.
+- To **wspiera** kolejność tylne skrzydło → podłoga oraz DRS/fan OUT. **Nie** wpuszczam cudzych Cl/Cd do karty targetów.
+
 ## Kolejka (gdy Mikołaj wróci)
 
 1. Fluent: seria tylnego skrzydła 3-el. na bazie 017 (kąty / gap / overlap) pod cele z karty.  

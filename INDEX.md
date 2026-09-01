@@ -26,7 +26,7 @@ Prędkość odniesienia w pracach PUT i w setupie CFD: **15 m/s** (do potwierdze
 
 **Potwierdzone:** wiersz `Baseline_1` z arkusza podłogi **nie jest** tym samym bolidem co `RW_iter017`. RWiter017 = aktualny bolid po zawodach. Liczb balansu ~69% z Baseline_1 nie używamy jako startu.
 
-**Balans:** dla kotwicy RWiter017 w sheetcie RW **nie ma** % przód. Odczyt ~69% z Baseline002 to tylko kontekst historycznego miksu (i lekcja o znaku Cz) — **nie** start karty targetów bez potwierdzenia. Cel nadal ~50/50.
+**Balans RWiter017:** ≈ **61,6% przód** (z Cm/Cz arkusza; Mikołaj: „jak w arkuszu”). Do ~50/50 ≈ **12 pp** — cofamy docisk (RW/UT). Postpro z OneDrive = JPG bez CSV sił → kotwica z arkusza zostaje.
 
 **Otwarte:**
 - masa bolidu, budżet energii

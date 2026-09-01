@@ -26,9 +26,9 @@ Dla RWiter017 przy **ujemnym** Cz (jak w sheetcie RW):
 | Wielkość | Wartość |
 |----------|---------|
 | Cm/Cz | (−0,429)/(−3,682) ≈ 0,1165 |
-| **Balans Front (szacunek)** | **≈ 61,7%** |
+| **Balans Front** | **≈ 61,6%** |
 
-To jest **szacunek z Cm/Cz**, nie osobny raport Fluent. Zgadza się z kierunkiem „za dużo z przodu względem 50/50” (~12 pp), ale Spec/CFD mają potwierdzić postpro przy x=0,765 m zanim zamrozimy deltę.
+**Zamrożone 2026-09-01** (Mikołaj: „jak w arkuszu” + Spec/Koordynator). Folder postpro z OneDrive ma tylko JPG (Cp/WSS/y+) — **bez CSV sił**, więc kotwica zostaje z Cm/Cz. Gap do 50/50 ≈ **12 pp**.
 
 **Nie używać** ~69% z Baseline002 / Baseline_1 jako startu dla 017 (inne modele).
 
@@ -120,9 +120,24 @@ OpenFOAM (CFD#1) wchodzi, gdy będzie CAD 017 — te same BC i moment, model doc
 | claim | evidence | confidence |
 |-------|----------|------------|
 | Główne dźwignie cofania balansu = RW + UT, nie samo FW | Spec + fizyka pakietu; Staniszewski 2023/2024 | **high** (kierunek) |
-| Szacunek balansu 017 z Cm/Cz ≈ **61,7%** przód | wzór Excel + liczby RW_iter017 | **med** do potwierdzenia postpro |
+| Balans 017 ≈ **61,6%** przód (kotwica robocza) | wzór Excel + Cm/Cz RW_iter017 + decyzja zespołu; postpro bez CSV | **high** (roboczo); **med** vs pełny raport Fluent |
 | Wąsy cofają balans o kilka pp przy lekkim koszcie L/D | Nagłowski Tab. 5.2 (60,3→57,3%) | **high** na ich aucie; **low–med** transfer |
 | Optimum overlap RW ~−30 mm w 2D | Staniszewski 2023 | **high** 2D; **med** na pojeździe |
 | Pasywne DRS 019/020: Cx↓, \|Cz\|↓ poniżej 3,68 | CSV RW | **high** |
 | Fan OUT | Michalecki | **high** |
 
+---
+
+## 7. Shortlista hipotez pod ~12 pp (do zatwierdzenia Spec)
+
+Cel iteracji: **zmniejszyć udział przodu o rząd ~12 pp** przy \|Cz\| ≥ 3,682 i Cx ≲ 1,23. Bez dokręcania samego FW.
+
+| # | Hipoteza | Dźwignia | Co mierzyć | Ryzyko / limit | Źródło kierunku |
+|---|----------|----------|------------|----------------|-----------------|
+| H1 | Więcej docisku z **tylnego skrzydła** (kąty / overlap / szczelina w stronę optimum 2D, ale na pakiecie) | RW | Δbalans, ΔCz, ΔCx, Cm | Coupling ze body — optimum 2D ≠ 3D | Staniszewski 2023 |
+| H2 | Mocniejszy / bardziej „tylny” **dyfuzor–UT** (bez obniżania nosa FW) | UT | j.w. + GC ≥30 mm (T 2.2.1) | Masa, Cx(δ), kontakt z torem | Staniszewski 2024; T8 |
+| H3 | Lekkie **odciążenie przodu** (kąt/elementy FW w dół), tylko jeśli H1–H2 nie domykają 12 pp | FW | j.w. | Łatwo stracić \|Cz\| — ostatnia dźwignia, nie pierwsza | cel balansu + T 8.2.1 box FW |
+| H4 | **Wąsy** S1223 (Nagłowski-style) jako add-on cofający balans o kilka pp | wąsy | Δbalans vs L/D; keep-out kół T 2.1.3 | Mały krok pp; ryzyko Tech przy wheel aero | Nagłowski 2024 |
+| H5 | DRS / passive flaps | RW ruchome | tylko po Q&A | Wasze 019/020: \|Cz\| spada poniżej 3,68 | Jackson; CSV RW; T8 cisza |
+
+**Kolejność rekomendowana:** H1 → H2 → (H3 jeśli trzeba) → H4; H5 poza ścieżką peak-DF.

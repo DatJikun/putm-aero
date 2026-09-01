@@ -61,4 +61,4 @@ Zamrożone w INDEX na prośbę koordynacji FS Aero:
 - cel = max docisk przy balansie ~50/50 (48–52% przód),
 - fan OUT, DRS TBD,
 - **Baseline_1 ≠ RW_iter017** (potwierdzone przez Mikołaja 2026-09-01). RWiter017 = aktualny bolid po zawodach.
-- balans % dla RWiter017 nadal **nieznany** (brak w sheetcie RW).
+- balans RWiter017 **zamrożony 2026-09-01**: ≈ **61,6% przód** z Cm/Cz arkusza (decyzja Mikołaj+Spec+Koordynator); postpro JPG bez CSV — bez zmiany kotwicy.

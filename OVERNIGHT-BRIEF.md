@@ -1,7 +1,14 @@
 # Overnight brief — PUTM aero (rano dla Mikołaja)
 
 **Kiedy:** research w nocy 1/2 IX 2026 (Europe/Warsaw)  
-**Kotwica zamrożona:** `RWiter017` Cx **1,229** · |Cz| **3,682** · balans ~**61,6%→50%** · DRS **OUT** · fan **OUT** · H1 RW → H2 UT · Aref half **0,50**
+**Kotwica zamrożona:** `RWiter017`
+
+- Cx = **1,229**
+- |Cz| = **3,682**
+- balans ~**61,6% → 50%**
+- Aref half = **0,50**
+- DRS **OUT**; fan **OUT**
+- kolejność H1 RW → H2 UT
 
 ---
 
@@ -15,9 +22,19 @@ Dwie nowe notatki PL w `sources/` + wpisy w `INDEX.md`:
 
 ## Co wyszło (skrót)
 
-**RW / H1.** Domyślny high-DF w literaturze FS to nadal **3 elementy** (Jackson E423 + McBeath gap 1–4%c / overlap 1–6%c; Staniszewski 2023: main↓ i overlap~−30 mm w 2D, na aucie coupling zabija naiwny transfer). **4 elementy** pojawiają się jako wynik optymalizacji (Novais/Aveiro) i jako ścieżka „cascade” (LUT/Metropolia EV) — sensowna hipoteza CAD w envelope T8, **bez** gotowej liczby ΔCz dla 017. Aktywny DRS w paperach mocno tnie Cd skrzydła, ale u nas zostaje **OUT**; najwyżej stały low-drag setup „pasywny”.
+**RW / H1.** Domyślny high-DF w literaturze FS to nadal **3 elementy**. Z Jacksona / McBeatha / Staniszewskiego 2023:
 
-**UT / H2.** Staniszewski 2024: UT&SW **mocno yaw-wrażliwe**, skrzydła płaskie; mimo to pełny pakiet wygrywa |Cz| w całym δ, a proxy energii **−2,7%** z UT mimo +~10 kg. Chalmers: wybierać dyfuzor pod **robustness** (prosta/hamowanie/corner), nie sam peak; ~**13°** bywało bezpieczniejsze niż 19°; strakes + side floors pomagają w cornering. OSU: **lokalizacja throat = dźwignia CoP/balansu**; 5° yaw może nawet podnieść DF, +1° roll zjada ~6%. Multi-channel (Jowsey) rozszerza envelope kąta.
+- profil E423 (Jackson); gap **1–4%c**, overlap **1–6%c**
+- Staniszewski 2D: main↓ i overlap ~**−30 mm**; na aucie coupling zabija naiwny transfer 2D→3D
+
+**4 elementy** pojawiają się jako wynik optymalizacji (Novais/Aveiro) i jako ścieżka „cascade” (LUT/Metropolia EV) — sensowna hipoteza CAD w envelope T8, **bez** gotowej liczby ΔCz dla 017. Aktywny DRS w paperach mocno tnie Cd skrzydła, ale u nas zostaje **OUT**; najwyżej stały low-drag setup „pasywny”.
+
+**UT / H2.** Staniszewski 2024: UT&SW **mocno yaw-wrażliwe**, skrzydła płaskie; mimo to pełny pakiet wygrywa |Cz| w całym δ. Z paperów:
+
+- proxy energii **−2,7%** z UT mimo ≈ **+10 kg** (Staniszewski)
+- Chalmers: dyfuzor pod **robustness** (prosta/hamowanie/corner), nie sam peak; ~**13°** bywało bezpieczniejsze niż **19°**; strakes + side floors pomagają w cornering
+- OSU: lokalizacja throat = dźwignia CoP/balansu; yaw **5°** może podnieść DF; +**1°** roll → DF **−~6%**
+- Multi-channel (Jowsey) rozszerza envelope kąta
 
 **Regulamin.** T8 2026 nie banuje explicite movable aero; nasz DRS OUT to Spec. Fan OUT bez zmian (Michalecki + limit 500 W to osobna historia).
 

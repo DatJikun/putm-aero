@@ -4,7 +4,14 @@
 **Język:** PL, zdania czytelne  
 **Zasada:** tylko publiczne paper/teza + to, co już jest w KB repo. **Bez wymyślonych Cl/Cd dla naszego bolidu.** Liczby Cl/Cd poniżej pochodzą wyłącznie ze źródeł zewnętrznych (inny samochód / inna Aref / inna V) i służą jako kontekst, nie jako targety PUT.
 
-**Kotwica Spec (zamrożona):** `RW_iter017` — Cx **1,229** / |Cz| **3,682** / balans ≈ **61,6%** przód → cel ~**50%**; **DRS ruchomy OUT**; **fan OUT**; kolejność **H1 RW → H2 UT**; Aref half ≈ **0,50 m²**.
+**Kotwica Spec (zamrożona):** `RW_iter017`
+
+- Cx = **1,229**
+- |Cz| = **3,682**
+- balans ≈ **61,6%** przód → cel ~**50%**
+- Aref half ≈ **0,50 m²**
+- **DRS ruchomy OUT**; **fan OUT**
+- kolejność **H1 RW → H2 UT**
 
 **Kontekst regulaminu:** preferujemy **EU Formula Student Rules 2026 v1.1** (T8 / T2.2 / T11.11) — lokalne claims w [fs-rules-2026-t8.md](fs-rules-2026-t8.md) oraz [rules-aero-boxes-loopholes.md](rules-aero-boxes-loopholes.md).
 
@@ -18,7 +25,12 @@ Powiązane lokalnie: [staniszewski-2023-wing.md](staniszewski-2023-wing.md), [ja
 
 Na torach Formula Student / FSAE prędkości są umiarkowane (rzędu 15–30 m/s w CFD i typowych zakrętach), a share prostych jest krótki względem zakrętów. W takim reżimie skrzydło tylne ma dostarczyć **dużo docisku przy wysokim efektywnym AOA**, a nie „czystą” efektywność jak w samolocie. Wieloelementowa kaskada (main + flaps) pozwala utrzymać przepływ przy większym kącie niż pojedynczy profil — sloty „doprowadzają” energię do warstwy przyściennej kolejnych elementów i opóźniają oderwanie.
 
-Dla nas (balans ~61,6% przód) H1 oznacza przede wszystkim **więcej |Fz| z tyłu** bez rozwalania Cx powyżej ~1,23. Liczba elementów (3 vs 4) to tylko jedna z dźwigni obok kątów, gap i overlap; nie zastępuje mapy na pakiecie 017.
+Dla nas H1 oznacza przede wszystkim **więcej |Fz| z tyłu** bez rozwalania Cx. Guardrail:
+
+- balans startowy ~**61,6%** przód
+- Cx ≲ **1,23**
+
+Liczba elementów (3 vs 4) to tylko jedna z dźwigni obok kątów, gap i overlap; nie zastępuje mapy na pakiecie 017.
 
 ---
 
@@ -26,22 +38,35 @@ Dla nas (balans ~61,6% przód) H1 oznacza przede wszystkim **więcej |Fz| z tył
 
 ### 2.1 Staniszewski 2023 (PUT, już w repo)
 
-Lokalna praca inżynierska optymalizuje **3-profilowe** RW w 2D (kąty, overlap, gap), potem weryfikuje na pojeździe. Kluczowe wnioski jakościowe (szczegóły liczbowe w [staniszewski-2023-wing.md](staniszewski-2023-wing.md)):
+Lokalna praca inżynierska optymalizuje **3-profilowe** RW w 2D (kąty, overlap, gap), potem weryfikuje na pojeździe. Wnioski jakościowe (szczegóły liczbowe w [staniszewski-2023-wing.md](staniszewski-2023-wing.md)):
 
-- Obniżanie kąta main względem baseline **7,5°** w 2D podnosi |Fz| i obniża Fx aż do ok. **−6,5°**; dalsze −7,0° już pogarsza Fz.
-- Zmniejszanie **overlap** (do ok. **−30 mm**) mocno zwiększa docisk 2D; **−40 mm** już pogarsza — istnieje optimum.
-- Drobne **gap +5/+10 mm** utrzymuje wysoki DF przy niskim oporze.
-- Na **całym pojeździe** Cx/Cz prawie stoją (~0,72 / −2,03 w tamtym pakiecie) — **coupling body↔RW** zabija naiwny transfer 2D→3D. To ostrzeżenie jest wprost dla naszej serii H1 na 017.
+- Obniżanie kąta main względem baseline **7,5°** w 2D podnosi |Fz| i obniża Fx aż do ok. **−6,5°**; dalsze **−7,0°** już pogarsza Fz.
+- Zmniejszanie **overlap** do ok. **−30 mm** mocno zwiększa docisk 2D; **−40 mm** już pogarsza — jest optimum.
+- Drobne **gap +5 / +10 mm** utrzymuje wysoki DF przy niskim oporze.
+- Na **całym pojeździe** (tamtym pakiecie):
+  - Cx ≈ **0,72**
+  - Cz ≈ **−2,03**
+  - **coupling body↔RW** zabija naiwny transfer 2D→3D — ostrzeżenie wprost dla naszej serii H1 na 017.
 
 ### 2.2 Jackson 2018 (Huddersfield / Fields) — 3 el. + DRS
 
 Artykuł [Jackson, *Fields* 2018](https://doi.org/10.5920/fields.2018.02) (ekstrakt: [jackson-2018-cfd-drs.md](jackson-2018-cfd-drs.md)):
 
-- Wybrano **3 elementy** (main + 2 flaps), profil **E423**, max chord/span wg ówczesnych limitów (860 / 920 mm).
-- Gap/overlap ustawione wg wytycznych **McBeath**: gap **1–4%c**, overlap **1–6%c**; u nich overlap **26,25 mm**, gap **20 mm**.
-- McBeath (cytowany): AOA flap1 **25–30°**, flap2 **30–70°** jako zakres wysokiego DF.
-- Wybrane Study 4: flap1 **28°**, flap2 **60°**, overall AOA **~22,8°** (stall wskazany ~25°).
-- Na pojeździe (ich model, ich A): DRS closed CL_DF **1,15** / CD **1,21**; DRS open CL_DF **0,26** / CD **0,79**. To **nie** są liczby do wklejenia na RWiter017 — inna geometria, V, Aref.
+- Wybrano **3 elementy** (main + 2 flaps), profil **E423**; max chord/span wg ówczesnych limitów: **860 / 920 mm**.
+- Gap/overlap wg **McBeath**:
+  - gap = **1–4%c**
+  - overlap = **1–6%c**
+  - u nich: overlap = **26,25 mm**, gap = **20 mm**
+- McBeath (cytowany), zakres high-DF:
+  - flap1 AOA = **25–30°**
+  - flap2 AOA = **30–70°**
+- Study 4:
+  - flap1 = **28°**
+  - flap2 = **60°**
+  - overall AOA ≈ **22,8°** (stall ~**25°**)
+- Na pojeździe (ich model, ich A) — **nie** kopiować na RWiter017:
+  - DRS closed: CL_DF = **1,15**, CD = **1,21**
+  - DRS open: CL_DF = **0,26**, CD = **0,79**
 
 Wniosek praktyczny: 3-el. + agresywne klapy to sprawdzony „domyślny” high-DF layout FS; stall siedzi blisko peaku — nie pchać overall AOA „dla liczb”.
 
@@ -71,7 +96,9 @@ Teza: *Development and optimization of an aerodynamic device for the UA Formula 
 - Abstrakt / handle: [http://hdl.handle.net/10773/33796](http://hdl.handle.net/10773/33796) · PDF: [ria.ua.pt bitstream](https://ria.ua.pt/bitstream/10773/33796/1/Documento_Pedro_Novais.pdf)
 - Cel: kod optymalizacji (Harmony Search) parametrów RW na podstawie profilu prędkości z tyłu auta (CFD car → inlet do izolowanego RW).
 - **Wynik optymalizacji: konfiguracja z 4 airfoilami**; autor deklaruje wyniki lepsze niż RW zwycięzcy FSAE Czech 2016 (porównanie w pracy — **nie** przenosimy ich Cl/Cd na PUT).
-- Kontekst narracyjny w tezie: RW multi-element zwykle **3 lub 4** zestawy; RW ~**~30%** całkowitego DF auta (ich claim — lokalnie u Nagłowskiego RW ~24% Fz_all, inny bolid).
+- Narracja w tezie: RW multi-element zwykle **3 lub 4** zestawy. Udział RW w DF:
+  - Novais (ich claim): ~**30%** całkowitego DF
+  - Nagłowski (inny bolid): RW ~**24%** Fz_all
 
 Implikacja dla H1: 4-el. pojawia się jako **wynik optymalizacji przestrzeni parametrów**, nie jako dogma „więcej = lepiej”. Bez naszego CAD w envelope T8 i bez case’u 3↔4 na pakiecie 017 nie mamy liczby ΔCz.
 
@@ -103,7 +130,7 @@ Implikacja: ścieżka „dołóż cascade / 4. element” jest w EU FS EV trakto
 3. **Overlap** ma optimum; „więcej overlap = więcej DF” jest fałszywe poza pewnym punktem (−40 mm w Staniszewskim).
 4. **Kąty tylnych flaps** po ustabilizowaniu main mogą być płaskie w wrażliwości (±2° w Staniszewskim nie pomagało) — ale u Jacksona / McBeath to właśnie flaps niosą high-AOA DF; konflikt znika, gdy pamiętamy, że Staniszewski startował już z ustawionymi flaps.
 5. **Free-stream ≠ on-car.** Jackson zakładał transfer optimum free-stream→pojazd; Staniszewski pokazał, że body i sekcje boczne potrafią zabić zysk. Nasza seria H1 = **na pakiecie RWiter017**, nie izolowana kaskada.
-6. **Montaż wysoko** (Jackson): mniej disturbed flow za head restraint / roll hoop — w ramach T 8.2.1 (max **1,1 m** za HR).
+6. **Montaż wysoko** (Jackson): mniej disturbed flow za head restraint / roll hoop — pod limitem T 8.2.1 (max **1,1 m** za HR).
 
 ---
 
@@ -155,6 +182,8 @@ Dla poranka: nie inwestujemy nocy w CAD aktuatora; trzymamy się **H1 retune 3-e
 ---
 
 ## 7. Claims (claim | evidence | confidence)
+
+Poniżej skrót twierdzeń z tej nocy — claim, skąd, pewność.
 
 - Multi-element RW pozwala na wyższy AOA niż single-element przed stall | Jackson + McBeath (cyt.) | **high**
 - Gap 1–4%c i overlap 1–6%c to **start**, nie optimum konkretnego profilu | Jackson cyt. McBeath | **high** (jako guideline)

@@ -4,7 +4,14 @@
 **Język:** Polski, ton koleżeński — pełne zdania, bez telegraficznego skrótu.  
 **Zakres:** Publiczne prace, tezy i strony teamów. Preferujemy materiały z EU Formula Student oraz reguł FSG dla EV; inne serie FS/FSAE oznaczamy wprost.  
 **Zasada:** Każda liczba w tekście ma link, DOI albo cytat. Jeśli czegoś nie ma w źródle, piszemy **nie znaleziono**. Nic nie wymyślamy.  
-**Nasz punkt wyjścia:** konfiguracja RWiter017 ma Cx **1,229**, Cz **−3,682** oraz Cm **−0,429**. Z tego wychodzi balans około **61,6%** na przód. Cel zespołu to mniej więcej pół na pół. Ruchome DRS i wentylator spod podłogi są u nas wyłączone. Rozważamy czteroelementowe tylne skrzydło oraz mocniejszą podłogę.
+**Nasz punkt wyjścia:** konfiguracja RWiter017 (Fluent, Aref zespołu):
+
+- Cx = **1,229**
+- Cz = **−3,682**
+- Cm = **−0,429**
+- balans ≈ **61,6%** na przód (`1/2+Cm/Cz`)
+
+Cel zespołu to mniej więcej pół na pół. Ruchome DRS i wentylator spod podłogi są u nas wyłączone. Rozważamy czteroelementowe tylne skrzydło oraz mocniejszą podłogę.
 
 **Powiązane notatki w bazie:**  
 [staniszewski-2023-wing.md](staniszewski-2023-wing.md) · [staniszewski-2024-energy.md](staniszewski-2024-energy.md) · [naglowski-2024-package.md](naglowski-2024-package.md) · [jackson-2018-cfd-drs.md](jackson-2018-cfd-drs.md) · [research-aero-for-targets.md](research-aero-for-targets.md) · [research-balance-shift.md](research-balance-shift.md) · [research-eu-fs-ev-top-teams.md](research-eu-fs-ev-top-teams.md) · [michalecki-fan-ground-effect.md](michalecki-fan-ground-effect.md)
@@ -44,7 +51,13 @@ Innymi słowy: nasze własne źródła i Jackson solidnie opisują układ trzech
 | LUT / Metropolia HPF026 (teza, EV FS): parametric study **secondary flaps / slot gaps** + cascade na baseline RW — focus na lap/DF trade-off, **nie** jawne „3 vs 4” z tabelą ΔCl | LUTPUB abstract | **średnia** (kierunek) | https://lutpub.lut.fi/handle/10024/171732 |
 | IIUM 2017 (FS downforce package): 2-el. 2D max CL≈**3,63** (L/D 21,5) lub L/D≈**54,1** przy CL≈**2,83**; gurney **0,05·c1** → **+5,8%** DF | DOI | **średnia** (2-el., nie 3vs4) | https://doi.org/10.31436/iiumej.v18i2.679 |
 
-Kilka zdań kontekstu do tej tabeli. UPC naprawdę dorzuciło czwarty flap w sezonie i w konkluzji PDF podaje **240 N** docisku z RW, obniżenie oporu całego auta o **58 N** przy drugiej konfiguracji flapów oraz masę RW **7 kg**. Nie mamy jednak w abstractcie pełnych warunków CFD ani prędkości, więc tych niutonów nie wolno porównywać jeden do jednego z naszym `RW_iter017`. Pretoria opisuje czteroelementowe RW według McBeatha, ale to izolowane skrzydło dwuwymiarowe. SV-JME, Fluids MDPI, LUT i IIUM dają kontekst multi-element, ale żadne z nich nie jest czystym head-to-head „trzy versus cztery elementy na tym samym aucie”.
+Co z tej tabeli wynika w praktyce. UPC naprawdę dorzuciło czwarty flap w sezonie. W konkluzji PDF podaje:
+
+- docisk RW = **240 N**
+- druga konfiguracja flapów → opór całego auta **−58 N**
+- masa RW = **7 kg**
+
+Nie mamy jednak w abstractcie pełnych warunków CFD ani prędkości, więc tych niutonów nie wolno porównywać jeden do jednego z naszym `RW_iter017`. Pretoria opisuje czteroelementowe RW według McBeatha, ale to izolowane skrzydło dwuwymiarowe. SV-JME, Fluids MDPI, LUT i IIUM pokazują multi-element, ale żadne z nich nie jest czystym head-to-head „trzy versus cztery elementy na tym samym aucie”.
 
 ### Werdykt tematu 1
 
@@ -52,7 +65,11 @@ Kilka zdań kontekstu do tej tabeli. UPC naprawdę dorzuciło czwarty flap w sez
 
 Czteroelementowe RW **nie jest „rzadkie jak yeti”** — UPC i Pretoria to robią albo opisują. Nie ma jednak gotowej tabeli w stylu „ile procent zysku daje czwarty element”, którą można wkleić do Specu.
 
-Geometrię startową nadal bierzemy z McBeatha (przez Jacksona): gap **1–4%c**, overlap **1–6%c**. Ostatnie flapy ustawiamy wysoko, mniej więcej w zakresie **25–70°**, tuż przed stalem.
+Geometrię startową nadal bierzemy z McBeatha (przez Jacksona):
+
+- gap = **1–4%c**
+- overlap = **1–6%c**
+- ostatnie flapy wysoko, mniej więcej **25–70°**, tuż przed stalem
 
 ---
 
@@ -66,14 +83,30 @@ Geometrię startową nadal bierzemy z McBeatha (przez Jacksona): gap **1–4%c**
 | Pełny pakiet (z UT) vs FW&RW: wyższe \|Cz\| w całym δ; Cx krzywe przecinają się ~**10°**; proxy energii toru **F2/F1 = 0,973 → −2,7%** mimo **+~10 kg** UT | wzór (20) + s. 67–68 | **wysoka** (proxy F_ham); **średnia** jako Wh | [staniszewski-2024-energy.md](staniszewski-2024-energy.md) |
 | Nagłowski baseline @15 m/s: Fz_ut ≈ **−202 N** z Fz_all ≈ **−561 N** (~**36%**); balans **60,3%** przód | Tab. 5.2–5.3 | **wysoka** (ich model ≠ 017) | [naglowski-2024-package.md](naglowski-2024-package.md) |
 
-Z naszych własnych prac wynika więc, że undertray i sidewalls mocno reagują na kierunek napływu. Przy δ różnym od zera siły z podłogi spadają, a skrzydła zachowują się względnie „płasko”. Nie wolno ekstrapolować zachowania w zakręcie z samego δ = 0. Pełny pakiet z UT daje wyższe \|Cz\| w całym zakresie δ; krzywe Cx przecinają się około **10°**. Proxy energii toru spada z **F2/F1 = 0,973** do **−2,7%**, mimo że undertray waży około **+10 kg**. U Nagłowskiego undertray daje około **36%** całego Fz przy balansie **60,3%** na przód — to jednak inny model niż `RW_iter017`.
+Z naszych własnych prac wynika więc, że undertray i sidewalls mocno reagują na kierunek napływu. Przy δ różnym od zera siły z podłogi spadają, a skrzydła zachowują się względnie „płasko”. Nie wolno ekstrapolować zachowania w zakręcie z samego δ = 0. Pełny pakiet z UT daje wyższe \|Cz\| w całym zakresie δ. Z Staniszewskiego 2024:
+
+- krzywe Cx przecinają się około **10°**
+- proxy energii toru: **F2/F1 = 0,973** → **−2,7%**
+- masa UT ≈ **+10 kg**
+
+U Nagłowskiego (inny model niż `RW_iter017`):
+
+- udział UT ≈ **36%** całego Fz
+- balans = **60,3%** na przód
 
 ### Chalmers CFS 2021 — tabele: jazda na wprost, zakręt, hamowanie
 
 Źródło: De Wilde et al., *Development and performance evaluation of undertray diffusers during racing manuevers*, Chalmers BSc 2021.  
 PDF: https://odr.chalmers.se/bitstreams/2e9b2842-d1d0-4c5a-aa01-a13458f7ddaf/download  
 
-Scenariusz zakrętu w tej pracy to R≈**12,5 m**, V≈**40 km/h**, poślizg nadwozia **3,5°**, roll **0,7°**, kąt skrętu kół około **7,2–7,4°** (Tab. 3.4).  
+Scenariusz zakrętu w tej pracy (Tab. 3.4):
+
+- R ≈ **12,5 m**
+- V ≈ **40 km/h**
+- poślizg nadwozia = **3,5°**
+- roll = **0,7°**
+- kąt skrętu kół ≈ **7,2–7,4°**
+
 Uwaga metrologiczna: w tej pracy CL oznacza **współczynnik docisku** (ujemny lift zapisany jako dodatni CL), a aero balance jest podany **w stronę tyłu**.
 
 **Tabela 4.1 — mały dyfuzor (0 mm start), komponenty:**
@@ -107,7 +140,13 @@ Wniosek autorów brzmi następująco. Kąt **13°** wybrano za odporność w man
 | UT + auto w CFD: nominal ~**50 lb** DF; przy **5° yaw** (bez roll) DF ↑ do **62 lb**; **1° roll** przy yaw obniża DF o **~6%** | § Results | **wysoka** (lb, ich model) | https://ir.library.oregonstate.edu/downloads/7h149t91w |
 | Lokalizacja wejścia dyfuzora przesuwa peak podciśnienia → dźwignia **balansu** UT | literatura + design discussion | **wysoka** (kierunek) | https://ir.library.oregonstate.edu/downloads/7h149t91w |
 
-U Oregon State nominalny docisk undertray plus auta wynosi około **50 lb**. Przy yaw **5°** bez roll docisk rośnie do **62 lb**. Dodanie **1°** roll przy yaw obniża DF o około **6%**. Lokalizacja wejścia dyfuzora przesuwa peak podciśnienia i działa jak dźwignia balansu undertray.
+U Oregon State (ich model, lb):
+
+- nominalny DF (UT + auto) ≈ **50 lb**
+- przy yaw **5°** (bez roll) DF → **62 lb**
+- yaw **5°** + roll **1°** → DF **−~6%**
+
+Lokalizacja wejścia dyfuzora przesuwa peak podciśnienia i działa jak dźwignia balansu undertray.
 
 ### FST Lisboa / Técnico — aeromap (EU EV)
 
@@ -115,7 +154,12 @@ U Oregon State nominalny docisk undertray plus auta wynosi około **50 lb**. Prz
 |-------|----------|------------|------|
 | Na FST10e **yaw** najbardziej wrażliwy: **~16%** zmiany docisku w badanym zakresie; **roll ~9%** DF i **~12%** przesunięcia CoP; ride height **~10%** CD·A i **~20%** −CL·A między peakami; mapa **>100** punktów | abstract tezy | **wysoka** na FST10e; **średnia** transfer | https://scholar.tecnico.ulisboa.pt/records/WjT08GaGU4ee77V1ZI_WgpbeDe_scfAseZd-?lang=en |
 
-Na FST10e yaw okazał się najbardziej wrażliwym kątem: około **16%** zmiany docisku w badanym zakresie. Roll daje około **9%** zmiany DF i około **12%** przesunięcia środka ciśnienia. Ride height zmienia CD·A o około **10%** oraz −CL·A o około **20%** między peakami. Mapa ma ponad **100** punktów.
+Na FST10e yaw okazał się najbardziej wrażliwym kątem. Z abstractu tezy:
+
+- yaw → ~**16%** zmiany docisku w badanym zakresie
+- roll → ~**9%** DF i ~**12%** przesunięcia CoP
+- ride height → ~**10%** CD·A oraz ~**20%** −CL·A między peakami
+- mapa > **100** punktów
 
 ### Kirchberger / TU Wien EDGE 14 (EU EV)
 
@@ -124,7 +168,11 @@ Na FST10e yaw okazał się najbardziej wrażliwym kątem: około **16%** zmiany 
 | UT generuje **~40%** docisku EDGE 14 — „most important” device w ich narracji | § Validation | **wysoka** (ich auto) | https://doi.org/10.34726/hss.2023.115880 ; PDF https://repositum.tuwien.at/bitstream/20.500.12708/188917/1/Kirchberger%20Michael%20-%202023%20-%20CFD%20Simulation%20and%20Validation%20of%20a%20Formula%20Student...pdf |
 | Mesh study (half-car): CLA stagnuje ~**5,1–5,2 m²**, CDA ~**1,7 m²** na najdrobniejszych siatkach; typowy design mesh base 33 mm: CLA **4,72**, CDA **1,57**; converged run CLA **−4,66**, CDA **1,51–1,57** | Tab. 2.1–2.3 | **wysoka** (CLA/CDA = ×A) | https://doi.org/10.34726/hss.2023.115880 ; PDF https://repositum.tuwien.at/bitstream/20.500.12708/188917/1/Kirchberger%20Michael%20-%202023%20-%20CFD%20Simulation%20and%20Validation%20of%20a%20Formula%20Student...pdf |
 
-U Kirchbergera undertray generuje około **40%** docisku EDGE 14 i w ich narracji jest „najważniejszym” urządzeniem. W mesh study half-car CLA stagnuje około **5,1–5,2 m²**, a CDA około **1,7 m²** na najdrobniejszych siatkach. Typowy design mesh z bazą 33 mm daje CLA **4,72** i CDA **1,57**. Zbieżny run to CLA **−4,66** oraz CDA **1,51–1,57**.
+U Kirchbergera undertray generuje około **40%** docisku EDGE 14 i w ich narracji jest „najważniejszym” urządzeniem. Mesh study half-car:
+
+- najdrobniejsze siatki: CLA ≈ **5,1–5,2 m²**, CDA ≈ **1,7 m²**
+- typowy design mesh (baza 33 mm): CLA = **4,72**, CDA = **1,57**
+- zbieżny run: CLA = **−4,66**, CDA = **1,51–1,57**
 
 ### Inne (modelowanie cornering)
 
@@ -134,7 +182,10 @@ U Kirchbergera undertray generuje około **40%** docisku EDGE 14 i w ich narracj
 | ASME JEF (Balasko/Zonta, 2025): w corneringu CLA spada **>20%** (mocniej przy małych R); możliwy **rearward** shift balansu / understeer z FW stall | abstract / guest PDF snippet | **med–high** (pełny PDF paywall) | https://doi.org/10.1115/1.4069995 |
 | SAE 2017-01-5016 (under tray diffuser FS): best CFD case inlet **3°** / outlet **10°** / GC **30 mm** (L/D); słaby: 5°/16°/50 mm — **paywall abstract**, liczby z abstractu | DOI | **średnia** | https://doi.org/10.4271/2017-01-5016 |
 
-NTNU ostrzega, że stały yaw to nie to samo co prawdziwy cornering z rotating flow — efekty momentów bywają nawet **przeciwne** do fixed-yaw. ASME JEF 2025 raportuje spadek CLA o **więcej niż 20%** w corneringu, mocniejszy przy małych promieniach, oraz możliwy rearward shift balansu albo understeer ze stallu przedniego skrzydła. SAE 2017-01-5016 podaje najlepszy przypadek CFD z inlet **3°**, outlet **10°** i ground clearance **30 mm**; słaby przypadek to 5°/16°/50 mm. Pełny tekst jest za paywallem, więc liczby bierzemy z abstractu.
+NTNU ostrzega, że stały yaw to nie to samo co prawdziwy cornering z rotating flow — efekty momentów bywają nawet **przeciwne** do fixed-yaw. ASME JEF 2025 raportuje spadek CLA o **więcej niż 20%** w corneringu, mocniejszy przy małych promieniach, oraz możliwy rearward shift balansu albo understeer ze stallu przedniego skrzydła. SAE 2017-01-5016 (liczby z abstractu, pełny tekst za paywallem):
+
+- najlepszy CFD: inlet **3°** / outlet **10°** / GC **30 mm**
+- słaby przypadek: **5°** / **16°** / **50 mm**
 
 ### Werdykt tematu 2
 
@@ -186,7 +237,13 @@ Poniżej wypisujemy uczciwie to, czego nie znaleźliśmy albo czego nie wolno pr
 2. Topowe teamy EU (AMZ, Aachen, Delft, Tallinn, Joanneum) **nie publikują** Cl/Cd ani balansu konkursowego. Mamy tylko procesy oraz rzadkie CLA/CDA (Esslingen, Kirchberger, PoliTO, CTU).
 3. W Staniszewskim 2024 **konkretne Cx(δ)/Cz(δ) są tylko na wykresach**. W plain text brak tabeli punktowej — nie OCR-owano wykresów.
 4. ASME cornering 2025: pełny PDF stoi za paywallem. Mamy snippet o spadku CLA **>20%**, ale nie pełną tabelę.
-5. U Quintanasa liczby **240 N / 58 N / 7 kg** pochodzą z conclusion PDF (UPCommons). **Prędkość, Aref oraz to, czy pomiar dotyczy izolowanego RW czy full-car, nie zostały wyciągnięte w tej sesji z pełnego tekstu.** Nie wolno więc skalować tych wartości na `RW_iter017`.
+5. U Quintanasa (conclusion PDF, UPCommons):
+
+   - docisk RW = **240 N**
+   - Δopór auta = **58 N**
+   - masa RW = **7 kg**
+
+   **Prędkość, Aref oraz to, czy pomiar dotyczy izolowanego RW czy full-car, nie zostały wyciągnięte w tej sesji z pełnego tekstu.** Nie wolno więc skalować tych wartości na `RW_iter017`.
 6. CTU.25 podaje Cl/Cd **z DRS w pakiecie**. U nas DRS jest OUT. Traktujemy te liczby jako górny rząd wielkości DF, a nie jako setup do kopiowania.
 7. Fan oraz powered ground effect leżą poza zakresem Specu (OUT). Szczegóły są w notatce Michalecki w KB.
 
@@ -194,13 +251,29 @@ Poniżej wypisujemy uczciwie to, czego nie znaleźliśmy albo czego nie wolno pr
 
 ## Co z tego wynika dla naszego zespołu
 
-**H1 — kandydat na RW 4-elementowe.** Literatura **nie da Ci gotowego ΔCl**. Daje motywację: UPC podkreśla więcej parametrów setupu oraz ekspozycję ostatniego flapu; Pretoria i McBeath pokazują, że układ 4-elementowy jest osiągalny w boxie FSAE. Daje też ostrzeżenia: Staniszewski przypomina, że 2D nie równa się 3D coupling; UPC waży RW około **7 kg**; trzeba pilnować sztywności według T8.3. Gate dla nas: tabela na pakiecie 017 z Δbalans / ΔCx / ΔCz względem baseline 3-elementowego; Cx ≲ **1,23**, \|Cz\| ≥ **3,682**.
+**H1 — kandydat na RW 4-elementowe.** Literatura **nie da Ci gotowego ΔCl**. Daje motywację: UPC podkreśla więcej parametrów setupu oraz ekspozycję ostatniego flapu; Pretoria i McBeath pokazują, że układ 4-elementowy jest osiągalny w boxie FSAE. Ostrzeżenia: Staniszewski przypomina, że 2D nie równa się 3D coupling; UPC waży RW około **7 kg**; trzeba pilnować sztywności według T8.3. Gate dla nas — tabela na pakiecie 017 z Δbalans / ΔCx / ΔCz względem baseline 3-elementowego:
 
-**H2 — undertray.** To jest **najmocniej udokumentowana** dźwignia w tym researchu. Chalmers daje **13°** plus strakes i manewry. Oregon pokazuje yaw **5°** oraz spadek około **6%** przy roll. FST Lisboa raportuje około **16%** zmiany DF od yaw. Staniszewski 2024 daje mapy δ oraz **−2,7%** proxy energii. Kirchberger przypisuje undertray około **40%** DF. Szukamy więc **tylniejszego** docisku dyfuzora **bez** dokręcania nosa przedniego skrzydła. Bramka decyzyjna: mapa Cx/Cz versus δ (plus roll/ride height, jeśli starczy budżetu) przed zamrożeniem geometrii.
+- Cx ≲ **1,23**
+- \|Cz\| ≥ **3,682**
+
+**H2 — undertray.** To jest **najmocniej udokumentowana** dźwignia w tym researchu. Z paperów:
+
+- Chalmers: kąt **13°** + strakes + manewry
+- Oregon: yaw **5°**; roll przy yaw → DF **−~6%**
+- FST Lisboa: ~**16%** zmiany DF od yaw
+- Staniszewski 2024: mapy δ; proxy energii **−2,7%**
+- Kirchberger: UT ≈ **40%** DF
+
+Szukamy więc **tylniejszego** docisku dyfuzora **bez** dokręcania nosa przedniego skrzydła. Bramka decyzyjna: mapa Cx/Cz versus δ (plus roll/ride height, jeśli starczy budżetu) przed zamrożeniem geometrii.
 
 **Balans 61,6% → około 50%.** Żaden top team nie opublikował instrukcji „róbcie 50% tak jak my”. Chalmers celuje w okolice **50/50** (nawet z narracją rear-biased). Nasze dźwignie to **H1 RW + H2 UT**, potem ewentualnie odciążenie FW (H3), a wąsy zostają TBD (H4). Nie dokręcamy samego przedniego skrzydła.
 
-**DRS OUT / fan OUT.** Jackson oraz MDPI/CTU pokazują, że otwarty DRS zjada docisk. U nas w 019/020 \|Cz\| wynosi około **3,01**, czyli poniżej **3,682**. Fan jest opisany u Michaleckiego. Nie projektujemy peak-DF przez te ścieżki.
+**DRS OUT / fan OUT.** Jackson oraz MDPI/CTU pokazują, że otwarty DRS zjada docisk. U nas w 019/020:
+
+- \|Cz\| ≈ **3,01**
+- to poniżej kotwicy **3,682**
+
+Fan jest opisany u Michaleckiego. Nie projektujemy peak-DF przez te ścieżki.
 
 **Kolejność pracy:** H1 → H2 → (H3) → H4. Zawsze na **pełnym pakiecie** oraz przynajmniej z **mapą versus δ**.
 

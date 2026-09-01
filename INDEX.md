@@ -67,13 +67,12 @@ Indeksy cząstkowe: [index-batch-a.md](index-batch-a.md), [index-batch-b.md](ind
 
 ## Research (robocze)
 
+
 | Plik | Opis |
 |------|------|
 | [sources/research-balance-shift.md](sources/research-balance-shift.md) | Cofanie balansu ~61,6%→50/50; shortlista H1–H5 |
 | [sources/research-aero-for-targets.md](sources/research-aero-for-targets.md) | Rady aero pod max DF + niski opór + Endurance/Autocross (H1–H4) |
 | [sources/research-fs-teams-practice.md](sources/research-fs-teams-practice.md) | Praktyka innych teamów FS (FW/RW/UT, Cl/Cd/balans, Endurance vs Autocross) |
-| [sources/research-eu-fs-ev-top-teams.md](sources/research-eu-fs-ev-top-teams.md) | Top EV teamy EU (FSG/FSA/East/Czech 2023–2026): rankingi + aero intel pod H1–H5 |
-| [sources/research-balance-levers-h1-h5.md](sources/research-balance-levers-h1-h5.md) | Dźwignie balansu H1–H5 (Spec) |
 
 ## Regulamin
 
@@ -82,3 +81,5 @@ Indeksy cząstkowe: [index-batch-a.md](index-batch-a.md), [index-batch-b.md](ind
 | [sources/fs-rules-2026-t8.md](sources/fs-rules-2026-t8.md) | Claims + cytaty T8 / T2.2 / T11.11 z FS Rules **2026 v1.1** |
 | [sources/rules-aero-boxes-loopholes.md](sources/rules-aero-boxes-loopholes.md) | Brief Aero Pack: boxy, DRS/fan, loophole’y i ryzyko Scrutineering |
 | [team/rules-current.pdf](team/rules-current.pdf) | PDF źródłowy |
+| [sources/research-eu-fs-ev-top-teams.md](sources/research-eu-fs-ev-top-teams.md) | Top EU FS EV — Koordynator |
+| [sources/claims-from-eu-fs-ev-top.md](sources/claims-from-eu-fs-ev-top.md) | Claims do założeń z notatki EU EV |

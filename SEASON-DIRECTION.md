@@ -62,6 +62,16 @@ Raportuj Cx, Cz, Cm, balans przy tym samym Aref / Lref / punkcie momentu.
 
 ---
 
+
+## Kandydaci geometrii (ze Źródeł — bez nowych Cl na kartę)
+
+Szczegóły: `sources/research-season-geometry-profiles.md`.
+
+- **RW:** zostajemy przy **3-el.** jako default; profil z RWiter017 jako baza. E423 / gap–overlap z paperów = **kierunek startu** pod Fluent, nie target Cl.  
+- **UT:** start od **throat + kąt dyfuzora ~13°** (robustness), potem strakes; mapa yaw/RH przed zamrożeniem.  
+- **FW / wąsy:** S1223 tylko jako **kandydat** (wąsy TBD), nie „S1223 wszędzie”. H3 dopiero po H1+H2.  
+- Zmiana profilu RW/FW dopiero gdy Fluent pokaże ścianę (stall / martwe sloty) — nie na podstawie 2D OF.
+
 ## Świadomie otwarte
 
 - Ostateczna decyzja o **wąsach**

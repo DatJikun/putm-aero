@@ -70,4 +70,4 @@ CFD#1 idzie w **2D tylne skrzydło** pod H1. Gdy wróci Fluent u Mikołaja: seri
 
 ## Bramka serii 2D H1
 
-Kiedy wyniki 2D wolno użyć do decyzji kątów/gap: `SPEC-H1-2D-GATE.md` (nadal bez przenoszenia Cl na auto).
+Kolejność: y+ 30–300 → mesh study 2–3 poziomy → dopiero G/O i kąty. Decyzja CAD tylko gdy Δ ≫ szum siatki. Szczegóły: `SPEC-H1-2D-GATE.md`.

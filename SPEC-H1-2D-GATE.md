@@ -1,27 +1,45 @@
-# Kryterium Spec: kiedy seria 2D H1 wystarczy do decyzji kątów / gap / overlap
+# Bramka Spec: seria 2D tylnego skrzydła (H1)
 
-**Zakres:** tylko ranking wariantów tylnego skrzydła w 2D (kąty, overlap, szczelina).  
-**Poza zakresem:** przenoszenie Cl/Cd z 2D na kartę RWiter017 (całe auto) — **zakazane**.
+Po ludzku: kiedy wolno iść z wynikami 2D do decyzji CAD o kątach / overlap / szczelinie.
 
-## Seria jest wystarczająco wiarygodna do decyzji, gdy spełnione jest wszystko naraz
+**Zakres:** ranking wariantów skrzydła w 2D.  
+**Zakazane:** wpisywanie Cl/Cd z 2D na kartę całego auta (RWiter017).
 
-1. **Ten sam setup** dla wszystkich punktów: ta sama skrzynka (800×500), V, model turbulencji, Aref/Lref 2D, siatka z tego samego przepisu, te same BC.  
-2. **Baseline 2D** policzony i zapisany; każdy punkt ma **ΔCl i ΔCd** względem tego baseline’u (nie same absoluty).  
-3. **Zbieżność / jakość:** residua usiadły albo jasno oznaczony punkt „nieużywać”; checkMesh bez hard fail; bez oczywistego crashu / divergencji.  
-4. **Powtórka:** przynajmniej jeden punkt (np. baseline albo najlepszy kandydat) policzony drugi raz / sąsiedni krok siatki — różnica ΔCl i ΔCd mała względem kroku serii (orientacyjnie: zmiana między wariantami powinna być wyraźnie większa niż szum powtórki).  
-5. **Trend, nie szum:** wybieramy wariant tylko gdy poprawa ΔCl (albo ΔCl/ΔCd) jest **powtarzalnym kierunkiem** na ≥2 sąsiednich punktach sweepu, nie pojedynczym „wyskokiem”.  
-6. **Kill:** jeśli |ΔCd| rośnie mocniej niż zysk docisku bez uzasadnienia (np. stall / oscylacje) — punkt odpada mimo ładnego Cl.
+Kolejność prac (zamknięta po recenzji raportu z Mikołajem):
 
-## Co wolno zdecydować po spełnieniu bramki
+1. **Spójny wall treatment** — y+ w zakresie **ok. 30–300** (jak Fluent EWT / Staniszewski), ten sam przepis na wszystkich siatkach.  
+2. **Mesh study tej samej topologii** — **2–3 poziomy** gęstości (np. coarse / medium / fine), bez zmiany stylu warstw „po drodze”.  
+3. **Dopiero potem** seria overlap → gap → kąty (albo kąty po ustabilizowaniu siatki — ale nie przed czystym mesh study).
 
-- Który **kierunek** kątów / overlap / gap brać dalej do CAD / Fluent 3D na aucie.  
-- Które 1–2 warianty zasługują na **jedno porównanie 4-el.** albo na case 3D.
+---
 
-## Czego nadal nie wolno
+## Kiedy bramka jest zielona (decyzja CAD)
 
-- Wpisywać Cl/Cd 2D do `TARGETS.md` jako Cx/Cz bolidu.  
-- Twierdzić „na aucie będzie ΔCz = …” bez Fluent / 3D na pakiecie.
+Wszystko naraz:
+
+1. Wall treatment spełniony (y+ ~30–300, spójnie).  
+2. Mesh study domknięty: na 2–3 poziomach tej samej topologii widać, że **szum Cl (i sensownie Cd) między poziomami jest mały** względem kroku serii, który chcemy rozstrzygać.  
+3. Ten sam setup dla punktów serii: skrzynka 800×500, V, turbulencja, Aref/Lref 2D, BC, **ta sama rodzina siatki**.  
+4. Baseline 2D + każdy punkt jako **ΔCl i ΔCd** vs baseline (nie absoluty na auto).  
+5. Zbieżność OK (albo punkt oznaczony „nieużywać”).  
+6. **Δ wyraźnie większe niż szum meshu** — orientacyjnie: |ΔCl| między wariantami ma być wyraźnie powyżej skoku Cl między sąsiednimi siatkami (wcześniej ~8–14% to było za dużo względem sygnału kąta ~1–4%).  
+7. Trend na ≥2 punktach, nie jeden wyskok.  
+8. Kill: Cd↑ bez zysku docisku / stall / silne oscylacje — odpada mimo ładnego Cl.
+
+Dopóki (1)–(2) nie są czyste — **kątów i G/O nie zatwierdzamy do CAD**, nawet jeśli kierunek wygląda „jak w literaturze”.
+
+---
+
+## Co wolno po zielonej bramce
+
+- Wybrać **kierunek** kątów / overlap / gap do Fluent 3D na aucie.  
+- Wybrać 1–2 warianty do porównania 4-el. albo case 3D.
+
+## Czego nie wolno
+
+- Cl/Cd 2D → `TARGETS.md` jako Cx/Cz bolidu.  
+- „Na aucie będzie tyle samo ΔCz” bez Fluent / 3D.
 
 ## Po decyzji
 
-Zostaje walidacja na aucie (Fluent): te same kierunki geometrii, metryki z karty — |Cz| ≥ 3,682, Cx około 1,23, balans w stronę 50/50.
+Walidacja na aucie (Fluent): |Cz| ≥ 3,682, Cx około 1,23, balans w stronę 50/50.

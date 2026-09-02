@@ -90,6 +90,7 @@ Indeksy cząstkowe: [index-batch-a.md](index-batch-a.md), [index-batch-b.md](ind
 |------|------|
 | [sources/research-balance-shift.md](sources/research-balance-shift.md) | Cofanie balansu ~61,6% → 50/50; shortlista H1–H5 |
 | [sources/research-aero-for-targets.md](sources/research-aero-for-targets.md) | Rady aero pod max docisk + niski opór + Endurance/Autocross (H1–H4) |
+| [sources/research-endurance-energy-aero-tradeoffs.md](sources/research-endurance-energy-aero-tradeoffs.md) | Endurance/Efficiency: trade-offy DF–drag–energia–balans (Staniszewski 2024 + EU); kiedy brać Cx za Cz |
 | [sources/research-overnight-rw-multi-element.md](sources/research-overnight-rw-multi-element.md) | Noc: multi-element RW 3 vs 4, kąty/gap/overlap, DRS pasywny vs aktywny (EU FS) |
 | [sources/research-overnight-ut-yaw-balance.md](sources/research-overnight-ut-yaw-balance.md) | Noc: podłoga/dyfuzor → balans + yaw; Staniszewski 2024 + Chalmers/OSU/Jowsey |
 | [sources/research-papers-rw-ut-yaw-clcd.md](sources/research-papers-rw-ut-yaw-clcd.md) | Zbiorcza notatka paperów: 3 vs 4 el. RW, UT+yaw, opublikowane Cl/Cd/balans |

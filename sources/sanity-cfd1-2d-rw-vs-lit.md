@@ -133,7 +133,7 @@ Z Staniszewskiego 2023 (2D, ten sam V):
 | Czy |Cl|~2,5 / Cd~0,28 to sensowny rząd dla 2D 3-el. high-lift? | **Tak** (kotwica MECDC Cl≈2,81; Cd CFD#1 niższy przy łagodniejszych klapach — OK orientacyjnie). |
 | Czy gap/overlap są „z księżyca”? | **Nie** — blisko McBeath/Jackson; f1→f2 lekko poza 4%/6%. |
 | Czy wolno porównywać z RWiter017 / Jackson-pojazd? | **Nie** absolutów. |
-| Czy niezależność siatki jest domknięta? | **Policzone, ale wynik negatywny** — brak pełnej niezależności; Cd fine podejrzane (§6). |
+| Czy niezależność siatki jest domknięta? | **Negatywna** — fine Cd podejrzane; medium+ ΔCl≈−14% i y+~5,6 (bufor) — szum nie zredukowany (§6.7). |
 | Czy kierunek Δ kątów zgadza się z Staniszewskim? | **A1/A1b** tak na Cd↓ (i drobny |Cl|↑); Cl w szumie meshu. **A2/A2b** Cd↑ = stall path. |
 | Czy coś idzie do TARGETS? | **Nie.** |
 
@@ -213,3 +213,13 @@ Kierunek jak Staniszewski (niższy main → mniej oporu, lekko więcej |Cl|), al
 
 **A1c (main 1°):** Cl ≈ −2,62 / Cd ≈ 0,187 → ΔCl ≈ −3,7%, ΔCd ≈ −32%.  
 Cd praktycznie jak A1b (−33%) — dalsze obniżanie main **nie tnie już oporu**. To pasuje do Staniszewskiego: jest optimum kąta main, poniżej którego zysk się wypłaszcza / psuje (u nich −7° już gorsze Fz). |ΔCl| nadal < szum meshu → nie CAD. Następny sensowny ruch pod lit./bramkę: **medium+** (zejsć ze szumu), nie kolejne ułamki stopnia na medium.
+
+### 6.7 Update — medium+ (~922k + warstwy)
+
+Źródło: CFD#1 w FS Aero (2026-09-02).
+
+- Cl ≈ **−2,87** · Cd ≈ **0,19**
+- vs medium (−2,53 / 0,28): ΔCl ≈ **−14%** · ΔCd ≈ **−32%**
+- y+ średnia ≈ **5,6** (cel ~30 — **za nisko**, warstwa w buforze)
+
+**Lit. / bramka:** |ΔCl| medium→medium+ **nie** spadło poniżej ~8% — jest gorzej. To nie otwiera decyzji kątów (zgoda ze Spec). y+~5–6 przy wall-fn jest poza zakresem, w którym Staniszewski celował **30–300** (EWT) — najpierw poprawić warstwy / y+, nie dokręcać AOA. Cd 0,19 bliżej medium niż fine 0,10, ale skok Cl dyskwalifikuje medium+ jako „uspokojenie szumu”.

@@ -235,3 +235,16 @@ Dopisek do bramki — **bez** zmian w `TARGETS.md`:
 4. **3-el. vs 4-el.:** nie porównywać absolutów Cl/Cd między kaskadami o innej liczbie elementów (ani 2D vs auto). Ewentualne porównanie 4-el. = tylko **jedna** seria diagnostyczna po otwarciu bramki, Δ na tym samym przepisie siatki — nie „lepszy Cl = bierzemy 4”.
 
 Dopóki punkty 1–3 nie są ogarnięte, lit. nadal wspiera tylko **kierunki** (Staniszewski / Jackson kill Cd) przy ostrożnym czytaniu Δ — nie decyzje CAD.
+
+
+### 6.9 Protokół od 2026-09-02 (plan zespołu)
+
+Kolejność pracy H1 2D — dopisek do bramki Spec (bez TARGETS):
+
+1. **Jeden przepis ściany** — wall functions, y+ w paśmie ok. **30–300** (jak cel Staniszewskiego EWT), dogęszczenie LE/TE/slotów. Bez mieszania BL / no-BL / różnych refine’ów między poziomami „mesh study”.
+2. **Czyste mesh study** — 2–3 poziomy **tej samej topologii** (klony: zmienia się tylko rozmiar komórki). Dopiero wtedy oceniamy niezależność i otwieramy kąty.
+3. Potem **gap / overlap**, potem kąty. Geometrii nie stroimy, póki Cd i ściana nie usiądą.
+4. W raporcie sił: **średnia krocząca / plateau** obok last-200 (żeby nie czytać samego końca okna jako prawdy).
+5. **Dawne 2D zespołu** w porównaniach „wtedy vs teraz” = tylko Wasze wspólne case’y Fluent/OF z teamu. **Staniszewski 2023 = literatura / kierunek**, nie „nasz stary Fluent 2D”.
+
+Dopóki (1)–(2) nie są domknięte: lit. nadal tylko kierunki + kill Cd; **nie CAD**.

@@ -134,7 +134,7 @@ Z Staniszewskiego 2023 (2D, ten sam V):
 | Czy gap/overlap są „z księżyca”? | **Nie** — blisko McBeath/Jackson; f1→f2 lekko poza 4%/6%. |
 | Czy wolno porównywać z RWiter017 / Jackson-pojazd? | **Nie** absolutów. |
 | Czy niezależność siatki jest domknięta? | **Policzone, ale wynik negatywny** — brak pełnej niezależności; Cd fine podejrzane (§6). |
-| Czy kierunek Δ kątów zgadza się z Staniszewskim? | **A1 tak** (większy |Cl|, mniej Cd); A2 jeszcze brak. |
+| Czy kierunek Δ kątów zgadza się z Staniszewskim? | **A1** kierunkowo tak (Cd↓); **A2/A2b** czytelny sygnał to Cd↑ (stall path), Cl w szumie. |
 | Czy coś idzie do TARGETS? | **Nie.** |
 
 **Dla Spec / CFD#1:** medium baseline nadaje się jako **punkt startu serii 2D** (jak ustaliliście). Po A1/A2 — jedna aktualizacja tej notatki z tabelą Δ. Po coarse/fine — dopisać werdykt niezależności.
@@ -179,9 +179,28 @@ A1 = main **6,5°** / 20° / 32° (main −1,5° vs baseline 8°), ta sama mediu
 Staniszewski 2023 (2D): obniżenie kąta main ↑ |Fz| i ↓ Fx.  
 Kierunek A1 (**więcej |Cl|, mniej Cd**) jest **zgodny** z tym trendem, choć ΔCl jest małe (~1%). To wspiera sens fizyczny serii kątów na medium, **nie** zamyka mesh study.
 
-A2 (main 9,5°) w momencie update’u jeszcze **w toku** — dopisać po domknięciu (spodziewany spadek |Cl| albo gorszy Cl/Cd vs baseline).
+A2 / A2b: patrz §6.5 (Cd↑ przy wyższym main; |ΔCl| nadal < szum meshu).
 
 ### 6.4 Co nie zmienia się
 
 - Nadal **nie** mieszamy 2D z RWiter017 / TARGETS.
 - Rząd |Cl|~2,5–2,9 na coarse/medium nadal trzyma się kotwicy MECDC (~2,8); fine Cl −2,72 też w rzędzie, problem to głównie **Cd**.
+
+### 6.5 Update — A2 / A2b (medium, tylko Δ)
+
+Źródło: raport CFD#1 w FS Aero (2026-09-02). Medium baseline Cl ≈ −2,53 / Cd ≈ 0,28.
+
+| case | main | ΔCl vs base | ΔCd vs base |
+|------|------|-------------|-------------|
+| A1 | 6,5° | ≈ −1% | ≈ −11% |
+| A2 | 9,5° | ≈ −3,7% | ≈ **+21%** |
+| A2b | 12,5° | ≈ −1,4% | ≈ **+52%** |
+
+**Lit. / bramka:**
+
+- Wszystkie |ΔCl| nadal **≪ ~8% szumu meshu** — z Cl **nie** wyciągamy decyzji kąta (jak Spec).
+- A2→A2b: **Cd mocno w górę** bez sensownego zysku docisku → obraz **drogi w stronę stall / złego AOA**, spójny z ostrzeżeniem Jacksona (nie pchać overall w stall) i z kill Spec.
+- A1 nadal jedyny punkt z Cd w dół i lekkim |Cl| w górę (kierunek Staniszewski); sam sygnał Cl za mały vs mesh.
+- A2 Cl Δ (−3,7%) **nie** interpretujemy jako twardego „więcej docisku przy wyższym main” — to nadal szum względem GCI; czytelny jest **wzrost Cd**.
+
+A1b (main 3,5°) — dopisać po runie.

@@ -68,3 +68,6 @@ Porównanie OpenFOAM na całym aucie **zaparkowane** (dziurawa geometria, Cl dal
 
 CFD#1 idzie w **2D tylne skrzydło** pod H1. Gdy wróci Fluent u Mikołaja: seria **3-elementowa** pod cele z karty.
 
+## Bramka serii 2D H1
+
+Kiedy wyniki 2D wolno użyć do decyzji kątów/gap: `SPEC-H1-2D-GATE.md` (nadal bez przenoszenia Cl na auto).

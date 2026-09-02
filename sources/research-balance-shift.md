@@ -2,11 +2,17 @@
 
 **Status:** notatka robocza do repo (Spec 2026-09-01)
 
-**Kotwica:** `RW_iter017` — Cx **1,229** / Cz **−3,682** / Cm **−0,429** @ **15 m/s**
+**Kotwica:** `RW_iter017` przy **15 m/s**:
 
-**Cel:** max docisk, spokojny opór, balans jak najbliżej **50/50** (pasmo 48–52% przód)
+- Cx = **1,229**
+- Cz = **−3,682**
+- Cm = **−0,429**
 
-**Zasada:** nie dokręcać samego przedniego skrzydła na ślepo. Główne dźwignie: **tylnie skrzydło + podłoga**. Wąsy = TBD. Ruchomy DRS = OUT; pasywny osobno.
+**Cel:** maksymalny docisk, spokojny opór, balans jak najbliżej **50/50** (pasmo 48–52% na przód).
+
+**Zasada:** nie dokręcamy samego przedniego skrzydła na ślepo.
+Główne dźwignie to **tylnie skrzydło** i **podłoga**.
+Wąsy = TBD. Ruchomy DRS = OUT; pasywny low-drag to osobna gałąź.
 
 Metryka porównawcza (CFD#1): moment przy **x = 0,765 m**, Lref **1,53 m**, half-car — tak samo w Fluent i później w OpenFOAM.
 
@@ -116,7 +122,7 @@ DRS nie rozwiązuje problemu „za dużo z przodu przy high-DF”. Najpierw regu
 | 2 | Seria RW na pakiecie 017: kąty/overlap/gap pod więcej tyłu, guardrale \|Cz\|≥3,682, Cx≲1,23 | CAD + Fluent | tabela Δbalans / ΔCx / ΔCz |
 | 3 | Seria UT (dyfuzor / uszczelnienie tyłu), potem gate Cx(δ)+tor | CAD + Fluent | j.w. + nota energii |
 | 4 | Opcjonalnie wąsy (Nagłowski-style), jeśli po 2–3 nadal za dużo z przodu | CAD + Fluent | trade-off pp vs L/D |
-| 5 | DRS tylko po decyzji regulaminowej | Spec + lead | IN/OUT |
+| 5 | DRS ruchomy — ścieżka zamknięta (OUT); pasywny low-drag osobno, poza peak-DF | Spec + lead | OUT (zamrożone) |
 
 OpenFOAM (CFD#1) wchodzi, gdy będzie CAD 017 — te same BC i moment, model docelowy **k-ω SST**.
 

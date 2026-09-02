@@ -4,13 +4,18 @@
 **Język:** PL  
 **Zasada:** wyłącznie KB w `sources/` (Staniszewski 2023/2024, Nagłowski 2024, Jackson 2018, Michalecki, T8/rules, research-balance-shift, research-fs-teams-practice, team-rwiter017 / Baseline002 kontekst). **Bez liczb spoza źródeł.**
 
-**Kotwica:** `RW_iter017` — Cx **1,229** / Cz **−3,682** / Cm **−0,429** @ **15 m/s** → balans ≈ **61,6%** przód (Cm/Cz; zamrożone).
+**Kotwica** (`RW_iter017` @ **15 m/s**, zamrożone):
 
-**Cel:** max DF, spokojny opór (Cx ≲ **1,23**), balans **48–52%** przód (~**12 pp** cofnięcia).
+- Cx = **1,229**
+- Cz = **−3,682**
+- Cm = **−0,429**
+- balans ≈ **61,6%** przód (z Cm/Cz)
+
+**Cel:** maksymalny docisk, spokojny opór (Cx ≲ **1,23**), balans **48–52%** przód (ok. **12 pp** cofnięcia).
 
 **Eventy:** Endurance + Autocross.
 
-**Zamrożone:** DRS ruchomy **OUT**; fan **OUT**; wąsy **TBD**; rozważyć RW **4-el.** jako hipotezę CAD (w literaturze KB = **3** el.).
+**Zamrożone:** DRS ruchomy **OUT**; fan **OUT**; wąsy **TBD**; rozważamy RW **4-el.** jako hipotezę CAD (w literaturze KB = **3** el.).
 
 Powiązane: [research-balance-shift.md](research-balance-shift.md), [research-fs-teams-practice.md](research-fs-teams-practice.md), [fs-rules-2026-t8.md](fs-rules-2026-t8.md), [team-rwiter017-baseline.md](team-rwiter017-baseline.md).
 

@@ -1,25 +1,46 @@
 # Workflow CFD zespołu (Fluent) + skrypty
 
-**Źródła:** `team/workflow.txt`, `team/fluent-scripts/` (meshing.wft, solving.jou, postpro-cfdpost.txt).
+**Źródła:** `team/workflow.txt` oraz skrypty w `team/fluent-scripts/` (`meshing.wft`, `solving.jou`, `postpro-cfdpost.txt`).
 
-## Claims
+## Jak wygląda pipeline
 
-| claim | evidence | confidence |
-|-------|----------|------------|
-| Pipeline: SolidWorks STEP → SpaceClaim (half-car) → Fluent Meshing → Fluent Solution → CFD-Post | workflow.txt | **high** |
-| V = **15 m/s**, Lref = **1,53 m**, moment @ **x = 0,765 m** | workflow.txt / Reference Values | **high** |
-| Dziś: **Realizable k-ε + Enhanced Wall Treatment** | solving.jou: `ke-realizable? y`, `enhanced-wall-treatment? y` | **high** |
-| Cel migracji: **k-ω SST** (omega) | decyzja zespołu FS Aero 2026-09-01 | **high** (intent) |
-| Koła −72,9 rad/s; MRF chłodzenia 510 rad/s; 2000 iteracji | workflow.txt | **high** |
+Zespół idzie w tej kolejności:
 
-Skrypty trzymać w `team/fluent-scripts/` obok Excela — to część bazy wiedzy, nie „załącznik czatu”.
+1. SolidWorks → eksport STEP
+2. SpaceClaim (model half-car)
+3. Fluent Meshing
+4. Fluent Solution
+5. CFD-Post
+
+To jest opisane w `workflow.txt` (pewność **wysoka**).
+
+## Setup liczbowy (Reference Values)
+
+- prędkość V = **15 m/s**
+- długość odniesienia Lref = **1,53 m**
+- moment liczony względem **x = 0,765 m**
+- koła: **−72,9 rad/s**
+- MRF chłodzenia: **510 rad/s** (to nie „fan car”)
+- typowo **2000** iteracji
+
+## Model turbulencji
+
+Dziś w `solving.jou` jest **Realizable k-ε + Enhanced Wall Treatment**
+(`ke-realizable? y`, `enhanced-wall-treatment? y`) — pewność **wysoka**.
+
+Cel migracji zespołu (2026-09-01): przejście na **k-ω SST** (omega). To intent, nie jeszcze domyślny solver w arkuszach.
+
+Skrypty trzymamy w `team/fluent-scripts/` obok Excela — to część bazy wiedzy, nie „załącznik czatu”.
 
 ## Aref (powierzchnia odniesienia)
 
-| claim | evidence | confidence |
-|-------|----------|------------|
-| Aref **half-car ≈ 0,50 m²** (zakres simów zespołu **0,49–0,51 m²**) | Mikołaj FS Aero 2026-09-01 | **high** |
-| Aref pełnego bolidu ≈ **1,0 m²** (half × 2) | ta sama wypowiedź | **high** |
-| Różnice Aref między największymi zmianami geometrii ≈ **±0,01 m²** (half) | min 0,49 / max 0,51 m² | **high** |
+- Aref **half-car ≈ 0,50 m²** (w simach zespołu bywa **0,49–0,51 m²**) — Mikołaj, FS Aero 2026-09-01.
+- Aref pełnego bolidu ≈ **1,0 m²** (half × 2).
+- Różnice Aref między największymi zmianami geometrii ≈ **±0,01 m²** na half-car.
 
-Do porównania Fluent ↔ OpenFOAM na half-car: **Aref = 0,50 m²**, Lref = 1,53 m, V = 15 m/s, moment @ x = 0,765 m.
+Do porównania Fluent ↔ OpenFOAM na half-car używamy tych samych wartości:
+
+- Aref = **0,50 m²**
+- Lref = **1,53 m**
+- V = **15 m/s**
+- moment @ x = **0,765 m**

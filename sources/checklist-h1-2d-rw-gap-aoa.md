@@ -11,7 +11,7 @@
 - Geometria: 3 elementy (domyślna ścieżka Spec); 4-el. tylko **jedna** porównawcza.
 - Ten sam V_ref / gęstość / znaki sił co w Fluent (15 m/s jeśli tak w workflow).
 - Zapisz gap i overlap w **mm** i w **% cięciwy** poprzedniego elementu.
-- Kill: nie pogarszaj |Fz| względem najlepszej 2D z serii bez powodu; na aucie |Cz| ≲ 3,682 vs RWiter017 = stop (per Spec).
+- Kryterium stopu: nie pogarszaj |Fz| względem najlepszej 2D z serii bez powodu. Na aucie spadek |Cz| poniżej **3,682** względem RWiter017 oznacza stop (per Spec).
 
 ---
 

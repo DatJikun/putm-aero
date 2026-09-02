@@ -5,13 +5,22 @@
 
 **Cel tej notatki:** zebrać **ogólne** rady aero (nie plan CAD/CFD) pod **nasze** targety i mapować je na hipotezy **H1–H4**.
 
-**Kotwica liczbowa:** `RW_iter017` — Cx **1,229** / Cz **−3,682** / Cm **−0,429** @ kontekst **15 m/s** → balans ≈ **61,6%** przód (`1/2 + Cm/Cz`).
+**Kotwica liczbowa** (`RW_iter017`, kontekst **15 m/s**):
 
-**Hard targety:** |Cz| ≥ **3,682**, Cx ≲ **1,23**, balans **48–52%** przód (≈ **−12 pp** od 61,6%).
+- Cx = **1,229**
+- Cz = **−3,682**
+- Cm = **−0,429**
+- balans ≈ **61,6%** przód (`1/2 + Cm/Cz`)
+
+**Hard targety:**
+
+- |Cz| ≥ **3,682**
+- Cx ≲ **1,23**
+- balans **48–52%** przód (≈ **−12 pp** od 61,6%)
 
 **Zakres zamrożony Spec:** DRS ruchomy **OUT** (pasywne klapy — osobna gałąź oporu); fan spod podłogi **OUT**; wąsy **TBD**; priorytet **Endurance + Autocross**; rozważyć RW **4-elementowe**.
 
-**Aref** (powierzchnia odniesienia): nie inventować — porównywać Fluent↔OpenFOAM dopiero po Reference Values z Fluenta.
+**Aref** (powierzchnia odniesienia): nie inventujemy. Fluent i OpenFOAM porównujemy dopiero po Reference Values z Fluenta.
 
 Powiązane: [research-balance-shift.md](research-balance-shift.md), [research-fs-teams-practice.md](research-fs-teams-practice.md) (jeśli w repo), [TARGETS.md](../TARGETS.md), [fs-rules-2026-t8.md](fs-rules-2026-t8.md).
 

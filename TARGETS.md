@@ -35,6 +35,14 @@ Wariant `RW_iter017.2` (lekko inne Cx/Cz) to tylko sprawdzenie skryptu — **nie
 
 ---
 
+## Czego nie wpuszczamy do karty
+
+Smoke OpenFOAM na rzadkiej lub dziurawej siatce (ok. 312k komórek, Cd≈1,22 / Cl≈−1,72) to tylko check setupu.
+Nie nadpisuje Cx/Cz z RWiter017.
+Cudzych absolutnych Cl/Cd z innych teamów też nie wpuszczamy jako naszych targetów.
+
+---
+
 ## Cele liczbowe (czego pilnujemy)
 
 1. **Docisk** nie gorszy niż teraz: wartość bezwzględna Cz co najmniej **3,682**.

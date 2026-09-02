@@ -1,6 +1,11 @@
 # Co nocny research zmienia w celach (Spec)
 
-Bez nowych liczb baseline. RWiter017, Aref 0,50 m², DRS OUT, wentylator OUT — bez zmian.
+Bez nowych liczb baseline. Bez zmian pozostają:
+
+- RWiter017
+- Aref = **0,50 m²**
+- DRS OUT
+- wentylator OUT
 
 ## Co przyjmuję do pracy
 

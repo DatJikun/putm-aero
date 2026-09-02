@@ -1,6 +1,7 @@
 # Baseline zespołu — RW_iter017 (PUT Motorsport, CFD Fluent 2025/26)
 
-**Kotwica:** tak — to **aktualny bolid po zawodach** (decyzja Mikołaj / Aero Pack 2026-09-01). `Baseline002` tej kotwicy nie zastępuje.
+**Kotwica:** tak — to **aktualny bolid po zawodach** (decyzja Mikołaj / Aero Pack 2026-09-01).
+`Baseline002` tej kotwicy nie zastępuje.
 
 **Źródło:** arkusz symulacji RW (CSV `team/rw-iters-2025-2026.csv`); kontekst balansu: log UT (`team/ut-iters-with-balance-2026.csv`).
 
@@ -8,16 +9,16 @@
 **Model bazowy (wg CSV):** `RW_iter014/15`  
 **Opis:** tylne lotki jak w RWiter015 + dwie lotki z przodu z RWiter014
 
-## Kluczowe liczby — TYLKO z CSV
+## Kluczowe liczby — tylko z CSV
 
 | Wiersz | Status | Data | Cm | Cx | Cz | η (Efektywność) | CoP | CoP % | Balans Front |
 |--------|--------|------|----|----|----|-----------------|-----|-------|--------------|
 | **RW_iter017** | Done | 27.12.2025 | **−0,429** | **1,229** | **−3,682** | **2,996** | −0,18 | −0,12 | **brak kolumny w sheetcie RW** |
-| RW_iter017.2 | Done | 05.05.2026 | −0,458 | 1,210 | −3,628 | 2,998 | −0,19 | −0,13 | brak — „Nowy skrypt do Fluenta”; wniosek: lekka rozbieżność; model do porównania z przyszłorocznym |
+| RW_iter017.2 | Done | 05.05.2026 | −0,458 | 1,210 | −3,628 | 2,998 | −0,19 | −0,13 | brak — „Nowy skrypt do Fluenta”; lekka rozbieżność; model do porównania z przyszłorocznym |
 
 ### Uwagi do tabeli
 
-- **Konwencja znaku:** w RW_iter017 Cz jest **ujemny** (docisk). W innych wierszach sheetu znak Cz bywa odwrócony — w claims używać **|Cz|** i jawnie podawać wiersz.
+- **Konwencja znaku:** w RW_iter017 Cz jest **ujemny** (docisk). W innych wierszach sheetu znak Cz bywa odwrócony — w claims używamy **|Cz|** i jawnie podajemy wiersz.
 - **Balans % Front nie jest podany** dla RW_iter017 w CSV RW.
 - V_ref: **15 m/s** (workflow). Aref half-car: **≈ 0,50 m²** (zakres 0,49–0,51; pełny ≈ 1,0 m²) — Mikołaj 2026-09-01.
 
@@ -29,11 +30,14 @@ Z `team/ut-iters-with-balance-2026.csv`, wiersz **Baseline_1** (Done, 4.3.2026, 
 |-------|----|----|----|---|-------|-------|------------------|
 | Baseline_1 | −0,708 | 1,197 | −3,683 | 3,077 | −2,550 | −1,134 | **0,692 (≈69% przód)** |
 
-|Cz| Baseline_1 (−3,683) jest podobny do RW_iter017 (−3,682), ale **to nie ten sam model** (potwierdzenie Mikołaja). Cm i Cx też inne. Liczb balansu z Baseline_1 (~69% przód) **nie przenosimy** na RWiter017.
+|Cz| Baseline_1 (−3,683) jest podobny do RW_iter017 (−3,682), ale **to nie ten sam model** (potwierdzenie Mikołaja).
+Cm i Cx też inne.
+Liczb balansu z Baseline_1 (~69% przód) **nie przenosimy** na RWiter017.
 
 ## Cel użytkownika (nie liczba z CFD)
 
-Mikołaj (FS Aero, 2026-09-01): **maksymalny downforce przy balansie ≈ 50/50**. To jest **kierunek hard targetu**, nie wynik pomiaru z RWiter017.
+Mikołaj (FS Aero, 2026-09-01): **maksymalny downforce przy balansie ≈ 50/50**.
+To jest **kierunek hard targetu**, nie wynik pomiaru z RWiter017.
 
 ## Claims (claim | evidence | confidence)
 
@@ -62,6 +66,6 @@ Zamrożone w INDEX na prośbę koordynacji FS Aero:
 
 - baseline liczbowy = **RW_iter017** (nie 017.2),
 - cel = max docisk przy balansie ~50/50 (48–52% przód),
-- fan OUT, DRS TBD,
+- fan **OUT**, DRS ruchomy **OUT** (Spec),
 - **Baseline_1 ≠ RW_iter017** (potwierdzone przez Mikołaja 2026-09-01). RWiter017 = aktualny bolid po zawodach.
 - balans RWiter017 **zamrożony 2026-09-01**: ≈ **61,6%** przód z Cm/Cz arkusza (decyzja Mikołaj+Spec+Koordynator); postpro JPG bez CSV — bez zmiany kotwicy.

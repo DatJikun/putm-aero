@@ -223,3 +223,15 @@ Cd praktycznie jak A1b (−33%) — dalsze obniżanie main **nie tnie już oporu
 - y+ średnia ≈ **5,6** (cel ~30 — **za nisko**, warstwa w buforze)
 
 **Lit. / bramka:** |ΔCl| medium→medium+ **nie** spadło poniżej ~8% — jest gorzej. To nie otwiera decyzji kątów (zgoda ze Spec). y+~5–6 przy wall-fn jest poza zakresem, w którym Staniszewski celował **30–300** (EWT) — najpierw poprawić warstwy / y+, nie dokręcać AOA. Cd 0,19 bliżej medium niż fine 0,10, ale skok Cl dyskwalifikuje medium+ jako „uspokojenie szumu”.
+
+
+### 6.8 Czerwone flagi setupu (feedback Mikołaj / Koordynator)
+
+Dopisek do bramki — **bez** zmian w `TARGETS.md`:
+
+1. **Mesh study mieszało przepisy siatki** (nie tylko gęstość przy tym samym wall treatment / BL). Porównanie coarse/medium/fine i medium+ nie jest czystym GCI „tej samej fizyki numerycznej”. Traktować ΔCl/ΔCd między tymi runami jako **czerwoną flagę procesu**, nie jako dowód niezależności ani jako dowód „prawdziwego” stallu geometrii.
+2. **Cd bez zbieżności z gęstością** (0,49 → 0,28 → 0,10 na fine; medium+ Cd ≈ 0,19 przy innym y+) — absolutów Cd z tych runów **nie** kotwiczyć w literature ani w decyzji CAD.
+3. **y+ poza wall-fn:** medium+ średnio ≈ 5–6 przy modelu wall-fn (cel ~30) — wynik w **buforze**, poza zakresem, w którym Staniszewski celował y+ **30–300**. Najpierw warstwy / y+, potem kąty.
+4. **3-el. vs 4-el.:** nie porównywać absolutów Cl/Cd między kaskadami o innej liczbie elementów (ani 2D vs auto). Ewentualne porównanie 4-el. = tylko **jedna** seria diagnostyczna po otwarciu bramki, Δ na tym samym przepisie siatki — nie „lepszy Cl = bierzemy 4”.
+
+Dopóki punkty 1–3 nie są ogarnięte, lit. nadal wspiera tylko **kierunki** (Staniszewski / Jackson kill Cd) przy ostrożnym czytaniu Δ — nie decyzje CAD.

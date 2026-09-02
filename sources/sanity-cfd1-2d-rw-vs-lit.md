@@ -134,7 +134,7 @@ Z Staniszewskiego 2023 (2D, ten sam V):
 | Czy gap/overlap są „z księżyca”? | **Nie** — blisko McBeath/Jackson; f1→f2 lekko poza 4%/6%. |
 | Czy wolno porównywać z RWiter017 / Jackson-pojazd? | **Nie** absolutów. |
 | Czy niezależność siatki jest domknięta? | **Policzone, ale wynik negatywny** — brak pełnej niezależności; Cd fine podejrzane (§6). |
-| Czy kierunek Δ kątów zgadza się z Staniszewskim? | **A1 tak** (więcej \|Cl\|, mniej Cd); A2 jeszcze brak. |
+| Czy kierunek Δ kątów zgadza się z Staniszewskim? | **A1 tak** (większy |Cl|, mniej Cd); A2 jeszcze brak. |
 | Czy coś idzie do TARGETS? | **Nie.** |
 
 **Dla Spec / CFD#1:** medium baseline nadaje się jako **punkt startu serii 2D** (jak ustaliliście). Po A1/A2 — jedna aktualizacja tej notatki z tabelą Δ. Po coarse/fine — dopisać werdykt niezależności.

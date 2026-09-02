@@ -134,7 +134,7 @@ Z Staniszewskiego 2023 (2D, ten sam V):
 | Czy gap/overlap są „z księżyca”? | **Nie** — blisko McBeath/Jackson; f1→f2 lekko poza 4%/6%. |
 | Czy wolno porównywać z RWiter017 / Jackson-pojazd? | **Nie** absolutów. |
 | Czy niezależność siatki jest domknięta? | **Policzone, ale wynik negatywny** — brak pełnej niezależności; Cd fine podejrzane (§6). |
-| Czy kierunek Δ kątów zgadza się z Staniszewskim? | **A1** kierunkowo tak (Cd↓); **A2/A2b** czytelny sygnał to Cd↑ (stall path), Cl w szumie. |
+| Czy kierunek Δ kątów zgadza się z Staniszewskim? | **A1/A1b** tak na Cd↓ (i drobny |Cl|↑); Cl w szumie meshu. **A2/A2b** Cd↑ = stall path. |
 | Czy coś idzie do TARGETS? | **Nie.** |
 
 **Dla Spec / CFD#1:** medium baseline nadaje się jako **punkt startu serii 2D** (jak ustaliliście). Po A1/A2 — jedna aktualizacja tej notatki z tabelą Δ. Po coarse/fine — dopisać werdykt niezależności.
@@ -195,6 +195,7 @@ A2 / A2b: patrz §6.5 (Cd↑ przy wyższym main; |ΔCl| nadal < szum meshu).
 | A1 | 6,5° | ≈ −1% | ≈ −11% |
 | A2 | 9,5° | ≈ −3,7% | ≈ **+21%** |
 | A2b | 12,5° | ≈ −1,4% | ≈ **+52%** |
+| A1b | 3,5° | ≈ −0,9% | ≈ **−33%** |
 
 **Lit. / bramka:**
 
@@ -203,4 +204,6 @@ A2 / A2b: patrz §6.5 (Cd↑ przy wyższym main; |ΔCl| nadal < szum meshu).
 - A1 nadal jedyny punkt z Cd w dół i lekkim |Cl| w górę (kierunek Staniszewski); sam sygnał Cl za mały vs mesh.
 - A2 Cl Δ (−3,7%) **nie** interpretujemy jako twardego „więcej docisku przy wyższym main” — to nadal szum względem GCI; czytelny jest **wzrost Cd**.
 
-A1b (main 3,5°) — dopisać po runie.
+
+**A1b (main 3,5°):** Cl ≈ −2,55 / Cd ≈ 0,185 → ΔCl ≈ −0,9%, ΔCd ≈ −33%.  
+Kierunek jak Staniszewski (niższy main → mniej oporu, lekko więcej |Cl|), ale **|ΔCl| nadal ≪ szum meshu** — nie do CAD. Czytelny zysk to głównie **Cd↓**; ciąg A1 (6,5°) → A1b (3,5°) wzmacnia trend Cd, nie dowód niezależności Cl.

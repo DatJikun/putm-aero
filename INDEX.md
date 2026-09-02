@@ -119,3 +119,5 @@ Indeksy cząstkowe: [index-batch-a.md](index-batch-a.md), [index-batch-b.md](ind
 - [SPEC-MORNING.md](SPEC-MORNING.md) — one-pager Spec na rano
 - [SPEC-FROM-OVERNIGHT.md](SPEC-FROM-OVERNIGHT.md) — co nocny research zmienia w celach
 - [TARGETS.md](TARGETS.md) — pełna karta celów
+
+- [SPEC-FLUENT-H1-RWITER017.md](SPEC-FLUENT-H1-RWITER017.md) — kampania Fluent H1 na aucie

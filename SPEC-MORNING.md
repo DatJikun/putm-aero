@@ -71,3 +71,8 @@ CFD#1 idzie w **2D tylne skrzydło** pod H1. Gdy wróci Fluent u Mikołaja: seri
 ## Bramka serii 2D H1
 
 Kolejność: y+ 30–300 → mesh study 2–3 poziomy → dopiero G/O i kąty. Decyzja CAD tylko gdy Δ ≫ szum siatki. Szczegóły: `SPEC-H1-2D-GATE.md`.
+
+## Kampania Fluent H1 (aktualne)
+
+2D OpenFOAM zaparkowane. Plan na aucie: `SPEC-FLUENT-H1-RWITER017.md` — cele z TARGETS, kill |Cz|/Cx/balans, 3-el. default / 4-el. porównanie, bez Cl z 2D.
+

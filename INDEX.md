@@ -122,3 +122,5 @@ Indeksy cząstkowe: [index-batch-a.md](index-batch-a.md), [index-batch-b.md](ind
 - [TARGETS.md](TARGETS.md) — pełna karta celów
 
 - [SPEC-FLUENT-H1-RWITER017.md](SPEC-FLUENT-H1-RWITER017.md) — kampania Fluent H1 na aucie
+
+- [docs/PROTOKOL-2D-OPENFOAM.md](docs/PROTOKOL-2D-OPENFOAM.md) — protokół 2D OF (**zaparkowane**); bramka SPEC-H1-2D-GATE

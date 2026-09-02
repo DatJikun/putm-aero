@@ -196,6 +196,7 @@ A2 / A2b: patrz §6.5 (Cd↑ przy wyższym main; |ΔCl| nadal < szum meshu).
 | A2 | 9,5° | ≈ −3,7% | ≈ **+21%** |
 | A2b | 12,5° | ≈ −1,4% | ≈ **+52%** |
 | A1b | 3,5° | ≈ −0,9% | ≈ **−33%** |
+| A1c | 1° | ≈ −3,7% | ≈ −32% |
 
 **Lit. / bramka:**
 
@@ -207,3 +208,8 @@ A2 / A2b: patrz §6.5 (Cd↑ przy wyższym main; |ΔCl| nadal < szum meshu).
 
 **A1b (main 3,5°):** Cl ≈ −2,55 / Cd ≈ 0,185 → ΔCl ≈ −0,9%, ΔCd ≈ −33%.  
 Kierunek jak Staniszewski (niższy main → mniej oporu, lekko więcej |Cl|), ale **|ΔCl| nadal ≪ szum meshu** — nie do CAD. Czytelny zysk to głównie **Cd↓**; ciąg A1 (6,5°) → A1b (3,5°) wzmacnia trend Cd, nie dowód niezależności Cl.
+
+### 6.6 A1c
+
+**A1c (main 1°):** Cl ≈ −2,62 / Cd ≈ 0,187 → ΔCl ≈ −3,7%, ΔCd ≈ −32%.  
+Cd praktycznie jak A1b (−33%) — dalsze obniżanie main **nie tnie już oporu**. To pasuje do Staniszewskiego: jest optimum kąta main, poniżej którego zysk się wypłaszcza / psuje (u nich −7° już gorsze Fz). |ΔCl| nadal < szum meshu → nie CAD. Następny sensowny ruch pod lit./bramkę: **medium+** (zejsć ze szumu), nie kolejne ułamki stopnia na medium.

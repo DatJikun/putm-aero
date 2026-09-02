@@ -99,6 +99,7 @@ Indeksy cząstkowe: [index-batch-a.md](index-batch-a.md), [index-batch-b.md](ind
 | [sources/research-amz-berlin-snails-aero.md](sources/research-amz-berlin-snails-aero.md) | AMZ / FaSTTUBe (Berlin) / Running Snail — narzędzia, walidacja, publiczne ΔDF; absolutne Cl/Cd nie znalezione |
 | [sources/research-overnight-h3-fw-unload-rw-gaps.md](sources/research-overnight-h3-fw-unload-rw-gaps.md) | Noc 2: H3 odciążenie FW + reguły gap/overlap/AOA na RW; checklist pod serię CFD |
 | [sources/checklist-h1-2d-rw-gap-aoa.md](sources/checklist-h1-2d-rw-gap-aoa.md) | Checklist H1: seria 2D RW — gap/overlap/AOA (bez nowych Cl/Cd do TARGETS) |
+| [sources/sanity-cfd1-2d-rw-vs-lit.md](sources/sanity-cfd1-2d-rw-vs-lit.md) | Sanity-check baseline 2D CFD#1 vs Staniszewski/Jackson/McBeath (rząd wielkości; bez TARGETS) |
 | [sources/research-eu-fs-ev-top-teams.md](sources/research-eu-fs-ev-top-teams.md) | Przegląd topowych teamów EU FS EV pod pakiet aero PUT |
 | [sources/research-aero-dev-tooling.md](sources/research-aero-dev-tooling.md) | Jak teamy EU FS organizują rozwój aero: tooling, workflow i śledzenie iteracji CFD |
 

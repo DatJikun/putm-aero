@@ -41,9 +41,9 @@ Siatka medium:
 - checkMesh OK, maxSkew ≈ **1,06**  
 - y+ mean ≈ **20** (min ≈ 0,9 / max ≈ 85) — wall-fn OK  
 
-**Niezależność siatki:** coarse (~201k) i fine (~827k) w raporcie jeszcze **PENDING** w momencie tej notatki — medium to tylko **referencja robocza** serii, nie domknięty dowód niezależności.
+**Niezależność siatki:** coarse/medium/fine **domknięte** — patrz §6. Werdykt: **brak pełnej niezależności** (szczególnie Cd). Medium = referencja robocza do Δ.
 
-A1 (main 6,5°) i A2 (main 9,5°) w toku — **brak** jeszcze ΔCl/ΔCd z serii kątów do porównania z literaturą.
+A1 (main 6,5°) **gotowe** — kierunek Δ zgodny ze Staniszewskim (§6.3). A2 (main 9,5°) — w toku.
 
 ---
 
@@ -133,9 +133,55 @@ Z Staniszewskiego 2023 (2D, ten sam V):
 | Czy |Cl|~2,5 / Cd~0,28 to sensowny rząd dla 2D 3-el. high-lift? | **Tak** (kotwica MECDC Cl≈2,81; Cd CFD#1 niższy przy łagodniejszych klapach — OK orientacyjnie). |
 | Czy gap/overlap są „z księżyca”? | **Nie** — blisko McBeath/Jackson; f1→f2 lekko poza 4%/6%. |
 | Czy wolno porównywać z RWiter017 / Jackson-pojazd? | **Nie** absolutów. |
-| Czy niezależność siatki jest domknięta? | **Jeszcze nie** (coarse/fine pending). |
-| Czy kierunek Δ kątów zgadza się z Staniszewskim? | **Do sprawdzenia** po A1/A2. |
+| Czy niezależność siatki jest domknięta? | **Policzone, ale wynik negatywny** — brak pełnej niezależności; Cd fine podejrzane (§6). |
+| Czy kierunek Δ kątów zgadza się z Staniszewskim? | **A1 tak** (więcej \|Cl\|, mniej Cd); A2 jeszcze brak. |
 | Czy coś idzie do TARGETS? | **Nie.** |
 
 **Dla Spec / CFD#1:** medium baseline nadaje się jako **punkt startu serii 2D** (jak ustaliliście). Po A1/A2 — jedna aktualizacja tej notatki z tabelą Δ. Po coarse/fine — dopisać werdykt niezależności.
 
+---
+
+## 6. Update 2026-09-02 ~10:35 — niezależność siatki + A1 (z raportu CFD#1)
+
+Źródło liczb: `/workspace/fs-rear-wing-2d-3el/RAPORT_NIEZALEZNOSC_SIATKI.md` (okno t = 1810–2000).
+
+### 6.1 Trzy poziomy siatki
+
+| Poziom | Komórki | Cl | Cd | y+ średnia |
+|--------|---------|-----|-----|------------|
+| coarse | ≈ 201k | **−2,93** | **0,49** | ≈29 |
+| medium | ≈ 408k | **−2,53** | **0,28** | ≈20 |
+| fine | ≈ 827k | **−2,72** | **0,095** | ≈15 |
+
+Δ względem medium:
+
+- coarse → medium: ΔCl ≈ **+16%**, ΔCd ≈ **−44%**
+- medium → fine: ΔCl ≈ **−8%**, ΔCd ≈ **−66%**
+
+### 6.2 Werdykt lit. / wiarygodność
+
+**Zgadzamy się z CFD#1: pełnej niezależności siatki nie ma.**
+
+- Cl skacze o ~8% medium→fine — powyżej roboczego progu ~2–3% pod „pewne” trendy.
+- Cd **nie zbiega** z gęstością (0,49 → 0,28 → 0,10). Fine Cd ≈ 0,10 jest **podejrzanie niski** vs rząd MECDC (Cd 0,81) i vs własny medium (0,28) — **nie** traktować jako kotwicy fizycznej.
+- y+ średnie (15–29) nadal w świecie wall-fn; to nie tłumaczy samego skoku Cd.
+- Medium zostaje OK tylko jako **wspólna siatka do Δ** przy identycznym przepisie — nie jako absolut Cl/Cd „jak w tunelu”.
+
+Dla Spec (`SPEC-H1-2D-GATE.md`): mesh study **nie zielona** na absoluty. Seria kątów może iść **ostrożnie** na medium wyłącznie jako ranking Δ — decyzje kątów warto potwierdzić po naprawie fine / dogęszczeniu slotów.
+
+### 6.3 A1 vs literatura (kierunek Δ)
+
+A1 = main **6,5°** / 20° / 32° (main −1,5° vs baseline 8°), ta sama medium:
+
+- Cl: **−2,55** vs baseline **−2,53** → ΔCl ≈ **−0,03** (~**−1,1%**, trochę więcej docisku)
+- Cd: **0,247** vs **0,276** → ΔCd ≈ **−0,03** (~**−11%**)
+
+Staniszewski 2023 (2D): obniżenie kąta main ↑ |Fz| i ↓ Fx.  
+Kierunek A1 (**więcej |Cl|, mniej Cd**) jest **zgodny** z tym trendem, choć ΔCl jest małe (~1%). To wspiera sens fizyczny serii kątów na medium, **nie** zamyka mesh study.
+
+A2 (main 9,5°) w momencie update’u jeszcze **w toku** — dopisać po domknięciu (spodziewany spadek |Cl| albo gorszy Cl/Cd vs baseline).
+
+### 6.4 Co nie zmienia się
+
+- Nadal **nie** mieszamy 2D z RWiter017 / TARGETS.
+- Rząd |Cl|~2,5–2,9 na coarse/medium nadal trzyma się kotwicy MECDC (~2,8); fine Cl −2,72 też w rzędzie, problem to głównie **Cd**.

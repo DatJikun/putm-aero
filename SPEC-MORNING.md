@@ -61,3 +61,10 @@ Suma dynamiki z aero w tle: Endurance jest największy kawałek; Efficiency dok�
 4. Czy na Endurance ważycie też Efficiency osobno w funkcji celu, czy „mały opór” wystarczy jako proxy.
 
 Szczegóły: `TARGETS.md`, `SPEC-FROM-OVERNIGHT.md`.
+
+## Update (2 IX, park OpenFOAM full-car)
+
+Porównanie OpenFOAM na całym aucie **zaparkowane** (dziurawa geometria, Cl daleko od Fluenta). Baseline i TARGETS **bez zmian**.
+
+CFD#1 idzie w **2D tylne skrzydło** pod H1. Gdy wróci Fluent u Mikołaja: seria **3-elementowa** pod cele z karty.
+

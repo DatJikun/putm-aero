@@ -104,6 +104,7 @@ Indeksy cząstkowe: [index-batch-a.md](index-batch-a.md), [index-batch-b.md](ind
 | [sources/research-h1-overlap-gap-deep-dive.md](sources/research-h1-overlap-gap-deep-dive.md) | H1 pogłębienie: overlap/gap/AOA po bramce medium+; kill criteria; bez TARGETS |
 | [sources/sanity-cfd1-2d-rw-vs-lit.md](sources/sanity-cfd1-2d-rw-vs-lit.md) | Sanity-check baseline 2D CFD#1 vs Staniszewski/Jackson/McBeath (rząd wielkości; bez TARGETS) |
 | [sources/research-h2-undertray-balance-levers.md](sources/research-h2-undertray-balance-levers.md) | H2 podłoga: dźwignie balansu tył, ride height, yaw, checklista pomiarów CFD |
+| [sources/research-season-geometry-profiles.md](sources/research-season-geometry-profiles.md) | Kandydaci profili/geometrii sezonu: RW 3-el., FW, UT (~13°), wąsy — bez TARGETS |
 | [sources/research-h3-fw-unload-for-balance.md](sources/research-h3-fw-unload-for-balance.md) | H3: kiedy odciążać FW pod balans (po H1+H2); siły z literatury; bez TARGETS |
 | [sources/research-eu-fs-ev-top-teams.md](sources/research-eu-fs-ev-top-teams.md) | Przegląd topowych teamów EU FS EV pod pakiet aero PUT |
 | [sources/research-aero-dev-tooling.md](sources/research-aero-dev-tooling.md) | Jak teamy EU FS organizują rozwój aero: tooling, workflow i śledzenie iteracji CFD |

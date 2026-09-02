@@ -11,6 +11,8 @@ To jest nasza karta założeń. Pisana tak, żeby dało się ją przeczytać ran
 
 Chcemy **jak największy docisk** przy **możliwie małym oporze**, z balansem blisko **pół na pół**. Najważniejsze są **Endurance** i **Autocross**. Ruchomego DRS nie robimy (tylko układ nieruchomy). Wentylatora spod podłogi nie robimy. Najpierw pracujemy nad **tylnym skrzydłem**, potem nad **podłogą**.
 
+**OpenFOAM nie do auta** — porównania i kampania H1 na bolidzie tylko we **Fluencie**. 2D OpenFOAM jest **zaparkowane** (instrukcja na później: `docs/PROTOKOL-2D-OPENFOAM.md`, `SPEC-H1-2D-GATE.md`).
+
 ---
 
 ## Liczby z RWiter017 (nasz punkt startu)

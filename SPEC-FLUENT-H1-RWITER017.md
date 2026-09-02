@@ -2,6 +2,8 @@
 
 Krótki plan Spec po zaparkowaniu 2D OpenFOAM. Liczymy **na aucie we Fluencie**, nie przenosimy Cl z 2D.
 
+**OpenFOAM nie do auta** — porównania i kampania H1 na bolidzie tylko we **Fluencie**. 2D OpenFOAM jest **zaparkowane** (instrukcja na później: `docs/PROTOKOL-2D-OPENFOAM.md`, `SPEC-H1-2D-GATE.md`).
+
 ---
 
 ## Po co

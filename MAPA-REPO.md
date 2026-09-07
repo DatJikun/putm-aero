@@ -12,12 +12,10 @@ Stan: wrzesień 2026.
 ## Od czego zacząć (kolejność czytania)
 
 1. **[README.md](README.md)** i **[JAK-ULEPSZAC-PAKIET.md](JAK-ULEPSZAC-PAKIET.md)** — wiki start.  
-2. **[SEASON-DIRECTION.md](SEASON-DIRECTION.md)** / **[TARGETS.md](TARGETS.md)**.  
-3. **Ten plik** — tylko gdy szukasz folderu.  
-~~3. **[SEASON-DIRECTION.md](SEASON-DIRECTION.md)**~~ — kierunek sezonu w skrócie.  
-4. **[TARGETS.md](TARGETS.md)** — karta celów (liczby i kill).  
-5. **[INDEX.md](INDEX.md)** — spis źródeł i zamrożonych ustaleń.  
-6. Dopiero potem folder **`sources/`** albo **`team/`**, zależnie od pytania.
+2. **[SEASON-DIRECTION.md](SEASON-DIRECTION.md)** / **[TARGETS.md](TARGETS.md)** — kierunek i liczby.  
+3. **[INDEX.md](INDEX.md)** — spis źródeł i zamrożonych ustaleń.  
+4. **Ten plik** — tylko gdy szukasz folderu.  
+5. Dopiero potem folder **`sources/`** albo **`team/`**, zależnie od pytania.
 
 ---
 

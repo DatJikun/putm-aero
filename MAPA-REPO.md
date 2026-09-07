@@ -109,6 +109,21 @@ Przy konflikcie z **TARGETS.md** / **SEASON-DIRECTION.md** wygrywa Spec (karta c
 
 ---
 
+
+## OpenFOAM 2D (zaparkowane) — gdzie jest raport
+
+Seria **2D tylnego skrzydła** w OpenFOAM jest **zaparkowana**. Nie odpalamy nowych runów; nie wrzucamy tych Cl/Cd do `TARGETS.md`.
+
+Pełny raport setupu (geometria → mesh → BC → solver → post-pro + figury) leży **poza tym repo**, lokalnie na komputerze agentów:
+
+- `/workspace/fs-rear-wing-2d-3el/RAPORT_PELNY_SETUP.md`
+- oraz PDF w tym samym folderze (jeśli wygenerowany)
+- obrazki: `/workspace/fs-rear-wing-2d-3el/raport_figs/`
+
+Instrukcja na później (jak wrócicie do 2D): `docs/PROTOKOL-2D-OPENFOAM.md` + bramka `SPEC-H1-2D-GATE.md`.
+
+**Endplate RW (packaging):** notatka Źródeł w `sources/research-rw-endplate-packaging.md` — wsparcie pod H1, nie nowe liczby na kartę.
+
 ## Czego gdzie szukać (szybkie pytania)
 
 | Pytanie | Idź do |
@@ -118,7 +133,8 @@ Przy konflikcie z **TARGETS.md** / **SEASON-DIRECTION.md** wygrywa Spec (karta c
 | Jak odpalić serię tylnego na Fluencie? | `SPEC-FLUENT-H1-RWITER017.md` + `sources/checklist-h1-fluent-rw.md` |
 | Co mówi literatura / research? | `sources/` (+ `INDEX.md`) |
 | Gdzie są CSV i skrypty Fluent? | `team/` |
-| Co z OpenFOAM 2D? | Zaparkowane → `docs/PROTOKOL-2D-OPENFOAM.md` + `SPEC-H1-2D-GATE.md` |
+| Co z OpenFOAM 2D? | Zaparkowane → protokół w `docs/` + raport lokalnie `fs-rear-wing-2d-3el/RAPORT_PELNY_SETUP.md` (**nie** TARGETS) |
+| Endplate RW (packaging)? | `sources/research-rw-endplate-packaging.md` |
 | Regulamin T8 / boxy? | `sources/fs-rules-2026-t8.md` albo `team/rules-current.pdf` |
 
 ---

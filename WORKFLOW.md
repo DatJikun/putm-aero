@@ -16,6 +16,8 @@ Zanim zaczniecie kręcić kątami albo gapem:
 
 Nie mieszajcie „fine bez warstw” z „medium z warstwami” i nie nazywajcie tego niezależnością siatki — to test różnych modeli dyskretyzacji, nie gęstości.
 
+**Zasada szumu vs sygnału.** Zanim kręcicie kąty albo gap na aucie we Fluencie, szum siatki (różnica Cl/Cx albo Cz między sąsiednimi poziomami tej samej topologii) musi być **wyraźnie mniejszy** niż efekt zmiany geometrii, którego szukacie. Jeśli |Δ| z kąta czy gapu jest rzędu skoku między siatkami, to nie jest ulepszanie pakietu — to liczenie szumu. Ta sama zasada obowiązuje przy ewentualnym powrocie do 2D OpenFOAM (patrz bramka `SPEC-H1-2D-GATE.md` i protokół w `docs/PROTOKOL-2D-OPENFOAM.md`).
+
 Przy raportowaniu Cl/Cd / Cx/Cz pokazujcie nie tylko „ostatnie 200 iteracji”, ale też **czy średnia usiadła** (plateau / średnia krocząca). Jeśli nadal dryfuje — oznaczcie case jako nieużywalny do decyzji.
 
 **Jeden parametr na raz.** Overlap albo gap albo kąt — nie wszystko w jednym shotcie.

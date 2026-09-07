@@ -6,6 +6,10 @@ Liczby tylko ze źródeł — bez zgadywania.
 
 ---
 
+## Nawigacja
+
+- [MAPA-REPO.md](MAPA-REPO.md) — mapa repozytorium (co w każdym folderze, czego gdzie szukać)
+
 ## Ustalenia zamrożone (zespół)
 
 **Punkt odniesienia (baseline):** `RW_iter017` to **aktualny bolid** po zawodach.

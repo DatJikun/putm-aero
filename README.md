@@ -5,11 +5,12 @@ Trzymamy tu źródła, zamrożone ustalenia i kartę celów — bez zgadywania l
 
 ## Od czego zacząć
 
-1. [INDEX.md](INDEX.md) — źródła i ustalenia, które już zamroziliśmy.
-2. [TARGETS.md](TARGETS.md) — karta celów (Spec): co optymalizujemy i w jakich widełkach.
-3. [sources/](sources/) — notatki ze źródeł i claims (literatura oraz arkusze zespołu).
-4. [team/](team/) — arkusze CFD zespołu (CSV) oraz skrypty Fluent.
-5. [assumptions/ASSUMPTIONS-DRAFT.md](assumptions/ASSUMPTIONS-DRAFT.md) — szkic założeń (DRAFT; przy konflikcie wygrywa Spec).
+1. [MAPA-REPO.md](MAPA-REPO.md) — mapa folderów: co gdzie leży i czego gdzie szukać.
+2. [INDEX.md](INDEX.md) — źródła i ustalenia, które już zamroziliśmy.
+3. [TARGETS.md](TARGETS.md) — karta celów (Spec): co optymalizujemy i w jakich widełkach.
+4. [sources/](sources/) — notatki ze źródeł i claims (literatura oraz arkusze zespołu).
+5. [team/](team/) — arkusze CFD zespołu (CSV) oraz skrypty Fluent.
+6. [assumptions/ASSUMPTIONS-DRAFT.md](assumptions/ASSUMPTIONS-DRAFT.md) — szkic założeń (DRAFT; przy konflikcie wygrywa Spec).
 
 ## W skrócie
 

@@ -1,5 +1,7 @@
 # Mapa repozytorium putm-aero
 
+> **To jest spis folderów**, nie przewodnik po pakiecie. Najpierw przeczytaj [README.md](README.md) i [JAK-ULEPSZAC-PAKIET.md](JAK-ULEPSZAC-PAKIET.md), potem [SEASON-DIRECTION.md](SEASON-DIRECTION.md) / [TARGETS.md](TARGETS.md). Tu wracasz, gdy szukasz konkretnego pliku.
+
 Prosty przewodnik: **gdzie co leży** i **czego gdzie szukać**.  
 Pisane pełnymi zdaniami, bez ściany skrótów.
 
@@ -9,9 +11,10 @@ Stan: wrzesień 2026.
 
 ## Od czego zacząć (kolejność czytania)
 
-1. **[README.md](README.md)** — co to za repo i po co istnieje.  
-2. **Ten plik** — mapa folderów.  
-3. **[SEASON-DIRECTION.md](SEASON-DIRECTION.md)** — kierunek sezonu w skrócie.  
+1. **[README.md](README.md)** i **[JAK-ULEPSZAC-PAKIET.md](JAK-ULEPSZAC-PAKIET.md)** — wiki start.  
+2. **[SEASON-DIRECTION.md](SEASON-DIRECTION.md)** / **[TARGETS.md](TARGETS.md)**.  
+3. **Ten plik** — tylko gdy szukasz folderu.  
+~~3. **[SEASON-DIRECTION.md](SEASON-DIRECTION.md)**~~ — kierunek sezonu w skrócie.  
 4. **[TARGETS.md](TARGETS.md)** — karta celów (liczby i kill).  
 5. **[INDEX.md](INDEX.md)** — spis źródeł i zamrożonych ustaleń.  
 6. Dopiero potem folder **`sources/`** albo **`team/`**, zależnie od pytania.

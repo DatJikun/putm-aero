@@ -8,6 +8,8 @@ Liczby tylko ze źródeł — bez zgadywania.
 
 ## Nawigacja
 
+- [WORKFLOW.md](WORKFLOW.md) — co poprawić w workflow CFD i repo
+- [JAK-ULEPSZAC-PAKIET.md](JAK-ULEPSZAC-PAKIET.md) — jak ulepszać pakiet (wiki)
 - [MAPA-REPO.md](MAPA-REPO.md) — mapa repozytorium (co w każdym folderze, czego gdzie szukać)
 
 ## Ustalenia zamrożone (zespół)

@@ -65,6 +65,11 @@ Zasada: liczby tylko z cytatem / ścieżką do źródła — bez zgadywania.
 
 Tu m.in.: balans i dźwignie (`research-balance-*.md`, `research-h2-*.md`, `research-h3-*.md`), overlap/gap, Endurance/energia, top EU / AMZ / Berlin / Snails, profile/geometrie sezonu (`research-season-geometry-profiles.md`), tooling rozwoju aero.
 
+- Packaging endplate RW (H1): patrz `sources/research-rw-endplate-packaging.md`.
+- H2 strakes / yaw / ride height: `sources/research-h2-strakes-yaw-rideheight.md`.
+- 3 vs 4 elementy RW (teamy/papery): `sources/research-rw-3vs4-elements-teams.md`.
+
+
 ### Checklisty i sanity
 
 - `checklist-h1-fluent-rw.md` — **aktywna** pod serię Fluent na aucie.  

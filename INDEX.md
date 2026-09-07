@@ -114,6 +114,7 @@ Indeksy cząstkowe: [index-batch-a.md](index-batch-a.md), [index-batch-b.md](ind
 | [sources/research-h3-fw-unload-for-balance.md](sources/research-h3-fw-unload-for-balance.md) | H3: kiedy odciążać FW pod balans (po H1+H2); siły z literatury; bez TARGETS |
 | [sources/research-eu-fs-ev-top-teams.md](sources/research-eu-fs-ev-top-teams.md) | Przegląd topowych teamów EU FS EV pod pakiet aero PUT |
 | [sources/research-aero-dev-tooling.md](sources/research-aero-dev-tooling.md) | Jak teamy EU FS organizują rozwój aero: tooling, workflow i śledzenie iteracji CFD |
+| [sources/research-rw-endplate-packaging.md](sources/research-rw-endplate-packaging.md) | Packaging endplate RW: T8 (&lt;1,1 m, inboard, setback 250 mm); 800×500=OF 2D nie T8; Jackson 1200 mm ostrzeżenie; H1 freeze endplate → 1–2 tipy; bez Cl→TARGETS |
 
 ## Regulamin
 

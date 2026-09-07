@@ -55,7 +55,7 @@ Nie optymalizujcie podłogi samym peakiem na prostej — Endurance to zabija.
 
 ## 3. Przednie dopiero na końcu
 
-Przednie skrzydło i wąsy to **H3**: ruszacie je **dopiero gdy** po RW + podłodze balans nadal siedzi wyraźnie powyżej ok. **52%** na przód. Odciążanie FW może cofnąć balans, ale łatwo przy okazji zjeść całe |Cz| — dlatego to ostatnia dźwignia, nie pierwsza.
+**H3** to odciążenie **przedniego skrzydła** — ruszacie je **dopiero gdy** po RW + podłodze balans nadal siedzi wyraźnie powyżej ok. **52%** na przód. Odciążanie FW może cofnąć balans, ale łatwo przy okazji zjeść całe |Cz| — dlatego to ostatnia dźwignia, nie pierwsza. **Wąsy** zostają osobno (później / TBD, H4), nie w tej samej serii co H3.
 
 **S1223** z literatury to kandydat pod wąsy / lokalne detale FW, **nie** baseline całego przedniego. Notatka: [sources/research-h3-fw-unload-for-balance.md](sources/research-h3-fw-unload-for-balance.md).
 

@@ -1,0 +1,39 @@
+# Parametry auta dla generatora boxów aero (gen_boxes.py). Jednostki: mm.
+#
+# Układ współrzędnych = jak w modelu CFD (team/fluent-scripts/solving.jou):
+#   x  do tyłu, 0 = oś przednia
+#   y  w bok,   0 = płaszczyzna symetrii (półauto w CFD leży po stronie y < 0)
+#   z  w górę,  0 = grunt
+#
+# ŹRÓDŁO = wartość z repo. PLACEHOLDER = brak w repo, trzeba podmienić z CAD auta
+# i przegenerować (python3 gen_boxes.py).
+
+[car]
+# ŹRÓDŁO: solving.jou — oś tylnego koła x = 1.53 m; Reference Length = 1.53 m
+wheelbase = 1530.0
+
+# ŹRÓDŁO: solving.jou — oś koła z = 0.20574 m; ω = 72.9 rad/s przy 15 m/s → R = 0.2058 m
+tire_radius_front = 205.74
+tire_radius_rear = 205.74
+
+# PLACEHOLDER — szerokość opony (7.5" = 190.5 mm dla typowej opony 16x7.5-10)
+tire_width_front = 190.5
+tire_width_rear = 190.5
+
+# PLACEHOLDER — rozstaw kół (środek opony ↔ środek opony).
+# Uwaga: w solving.jou oś obrotu kół ma punkt y = -0.7 m. Dla osi równoległej do y ta wartość
+# nie wpływa na CFD, więc NIE traktujemy jej jako połowy rozstawu (dawałoby 1400 mm).
+track_front = 1200.0
+track_rear = 1200.0
+
+# PLACEHOLDER — x przedniej ściany podpory zagłówka (rearmost portion of the front face,
+# bez padów, zagłówek w najbardziej tylnej pozycji) — T 8.2.1
+x_head_restraint = 1000.0
+
+[model]
+# Minimalny prześwit (T 2.2.1) — dolna ściana stref dozwolonych
+ground_clearance = 30.0
+# Strefy, które regulamin opisuje jako „bez końca", są w CAD obcinane:
+keepout_lateral_extra = 600.0    # ile mm outboard od zewn. krawędzi opony rysować keep-out
+keepout_height_cap = 1500.0      # wysokość keep-out przednich kół (reguła: bez limitu)
+front_outboard_extra = 300.0     # szara strefa B3: aero przed LE opon outboard od opony (T 8.2.2 milczy)

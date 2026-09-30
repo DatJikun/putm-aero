@@ -3,7 +3,8 @@
 **Źródło:** *Formula Student Rules 2027 — Aerodynamics Extract* (EN), stopka: „Source: Formula Student Rules 2027 Version 1.0, uploaded by the user.”  
 **PDF:** `team/rules-2027-aero-extract.pdf` · **dump tekstowy:** `team/rules-2027-aero-extract.txt`  
 **Poprzedni sezon (do porównania):** [fs-rules-2026-t8.md](fs-rules-2026-t8.md) · `team/rules-raw.txt`  
-**Loophole'y / szare strefy 2027:** [rules-2027-aero-loopholes.md](rules-2027-aero-loopholes.md)
+**Loophole'y / szare strefy 2027:** [rules-2027-aero-loopholes.md](rules-2027-aero-loopholes.md)  
+**Boxy w CAD (STEP):** [`team/cad-boxes/`](../team/cad-boxes/README.md)
 
 Tu tylko **cytaty, claims i różnice**. Decyzje projektu = Spec / lead, nie ten plik.
 

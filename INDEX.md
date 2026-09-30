@@ -125,6 +125,7 @@ Indeksy cząstkowe: [index-batch-a.md](index-batch-a.md), [index-batch-b.md](ind
 | [sources/fs-rules-2027-t8.md](sources/fs-rules-2027-t8.md) | **2027 (wyciąg aero):** diff vs 2026 + cytaty T8 / T2.1.3–4; RW 700–1100 mm na pełną szerokość, FW <350 mm, środek < góra opon |
 | [sources/rules-2027-aero-loopholes.md](sources/rules-2027-aero-loopholes.md) | **2027:** szare strefy / dźwignie w nowym envelope + ryzyko Scrutineering + pytania do Q&A |
 | [team/rules-2027-aero-extract.pdf](team/rules-2027-aero-extract.pdf) | Wyciąg aero FS Rules 2027 (nieoficjalny, bez rysunków) + dump `team/rules-2027-aero-extract.txt` |
+| [team/cad-boxes/](team/cad-boxes/README.md) | Boxy aero 2027 i 2026 jako STEP (SolidWorks) + generator; rozstaw kół / szer. opon / x HR = placeholdery |
 | [sources/fs-rules-2026-t8.md](sources/fs-rules-2026-t8.md) | Claims + cytaty T8 / T2.2 / T11.11 z FS Rules **2026 v1.1** (sezon poprzedni) |
 | [sources/rules-aero-boxes-loopholes.md](sources/rules-aero-boxes-loopholes.md) | Brief Aero Pack: boxy, DRS/fan, luki i ryzyko Scrutineering (**2026**) |
 | [team/rules-current.pdf](team/rules-current.pdf) | PDF źródłowy |

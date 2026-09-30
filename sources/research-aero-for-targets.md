@@ -1,5 +1,7 @@
 # Research: ogólne rady aero pod cele Spec (PUT Motorsport / putm-aero)
 
+> **⚠️ 2027:** tabele T 8.2 tutaj to **2026 v1.1** („wąski box szerokości” RW już nieaktualny — 2027: 700–1100 mm do zewnętrznej krawędzi tylnych opon; FW <350 mm). Patrz [fs-rules-2027-t8.md](fs-rules-2027-t8.md).
+
 **Status:** notatka robocza do Spec (2026-09-01)  
 **Język:** PL
 

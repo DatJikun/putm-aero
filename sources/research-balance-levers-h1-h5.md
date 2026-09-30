@@ -1,5 +1,7 @@
 # Research: dźwignie balansu H1–H5 (Spec)
 
+> **⚠️ 2027:** limity T8 w tej notatce (FW <500/<250 mm, UT „<500 mm”, RW „inboard tylnej opony”) to **2026 v1.1**. 2027: FW <350 mm przed LE przednich opon, środek auta poniżej góry opon, RW 700–1100 mm do zewnętrznej krawędzi tylnych opon — duża zmiana dla H1. Patrz [fs-rules-2027-t8.md](fs-rules-2027-t8.md).
+
 **Status:** notatka robocza dla Spec (2026-09-01)  
 **Język:** PL  
 **Zasada:** wyłącznie KB w `sources/` (Staniszewski 2023/2024, Nagłowski 2024, Jackson 2018, Michalecki, T8/rules, research-balance-shift, research-fs-teams-practice, team-rwiter017 / Baseline002 kontekst). **Bez liczb spoza źródeł.**

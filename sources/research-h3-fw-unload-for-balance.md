@@ -1,5 +1,7 @@
 # H3 — odciążenie przedniego skrzydła po H1+H2 (cofanie balansu)
 
+> **⚠️ 2027:** przywołania T 8.2.1 / T 2.1.3 przy FW odnoszą się do **2026 v1.1**. 2027: FW <350 mm (cała szerokość) przed LE przednich opon, keep-out kół outboard bez końca, nowy variable keep-out T 2.1.4 pod FW. Patrz [fs-rules-2027-t8.md](fs-rules-2027-t8.md).
+
 **Status:** notatka dla Spec + CFD (2026-09-02 Europe/Warsaw)  
 **Język:** PL, pełne zdania  
 **Zasada:** liczby tylko z cytowanych źródeł lokalnych i opublikowanych. Nie inventujemy Cl/Cd. Nie przepisujemy Cl/Cd cudzych aut na kartę `RW_iter017`.

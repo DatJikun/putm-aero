@@ -1,5 +1,7 @@
 # Regulamin — boxy aero i możliwe loophole’y
 
+> **⚠️ 2027:** brief dotyczy **2026 v1.1**. Tabela limitów, loophole'y #4–#7 i implikacje dla RWiter017 („wąski box”) są w 2027 nieaktualne. Nowe boxy: [fs-rules-2027-t8.md](fs-rules-2027-t8.md) · nowe szare strefy: [rules-2027-aero-loopholes.md](rules-2027-aero-loopholes.md).
+
 **Dokument roboczy dla PUTM Aero.**  
 Źródło: *Formula Student Rules 2026*, Version **1.1** (PDF skopiowany do `team/rules-current.pdf`; dump tekstowy: `fs-aero-kb/team/rules-raw.txt`).  
 **Nie jest to zachęta do łamania ducha przepisów** — poniżej tylko luki / niejasności *w tekście* oraz typowe interpretacje zespołów, z oceną ryzyka Scrutineering.

@@ -59,8 +59,10 @@ Zasada: liczby tylko z cytatem / ścieżką do źródła — bez zgadywania.
 
 ### Regulamin
 
-- `fs-rules-2026-t8.md` — T8 aero, cytaty.  
-- `rules-aero-boxes-loopholes.md` — boxy i szare strefy (brief).
+- `fs-rules-2027-t8.md` — **2027:** T8 aero z wyciągu, cytaty i różnice względem 2026.  
+- `rules-2027-aero-loopholes.md` — **2027:** szare strefy i dźwignie w nowym envelope.  
+- `fs-rules-2026-t8.md` — T8 aero 2026 v1.1, cytaty (poprzedni sezon).  
+- `rules-aero-boxes-loopholes.md` — boxy i szare strefy 2026 (brief).
 
 ### Research (kierunek sezonu, H1–H3, teamy)
 
@@ -89,7 +91,8 @@ Tu m.in.: balans i dźwignie (`research-balance-*.md`, `research-h2-*.md`, `rese
 | `putm-aero-sim-log.xlsx` | Log symulacji (Excel). |
 | `fluent-scripts/` | Skrypty meshing / solving / postpro Fluent. |
 | `rwiter017/` | Materiały wokół case’u RWiter017 (jeśli wrzucone). |
-| `rules-current.pdf`, `rules-raw.txt` | Regulamin FS (PDF + tekst). |
+| `rules-current.pdf`, `rules-raw.txt` | Regulamin FS 2026 v1.1 (PDF + tekst). |
+| `rules-2027-aero-extract.pdf`, `rules-2027-aero-extract.txt` | Wyciąg aero z FS Rules 2027 (nieoficjalny, bez rysunków; weryfikować z pełnym PDF). |
 | `workflow.txt` | Notatki o workflow Fluent. |
 
 **Czego tu szukać:** surowe wyniki zespołu, skrypty, regulamin w oryginale.  
@@ -136,7 +139,7 @@ Instrukcja na później (jak wrócicie do 2D): `docs/PROTOKOL-2D-OPENFOAM.md` + 
 | Gdzie są CSV i skrypty Fluent? | `team/` |
 | Co z OpenFOAM 2D? | Zaparkowane → protokół w `docs/` + raport lokalnie `fs-rear-wing-2d-3el/RAPORT_PELNY_SETUP.md` (**nie** TARGETS) |
 | Endplate RW (packaging)? | `sources/research-rw-endplate-packaging.md` |
-| Regulamin T8 / boxy? | `sources/fs-rules-2026-t8.md` albo `team/rules-current.pdf` |
+| Regulamin T8 / boxy? | **2027:** `sources/fs-rules-2027-t8.md` (+ `rules-2027-aero-loopholes.md`); 2026: `sources/fs-rules-2026-t8.md` / `team/rules-current.pdf` |
 
 ---
 

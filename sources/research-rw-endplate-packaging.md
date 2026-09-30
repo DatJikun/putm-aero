@@ -1,5 +1,7 @@
 # Packaging endplate tylnego skrzydła (FS) — box, praktyka, Fluent H1 na RWiter017
 
+> **⚠️ 2027:** sekcja 2 („RW inboard tylnej opony”) to **2026 v1.1**. W 2027 aero 700–1100 mm może sięgać do **zewnętrznej** krawędzi tylnych opon, a pas „góra tylnej opony – 700 mm” ma limit **150 mm inboard** od wewnętrznej krawędzi opony (T 8.2.2, T 2.1.3). Endplate pełnej szerokości nie schodzi poniżej 700 mm. Szczegóły: [fs-rules-2027-t8.md](fs-rules-2027-t8.md), [rules-2027-aero-loopholes.md](rules-2027-aero-loopholes.md).
+
 **Status:** research 2026-09-07 (Europe/Warsaw)  
 **Dla kogo:** Spec / CAD przed serią Fluent H1 na aucie (`RW_iter017`).  
 **Zasada:** liczby tylko z cytowanych źródeł lokalnych. **Bez** wymyślania Cl/Cd dla RWiter017. **Bez** wpisywania Cl/Cd do `TARGETS.md`.  

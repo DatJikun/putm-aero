@@ -1,5 +1,7 @@
 # Formula Student Rules 2026 v1.1 — T8 aero (claims z cytatami)
 
+> **⚠️ 2027:** ten plik opisuje **FS Rules 2026 v1.1**. W wyciągu 2027 zmieniły się T 8.2.1–2 (350 mm przód, „góra opon” w środku, RW 700–1100 mm na pełną szerokość, pas 150 mm inboard) oraz T 2.1.3–4 (keep-out). Diff i cytaty: [fs-rules-2027-t8.md](fs-rules-2027-t8.md).
+
 **Źródło:** *Formula Student Rules 2026*, Version **1.1**  
 **PDF:** `team/rules-current.pdf` · **dump tekstowy:** `team/rules-raw.txt`  
 **Brief z boxami / lukami (Aero Pack):** [rules-aero-boxes-loopholes.md](rules-aero-boxes-loopholes.md)
